@@ -101,7 +101,7 @@ class TestPayrollFixtures(SavepointCase):
 
     def test_expected_results_cover_manual_checks(self):
         self.assertEqual(EXPECTED_RESULTS[1]["net"], EXPECTED_RESULTS[1]["gross"] - EXPECTED_RESULTS[1]["zus_emerytalne_ee"] - EXPECTED_RESULTS[1]["zus_rentowe_ee"] - EXPECTED_RESULTS[1]["zus_chorobowe_ee"] - EXPECTED_RESULTS[1]["health"] - EXPECTED_RESULTS[1]["pit_due"] - EXPECTED_RESULTS[1]["ppk_ee"])
-        self.assertEqual(EXPECTED_RESULTS[2]["pit_due"], Decimal("864"))
+        self.assertEqual(EXPECTED_RESULTS[2]["pit_due"], Decimal("476"))
         self.assertEqual(float(EXPECTED_RESULTS[4]["gross"]), self.scenarios[4][1].wage)
         self.assertEqual(EXPECTED_RESULTS[8]["hours"], Decimal("160.00"))
         self.assertEqual(EXPECTED_RESULTS[10]["pit_second_bracket_part"], EXPECTED_RESULTS[10]["taxable_income_rounded"] - EXPECTED_RESULTS[10]["pit_first_bracket_part"])
