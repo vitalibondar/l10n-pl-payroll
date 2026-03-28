@@ -13,6 +13,8 @@ TWOPLACES = Decimal("0.01")
 
 @tagged("post_install", "-at_install")
 class TestPayrollPayslip(SavepointCase):
+    SUPPORTED_SCENARIOS = (1, 2, 3, 4, 5, 6, 7, 8, 9, 11)
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,7 +25,7 @@ class TestPayrollPayslip(SavepointCase):
             for number, (employee_xmlid, contract_xmlid) in SCENARIO_XMLIDS.items()
         }
 
-    def test_compute_payslip_for_employment_scenarios(self):
+    def test_compute_payslip_for_supported_scenarios(self):
         field_map = {
             "gross": "gross",
             "zus_emerytalne_ee": "zus_emerytalne_ee",
@@ -39,7 +41,7 @@ class TestPayrollPayslip(SavepointCase):
             "ppk_ee": "ppk_ee",
             "net": "net",
         }
-        for scenario_number in (1, 2, 3, 4, 5, 6, 7, 11):
+        for scenario_number in self.SUPPORTED_SCENARIOS:
             with self.subTest(scenario=scenario_number):
                 _employee, contract = self.scenarios[scenario_number]
                 expected = EXPECTED_RESULTS[scenario_number]
@@ -62,7 +64,7 @@ class TestPayrollPayslip(SavepointCase):
                 )
 
     def test_compute_employer_side_contributions(self):
-        for scenario_number in (1, 2, 3, 4, 5, 6, 7, 11):
+        for scenario_number in self.SUPPORTED_SCENARIOS:
             with self.subTest(scenario=scenario_number):
                 _employee, contract = self.scenarios[scenario_number]
                 payslip = self._create_payslip(contract)
@@ -104,6 +106,18 @@ class TestPayrollPayslip(SavepointCase):
                     + self.to_decimal(payslip.zus_fgsp)
                     + self.to_decimal(payslip.ppk_er),
                 )
+
+    def test_gross_is_snapshotted_after_compute(self):
+        _employee, contract = self.scenarios[1]
+        original_wage = contract.wage
+        payslip = self._create_payslip(contract)
+
+        payslip.compute_payslip()
+        payslip.action_confirm()
+        contract.write({"wage": original_wage + 500.0})
+
+        self.assertEqual(payslip.state, "confirmed")
+        self.assertDecimalEqual(payslip.gross, original_wage)
 
     def _create_payslip(self, contract):
         target_date = date(2026, 1, 1)

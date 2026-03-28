@@ -32,7 +32,7 @@ class PlPayrollPayslip(models.Model):
         default="draft",
     )
 
-    gross = fields.Float(related="contract_id.wage", readonly=True)
+    gross = fields.Float(readonly=True)
 
     zus_emerytalne_ee = fields.Float()
     zus_rentowe_ee = fields.Float()
@@ -99,6 +99,7 @@ class PlPayrollPayslip(models.Model):
     def _compute_single_payslip(self):
         self.ensure_one()
 
+        self.gross = self.contract_id.wage
         gross = self._to_decimal(self.gross)
         current_year = fields.Date.to_date(self.date_from).year
         ytd = self._get_ytd_totals(self.employee_id.id, current_year, self.date_from)
@@ -214,7 +215,7 @@ class PlPayrollPayslip(models.Model):
         pit_cumulative = self._compute_tax_on_base(cumulative_taxable_after, threshold)
         pit_advance = self._round_amount(pit_cumulative - pit_before_current)
 
-        if self.contract_id.pit2_filed:
+        if self.contract_id.pit2_filed and not self._is_mandate_contract():
             pit_reducing = self._round_amount(self._get_parameter("PIT_REDUCING"))
 
         reducing_cumulative = ytd["pit_reducing"] + pit_reducing
@@ -266,6 +267,11 @@ class PlPayrollPayslip(models.Model):
         if self.contract_id.ppk_participation == "opt_out":
             return Decimal("0.00")
         return self._round_amount(gross * self._get_parameter("PPK_ER") / Decimal("100"))
+
+    def _is_mandate_contract(self):
+        self.ensure_one()
+        contract_type_name = (self.contract_id.contract_type_id.name or "").strip().lower()
+        return contract_type_name == "umowa zlecenie"
 
     def _percent_of_gross(self, gross, code, company_specific=False):
         return self._percent_of_amount(gross, code, company_specific=company_specific)

@@ -1,6 +1,6 @@
 # TASK-008: Umowa zlecenie support + gross snapshot fix
 
-**Status:** open
+**Status:** done
 **Assignee:** Codex
 **Branch:** task/008-zlecenie-gross-fix
 **Depends on:** TASK-007 merged
