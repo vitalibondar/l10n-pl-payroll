@@ -4,9 +4,9 @@
 
 ## Now
 
-- **Active task:** Planning & architecture for Polish Payroll Odoo module
-- **Phase:** planning
-- **Blockers:** None yet. Need Ася's validation of salary rules before any code goes to production.
+- **Active task:** Repo ready, preparing Codex prompts for TASK-001 + TASK-002
+- **Phase:** infrastructure done → launching first coding tasks
+- **Blockers:** None. Repo live at https://github.com/vitalibondar/l10n-pl-payroll.git
 
 ## Context
 
@@ -16,10 +16,10 @@
 - Віталік (CKO) — project lead, works with Claude Cowork (this chat = main orchestrator)
 - Ася (CFO, Анастасія) — business owner, validates calculations, liaison with accountant
 - Claude Cowork (this chat) — architecture, planning, orchestration, compliance
-- ChatGPT Codex — heavy coding, unit tests, boilerplate, can also think/design
+- ChatGPT Codex — heavy coding, unit tests, research, can also think/design
 - Claude Code (CLI) — coding tasks, integration, testing in console
 
-**Company:** Om Energy Solutions / Om Motors (manufacturing, Poland)
+**Company:** Om Energy Solutions / Om Motors (manufacturing, Poland, 82 employees)
 
 **Odoo:** Enterprise 17+ on Odoo.sh (confirmed by recon 2026-03-28, see ODOO_RECON.md)
 
@@ -31,55 +31,73 @@
 
 **Special features:**
 - Autorskie koszty uzyskania przychodu (50% KUP for creative workers) — Віталік's salary uses this
-- Ulga dla młodych (PIT exemption <26 years)
+- Ulga dla młodych (PIT exemption <26 years), na powrót, dla rodzin 4+, dla seniorów
+- PPK (opt-in/out, reduced rate 0.5%, additional up to 4%)
+- Cumulative PIT (year-to-date, not per-month)
+- ZUS basis cap (282,600 PLN in 2026, pension+disability stop, health continues)
 - Overtime: 150%/200% per Kodeks pracy
 - Bonuses (gross/net) and penalties
-- Public holidays calendar
-- Leave verification (integration with Time Off module)
-- Scheduled reminder to check for law changes (not AI monitoring — just a prompt)
+- Scheduled reminder to check for law changes
 
-**Architecture:** Odoo salary structures + salary rules (Python code). QWeb template for pay slip PDF. Parameterized rates (not hardcoded) with date-effective versioning.
+**Architecture:** Standalone module (hr_payroll NOT installed). Parameterized rates with date-effective versioning. Product-grade quality.
+
+## Git
+
+- **Repo:** https://github.com/vitalibondar/l10n-pl-payroll.git
+- **Local:** ~/l10n-pl-payroll
+- **Branch strategy:** task/NNN-short-desc → PR → main
+- **Agents commit directly** to feature branches (see AGENTS.md)
 
 ## Key Decisions (summary)
 
-- Build as if commercial, even though it's a home project (DEC-001)
-- Parameterized rates with date-effective versioning, not hardcoded values (DEC-002)
-- Autorskie koszty require explicit flag in employee contract — no silent application (DEC-003)
-- Role-based access control on payroll data from day one (DEC-004)
-- Test data must be fictional only — no real PESEL/names/salaries (DEC-005)
+Full details in DECISIONS.md (DEC-001 through DEC-008):
+1. Commercial-grade quality (DEC-001)
+2. Parameterized rates with date-effective versioning (DEC-002)
+3. Autorskie koszty = explicit flag, no silent 50% KUP (DEC-003)
+4. RBAC from day one (DEC-004)
+5. Fictional test data only (DEC-005)
+6. Multi-agent workflow: Cowork + Codex + Claude Code (DEC-006)
+7. Product-grade universal Polish payroll, not company-specific (DEC-007)
+8. Autonomous development on fictional data (DEC-008)
+
+## Анекс Віталіка (прочитаний 2026-03-28)
+
+Vitalik's contract annex (CKO, from 2026-01-01):
+- Gross: 12,000 PLN
+- Split: wynagrodzenie zasadnicze (admin) + honorarium autorskie (creative)
+- Creative work: 50% of time
+- Honorarium залежить від створення Створів + прийняття Рапорту
+- Creative duties: IT architecture, cybersecurity, KM, training materials, system integration, technical docs
+- Admin duties: team management, document supervision, company representation, budgeting
+
+## Tasks Status
+
+| Task | Description | Assignee | Status | Branch |
+|---|---|---|---|---|
+| TASK-001 | Research Odoo payroll localizations | Codex | open | task/001-research-localizations |
+| TASK-002 | pl.payroll.parameter model + data | Codex | open | task/002-payroll-parameters |
+| TASK-003 | Security groups and access rules | Codex | open (depends 002) | task/003-security |
+| TASK-004 | Fictional test data (12 scenarios) | Codex | open (depends 002) | task/004-test-data |
 
 ## Open Questions
 
-- [x] ~~Which Odoo version?~~ → **Enterprise 17+ on Odoo.sh** (recon 2026-03-28)
-- [x] ~~Does the company already use a payroll base module?~~ → **No. hr_payroll NOT installed** (recon)
-- [x] ~~Where is Odoo hosted?~~ → **Odoo.sh** (traceback path confirmed)
-- [x] ~~Which Odoo version?~~ → **Enterprise 17+ on Odoo.sh** (recon 2026-03-28)
-- [x] ~~Does the company already use a payroll base module?~~ → **No. hr_payroll NOT installed** (recon)
-- [x] ~~Where is Odoo hosted?~~ → **Odoo.sh** (traceback path confirmed)
-- [x] ~~Why are contracts empty?~~ → External payroll company handles everything in their own system. Contracts will be filled when switching to our module. (2026-03-28)
-- [x] ~~When does accountant start?~~ → **May 2026**. Until then, external firm does payroll. We build & test now, debug with accountant in May, then full switch. (2026-03-28)
-- [x] ~~Who fills contracts?~~ → Alena Hrytsanchuk (primary), with PDF extraction to reduce manual work. (2026-03-28)
-- [x] ~~Test Odoo base?~~ → Clone existing Odoo plugin to point at test DB. Віталік has access. (2026-03-28)
-- [x] ~~PPK, autorskie, PIT-11 scope~~ → Build universal: ALL Polish payroll features regardless of current usage. Product-grade. (DEC-007)
-- [x] ~~Data from external agency~~ → НЕ потрібно. Працюємо на фіктивних даних. Генеруємо тестові контракти на всі варіанти. (2026-03-28)
-- [ ] **Віталік:** Credentials тестової бази Odoo (назва DB на Odoo.sh)
-- [ ] **Віталік:** Покаже свій анекс до умови (авторські koszty + звіт) — як reference
+- [ ] **Віталік:** Credentials тестової бази Odoo (назва DB на Odoo.sh) — не блокує, потрібно для Phase 5
+- [x] ~~Анекс до умови~~ → Прочитаний, параметри зафіксовані вище
 
 ## Don't
 
-- Don't hardcode any tax rates, ZUS rates, or thresholds — always use parameterized config
-- Don't use real employee data in tests or examples — fictional only
-- Don't implement salary rules without Ася/accountant validation
-- Don't start coding before architecture is agreed upon in this chat
-- Don't waste this chat's context on boilerplate — delegate to Codex/Claude Code
-- Enterprise confirmed — but don't assume Enterprise Payroll (hr_payroll) is installed, it's NOT
-- hr_holidays (Time Off) is also NOT installed — don't reference hr.leave models until it's installed
+- Don't hardcode any tax rates — always use parameterized config
+- Don't use real employee data — fictional only
+- Don't assume hr_payroll or hr_holidays installed — they're NOT
+- Don't waste orchestrator context on boilerplate — delegate
+- Don't bother Asya with questions we can answer ourselves
+- Don't import from odoo.addons.hr_payroll — doesn't exist
 
 ## Agents & Delegation
 
-| Agent | Role | What to delegate |
+| Agent | Role | Commits? |
 |---|---|---|
-| This chat (Cowork) | Orchestrator | Architecture, compliance, decisions, planning |
-| ChatGPT Codex | Heavy coder + thinker | Salary rules Python code, unit tests, module structure, research subtasks |
-| Claude Code (CLI) | Integration & testing | File operations, Odoo shell testing, linting, git |
-| Other Cowork instances | Specialized subtasks | Compliance deep-dives, documentation, QWeb templates |
+| This chat (Cowork) | Orchestrator: architecture, planning, compliance | No |
+| ChatGPT Codex | Coder + thinker: salary rules, tests, research | Yes, feature branches |
+| Claude Code (CLI) | Integration: git ops, linting, testing | Yes |
+| Other Cowork instances | Specialized: docs, QWeb, compliance | No |
