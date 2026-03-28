@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal, ROUND_HALF_UP
 
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from .test_fixtures import EXPECTED_RESULTS, SCENARIO_XMLIDS
 
@@ -12,7 +12,7 @@ TWOPLACES = Decimal("0.01")
 
 
 @tagged("post_install", "-at_install")
-class TestPayrollPayslip(SavepointCase):
+class TestPayrollPayslip(TransactionCase):
     SUPPORTED_SCENARIOS = (1, 2, 3, 4, 5, 6, 7, 8, 9, 11)
 
     @classmethod

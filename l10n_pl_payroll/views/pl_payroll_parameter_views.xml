@@ -4,7 +4,7 @@
         <field name="name">pl.payroll.parameter.tree</field>
         <field name="model">pl.payroll.parameter</field>
         <field name="arch" type="xml">
-            <tree string="Payroll Parameters">
+            <list string="Payroll Parameters">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="value"/>
@@ -12,7 +12,7 @@
                 <field name="date_from"/>
                 <field name="date_to"/>
                 <field name="company_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
