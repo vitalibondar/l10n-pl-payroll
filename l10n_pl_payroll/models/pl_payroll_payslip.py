@@ -64,6 +64,10 @@ class PlPayrollPayslip(models.Model):
     ppk_er = fields.Float()
     total_employer_cost = fields.Float()
 
+    creative_report_id = fields.Many2one("pl.payroll.creative.report", readonly=True)
+    creative_report_required = fields.Boolean(compute="_compute_creative_report_flags")
+    creative_report_missing = fields.Boolean(compute="_compute_creative_report_flags")
+
     notes = fields.Text()
 
     @api.depends("employee_id.name", "date_from")
@@ -76,6 +80,17 @@ class PlPayrollPayslip(models.Model):
                 )
             else:
                 payslip.name = False
+
+    @api.depends("contract_id.kup_type", "creative_report_id", "state")
+    def _compute_creative_report_flags(self):
+        for payslip in self:
+            payslip.creative_report_required = (
+                payslip.contract_id.kup_type == "autorskie"
+            )
+            payslip.creative_report_missing = (
+                payslip.creative_report_required
+                and not payslip.creative_report_id
+            )
 
     def compute_payslip(self):
         for payslip in self:
@@ -101,6 +116,8 @@ class PlPayrollPayslip(models.Model):
 
     def _compute_single_payslip(self):
         self.ensure_one()
+
+        self._link_creative_report()
 
         base_gross = self._to_decimal(self.contract_id.wage)
         overtime_amount = self._compute_overtime_amount(base_gross)
@@ -170,6 +187,24 @@ class PlPayrollPayslip(models.Model):
                 "state": "computed",
             }
         )
+
+    def _link_creative_report(self):
+        self.ensure_one()
+        if self.contract_id.kup_type != "autorskie":
+            return
+        payslip_date = fields.Date.to_date(self.date_from)
+        report = self.env["pl.payroll.creative.report"].search(
+            [
+                ("employee_id", "=", self.employee_id.id),
+                ("date", ">=", payslip_date.replace(day=1)),
+                ("date", "<=", self.date_to),
+                ("state", "=", "accepted"),
+            ],
+            limit=1,
+        )
+        if report:
+            self.creative_report_id = report
+            report.payslip_id = self
 
     def _compute_overtime_amount(self, base_gross):
         self.ensure_one()

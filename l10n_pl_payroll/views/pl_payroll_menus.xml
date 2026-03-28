@@ -26,6 +26,15 @@
     />
 
     <menuitem
+        id="menu_pl_payroll_creative_reports"
+        name="Creative Reports"
+        parent="menu_pl_payroll_root"
+        action="action_pl_payroll_creative_report"
+        sequence="25"
+        groups="l10n_pl_payroll.group_payroll_employee,l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
+    />
+
+    <menuitem
         id="menu_pl_payroll_configuration"
         name="Configuration"
         parent="menu_pl_payroll_root"

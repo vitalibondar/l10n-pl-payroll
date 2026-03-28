@@ -66,6 +66,12 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,computed,confirmed,cancelled"/>
                 </header>
                 <sheet>
+                    <div class="alert alert-warning" role="alert" invisible="not creative_report_missing">
+                        <strong>Warning:</strong> Creative work report (raport autorski) is missing for this employee.
+                        Autorskie koszty (50% KUP) require an accepted monthly creative work report for KAS compliance.
+                    </div>
+                    <field name="creative_report_required" invisible="1"/>
+                    <field name="creative_report_missing" invisible="1"/>
                     <group>
                         <group string="Payslip">
                             <field name="employee_id" readonly="state != 'draft'"/>
@@ -138,6 +144,11 @@
                         </group>
                         <group string="Total Employer Cost">
                             <field name="total_employer_cost" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Creative Work Report" invisible="not creative_report_required">
+                        <group>
+                            <field name="creative_report_id" readonly="1"/>
                         </group>
                     </group>
                     <notebook>
