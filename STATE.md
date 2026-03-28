@@ -4,8 +4,8 @@
 
 ## Now
 
-- **Active task:** Repo ready, preparing Codex prompts for TASK-001 + TASK-002
-- **Phase:** infrastructure done → launching first coding tasks
+- **Active task:** Phase 3 complete, planning Phase 4 (Odoo.sh integration)
+- **Phase:** Phase 3 done — core salary engine works for umowa o pracę + umowa zlecenie, PDF pay slips generated
 - **Blockers:** None. Repo live at https://github.com/vitalibondar/l10n-pl-payroll.git
 
 ## Context
@@ -72,12 +72,21 @@ Vitalik's contract annex (CKO, from 2026-01-01):
 
 ## Tasks Status
 
-| Task | Description | Assignee | Status | Branch |
+| Task | Description | Assignee | Status | Branch / PR |
 |---|---|---|---|---|
-| TASK-001 | Research Odoo payroll localizations | Codex | open | task/001-research-localizations |
-| TASK-002 | pl.payroll.parameter model + data | Codex | open | task/002-payroll-parameters |
-| TASK-003 | Security groups and access rules | Codex | open (depends 002) | task/003-security |
-| TASK-004 | Fictional test data (12 scenarios) | Codex | open (depends 002) | task/004-test-data |
+| TASK-001 | Research Odoo payroll localizations | Codex | done | task/001-research-localizations |
+| TASK-002 | pl.payroll.parameter model + data | Codex | done | task/002-payroll-parameters / PR #2 |
+| TASK-003 | Security groups and access rules | Codex | done | task/003-security / PR #3 |
+| TASK-004 | Fictional test data (12 scenarios) | Codex | done | task/004-test-data / PR #4, #5, #6 |
+| TASK-005 | Salary computation engine | Codex | done | task/005-salary-engine / PR #7 |
+| TASK-006 | Salary rules (ZUS/PIT/PPK) | Codex | done | task/006-salary-rules / PR #7 |
+| TASK-007 | Cumulative PIT + ZUS cap | Codex | done | task/007-cumulative / PR #8 |
+| TASK-008 | Umowa zlecenie + snapshot gross | Claude Code | done | task/008-zlecenie-gross-fix / PR #9 |
+| TASK-009 | PDF pay slip report | Claude Code | done | task/009-pdf-payslip / PR #10 |
+
+## Known Debt
+
+- `_is_mandate_contract()` uses string comparison (`contract_type == 'zlecenie'`) — should use a selection field or constant for robustness
 
 ## Open Questions
 
