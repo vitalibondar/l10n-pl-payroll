@@ -42,5 +42,18 @@
             <field name="domain_force">[('company_id', 'in', company_ids)]</field>
             <field name="groups" eval="[(4, ref('group_payroll_officer')), (4, ref('group_payroll_manager'))]"/>
         </record>
+        <record id="rule_pl_payroll_creative_report_own" model="ir.rule">
+            <field name="name">Creative reports: employee own</field>
+            <field name="model_id" ref="model_pl_payroll_creative_report"/>
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_payroll_employee'))]"/>
+        </record>
+
+        <record id="rule_pl_payroll_creative_report_company" model="ir.rule">
+            <field name="name">Creative reports by company</field>
+            <field name="model_id" ref="model_pl_payroll_creative_report"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('group_payroll_officer')), (4, ref('group_payroll_manager'))]"/>
+        </record>
     </data>
 </odoo>

@@ -22,6 +22,7 @@
         "views/pl_payroll_payslip_views.xml",
         "views/pl_payroll_parameter_views.xml",
         "views/pl_payroll_compute_wizard_views.xml",
+        "views/pl_payroll_creative_report_views.xml",
         "views/pl_payroll_menus.xml",
     ],
     "demo": [
