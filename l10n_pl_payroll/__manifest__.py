@@ -16,6 +16,9 @@
         "data/pl_payroll_parameters_2025.xml",
         "data/pl_payroll_parameters_2026.xml",
     ],
+    "demo": [
+        "data/demo/pl_payroll_demo.xml",
+    ],
     "installable": True,
     "application": False,
     "auto_install": False,

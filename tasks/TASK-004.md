@@ -1,6 +1,6 @@
 # TASK-004: Generate fictional test contracts covering all payroll scenarios
 
-**Status:** open
+**Status:** done
 **Assignee:** codex
 **Depends on:** TASK-002 (parameter model)
 **Phase:** 0.6 / 3.1

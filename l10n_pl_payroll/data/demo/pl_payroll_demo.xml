@@ -1,0 +1,326 @@
+<!-- ⚠️ FICTIONAL TEST DATA — nie sa to dane prawdziwych osob. -->
+<!-- Generated for testing purposes only. PESEL numbers have invalid checksums. -->
+<!-- Scenarios 8 and 9 store 160h monthly equivalents in wage: 5600 PLN and 6400 PLN. -->
+<odoo>
+    <data noupdate="1">
+        <record id="l10n_pl_payroll_demo_contract_type_uop" model="hr.contract.type">
+            <field name="name">Umowa o prace</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_contract_type_uz" model="hr.contract.type">
+            <field name="name">Umowa zlecenie</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_01" model="hr.employee">
+            <field name="name">Jan Kowalski</field>
+            <field name="ssnid">90011510109</field>
+            <field name="birthday">1990-01-15</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_01" model="hr.contract">
+            <field name="name">Scenario 1 - Umowa o prace</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_01"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">6000.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_02" model="hr.employee">
+            <field name="name">Anna Nowak</field>
+            <field name="ssnid">88040210215</field>
+            <field name="birthday">1988-04-02</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_02" model="hr.contract">
+            <field name="name">Scenario 2 - Umowa o prace autorskie</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_02"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">15000.00</field>
+            <field name="kup_type">autorskie</field>
+            <field name="kup_autorskie_pct">50.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_03" model="hr.employee">
+            <field name="name">Piotr Wisniewski</field>
+            <field name="ssnid">85072310304</field>
+            <field name="birthday">1985-07-23</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_03" model="hr.contract">
+            <field name="name">Scenario 3 - Umowa o prace bez PPK</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_03"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">12000.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">opt_out</field>
+            <field name="ppk_ee_rate">0.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_04" model="hr.employee">
+            <field name="name">Maria Wojcik</field>
+            <field name="ssnid">93110910416</field>
+            <field name="birthday">1993-11-09</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_04" model="hr.contract">
+            <field name="name">Scenario 4 - Minimalne wynagrodzenie</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_04"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">4806.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_05" model="hr.employee">
+            <field name="name">Jakub Kaminski</field>
+            <field name="ssnid">98021710506</field>
+            <field name="birthday">1998-02-17</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_05" model="hr.contract">
+            <field name="name">Scenario 5 - Pol etatu</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_05"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">3000.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_06" model="hr.employee">
+            <field name="name">Oleg Shevchenko</field>
+            <field name="ssnid">02251410600</field>
+            <field name="birthday">2002-05-14</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.ua"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_06" model="hr.contract">
+            <field name="name">Scenario 6 - Ulga dla mlodych</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_06"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">8000.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">mlodzi</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_07" model="hr.employee">
+            <field name="name">Katarzyna Lewandowska</field>
+            <field name="ssnid">87093010711</field>
+            <field name="birthday">1987-09-30</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_07" model="hr.contract">
+            <field name="name">Scenario 7 - PPK dodatkowe</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_07"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">25000.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">additional</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">2.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_08" model="hr.employee">
+            <field name="name">Tomasz Zielinski</field>
+            <field name="ssnid">95060510803</field>
+            <field name="birthday">1995-06-05</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_08" model="hr.contract">
+            <field name="name">Scenario 8 - Umowa zlecenie 160h x 35 PLN</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_08"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uz"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">5600.00</field>
+            <field name="kup_type">standard_20</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">opt_out</field>
+            <field name="ppk_ee_rate">0.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="False"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0411</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_09" model="hr.employee">
+            <field name="name">Natalia Kravchuk</field>
+            <field name="ssnid">96081810918</field>
+            <field name="birthday">1996-08-18</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.ua"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_09" model="hr.contract">
+            <field name="name">Scenario 9 - Umowa zlecenie autorskie 160h x 40 PLN</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_09"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uz"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">6400.00</field>
+            <field name="kup_type">autorskie</field>
+            <field name="kup_autorskie_pct">50.0</field>
+            <field name="ppk_participation">opt_out</field>
+            <field name="ppk_ee_rate">0.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="False"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0411</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_10" model="hr.employee">
+            <field name="name">Andrzej Dabrowski</field>
+            <field name="ssnid">84120111007</field>
+            <field name="birthday">1984-12-01</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_10" model="hr.contract">
+            <field name="name">Scenario 10 - Prog 32 proc.</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_10"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">30000.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_11" model="hr.employee">
+            <field name="name">Ewa Majewska</field>
+            <field name="ssnid">94031211116</field>
+            <field name="birthday">1994-03-12</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_11" model="hr.contract">
+            <field name="name">Scenario 11 - PPK reduced</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_11"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">9000.00</field>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">reduced</field>
+            <field name="ppk_ee_rate">0.5</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="l10n_pl_payroll_demo_employee_12" model="hr.employee">
+            <field name="name">Olena Bondarenko</field>
+            <field name="ssnid">91102711218</field>
+            <field name="birthday">1991-10-27</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.ua"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="l10n_pl_payroll_demo_contract_12" model="hr.contract">
+            <field name="name">Scenario 12 - Na powrot z autorskimi</field>
+            <field name="employee_id" ref="l10n_pl_payroll_demo_employee_12"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="contract_type_id" ref="l10n_pl_payroll_demo_contract_type_uop"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="resource_calendar_id" ref="resource.resource_calendar_std"/>
+            <field name="wage">7500.00</field>
+            <field name="kup_type">autorskie</field>
+            <field name="kup_autorskie_pct">80.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed" eval="True"/>
+            <field name="ulga_type">na_powrot</field>
+            <field name="zus_code">0110</field>
+        </record>
+    </data>
+</odoo>
