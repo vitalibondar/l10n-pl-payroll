@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ⚠️ FICTIONAL TEST DATA — nie są to dane prawdziwych osób. -->
+<!-- Generated for testing purposes only. PESEL numbers have invalid checksums. -->
+<odoo>
+    <data noupdate="1">
+        <record id="demo_contract_type_umowa_o_prace" model="hr.contract.type">
+            <field name="name">Umowa o pracę</field>
+        </record>
+
+        <record id="demo_contract_type_umowa_zlecenie" model="hr.contract.type">
+            <field name="name">Umowa zlecenie</field>
+        </record>
+
+        <record id="demo_calendar_full_time" model="resource.calendar">
+            <field name="name">TASK-004 Full Time</field>
+            <field name="tz">Europe/Warsaw</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="demo_calendar_full_time_monday" model="resource.calendar.attendance">
+            <field name="name">Monday</field>
+            <field name="calendar_id" ref="demo_calendar_full_time"/>
+            <field name="dayofweek">0</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">16.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_full_time_tuesday" model="resource.calendar.attendance">
+            <field name="name">Tuesday</field>
+            <field name="calendar_id" ref="demo_calendar_full_time"/>
+            <field name="dayofweek">1</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">16.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_full_time_wednesday" model="resource.calendar.attendance">
+            <field name="name">Wednesday</field>
+            <field name="calendar_id" ref="demo_calendar_full_time"/>
+            <field name="dayofweek">2</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">16.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_full_time_thursday" model="resource.calendar.attendance">
+            <field name="name">Thursday</field>
+            <field name="calendar_id" ref="demo_calendar_full_time"/>
+            <field name="dayofweek">3</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">16.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_full_time_friday" model="resource.calendar.attendance">
+            <field name="name">Friday</field>
+            <field name="calendar_id" ref="demo_calendar_full_time"/>
+            <field name="dayofweek">4</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">16.0</field>
+            <field name="day_period">morning</field>
+        </record>
+
+        <record id="demo_calendar_half_time" model="resource.calendar">
+            <field name="name">TASK-004 Half Time</field>
+            <field name="tz">Europe/Warsaw</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="demo_calendar_half_time_monday" model="resource.calendar.attendance">
+            <field name="name">Monday</field>
+            <field name="calendar_id" ref="demo_calendar_half_time"/>
+            <field name="dayofweek">0</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">12.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_half_time_tuesday" model="resource.calendar.attendance">
+            <field name="name">Tuesday</field>
+            <field name="calendar_id" ref="demo_calendar_half_time"/>
+            <field name="dayofweek">1</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">12.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_half_time_wednesday" model="resource.calendar.attendance">
+            <field name="name">Wednesday</field>
+            <field name="calendar_id" ref="demo_calendar_half_time"/>
+            <field name="dayofweek">2</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">12.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_half_time_thursday" model="resource.calendar.attendance">
+            <field name="name">Thursday</field>
+            <field name="calendar_id" ref="demo_calendar_half_time"/>
+            <field name="dayofweek">3</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">12.0</field>
+            <field name="day_period">morning</field>
+        </record>
+        <record id="demo_calendar_half_time_friday" model="resource.calendar.attendance">
+            <field name="name">Friday</field>
+            <field name="calendar_id" ref="demo_calendar_half_time"/>
+            <field name="dayofweek">4</field>
+            <field name="hour_from">8.0</field>
+            <field name="hour_to">12.0</field>
+            <field name="day_period">morning</field>
+        </record>
+
+        <record id="demo_employee_jan_kowalski" model="hr.employee">
+            <field name="name">Jan Kowalski</field>
+            <field name="ssnid">88041512341</field>
+            <field name="birthday">1988-04-15</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_jan_kowalski" model="hr.contract">
+            <field name="name">TASK-004/01 Jan Kowalski</field>
+            <field name="employee_id" ref="demo_employee_jan_kowalski"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">6000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_anna_nowak" model="hr.employee">
+            <field name="name">Anna Nowak</field>
+            <field name="ssnid">90110323451</field>
+            <field name="birthday">1990-11-03</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_anna_nowak" model="hr.contract">
+            <field name="name">TASK-004/02 Anna Nowak</field>
+            <field name="employee_id" ref="demo_employee_anna_nowak"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">15000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">autorskie</field>
+            <field name="kup_autorskie_pct">50.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_piotr_wisniewski" model="hr.employee">
+            <field name="name">Piotr Wiśniewski</field>
+            <field name="ssnid">85022234566</field>
+            <field name="birthday">1985-02-22</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_piotr_wisniewski" model="hr.contract">
+            <field name="name">TASK-004/03 Piotr Wiśniewski</field>
+            <field name="employee_id" ref="demo_employee_piotr_wisniewski"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">12000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">opt_out</field>
+            <field name="ppk_ee_rate">0.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_maria_wojcik" model="hr.employee">
+            <field name="name">Maria Wójcik</field>
+            <field name="ssnid">97070945675</field>
+            <field name="birthday">1997-07-09</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_maria_wojcik" model="hr.contract">
+            <field name="name">TASK-004/04 Maria Wójcik</field>
+            <field name="employee_id" ref="demo_employee_maria_wojcik"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">4806.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_jakub_kaminski" model="hr.employee">
+            <field name="name">Jakub Kamiński</field>
+            <field name="ssnid">93011956780</field>
+            <field name="birthday">1993-01-19</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_jakub_kaminski" model="hr.contract">
+            <field name="name">TASK-004/05 Jakub Kamiński</field>
+            <field name="employee_id" ref="demo_employee_jakub_kaminski"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">3000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_half_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_oleg_shevchenko" model="hr.employee">
+            <field name="name">Oleg Shevchenko</field>
+            <field name="ssnid">02251267893</field>
+            <field name="birthday">2002-05-12</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.ua"/>
+        </record>
+        <record id="demo_contract_oleg_shevchenko" model="hr.contract">
+            <field name="name">TASK-004/06 Oleg Shevchenko</field>
+            <field name="employee_id" ref="demo_employee_oleg_shevchenko"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">8000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">mlodzi</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_katarzyna_lewandowska" model="hr.employee">
+            <field name="name">Katarzyna Lewandowska</field>
+            <field name="ssnid">87092778902</field>
+            <field name="birthday">1987-09-27</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_katarzyna_lewandowska" model="hr.contract">
+            <field name="name">TASK-004/07 Katarzyna Lewandowska</field>
+            <field name="employee_id" ref="demo_employee_katarzyna_lewandowska"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">25000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">additional</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">2.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_tomasz_zielinski" model="hr.employee">
+            <field name="name">Tomasz Zieliński</field>
+            <field name="ssnid">91061489016</field>
+            <field name="birthday">1991-06-14</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_tomasz_zielinski" model="hr.contract">
+            <field name="name">TASK-004/08 Tomasz Zieliński</field>
+            <field name="employee_id" ref="demo_employee_tomasz_zielinski"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">5600.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_zlecenie"/>
+            <field name="kup_type">standard_20</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">opt_out</field>
+            <field name="ppk_ee_rate">0.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">0</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0411</field>
+            <field name="notes">35 PLN/hour × 160 hours = 5600 PLN gross.</field>
+        </record>
+
+        <record id="demo_employee_natalia_kravchuk" model="hr.employee">
+            <field name="name">Natalia Kravchuk</field>
+            <field name="ssnid">95083090126</field>
+            <field name="birthday">1995-08-30</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.ua"/>
+        </record>
+        <record id="demo_contract_natalia_kravchuk" model="hr.contract">
+            <field name="name">TASK-004/09 Natalia Kravchuk</field>
+            <field name="employee_id" ref="demo_employee_natalia_kravchuk"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">6400.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_zlecenie"/>
+            <field name="kup_type">autorskie</field>
+            <field name="kup_autorskie_pct">100.0</field>
+            <field name="ppk_participation">opt_out</field>
+            <field name="ppk_ee_rate">0.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">0</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0411</field>
+            <field name="notes">40 PLN/hour × 160 hours = 6400 PLN gross.</field>
+        </record>
+
+        <record id="demo_employee_andrzej_dabrowski" model="hr.employee">
+            <field name="name">Andrzej Dąbrowski</field>
+            <field name="ssnid">83120511231</field>
+            <field name="birthday">1983-12-05</field>
+            <field name="gender">male</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_andrzej_dabrowski" model="hr.contract">
+            <field name="name">TASK-004/10 Andrzej Dąbrowski</field>
+            <field name="employee_id" ref="demo_employee_andrzej_dabrowski"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">30000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+            <field name="notes">Expected manual check assumes 100000 PLN taxable income year to date before current month.</field>
+        </record>
+
+        <record id="demo_employee_ewa_majewska" model="hr.employee">
+            <field name="name">Ewa Majewska</field>
+            <field name="ssnid">94031822345</field>
+            <field name="birthday">1994-03-18</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.pl"/>
+        </record>
+        <record id="demo_contract_ewa_majewska" model="hr.contract">
+            <field name="name">TASK-004/11 Ewa Majewska</field>
+            <field name="employee_id" ref="demo_employee_ewa_majewska"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">9000.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">standard</field>
+            <field name="kup_autorskie_pct">0.0</field>
+            <field name="ppk_participation">reduced</field>
+            <field name="ppk_ee_rate">0.5</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">none</field>
+            <field name="zus_code">0110</field>
+        </record>
+
+        <record id="demo_employee_olena_bondarenko" model="hr.employee">
+            <field name="name">Olena Bondarenko</field>
+            <field name="ssnid">89102133451</field>
+            <field name="birthday">1989-10-21</field>
+            <field name="gender">female</field>
+            <field name="country_id" ref="base.ua"/>
+        </record>
+        <record id="demo_contract_olena_bondarenko" model="hr.contract">
+            <field name="name">TASK-004/12 Olena Bondarenko</field>
+            <field name="employee_id" ref="demo_employee_olena_bondarenko"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="date_start">2026-01-01</field>
+            <field name="wage">7500.0</field>
+            <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
+            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="kup_type">autorskie</field>
+            <field name="kup_autorskie_pct">80.0</field>
+            <field name="ppk_participation">default</field>
+            <field name="ppk_ee_rate">2.0</field>
+            <field name="ppk_additional">0.0</field>
+            <field name="pit2_filed">1</field>
+            <field name="ulga_type">na_powrot</field>
+            <field name="zus_code">0110</field>
+        </record>
+    </data>
+</odoo>

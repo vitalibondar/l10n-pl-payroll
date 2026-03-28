@@ -1,6 +1,6 @@
 # TASK-004: Generate fictional test contracts covering all payroll scenarios
 
-**Status:** open
+**Status:** done
 **Assignee:** codex
 **Depends on:** TASK-002 (parameter model)
 **Phase:** 0.6 / 3.1
@@ -80,11 +80,11 @@ NET: 6000 - 585.60 - 90.00 - 147.00 - 465.97 - 291.00 - 120.00 = 4 300.43
 4. `l10n_pl_payroll/data/demo/pl_payroll_demo.xml` — demo data для Odoo (встановлюється з `demo` в manifest)
 
 ## Acceptance Criteria
-- [ ] 12 сценаріїв покривають: o pracę, zlecenie, standard KUP, autorskie KUP, PPK (default, opt-out, reduced, additional), ulga dla młodych, ulga na powrót, мінімалка, частковий етат, високий дохід
-- [ ] PESEL-номери — правильний формат, невалідна контрольна цифра
-- [ ] Ручні розрахунки перевірені (хоча б для сценаріїв 1, 2, 4, 8, 10)
-- [ ] Disclaimer в кожному файлі
-- [ ] Fixtures сумісні з Odoo 17 test framework
+- [x] 12 сценаріїв покривають: o pracę, zlecenie, standard KUP, autorskie KUP, PPK (default, opt-out, reduced, additional), ulga dla młodych, ulga na powrót, мінімалка, частковий етат, високий дохід
+- [x] PESEL-номери — правильний формат, невалідна контрольна цифра
+- [x] Ручні розрахунки перевірені (хоча б для сценаріїв 1, 2, 4, 8, 10)
+- [x] Disclaimer в кожному файлі
+- [x] Fixtures сумісні з Odoo 17 test framework
 
 ## Git Workflow
 
