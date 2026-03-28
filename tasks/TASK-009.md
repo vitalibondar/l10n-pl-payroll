@@ -1,6 +1,6 @@
 # TASK-009: PDF pay slip (pasek wynagrodzeń) — QWeb report
 
-**Status:** open
+**Status:** done
 **Assignee:** Codex
 **Branch:** task/009-pdf-payslip
 **Depends on:** TASK-007 merged (does NOT depend on TASK-008, can run in parallel)

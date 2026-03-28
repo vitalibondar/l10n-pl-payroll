@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_pl_payroll_payslip_document">
+        <t t-call="web.html_container">
+            <meta name="pdf-ua" content="true"/>
+            <style type="text/css">
+                .pl-payslip-page {
+                    color: #1f2933;
+                    font-family: DejaVu Sans, sans-serif;
+                    font-size: 11px;
+                    line-height: 1.45;
+                    page-break-after: always;
+                }
+                .pl-payslip-page:last-of-type {
+                    page-break-after: auto;
+                }
+                .pl-payslip-card {
+                    border: 1px solid #d5dde5;
+                    border-radius: 16px;
+                    margin-bottom: 18px;
+                    overflow: hidden;
+                }
+                .pl-payslip-section {
+                    padding: 16px 18px;
+                }
+                .pl-payslip-muted {
+                    color: #52606d;
+                }
+                .pl-payslip-eyebrow {
+                    color: #7b8794;
+                    font-size: 9px;
+                    font-weight: 700;
+                    letter-spacing: 0.08em;
+                    margin: 0 0 6px 0;
+                    text-transform: uppercase;
+                }
+                .pl-payslip-title {
+                    font-size: 28px;
+                    font-weight: 800;
+                    line-height: 1.1;
+                    margin: 0;
+                }
+                .pl-payslip-grid {
+                    width: 100%;
+                }
+                .pl-payslip-grid td {
+                    vertical-align: top;
+                }
+                .pl-payslip-company {
+                    width: 36%;
+                    padding-right: 18px;
+                }
+                .pl-payslip-header-main {
+                    width: 64%;
+                }
+                .pl-payslip-header-meta {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 14px;
+                }
+                .pl-payslip-header-meta th,
+                .pl-payslip-header-meta td {
+                    border-bottom: 1px solid #e4e7eb;
+                    padding: 7px 0;
+                    text-align: left;
+                }
+                .pl-payslip-header-meta th {
+                    color: #52606d;
+                    font-weight: 600;
+                    width: 34%;
+                }
+                .pl-payslip-logo {
+                    align-items: center;
+                    background: #f8fafc;
+                    border: 1px dashed #bcccdc;
+                    border-radius: 12px;
+                    display: flex;
+                    height: 74px;
+                    justify-content: center;
+                    margin-bottom: 14px;
+                    text-align: center;
+                }
+                .pl-payslip-logo img {
+                    max-height: 54px;
+                    max-width: 100%;
+                }
+                .pl-payslip-hero {
+                    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+                    color: #ffffff;
+                }
+                .pl-payslip-hero h2,
+                .pl-payslip-hero p {
+                    color: inherit;
+                }
+                .pl-payslip-hero-grid {
+                    width: 100%;
+                }
+                .pl-payslip-hero-grid td {
+                    vertical-align: top;
+                }
+                .pl-payslip-hero-amount {
+                    font-size: 36px;
+                    font-weight: 800;
+                    line-height: 1.05;
+                    margin: 4px 0 0 0;
+                }
+                .pl-payslip-badge {
+                    background: rgba(255, 255, 255, 0.12);
+                    border-radius: 999px;
+                    display: inline-block;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.05em;
+                    margin-top: 10px;
+                    padding: 6px 10px;
+                    text-transform: uppercase;
+                }
+                .pl-payslip-section-title {
+                    font-size: 18px;
+                    font-weight: 700;
+                    margin: 0 0 12px 0;
+                }
+                .pl-payslip-table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                .pl-payslip-table th,
+                .pl-payslip-table td {
+                    border-bottom: 1px solid #e4e7eb;
+                    padding: 8px 0;
+                    text-align: left;
+                    vertical-align: top;
+                }
+                .pl-payslip-table th:last-child,
+                .pl-payslip-table td:last-child {
+                    text-align: right;
+                    white-space: nowrap;
+                }
+                .pl-payslip-table th {
+                    color: #52606d;
+                    font-size: 10px;
+                    font-weight: 700;
+                    letter-spacing: 0.04em;
+                    text-transform: uppercase;
+                }
+                .pl-payslip-table tr:last-child th,
+                .pl-payslip-table tr:last-child td {
+                    border-bottom: none;
+                }
+                .pl-payslip-subsection {
+                    border: 1px solid #d9e2ec;
+                    border-radius: 14px;
+                    margin-bottom: 12px;
+                    padding: 14px 16px;
+                }
+                .pl-payslip-subsection h3 {
+                    font-size: 14px;
+                    font-weight: 700;
+                    margin: 0 0 8px 0;
+                }
+                .pl-payslip-note {
+                    background: #f8fafc;
+                    border-left: 4px solid #1d4ed8;
+                    border-radius: 10px;
+                    color: #334e68;
+                    margin: 10px 0 0 0;
+                    padding: 10px 12px;
+                }
+                .pl-payslip-summary {
+                    background: #f8fafc;
+                }
+                .pl-payslip-footer {
+                    border-top: 1px solid #d9e2ec;
+                    color: #52606d;
+                    font-size: 10px;
+                    margin-top: 18px;
+                    padding-top: 12px;
+                }
+                .pl-payslip-footer p {
+                    margin: 4px 0;
+                }
+                .pl-payslip-strong {
+                    font-weight: 700;
+                }
+            </style>
+            <t t-foreach="docs" t-as="o">
+                <t t-set="company" t-value="o.company_id"/>
+                <t t-set="employee" t-value="o.employee_id"/>
+                <t t-set="contract" t-value="o.contract_id"/>
+                <t t-set="parameter_model" t-value="o.env['pl.payroll.parameter']"/>
+                <t t-set="period_start" t-value="str(o.date_from or '')[:4] + '-01-01'"/>
+                <t t-set="period_label" t-value="str(o.date_from or '')[5:7] + '/' + str(o.date_from or '')[:4]"/>
+                <t t-set="period_year" t-value="str(o.date_from or '')[:4]"/>
+                <t t-set="period_month" t-value="str(o.date_from or '')[5:7]"/>
+                <t t-set="previous_payslips" t-value="o.env['pl.payroll.payslip'].search([('employee_id', '=', employee.id), ('state', '=', 'confirmed'), ('date_from', '&gt;=', period_start), ('date_from', '&lt;', o.date_from)], order='date_from asc, id asc')"/>
+                <t t-set="pit_payslips" t-value="o.env['pl.payroll.payslip'].search([('employee_id', '=', employee.id), ('state', '=', 'confirmed'), ('date_from', '&gt;=', period_start), ('date_from', '&lt;', o.date_from), ('pit_advance', '&gt;', 0)], order='date_from asc, id asc')"/>
+                <t t-set="pit_threshold" t-value="parameter_model.get_value('PIT_THRESHOLD', o.date_to) or 0.0"/>
+                <t t-set="zus_emery_rate_ee" t-value="parameter_model.get_value('ZUS_EMERY_EE', o.date_to) or 0.0"/>
+                <t t-set="zus_rent_rate_ee" t-value="parameter_model.get_value('ZUS_RENT_EE', o.date_to) or 0.0"/>
+                <t t-set="zus_chor_rate_ee" t-value="parameter_model.get_value('ZUS_CHOR_EE', o.date_to) or 0.0"/>
+                <t t-set="health_rate" t-value="parameter_model.get_value('HEALTH', o.date_to) or 0.0"/>
+                <t t-set="zus_emery_rate_er" t-value="parameter_model.get_value('ZUS_EMERY_ER', o.date_to) or 0.0"/>
+                <t t-set="zus_rent_rate_er" t-value="parameter_model.get_value('ZUS_RENT_ER', o.date_to) or 0.0"/>
+                <t t-set="zus_wypad_rate_er" t-value="parameter_model.get_value('ZUS_WYPAD_ER', o.date_to, company) or 0.0"/>
+                <t t-set="zus_fp_rate" t-value="parameter_model.get_value('ZUS_FP', o.date_to) or 0.0"/>
+                <t t-set="zus_fgsp_rate" t-value="parameter_model.get_value('ZUS_FGSP', o.date_to) or 0.0"/>
+                <t t-set="ppk_er_rate" t-value="parameter_model.get_value('PPK_ER', o.date_to) or 0.0"/>
+                <t t-set="pit_rate_1" t-value="parameter_model.get_value('PIT_RATE_1', o.date_to) or 0.0"/>
+                <t t-set="pit_rate_2" t-value="parameter_model.get_value('PIT_RATE_2', o.date_to) or 0.0"/>
+                <t t-set="pit_taxable_before" t-value="sum(pit_payslips.mapped('taxable_income'))"/>
+                <t t-set="pit_rate_label" t-value="'0%'" />
+                <t t-if="o.pit_advance &gt; 0 and o.taxable_income &gt; 0">
+                    <t t-if="pit_taxable_before &gt;= pit_threshold">
+                        <t t-set="pit_rate_label" t-value="('{:.2f}'.format(pit_rate_2)).replace('.', ',') + '%'"/>
+                    </t>
+                    <t t-elif="pit_taxable_before + o.taxable_income &lt;= pit_threshold">
+                        <t t-set="pit_rate_label" t-value="('{:.2f}'.format(pit_rate_1)).replace('.', ',') + '%'"/>
+                    </t>
+                    <t t-else="">
+                        <t t-set="pit_rate_label" t-value="(('{:.2f}'.format(pit_rate_1)).replace('.', ',') + '% i ' + ('{:.2f}'.format(pit_rate_2)).replace('.', ',') + '%')"/>
+                    </t>
+                </t>
+                <t t-set="kup_label" t-value="'Koszty pracownicze 250,00 zł'"/>
+                <t t-set="kup_note" t-value="'To część przychodu, której ustawowo nie opodatkowuje się, bo uznaje się ją za koszt wykonywania pracy.'"/>
+                <t t-if="contract.kup_type == 'autorskie'">
+                    <t t-set="kup_label" t-value="'50% kosztów autorskich od części twórczej (' + ('{:.0f}'.format(contract.kup_autorskie_pct or 0.0)).replace('.', ',') + '% pracy twórczej)'"/>
+                    <t t-set="kup_note" t-value="'Ta ulga obniża podatek dla pracy twórczej objętej dokumentacją i rozlicza tylko wskazaną część wynagrodzenia.'"/>
+                </t>
+                <t t-elif="contract.kup_type == 'standard_20'">
+                    <t t-set="kup_label" t-value="'20% kosztów uzyskania przychodu dla umowy zlecenia'"/>
+                    <t t-set="kup_note" t-value="'Przy umowie zlecenia urząd skarbowy pozwala odliczyć część przychodu jako typowy koszt wykonania zlecenia.'"/>
+                </t>
+                <t t-set="position_name" t-value="employee.job_title or employee.job_id.name or 'Nie podano'"/>
+                <t t-set="department_name" t-value="o.department_id.name or 'Nie przypisano'"/>
+                <t t-set="masked_pesel" t-value="('*' * len((employee.ssnid or '')[:-2])) + (employee.ssnid or '')[-2:] if employee.ssnid else 'Brak danych'"/>
+                <t t-set="document_symbol" t-value="'E/%s/%s/%03d' % (period_year, period_month, o.id)"/>
+                <t t-set="ytd_gross" t-value="sum(previous_payslips.mapped('gross')) + o.gross"/>
+                <t t-set="ytd_zus_basis" t-value="sum(previous_payslips.mapped('gross')) + o.gross"/>
+                <t t-set="ytd_pit_basis" t-value="sum(previous_payslips.mapped('taxable_income')) + o.taxable_income"/>
+                <t t-set="ytd_pit_paid" t-value="sum(previous_payslips.mapped('pit_due')) + o.pit_due"/>
+                <t t-call="web.external_layout" t-lang="'pl_PL'">
+                    <main class="page pl-payslip-page" lang="pl" role="document" aria-label="Pasek wynagrodzeń">
+                        <article class="pl-payslip-card">
+                            <header class="pl-payslip-section">
+                                <table class="pl-payslip-grid" role="presentation">
+                                    <tr>
+                                        <td class="pl-payslip-company">
+                                            <div class="pl-payslip-logo">
+                                                <img
+                                                    t-if="company.logo"
+                                                    t-att-src="image_data_uri(company.logo)"
+                                                    alt="Logo firmy"
+                                                />
+                                                <span t-else="" class="pl-payslip-muted">Logo firmy</span>
+                                            </div>
+                                            <p class="pl-payslip-eyebrow">Pracodawca</p>
+                                            <p class="pl-payslip-strong" t-out="company.name"/>
+                                            <p class="pl-payslip-muted">
+                                                <span t-out="company.street or ''"/>
+                                                <t t-if="company.street2">
+                                                    <br/>
+                                                    <span t-out="company.street2"/>
+                                                </t>
+                                                <br/>
+                                                <span t-out="'%s %s' % (company.zip or '', company.city or '')"/>
+                                            </p>
+                                        </td>
+                                        <td class="pl-payslip-header-main">
+                                            <p class="pl-payslip-eyebrow">Miesięczny dokument płacowy</p>
+                                            <h1 class="pl-payslip-title">PASEK WYNAGRODZEŃ</h1>
+                                            <table class="pl-payslip-header-meta">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Pole</th>
+                                                        <th scope="col">Wartość</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Okres</th>
+                                                        <td t-out="period_label"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Pracownik</th>
+                                                        <td t-out="employee.name"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">PESEL</th>
+                                                        <td t-out="masked_pesel"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Dział</th>
+                                                        <td t-out="department_name"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Stanowisko</th>
+                                                        <td t-out="position_name"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Rodzaj umowy</th>
+                                                        <td t-out="contract.contract_type_id.name or 'Nie podano'"/>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </header>
+
+                            <section class="pl-payslip-section pl-payslip-hero" aria-labelledby="net-pay-title">
+                                <table class="pl-payslip-hero-grid" role="presentation">
+                                    <tr>
+                                        <td>
+                                            <p class="pl-payslip-eyebrow">Najważniejsza kwota</p>
+                                            <h2 id="net-pay-title" class="pl-payslip-section-title">Do wypłaty</h2>
+                                            <p class="pl-payslip-hero-amount" t-out="'{:,.2f} zł'.format(o.net).replace(',', ' ').replace('.', ',')"/>
+                                            <span class="pl-payslip-badge">Przelew bankowy</span>
+                                        </td>
+                                        <td style="width: 40%; text-align: right;">
+                                            <p class="pl-payslip-muted" style="color: rgba(255, 255, 255, 0.82); margin: 0;">
+                                                To kwota, która trafi na konto po odjęciu składek, podatku i Twoich wpłat do PPK.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+
+                            <section class="pl-payslip-section" aria-labelledby="income-breakdown-title">
+                                <h2 id="income-breakdown-title" class="pl-payslip-section-title">Skąd bierze się Twoje wynagrodzenie</h2>
+                                <table class="pl-payslip-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Składnik</th>
+                                            <th scope="col">Kwota</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Wynagrodzenie zasadnicze</td>
+                                            <td t-out="'{:,.2f} zł'.format(o.gross).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Wynagrodzenie brutto</th>
+                                            <td t-out="'{:,.2f} zł'.format(o.gross).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                            <section class="pl-payslip-section" aria-labelledby="deductions-title">
+                                <h2 id="deductions-title" class="pl-payslip-section-title">Co obniża wypłatę i dlaczego</h2>
+
+                                <section class="pl-payslip-subsection" aria-labelledby="zus-employee-title">
+                                    <h3 id="zus-employee-title">Składki ZUS pracownika</h3>
+                                    <table class="pl-payslip-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Pozycja</th>
+                                                <th scope="col">Wyjaśnienie</th>
+                                                <th scope="col">Kwota</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Emerytalne</td>
+                                                <td t-out="(('{:.2f}'.format(zus_emery_rate_ee)).replace('.', ',') + '% Twojego brutto')"/>
+                                                <td t-out="'{:,.2f} zł'.format(o.zus_emerytalne_ee).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <td>Rentowe</td>
+                                                <td t-out="(('{:.2f}'.format(zus_rent_rate_ee)).replace('.', ',') + '% Twojego brutto')"/>
+                                                <td t-out="'{:,.2f} zł'.format(o.zus_rentowe_ee).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <td>Chorobowe</td>
+                                                <td t-out="(('{:.2f}'.format(zus_chor_rate_ee)).replace('.', ',') + '% Twojego brutto')"/>
+                                                <td t-out="'{:,.2f} zł'.format(o.zus_chorobowe_ee).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Razem składki społeczne</th>
+                                                <td>Łączna kwota Twoich składek ZUS</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.zus_total_ee).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="pl-payslip-note">Te składki budują Twój kapitał emerytalny i ubezpieczenie społeczne.</p>
+                                </section>
+
+                                <section class="pl-payslip-subsection" aria-labelledby="health-title">
+                                    <h3 id="health-title">Ubezpieczenie zdrowotne</h3>
+                                    <table class="pl-payslip-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Pozycja</th>
+                                                <th scope="col">Wyjaśnienie</th>
+                                                <th scope="col">Kwota</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Podstawa zdrowotna</td>
+                                                <td>Brutto pomniejszone o Twoje składki społeczne</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.health_basis).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <td>Składka zdrowotna</td>
+                                                <td t-out="(('{:.2f}'.format(health_rate)).replace('.', ',') + '% podstawy zdrowotnej')"/>
+                                                <td t-out="'{:,.2f} zł'.format(o.health).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="pl-payslip-note">Składka na NFZ daje Ci dostęp do publicznej opieki zdrowotnej.</p>
+                                </section>
+
+                                <section class="pl-payslip-subsection" aria-labelledby="kup-title">
+                                    <h3 id="kup-title">Koszty uzyskania przychodu</h3>
+                                    <table class="pl-payslip-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Pozycja</th>
+                                                <th scope="col">Wyjaśnienie</th>
+                                                <th scope="col">Kwota</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td t-out="kup_label"/>
+                                                <td>Ta kwota obniża podstawę opodatkowania</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.kup_amount).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="pl-payslip-note" t-out="kup_note"/>
+                                </section>
+
+                                <section class="pl-payslip-subsection" aria-labelledby="pit-title">
+                                    <h3 id="pit-title">Zaliczka na podatek dochodowy</h3>
+                                    <table class="pl-payslip-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Pozycja</th>
+                                                <th scope="col">Wyjaśnienie</th>
+                                                <th scope="col">Kwota</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Podstawa opodatkowania</td>
+                                                <td>Dochód po odjęciu kosztów uzyskania przychodu i doliczeniu PPK pracodawcy</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.taxable_income).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <td>Stawka podatku</td>
+                                                <td>Stawka obowiązująca dla tego miesiąca</td>
+                                                <td t-out="pit_rate_label"/>
+                                            </tr>
+                                            <tr>
+                                                <td>Podatek przed ulgami</td>
+                                                <td>Kwota wyliczona przed zastosowaniem PIT-2</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.pit_advance).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <td>Kwota zmniejszająca podatek</td>
+                                                <td>PIT-2 pomniejsza miesięczną zaliczkę</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.pit_reducing).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">PIT do pobrania w tym miesiącu</th>
+                                                <td>Kwota, którą pracodawca odprowadzi do urzędu skarbowego</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.pit_due).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="pl-payslip-note">Zaliczka na PIT jest wpłatą na poczet Twojego rozliczenia rocznego.</p>
+                                </section>
+
+                                <section t-if="o.ppk_ee or o.ppk_er" class="pl-payslip-subsection" aria-labelledby="ppk-title">
+                                    <h3 id="ppk-title">PPK</h3>
+                                    <table class="pl-payslip-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Pozycja</th>
+                                                <th scope="col">Wyjaśnienie</th>
+                                                <th scope="col">Kwota</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Twoja wpłata do PPK</td>
+                                                <td>Ta kwota obniża bieżącą wypłatę i trafia na Twoje konto PPK</td>
+                                                <td t-out="'{:,.2f} zł'.format(o.ppk_ee).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                            <tr>
+                                                <td>Dopłata pracodawcy do PPK</td>
+                                                <td t-out="(('Nie obniża Twojej wypłaty. Standardowa stawka to ' + ('{:.2f}'.format(ppk_er_rate)).replace('.', ',') + '% brutto.'))"/>
+                                                <td t-out="'{:,.2f} zł'.format(o.ppk_er).replace(',', ' ').replace('.', ',')"/>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="pl-payslip-note">Pracownicze Plany Kapitałowe to dodatkowe oszczędności emerytalne finansowane wspólnie przez Ciebie i pracodawcę.</p>
+                                </section>
+                            </section>
+
+                            <section class="pl-payslip-section" aria-labelledby="employer-cost-title">
+                                <h2 id="employer-cost-title" class="pl-payslip-section-title">Ile kosztuje Twoje zatrudnienie dla pracodawcy</h2>
+                                <table class="pl-payslip-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Pozycja</th>
+                                            <th scope="col">Wyjaśnienie</th>
+                                            <th scope="col">Kwota</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Emerytalne pracodawcy</td>
+                                            <td t-out="(('{:.2f}'.format(zus_emery_rate_er)).replace('.', ',') + '% brutto')"/>
+                                            <td t-out="'{:,.2f} zł'.format(o.zus_emerytalne_er).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Rentowe pracodawcy</td>
+                                            <td t-out="(('{:.2f}'.format(zus_rent_rate_er)).replace('.', ',') + '% brutto')"/>
+                                            <td t-out="'{:,.2f} zł'.format(o.zus_rentowe_er).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Wypadkowe</td>
+                                            <td t-out="(('{:.2f}'.format(zus_wypad_rate_er)).replace('.', ',') + '% brutto')"/>
+                                            <td t-out="'{:,.2f} zł'.format(o.zus_wypadkowe_er).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Fundusz Pracy</td>
+                                            <td t-out="(('{:.2f}'.format(zus_fp_rate)).replace('.', ',') + '% brutto')"/>
+                                            <td t-out="'{:,.2f} zł'.format(o.zus_fp).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <td>FGŚP</td>
+                                            <td t-out="(('{:.2f}'.format(zus_fgsp_rate)).replace('.', ',') + '% brutto')"/>
+                                            <td t-out="'{:,.2f} zł'.format(o.zus_fgsp).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr t-if="o.ppk_er">
+                                            <td>PPK pracodawcy</td>
+                                            <td>Dobrowolny benefit finansowany ponad Twoje wynagrodzenie netto</td>
+                                            <td t-out="'{:,.2f} zł'.format(o.ppk_er).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Łączny koszt pracodawcy</th>
+                                            <td>Brutto plus składki i wpłaty finansowane przez firmę</td>
+                                            <td t-out="'{:,.2f} zł'.format(o.total_employer_cost).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="pl-payslip-note">Te kwoty pracodawca płaci dodatkowo ponad Twoje wynagrodzenie brutto.</p>
+                            </section>
+
+                            <section class="pl-payslip-section pl-payslip-summary" aria-labelledby="ytd-title">
+                                <h2 id="ytd-title" class="pl-payslip-section-title">Narastająco w roku</h2>
+                                <table class="pl-payslip-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Pozycja</th>
+                                            <th scope="col">Kwota</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Przychód brutto od początku roku</td>
+                                            <td t-out="'{:,.2f} zł'.format(ytd_gross).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Podstawa składek ZUS od początku roku</td>
+                                            <td t-out="'{:,.2f} zł'.format(ytd_zus_basis).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Podstawa PIT od początku roku</td>
+                                            <td t-out="'{:,.2f} zł'.format(ytd_pit_basis).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                        <tr>
+                                            <td>PIT pobrany od początku roku</td>
+                                            <td t-out="'{:,.2f} zł'.format(ytd_pit_paid).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                            <footer class="pl-payslip-section pl-payslip-footer">
+                                <p><span class="pl-payslip-strong">Symbol dokumentu:</span> <span t-out="document_symbol"/></p>
+                                <p><span class="pl-payslip-strong">Data wygenerowania:</span> <span t-out="time.strftime('%d.%m.%Y')"/></p>
+                                <p>Wygenerowano automatycznie w systemie Odoo.</p>
+                                <p>Dokument elektroniczny, podpis nie jest wymagany.</p>
+                            </footer>
+                        </article>
+                    </main>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
