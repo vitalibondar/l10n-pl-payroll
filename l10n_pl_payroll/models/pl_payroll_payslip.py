@@ -16,7 +16,9 @@ class PlPayrollPayslip(models.Model):
 
     name = fields.Char(compute="_compute_name", store=True)
     employee_id = fields.Many2one("hr.employee", required=True)
+    department_id = fields.Many2one("hr.department", related="employee_id.department_id", store=True, readonly=True)
     contract_id = fields.Many2one("hr.contract", required=True)
+    kup_type = fields.Selection(related="contract_id.kup_type", readonly=True)
     company_id = fields.Many2one("res.company", related="contract_id.company_id", store=True)
     date_from = fields.Date(required=True)
     date_to = fields.Date(required=True)
@@ -75,6 +77,23 @@ class PlPayrollPayslip(models.Model):
     def compute_payslip(self):
         for payslip in self:
             payslip._compute_single_payslip()
+        return True
+
+    def action_compute(self):
+        self.compute_payslip()
+        return True
+
+    def action_confirm(self):
+        for payslip in self:
+            if payslip.state == "cancelled":
+                continue
+            if payslip.state == "draft":
+                payslip.compute_payslip()
+            payslip.write({"state": "confirmed"})
+        return True
+
+    def action_cancel(self):
+        self.filtered(lambda payslip: payslip.state != "cancelled").write({"state": "cancelled"})
         return True
 
     def _compute_single_payslip(self):

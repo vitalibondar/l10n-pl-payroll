@@ -1,6 +1,6 @@
 # TASK-007: Payslip views (form, tree, search) + batch computation
 
-**Status:** open
+**Status:** done
 **Assignee:** codex
 **Depends on:** TASK-005 (payslip model)
 **Phase:** 2.3
@@ -67,9 +67,9 @@ menu: Polish Payroll → Configuration → Parameters (view for pl.payroll.param
 ### 6. Batch compute wizard (простий)
 
 ```python
-# wizard/pl_payroll_compute_wizard.py
-class PlPayrollComputeWizard(models.TransientModel):
-    _name = 'pl.payroll.compute.wizard'
+# wizard/pl_payroll_batch_compute.py
+class PlPayrollBatchCompute(models.TransientModel):
+    _name = 'pl.payroll.batch.compute'
 
     date_from = fields.Date(required=True)
     date_to = fields.Date(required=True)
@@ -84,40 +84,42 @@ class PlPayrollComputeWizard(models.TransientModel):
 1. `l10n_pl_payroll/views/pl_payroll_payslip_views.xml`
 2. `l10n_pl_payroll/views/pl_payroll_parameter_views.xml`
 3. `l10n_pl_payroll/views/pl_payroll_menus.xml`
-4. `l10n_pl_payroll/wizard/pl_payroll_compute_wizard.py`
+4. `l10n_pl_payroll/wizard/pl_payroll_batch_compute.py`
 5. `l10n_pl_payroll/wizard/__init__.py`
 6. `l10n_pl_payroll/views/pl_payroll_compute_wizard_views.xml`
 7. Update `__init__.py` (root + wizard)
 8. Update `__manifest__.py` (views + wizard)
 9. Update `security/ir.model.access.csv` (wizard model)
+10. `l10n_pl_payroll/tests/test_batch_compute_wizard.py`
 
 ## Git Workflow
 
 ```bash
 cd ~/l10n-pl-payroll
 git checkout main && git pull
-git checkout -b task/007-payslip-views
+git checkout -b task/007-views-wizard
 
 git add l10n_pl_payroll/views/pl_payroll_payslip_views.xml
 git add l10n_pl_payroll/views/pl_payroll_parameter_views.xml
 git add l10n_pl_payroll/views/pl_payroll_menus.xml
-git add l10n_pl_payroll/wizard/pl_payroll_compute_wizard.py
+git add l10n_pl_payroll/wizard/pl_payroll_batch_compute.py
 git add l10n_pl_payroll/wizard/__init__.py
 git add l10n_pl_payroll/views/pl_payroll_compute_wizard_views.xml
 git add l10n_pl_payroll/__init__.py
 git add l10n_pl_payroll/__manifest__.py
 git add l10n_pl_payroll/security/ir.model.access.csv
+git add l10n_pl_payroll/tests/test_batch_compute_wizard.py
 git add tasks/TASK-007.md
 git commit -m "[TASK-007] Add payslip and parameter views, menus, batch compute wizard"
-git push -u origin task/007-payslip-views
+git push -u origin task/007-views-wizard
 gh pr create --title "[TASK-007] Payslip views and batch wizard" --body "Form/tree/search views for payslips, parameter management UI, menus, and batch compute wizard."
 ```
 
 ## Acceptance Criteria
-- [ ] Form view shows full payslip with all computed fields
-- [ ] Tree view lists payslips with key columns
-- [ ] Search view has filters and group-by options
-- [ ] Menu: Polish Payroll → Payslips, Polish Payroll → Configuration → Parameters
-- [ ] Batch wizard creates and computes payslips for all active contracts
-- [ ] Parameter tree+form views work for managers
-- [ ] No hardcoded strings where translations are possible
+- [x] Form view shows full payslip with all computed fields
+- [x] Tree view lists payslips with key columns
+- [x] Search view has filters and group-by options
+- [x] Menu: Payroll → Payslips, Payroll → Configuration → Parameters
+- [x] Batch wizard creates and computes payslips for all active contracts
+- [x] Parameter tree+form views work for managers
+- [x] No hardcoded strings where translations are possible
