@@ -4,3 +4,5 @@ access_pl_payroll_parameter_manager,pl.payroll.parameter manager,model_pl_payrol
 access_pl_payroll_payslip_employee,pl.payroll.payslip employee,model_pl_payroll_payslip,l10n_pl_payroll.group_payroll_employee,1,0,0,0
 access_pl_payroll_payslip_officer,pl.payroll.payslip officer,model_pl_payroll_payslip,l10n_pl_payroll.group_payroll_officer,1,1,1,0
 access_pl_payroll_payslip_manager,pl.payroll.payslip manager,model_pl_payroll_payslip,l10n_pl_payroll.group_payroll_manager,1,1,1,1
+access_pl_payroll_batch_compute_officer,pl.payroll.batch.compute officer,model_pl_payroll_batch_compute,l10n_pl_payroll.group_payroll_officer,1,1,1,1
+access_pl_payroll_batch_compute_manager,pl.payroll.batch.compute manager,model_pl_payroll_batch_compute,l10n_pl_payroll.group_payroll_manager,1,1,1,1

@@ -17,6 +17,10 @@
         "security/ir.model.access.csv",
         "data/pl_payroll_parameters_2025.xml",
         "data/pl_payroll_parameters_2026.xml",
+        "views/pl_payroll_payslip_views.xml",
+        "views/pl_payroll_parameter_views.xml",
+        "views/pl_payroll_compute_wizard_views.xml",
+        "views/pl_payroll_menus.xml",
     ],
     "demo": [
         "data/demo/pl_payroll_demo.xml",
