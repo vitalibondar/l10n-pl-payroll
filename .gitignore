@@ -8,3 +8,4 @@ dist/
 build/
 .env
 *.log
+.DS_Store
