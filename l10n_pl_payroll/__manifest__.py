@@ -1,6 +1,6 @@
 {
     "name": "Poland - Payroll",
-    "version": "19.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Human Resources/Payroll",
     "summary": "Polish payroll calculation and pay slip generation",
     "description": """
