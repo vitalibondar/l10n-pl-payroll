@@ -1,6 +1,6 @@
 # TASK-001: Research Odoo payroll localizations (l10n_be, l10n_in)
 
-**Status:** open
+**Status:** done
 **Assignee:** codex
 **Depends on:** —
 **Phase:** 1.1
