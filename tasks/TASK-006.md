@@ -1,6 +1,6 @@
 # TASK-006: Cumulative YTD tracking — PIT brackets + ZUS basis cap
 
-**Status:** open
+**Status:** done
 **Assignee:** codex
 **Depends on:** TASK-005 (payslip model must exist)
 **Phase:** 2.2
