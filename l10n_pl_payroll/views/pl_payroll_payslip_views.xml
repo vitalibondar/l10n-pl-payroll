@@ -4,14 +4,14 @@
         <field name="name">pl.payroll.payslip.tree</field>
         <field name="model">pl.payroll.payslip</field>
         <field name="arch" type="xml">
-            <tree string="Payslips" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancelled'">
+            <list string="Payslips" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancelled'">
                 <field name="employee_id"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
                 <field name="gross"/>
                 <field name="net"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

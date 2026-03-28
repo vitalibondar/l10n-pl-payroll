@@ -6,7 +6,7 @@ from decimal import Decimal
 from pathlib import Path
 
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -59,7 +59,7 @@ EXPECTED_RESULTS = _load_expected_results()
 
 
 @tagged("post_install", "-at_install")
-class TestPayrollFixtures(SavepointCase):
+class TestPayrollFixtures(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

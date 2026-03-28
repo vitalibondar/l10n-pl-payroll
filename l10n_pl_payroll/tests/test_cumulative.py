@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal, ROUND_DOWN, ROUND_HALF_UP
 
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 TWOPLACES = Decimal("0.01")
@@ -11,7 +11,7 @@ WHOLE_ZLOTY = Decimal("1")
 
 
 @tagged("post_install", "-at_install")
-class TestPayrollCumulative(SavepointCase):
+class TestPayrollCumulative(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

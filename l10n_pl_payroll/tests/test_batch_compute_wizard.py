@@ -1,13 +1,13 @@
 from datetime import date
 
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 from .test_fixtures import SCENARIO_XMLIDS
 
 
 @tagged("post_install", "-at_install")
-class TestPayrollBatchComputeWizard(SavepointCase):
+class TestPayrollBatchComputeWizard(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
