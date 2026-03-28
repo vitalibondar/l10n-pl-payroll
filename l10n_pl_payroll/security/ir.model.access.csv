@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pl_payroll_parameter_officer,pl.payroll.parameter officer,model_pl_payroll_parameter,l10n_pl_payroll.group_payroll_officer,1,0,0,0
+access_pl_payroll_parameter_manager,pl.payroll.parameter manager,model_pl_payroll_parameter,l10n_pl_payroll.group_payroll_manager,1,1,1,1

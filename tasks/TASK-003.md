@@ -1,6 +1,6 @@
 # TASK-003: Security groups and access rules
 
-**Status:** open
+**Status:** done
 **Assignee:** codex
 **Depends on:** TASK-002
 **Phase:** 1.6
