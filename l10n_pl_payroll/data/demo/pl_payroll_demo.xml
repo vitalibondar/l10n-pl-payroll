@@ -105,6 +105,16 @@
             <field name="day_period">morning</field>
         </record>
 
+        <record id="demo_parameter_standard_monthly_hours_2026" model="pl.payroll.parameter">
+            <field name="name">Standard Monthly Hours 2026</field>
+            <field name="code">STANDARD_MONTHLY_HOURS</field>
+            <field name="value">168.0</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="date_to">2026-12-31</field>
+            <field name="value_type">amount</field>
+            <field name="note">Used to calculate overtime additions before ZUS and PIT.</field>
+        </record>
+
         <record id="demo_employee_jan_kowalski" model="hr.employee">
             <field name="name">Jan Kowalski</field>
             <field name="ssnid">88041512341</field>
