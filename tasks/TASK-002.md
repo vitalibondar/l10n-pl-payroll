@@ -90,6 +90,32 @@ def get_value(self, code, date=None, company_id=None):
 - [ ] Tests pass
 - [ ] No hardcoded values in model code
 
+## Git Workflow
+
+```bash
+# 1. Перед початком роботи
+cd ~/l10n-pl-payroll
+git checkout main && git pull
+git checkout -b task/002-payroll-parameters
+
+# 2. Прочитай обов'язково:
+# CLAUDE.md → LESSONS.md → DECISIONS.md (DEC-002) → цей файл
+
+# 3. Після виконання — коміт і PR:
+git add l10n_pl_payroll/models/pl_payroll_parameter.py
+git add l10n_pl_payroll/models/__init__.py
+git add l10n_pl_payroll/data/pl_payroll_parameters_2025.xml
+git add l10n_pl_payroll/data/pl_payroll_parameters_2026.xml
+git add l10n_pl_payroll/tests/test_parameter.py
+git add l10n_pl_payroll/__manifest__.py
+git add tasks/TASK-002.md
+git commit -m "[TASK-002] Add pl.payroll.parameter model with 2025-2026 data"
+git push -u origin task/002-payroll-parameters
+gh pr create --title "[TASK-002] Payroll parameter model" --body "Date-effective parameter storage for all Polish payroll rates. Includes 20+ parameters for 2025-2026 and unit tests."
+
+# 4. Оновити Status нижче → done
+```
+
 ## Notes
 - Verify 2025 and 2026 values via web search before committing (see LESSONS.md)
 - MIN_HOURLY for 2025 was 30.50 PLN, verify 2026 value

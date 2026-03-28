@@ -86,6 +86,31 @@ NET: 6000 - 585.60 - 90.00 - 147.00 - 465.97 - 291.00 - 120.00 = 4 300.43
 - [ ] Disclaimer в кожному файлі
 - [ ] Fixtures сумісні з Odoo 17 test framework
 
+## Git Workflow
+
+```bash
+# 1. Перед початком роботи
+cd ~/l10n-pl-payroll
+git checkout main && git pull
+git checkout -b task/004-test-data
+
+# 2. Прочитай обов'язково:
+# CLAUDE.md → LESSONS.md → DECISIONS.md (DEC-005, DEC-007) → цей файл
+
+# 3. Після виконання — коміт і PR:
+git add tools/test_data_gen.py
+git add tools/expected_results.py
+git add l10n_pl_payroll/tests/test_fixtures.py
+git add l10n_pl_payroll/data/demo/pl_payroll_demo.xml
+git add l10n_pl_payroll/__manifest__.py
+git add tasks/TASK-004.md
+git commit -m "[TASK-004] Add fictional test data: 12 scenarios with expected calculations"
+git push -u origin task/004-test-data
+gh pr create --title "[TASK-004] Fictional test data and expected results" --body "12 payroll scenarios covering o pracę, zlecenie, autorskie, PPK variants, ulgi. PESEL with invalid checksums. Manual gross-to-net calculations for validation."
+
+# 4. Оновити Status нижче → done
+```
+
 ## Notes
 - Віталік покаже свій реальний анекс до умови (авторські koszty) як reference — це додатковий сценарій, але пізніше
 - Авторські koszty передбачають щомісячний звіт про творчу діяльність — це не частина salary calculation, але модуль має знати про це (поле для зберігання звітів? пізніша фаза)

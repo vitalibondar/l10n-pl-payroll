@@ -26,6 +26,27 @@
 5. **Testing**: як тестують salary calculations? Які test patterns?
 6. **Рекомендація**: яку архітектуру адаптувати для нашого модуля. Що взяти, що змінити, чого уникати.
 
+## Git Workflow
+
+```bash
+# 1. Перед початком роботи
+cd ~/l10n-pl-payroll
+git checkout main && git pull
+git checkout -b task/001-research-localizations
+
+# 2. Прочитай обов'язково:
+# CLAUDE.md → LESSONS.md → цей файл
+
+# 3. Після виконання — коміт і PR:
+git add tasks/TASK-001-research.md
+git add tasks/TASK-001.md   # бо оновив Status → done
+git commit -m "[TASK-001] Research Odoo payroll localizations (l10n_be, l10n_in)"
+git push -u origin task/001-research-localizations
+gh pr create --title "[TASK-001] Payroll localization research" --body "Research of l10n_be and l10n_in payroll modules. See tasks/TASK-001-research.md"
+
+# 4. Оновити Status нижче → done
+```
+
 ## Acceptance Criteria
 - [ ] Покриті мінімум 2 localizations
 - [ ] Є конкретні приклади (назви файлів, моделей, полів)

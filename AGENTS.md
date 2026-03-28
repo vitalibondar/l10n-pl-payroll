@@ -104,10 +104,38 @@ l10n_pl_payroll/
 **Пише:** Документацію, QWeb templates, compliance deep-dives
 **Комітить:** Ні (через Claude Code або Codex)
 
-## Naming Conventions
+## Git Protocol (обов'язковий для всіх агентів)
 
-- Branches: `task/NNN-short-desc` (напр. `task/002-salary-structure`)
-- Commits: `[TASK-NNN] Опис` (напр. `[TASK-002] Add salary structure for umowa o pracę`)
+**Repo:** `https://github.com/vitalibondar/l10n-pl-payroll.git`
+**Local path:** `~/l10n-pl-payroll`
+**Main branch:** `main`
+
+### Кожна задача — окремий branch і PR
+
+```bash
+# Перед початком будь-якої задачі:
+cd ~/l10n-pl-payroll
+git checkout main && git pull
+git checkout -b task/NNN-short-desc
+
+# Після завершення:
+git add <конкретні файли>       # НЕ git add -A
+git commit -m "[TASK-NNN] Описова назва"
+git push -u origin task/NNN-short-desc
+gh pr create --title "[TASK-NNN] Коротка назва" --body "Опис що зроблено"
+```
+
+### Правила
+- **Не** робити `git add -A` — додавати конкретні файли
+- **Не** пушити в `main` напряму — тільки через PR
+- **Не** force push
+- **Обов'язково** оновити Status в TASK-NNN.md → `done` перед комітом
+- Кожен TASK-файл має секцію `## Git Workflow` з точними командами — дотримуйся їх
+
+### Naming Conventions
+
+- Branches: `task/NNN-short-desc` (напр. `task/002-payroll-parameters`)
+- Commits: `[TASK-NNN] Опис` (напр. `[TASK-002] Add pl.payroll.parameter model with 2025-2026 data`)
 - PR: один PR на задачу (або на логічну групу задач)
 
 ## Правило "Read Before Write"
