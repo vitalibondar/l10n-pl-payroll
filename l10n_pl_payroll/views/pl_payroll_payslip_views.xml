@@ -93,6 +93,13 @@
                             </div>
                         </group>
                     </group>
+                    <group string="Overtime">
+                        <group>
+                            <field name="overtime_hours_150" readonly="state != 'draft'"/>
+                            <field name="overtime_hours_200" readonly="state != 'draft'"/>
+                            <field name="overtime_amount" readonly="1"/>
+                        </group>
+                    </group>
                     <group string="Employee Deductions">
                         <group string="ZUS">
                             <field name="zus_emerytalne_ee" readonly="1"/>

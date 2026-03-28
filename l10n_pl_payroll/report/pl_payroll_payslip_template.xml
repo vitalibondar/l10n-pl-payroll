@@ -234,6 +234,7 @@
                 <t t-set="department_name" t-value="o.department_id.name or 'Nie przypisano'"/>
                 <t t-set="masked_pesel" t-value="('*' * len((employee.ssnid or '')[:-2])) + (employee.ssnid or '')[-2:] if employee.ssnid else 'Brak danych'"/>
                 <t t-set="document_symbol" t-value="'E/%s/%s/%03d' % (period_year, period_month, o.id)"/>
+                <t t-set="base_gross" t-value="o.gross - o.overtime_amount"/>
                 <t t-set="ytd_gross" t-value="sum(previous_payslips.mapped('gross')) + o.gross"/>
                 <t t-set="ytd_zus_basis" t-value="sum(previous_payslips.mapped('gross')) + o.gross"/>
                 <t t-set="ytd_pit_basis" t-value="sum(previous_payslips.mapped('taxable_income')) + o.taxable_income"/>
@@ -337,7 +338,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Wynagrodzenie zasadnicze</td>
-                                            <td t-out="'{:,.2f} zł'.format(o.gross).replace(',', ' ').replace('.', ',')"/>
+                                            <td t-out="'{:,.2f} zł'.format(base_gross).replace(',', ' ').replace('.', ',')"/>
                                         </tr>
                                         <tr>
                                             <th scope="row">Wynagrodzenie brutto</th>
@@ -345,6 +346,37 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </section>
+
+                            <section t-if="o.overtime_amount &gt; 0" class="pl-payslip-section" aria-labelledby="overtime-title">
+                                <h2 id="overtime-title" class="pl-payslip-section-title">Nadgodziny</h2>
+                                <table class="pl-payslip-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Pozycja</th>
+                                            <th scope="col">Liczba godzin</th>
+                                            <th scope="col">Kwota</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Nadgodziny 150%</td>
+                                            <td t-out="'{:,.2f}'.format(o.overtime_hours_150).replace(',', ' ').replace('.', ',')"/>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nadgodziny 200%</td>
+                                            <td t-out="'{:,.2f}'.format(o.overtime_hours_200).replace(',', ' ').replace('.', ',')"/>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Łączny dodatek za nadgodziny</th>
+                                            <td/>
+                                            <td t-out="'{:,.2f} zł'.format(o.overtime_amount).replace(',', ' ').replace('.', ',')"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="pl-payslip-note">Dodatek za nadgodziny zwiększa brutto przed naliczeniem ZUS, PIT i PPK.</p>
                             </section>
 
                             <section class="pl-payslip-section" aria-labelledby="deductions-title">

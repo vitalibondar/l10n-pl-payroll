@@ -33,6 +33,9 @@ class PlPayrollPayslip(models.Model):
     )
 
     gross = fields.Float(readonly=True)
+    overtime_hours_150 = fields.Float(string="Overtime Hours 150%")
+    overtime_hours_200 = fields.Float(string="Overtime Hours 200%")
+    overtime_amount = fields.Float(string="Overtime Amount", readonly=True)
 
     zus_emerytalne_ee = fields.Float()
     zus_rentowe_ee = fields.Float()
@@ -99,8 +102,9 @@ class PlPayrollPayslip(models.Model):
     def _compute_single_payslip(self):
         self.ensure_one()
 
-        self.gross = self.contract_id.wage
-        gross = self._to_decimal(self.gross)
+        base_gross = self._to_decimal(self.contract_id.wage)
+        overtime_amount = self._compute_overtime_amount(base_gross)
+        gross = self._round_amount(base_gross + overtime_amount)
         current_year = fields.Date.to_date(self.date_from).year
         ytd = self._get_ytd_totals(self.employee_id.id, current_year, self.date_from)
         zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], gross)
@@ -141,6 +145,8 @@ class PlPayrollPayslip(models.Model):
 
         self.write(
             {
+                "gross": float(gross),
+                "overtime_amount": float(overtime_amount),
                 "zus_emerytalne_ee": float(zus_emerytalne_ee),
                 "zus_rentowe_ee": float(zus_rentowe_ee),
                 "zus_chorobowe_ee": float(zus_chorobowe_ee),
@@ -164,6 +170,25 @@ class PlPayrollPayslip(models.Model):
                 "state": "computed",
             }
         )
+
+    def _compute_overtime_amount(self, base_gross):
+        self.ensure_one()
+
+        overtime_hours_150 = self._to_decimal(self.overtime_hours_150)
+        overtime_hours_200 = self._to_decimal(self.overtime_hours_200)
+        if overtime_hours_150 <= Decimal("0.00") and overtime_hours_200 <= Decimal("0.00"):
+            return Decimal("0.00")
+
+        standard_monthly_hours = self._get_parameter("STANDARD_MONTHLY_HOURS")
+        if standard_monthly_hours <= Decimal("0.00"):
+            raise UserError("Payroll parameter STANDARD_MONTHLY_HOURS must be greater than zero.")
+
+        hourly_rate = base_gross / standard_monthly_hours
+        overtime_amount = (
+            overtime_hours_150 * hourly_rate * Decimal("1.5")
+            + overtime_hours_200 * hourly_rate * Decimal("2.0")
+        )
+        return self._round_amount(overtime_amount)
 
     def _get_ytd_totals(self, employee_id, year, before_date):
         before_date = fields.Date.to_date(before_date)
