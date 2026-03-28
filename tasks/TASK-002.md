@@ -1,6 +1,6 @@
 # TASK-002: Design and implement pl.payroll.parameter model
 
-**Status:** open
+**Status:** done
 **Assignee:** codex
 **Depends on:** TASK-001 (for architectural context, but can start in parallel)
 **Phase:** 1.4

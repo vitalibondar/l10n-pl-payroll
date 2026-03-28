@@ -12,7 +12,10 @@
     "website": "https://omenergysolutions.pl",
     "license": "LGPL-3",
     "depends": ["hr_contract", "hr_attendance"],
-    "data": [],
+    "data": [
+        "data/pl_payroll_parameters_2025.xml",
+        "data/pl_payroll_parameters_2026.xml",
+    ],
     "installable": True,
     "application": False,
     "auto_install": False,
