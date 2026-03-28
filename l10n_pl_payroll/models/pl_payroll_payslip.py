@@ -1,3 +1,4 @@
+from datetime import date
 from decimal import Decimal, ROUND_DOWN, ROUND_HALF_UP
 
 from odoo import api, fields, models
@@ -80,36 +81,34 @@ class PlPayrollPayslip(models.Model):
         self.ensure_one()
 
         gross = self._to_decimal(self.gross)
-        zus_emerytalne_ee = self._percent_of_gross(gross, "ZUS_EMERY_EE")
-        zus_rentowe_ee = self._percent_of_gross(gross, "ZUS_RENT_EE")
+        current_year = fields.Date.to_date(self.date_from).year
+        ytd = self._get_ytd_totals(self.employee_id.id, current_year, self.date_from)
+        zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], gross)
+
+        zus_emerytalne_ee = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_EE")
+        zus_rentowe_ee = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_EE")
         zus_chorobowe_ee = self._percent_of_gross(gross, "ZUS_CHOR_EE")
         zus_total_ee = self._round_amount(zus_emerytalne_ee + zus_rentowe_ee + zus_chorobowe_ee)
 
         health_basis = self._round_amount(gross - zus_total_ee)
         health = self._round_amount(health_basis * self._get_parameter("HEALTH") / Decimal("100"))
+        ppk_er = self._compute_ppk_employer(gross)
         kup_amount = self._compute_kup_amount(health_basis)
-        taxable_income = self._floor_amount(health_basis - kup_amount)
-
-        pit_advance = Decimal("0.00")
-        pit_reducing = Decimal("0.00")
-        pit_due = Decimal("0")
-        if self.contract_id.ulga_type not in ("mlodzi", "na_powrot", "rodzina_4_plus", "senior"):
-            pit_advance = self._round_amount(
-                taxable_income * self._get_parameter("PIT_RATE_1") / Decimal("100")
-            )
-            if self.contract_id.pit2_filed:
-                pit_reducing = self._round_amount(self._get_parameter("PIT_REDUCING"))
-            pit_due = self._floor_amount(max(Decimal("0.00"), pit_advance - pit_reducing))
+        taxable_income = self._floor_amount(health_basis - kup_amount + ppk_er)
+        pit_advance, pit_reducing, pit_due = self._compute_pit_amounts(
+            gross,
+            taxable_income,
+            ytd,
+        )
 
         ppk_ee = self._compute_ppk_employee(gross)
         net = self._round_amount(gross - zus_total_ee - health - pit_due - ppk_ee)
 
-        zus_emerytalne_er = self._percent_of_gross(gross, "ZUS_EMERY_ER")
-        zus_rentowe_er = self._percent_of_gross(gross, "ZUS_RENT_ER")
+        zus_emerytalne_er = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_ER")
+        zus_rentowe_er = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_ER")
         zus_wypadkowe_er = self._percent_of_gross(gross, "ZUS_WYPAD_ER", company_specific=True)
         zus_fp = self._percent_of_gross(gross, "ZUS_FP")
         zus_fgsp = self._percent_of_gross(gross, "ZUS_FGSP")
-        ppk_er = self._compute_ppk_employer(gross)
         total_employer_cost = self._round_amount(
             gross
             + zus_emerytalne_er
@@ -146,6 +145,81 @@ class PlPayrollPayslip(models.Model):
             }
         )
 
+    def _get_ytd_totals(self, employee_id, year, before_date):
+        before_date = fields.Date.to_date(before_date)
+        payslips = self.search(
+            [
+                ("employee_id", "=", employee_id),
+                ("state", "=", "confirmed"),
+                ("date_from", ">=", date(year, 1, 1)),
+                ("date_from", "<", before_date),
+            ],
+            order="date_from asc, id asc",
+        )
+        pit_payslips = payslips.filtered(lambda slip: self._to_decimal(slip.pit_advance) > Decimal("0.00"))
+        return {
+            "gross": sum((self._to_decimal(value) for value in payslips.mapped("gross")), Decimal("0.00")),
+            "zus_basis": sum((self._to_decimal(value) for value in payslips.mapped("gross")), Decimal("0.00")),
+            "taxable_income": sum(
+                (self._to_decimal(value) for value in payslips.mapped("taxable_income")),
+                Decimal("0.00"),
+            ),
+            "pit_taxable_income": sum(
+                (self._to_decimal(value) for value in pit_payslips.mapped("taxable_income")),
+                Decimal("0.00"),
+            ),
+            "pit_reducing": sum(
+                (self._to_decimal(value) for value in payslips.mapped("pit_reducing")),
+                Decimal("0.00"),
+            ),
+            "pit_paid": sum((self._to_decimal(value) for value in payslips.mapped("pit_due")), Decimal("0.00")),
+        }
+
+    def _compute_pit_amounts(self, gross, current_taxable_income, ytd):
+        self.ensure_one()
+
+        pit_advance = Decimal("0.00")
+        pit_reducing = Decimal("0.00")
+        pit_due = Decimal("0")
+        ulga_limit = self._get_parameter("PIT_THRESHOLD")
+
+        if self.contract_id.ulga_type in ("mlodzi", "na_powrot", "rodzina_4_plus", "senior"):
+            if ytd["gross"] + gross <= ulga_limit:
+                return pit_advance, pit_reducing, pit_due
+
+        threshold = self._get_parameter("PIT_THRESHOLD")
+        cumulative_taxable_before = ytd["pit_taxable_income"]
+        cumulative_taxable_after = cumulative_taxable_before + current_taxable_income
+
+        pit_before_current = self._compute_tax_on_base(cumulative_taxable_before, threshold)
+        pit_cumulative = self._compute_tax_on_base(cumulative_taxable_after, threshold)
+        pit_advance = self._round_amount(pit_cumulative - pit_before_current)
+
+        if self.contract_id.pit2_filed:
+            pit_reducing = self._round_amount(self._get_parameter("PIT_REDUCING"))
+
+        reducing_cumulative = ytd["pit_reducing"] + pit_reducing
+        pit_due = self._floor_amount(max(Decimal("0.00"), pit_cumulative - reducing_cumulative - ytd["pit_paid"]))
+        return pit_advance, pit_reducing, pit_due
+
+    def _compute_tax_on_base(self, taxable_income, threshold):
+        first_rate = self._get_parameter("PIT_RATE_1")
+        second_rate = self._get_parameter("PIT_RATE_2")
+
+        if taxable_income <= threshold:
+            return self._round_amount(taxable_income * first_rate / Decimal("100"))
+        return self._round_amount(
+            threshold * first_rate / Decimal("100")
+            + (taxable_income - threshold) * second_rate / Decimal("100")
+        )
+
+    def _get_zus_cap_basis(self, cumulative_gross_before, current_gross):
+        zus_cap = self._get_parameter("ZUS_BASIS_CAP")
+        if cumulative_gross_before >= zus_cap:
+            return Decimal("0.00")
+        remaining = zus_cap - cumulative_gross_before
+        return min(current_gross, remaining)
+
     def _compute_kup_amount(self, health_basis):
         self.ensure_one()
         if self.contract_id.kup_type == "autorskie":
@@ -175,8 +249,11 @@ class PlPayrollPayslip(models.Model):
         return self._round_amount(gross * self._get_parameter("PPK_ER") / Decimal("100"))
 
     def _percent_of_gross(self, gross, code, company_specific=False):
+        return self._percent_of_amount(gross, code, company_specific=company_specific)
+
+    def _percent_of_amount(self, amount, code, company_specific=False):
         rate = self._get_parameter(code, company_specific=company_specific)
-        return self._round_amount(gross * rate / Decimal("100"))
+        return self._round_amount(amount * rate / Decimal("100"))
 
     def _get_parameter(self, code, company_specific=False):
         parameter = self.env["pl.payroll.parameter"].get_value(
