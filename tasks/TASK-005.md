@@ -1,6 +1,6 @@
 # TASK-005: Payslip model + salary rules for umowa o pracę
 
-**Status:** done
+**Status:** open
 **Assignee:** codex
 **Depends on:** TASK-002 (parameters), TASK-003 (security), TASK-004 (contract extension)
 **Phase:** 2.1
