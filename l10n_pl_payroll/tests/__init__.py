@@ -8,3 +8,4 @@ from . import test_student_exemption
 from . import test_part_time
 from . import test_sick_leave
 from . import test_dzielo
+from . import test_health_minimum
