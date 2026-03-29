@@ -105,6 +105,14 @@
                                     <field name="overtime_hours_150" readonly="state != 'draft'"/>
                                     <field name="overtime_hours_200" readonly="state != 'draft'"/>
                                 </group>
+                                <group string="Zwolnienie chorobowe">
+                                    <field name="sick_days" readonly="state != 'draft'"/>
+                                    <field name="sick_days_100" readonly="state != 'draft'"/>
+                                    <field name="working_days_in_month" readonly="state != 'draft'"/>
+                                    <field name="ytd_sick_days" readonly="1"/>
+                                    <field name="sick_leave_basis" readonly="1"/>
+                                    <field name="sick_leave_amount" readonly="1"/>
+                                </group>
                                 <group string="ZUS Pracownik">
                                     <field name="zus_emerytalne_ee" readonly="1"/>
                                     <field name="zus_rentowe_ee" readonly="1"/>

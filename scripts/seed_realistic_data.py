@@ -59,6 +59,11 @@ PAYSLIP_ADJUSTMENTS = [
     {"name": "Marta Lewandowska", "month": "2026-01", "category": "bonus_gross", "amount": 3000.0, "label": "Premia projektowa"},
     {"name": "Michał Adamski", "month": "2025-11", "category": "bonus_gross", "amount": 1000.0, "label": "Dodatek funkcyjny"},
 ]
+SICK_LEAVE_ENTRIES = [
+    {"name": "Tomasz Kowalski", "month": "2025-10", "sick_days": 5, "sick_days_100": 0},
+    {"name": "Anna Wiśniewska", "month": "2025-03", "sick_days": 10, "sick_days_100": 0},
+    {"name": "Ewa Krawczyk", "month": "2025-07", "sick_days": 10, "sick_days_100": 5},
+]
 
 
 def connect():
@@ -132,6 +137,16 @@ def month_range(start_text, end_month):
 def month_bounds(month_start):
     last_day = calendar.monthrange(month_start.year, month_start.month)[1]
     return month_start.isoformat(), date(month_start.year, month_start.month, last_day).isoformat()
+
+
+def count_weekdays_in_month(month_text):
+    month_start = parse_date(month_text + "-01")
+    last_day = calendar.monthrange(month_start.year, month_start.month)[1]
+    total = 0
+    for day in range(1, last_day + 1):
+        if date(month_start.year, month_start.month, day).weekday() < 5:
+            total += 1
+    return total
 
 
 def unlink_one_by_one(models, uid, model, domain, label):
@@ -425,6 +440,45 @@ def add_adjustments(models, uid):
     return applied
 
 
+def add_sick_leave_entries(models, uid):
+    applied = []
+    for entry in SICK_LEAVE_ENTRIES:
+        payslip_ids = execute(
+            models,
+            uid,
+            "pl.payroll.payslip",
+            "search",
+            [[
+                ("employee_id.name", "=", entry["name"]),
+                ("date_from", "=", entry["month"] + "-01"),
+            ]],
+            {"limit": 1},
+        )
+        if not payslip_ids:
+            print(f"  ! Sick leave target not found: {entry['name']} {entry['month']}")
+            continue
+        payslip_id = payslip_ids[0]
+        try:
+            execute(
+                models,
+                uid,
+                "pl.payroll.payslip",
+                "write",
+                [[payslip_id], {
+                    "sick_days": entry["sick_days"],
+                    "sick_days_100": entry["sick_days_100"],
+                    "working_days_in_month": count_weekdays_in_month(entry["month"]),
+                }],
+            )
+            execute(models, uid, "pl.payroll.payslip", "action_compute", [[payslip_id]])
+            execute(models, uid, "pl.payroll.payslip", "action_confirm", [[payslip_id]])
+            applied.append(entry)
+            print(f"Applied sick leave to {entry['name']} {entry['month']}")
+        except Exception as exc:
+            print(f"  ! Failed sick leave for {entry['name']} {entry['month']}: {exc}")
+    return applied
+
+
 def format_money(value):
     return f"{value:,.2f}"
 
@@ -526,6 +580,7 @@ def main():
     employee_ids = create_employees(models, uid, refs)
     contract_ids = create_contracts(models, uid, refs, employee_ids)
     _, failures = create_payslips(models, uid, refs, employee_ids, contract_ids)
+    sick_leave_entries = add_sick_leave_entries(models, uid)
     adjustments = add_adjustments(models, uid)
 
     print("")
@@ -544,6 +599,7 @@ def main():
     print("")
     print(f"Employees created: {len(employee_ids)}")
     print(f"Contracts created: {len(contract_ids)}")
+    print(f"Sick leave entries applied: {len(sick_leave_entries)}")
     print(f"Adjustments applied: {len(adjustments)}")
     print(f"Payslip failures: {len(failures)}")
     if failures:
