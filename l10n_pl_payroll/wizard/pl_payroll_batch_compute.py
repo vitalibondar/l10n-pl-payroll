@@ -58,6 +58,6 @@ class PlPayrollBatchCompute(models.TransientModel):
             "type": "ir.actions.act_window",
             "name": _("Payslips"),
             "res_model": "pl.payroll.payslip",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": [("id", "in", payslips.ids)],
         }

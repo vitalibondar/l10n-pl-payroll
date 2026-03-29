@@ -164,7 +164,7 @@
     <record id="action_pl_payroll_payslip" model="ir.actions.act_window">
         <field name="name">Payslips</field>
         <field name="res_model">pl.payroll.payslip</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_pl_payroll_payslip_search"/>
     </record>
 </odoo>

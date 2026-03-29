@@ -41,4 +41,4 @@ class TestPayrollBatchComputeWizard(TransactionCase):
         self.assertEqual(set(payslips.mapped("state")), {"computed"})
         self.assertTrue(all(net > 0.0 for net in payslips.mapped("net")))
         self.assertEqual(action["res_model"], "pl.payroll.payslip")
-        self.assertEqual(action["view_mode"], "tree,form")
+        self.assertEqual(action["view_mode"], "list,form")
