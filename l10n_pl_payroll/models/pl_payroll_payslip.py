@@ -36,6 +36,10 @@ class PlPayrollPayslip(models.Model):
     overtime_hours_150 = fields.Float(string="Overtime Hours 150%")
     overtime_hours_200 = fields.Float(string="Overtime Hours 200%")
     overtime_amount = fields.Float(string="Overtime Amount", readonly=True)
+    payslip_line_ids = fields.One2many("pl.payroll.payslip.line", "payslip_id")
+    bonus_gross_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
+    deduction_gross_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
+    deduction_net_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
 
     zus_emerytalne_ee = fields.Float(string="ZUS Emerytalne (EE)")
     zus_rentowe_ee = fields.Float(string="ZUS Rentowe (EE)")
@@ -92,6 +96,24 @@ class PlPayrollPayslip(models.Model):
                 and not payslip.creative_report_id
             )
 
+    @api.depends("payslip_line_ids.category", "payslip_line_ids.amount")
+    def _compute_payslip_line_totals(self):
+        for payslip in self:
+            bonus_gross_total = Decimal("0.00")
+            deduction_gross_total = Decimal("0.00")
+            deduction_net_total = Decimal("0.00")
+            for line in payslip.payslip_line_ids:
+                amount = payslip._to_decimal(line.amount)
+                if line.category == "bonus_gross":
+                    bonus_gross_total += amount
+                elif line.category == "deduction_gross":
+                    deduction_gross_total += amount
+                elif line.category == "deduction_net":
+                    deduction_net_total += amount
+            payslip.bonus_gross_total = float(payslip._round_amount(bonus_gross_total))
+            payslip.deduction_gross_total = float(payslip._round_amount(deduction_gross_total))
+            payslip.deduction_net_total = float(payslip._round_amount(deduction_net_total))
+
     def compute_payslip(self):
         for payslip in self:
             payslip._compute_single_payslip()
@@ -121,7 +143,10 @@ class PlPayrollPayslip(models.Model):
 
         base_gross = self._to_decimal(self.contract_id.wage)
         overtime_amount = self._compute_overtime_amount(base_gross)
-        gross = self._round_amount(base_gross + overtime_amount)
+        bonus_gross_total = self._to_decimal(self.bonus_gross_total)
+        deduction_gross_total = self._to_decimal(self.deduction_gross_total)
+        deduction_net_total = self._to_decimal(self.deduction_net_total)
+        gross = self._round_amount(base_gross + overtime_amount + bonus_gross_total - deduction_gross_total)
         current_year = fields.Date.to_date(self.date_from).year
         ytd = self._get_ytd_totals(self.employee_id.id, current_year, self.date_from)
         zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], gross)
@@ -143,7 +168,8 @@ class PlPayrollPayslip(models.Model):
         )
 
         ppk_ee = self._compute_ppk_employee(gross)
-        net = self._round_amount(gross - zus_total_ee - health - pit_due - ppk_ee)
+        net_before_deductions = self._round_amount(gross - zus_total_ee - health - pit_due - ppk_ee)
+        net = self._round_amount(net_before_deductions - deduction_net_total)
 
         zus_emerytalne_er = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_ER")
         zus_rentowe_er = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_ER")

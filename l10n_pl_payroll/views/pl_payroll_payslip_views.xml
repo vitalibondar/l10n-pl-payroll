@@ -139,6 +139,16 @@
                                 </group>
                             </group>
                         </page>
+                        <page string="Bonuses &amp; Deductions">
+                            <field name="payslip_line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="category"/>
+                                    <field name="amount"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
                         <page string="Raport twórczy" invisible="not creative_report_required">
                             <group>
                                 <field name="creative_report_id" readonly="1"/>
