@@ -5,7 +5,7 @@
     "summary": "Polish payroll calculation and pay slip generation",
     "description": """
         Calculates gross-to-net salary for Polish employees.
-        Supports umowa o pracę and umowa zlecenie.
+        Supports umowa o pracę, umowa zlecenie, and umowa o dzieło.
         Generates pay slips (pasek wynagrodzeń).
     """,
     "author": "Om Energy Solutions",
@@ -16,6 +16,7 @@
         "security/pl_payroll_security.xml",
         "security/pl_payroll_payslip_line_security.xml",
         "security/ir.model.access.csv",
+        "data/pl_payroll_contract_type_data.xml",
         "data/pl_payroll_parameters_2025.xml",
         "data/pl_payroll_parameters_2026.xml",
         "report/pl_payroll_payslip_report.xml",

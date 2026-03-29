@@ -22,7 +22,7 @@ class TestPartTime(TransactionCase):
         cls.Parameter = cls.env["pl.payroll.parameter"]
         cls.full_time_calendar = cls.env.ref("l10n_pl_payroll.demo_calendar_full_time")
         cls.half_time_calendar = cls.env.ref("l10n_pl_payroll.demo_calendar_half_time")
-        cls.contract_type_praca = cls.env.ref("l10n_pl_payroll.demo_contract_type_umowa_o_prace")
+        cls.contract_type_praca = cls.env.ref("l10n_pl_payroll.contract_type_umowa_o_prace")
         cls.env.company.resource_calendar_id = cls.full_time_calendar
 
     @classmethod

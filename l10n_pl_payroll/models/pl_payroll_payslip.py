@@ -201,6 +201,54 @@ class PlPayrollPayslip(models.Model):
         deduction_gross_total = self._to_decimal(self.deduction_gross_total)
         deduction_net_total = self._to_decimal(self.deduction_net_total)
         gross = self._round_amount(base_gross + overtime_amount + bonus_gross_total - deduction_gross_total)
+
+        if self._is_dzielo_contract():
+            if gross <= Decimal("200.00"):
+                kup_amount = Decimal("0.00")
+                taxable_income = gross
+                pit_advance = self._round_amount(gross * Decimal("0.12"))
+            else:
+                if self.contract_id.kup_type == "autorskie":
+                    kup_amount = self._round_amount(gross * Decimal("0.50"))
+                else:
+                    kup_amount = self._round_amount(gross * Decimal("0.20"))
+                taxable_income = self._floor_amount(gross - kup_amount)
+                pit_advance = self._round_amount(taxable_income * Decimal("0.12"))
+
+            pit_due = self._floor_amount(pit_advance)
+            net_before_deductions = self._round_amount(gross - pit_due)
+            net = self._round_amount(net_before_deductions - deduction_net_total)
+            self.write(
+                {
+                    "gross": float(gross),
+                    "sick_leave_amount": 0.0,
+                    "sick_leave_basis": 0.0,
+                    "overtime_amount": float(overtime_amount),
+                    "zus_emerytalne_ee": 0.0,
+                    "zus_rentowe_ee": 0.0,
+                    "zus_chorobowe_ee": 0.0,
+                    "zus_total_ee": 0.0,
+                    "health_basis": 0.0,
+                    "health": 0.0,
+                    "kup_amount": float(kup_amount),
+                    "taxable_income": float(taxable_income),
+                    "pit_advance": float(pit_advance),
+                    "pit_reducing": 0.0,
+                    "pit_due": float(pit_due),
+                    "ppk_ee": 0.0,
+                    "net": float(net),
+                    "zus_emerytalne_er": 0.0,
+                    "zus_rentowe_er": 0.0,
+                    "zus_wypadkowe_er": 0.0,
+                    "zus_fp": 0.0,
+                    "zus_fgsp": 0.0,
+                    "ppk_er": 0.0,
+                    "total_employer_cost": float(gross),
+                    "state": "computed",
+                }
+            )
+            return
+
         sick_amount, sick_basis, adjusted_gross = self._compute_sick_leave(gross)
         effective_gross = self._round_amount(adjusted_gross + sick_amount)
         current_year = fields.Date.to_date(self.date_from).year
@@ -538,6 +586,11 @@ class PlPayrollPayslip(models.Model):
         self.ensure_one()
         contract_type_name = (self.contract_id.contract_type_id.name or "").strip().lower()
         return contract_type_name == "umowa zlecenie"
+
+    def _is_dzielo_contract(self):
+        self.ensure_one()
+        contract_type_name = (self.contract_id.contract_type_id.name or "").strip().lower()
+        return contract_type_name == "umowa o dzieło"
 
     def _is_student_zlecenie_exempt(self):
         self.ensure_one()

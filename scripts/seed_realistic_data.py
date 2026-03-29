@@ -50,6 +50,7 @@ EMPLOYEES = [
     {"index": 20, "name": "Marta Lewandowska", "job_title": "CKO (Dyrektor ds. Wiedzy i IT)", "department": "Zarząd", "nationality": "PL", "birthday": "1986-12-02", "gender": "female", "wage": 12000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 21, "name": "Jakub Wiśniewski", "job_title": "Student magazynu", "department": "Magazyn", "nationality": "PL", "birthday": "2003-05-11", "gender": "male", "wage": 4200.0, "date_start": "2025-07-01", "contract_type": "zlecenie", "is_student": True, "kup_type": "standard_20", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 22, "name": "Oliwia Kowalska", "job_title": "Studentka biura", "department": "Biuro", "nationality": "PL", "birthday": "2001-09-18", "gender": "female", "wage": 4300.0, "date_start": "2025-09-01", "contract_type": "zlecenie", "is_student": True, "kup_type": "standard_20", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 23, "name": "Bartosz Nowicki", "job_title": "Freelance graphic designer", "department": "Biuro", "nationality": "PL", "birthday": "1994-04-08", "gender": "male", "wage": 3000.0, "date_start": "2025-11-01", "contract_type": "dzielo", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
 ]
 
 PAYSLIP_ADJUSTMENTS = [
@@ -220,6 +221,7 @@ def ensure_reference_data(models, uid):
     contract_type_ids = {
         "o_prace": ensure_named_record(models, uid, "hr.contract.type", "Umowa o pracę"),
         "zlecenie": ensure_named_record(models, uid, "hr.contract.type", "Umowa zlecenie"),
+        "dzielo": ensure_named_record(models, uid, "hr.contract.type", "Umowa o dzieło"),
     }
 
     country_rows = execute(

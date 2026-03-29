@@ -1,6 +1,6 @@
 # TASK-021: Umowa o dzieło support
 
-**Status:** pending
+**Status:** done
 **Branch:** task/021-umowa-dzielo
 **Created:** 2026-03-29
 **Depends on:** none

@@ -3,14 +3,6 @@
 <!-- Generated for testing purposes only. PESEL numbers have invalid checksums. -->
 <odoo>
     <data noupdate="1">
-        <record id="demo_contract_type_umowa_o_prace" model="hr.contract.type">
-            <field name="name">Umowa o pracę</field>
-        </record>
-
-        <record id="demo_contract_type_umowa_zlecenie" model="hr.contract.type">
-            <field name="name">Umowa zlecenie</field>
-        </record>
-
         <record id="demo_calendar_full_time" model="resource.calendar">
             <field name="name">TASK-004 Full Time</field>
             <field name="tz">Europe/Warsaw</field>
@@ -129,7 +121,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">6000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">default</field>
@@ -154,7 +146,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">15000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">autorskie</field>
             <field name="kup_autorskie_pct">50.0</field>
             <field name="ppk_participation">default</field>
@@ -179,7 +171,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">12000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">opt_out</field>
@@ -204,7 +196,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">4806.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">default</field>
@@ -229,7 +221,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">3000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_half_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">default</field>
@@ -254,7 +246,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">8000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">default</field>
@@ -279,7 +271,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">25000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">additional</field>
@@ -304,7 +296,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">5600.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_zlecenie"/>
+            <field name="contract_type_id" ref="contract_type_umowa_zlecenie"/>
             <field name="kup_type">standard_20</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">opt_out</field>
@@ -330,7 +322,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">6400.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_zlecenie"/>
+            <field name="contract_type_id" ref="contract_type_umowa_zlecenie"/>
             <field name="kup_type">autorskie</field>
             <field name="kup_autorskie_pct">100.0</field>
             <field name="ppk_participation">opt_out</field>
@@ -356,7 +348,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">30000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">default</field>
@@ -382,7 +374,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">9000.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">standard</field>
             <field name="kup_autorskie_pct">0.0</field>
             <field name="ppk_participation">reduced</field>
@@ -407,7 +399,7 @@
             <field name="date_start">2026-01-01</field>
             <field name="wage">7500.0</field>
             <field name="resource_calendar_id" ref="demo_calendar_full_time"/>
-            <field name="contract_type_id" ref="demo_contract_type_umowa_o_prace"/>
+            <field name="contract_type_id" ref="contract_type_umowa_o_prace"/>
             <field name="kup_type">autorskie</field>
             <field name="kup_autorskie_pct">80.0</field>
             <field name="ppk_participation">default</field>
