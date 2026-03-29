@@ -55,5 +55,19 @@
             <field name="domain_force">[('company_id', 'in', company_ids)]</field>
             <field name="groups" eval="[(4, ref('group_payroll_officer')), (4, ref('group_payroll_manager'))]"/>
         </record>
+
+        <record id="rule_pl_payroll_zus_dra_company" model="ir.rule">
+            <field name="name">ZUS DRA by company</field>
+            <field name="model_id" ref="model_pl_payroll_zus_dra"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('group_payroll_officer')), (4, ref('group_payroll_manager'))]"/>
+        </record>
+
+        <record id="rule_pl_payroll_zus_dra_line_company" model="ir.rule">
+            <field name="name">ZUS DRA lines by company</field>
+            <field name="model_id" ref="model_pl_payroll_zus_dra_line"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('group_payroll_officer')), (4, ref('group_payroll_manager'))]"/>
+        </record>
     </data>
 </odoo>

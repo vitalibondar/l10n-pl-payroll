@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pl_payroll_zus_dra_wizard_form" model="ir.ui.view">
+        <field name="name">pl.payroll.zus.dra.wizard.form</field>
+        <field name="model">pl.payroll.zus.dra.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generuj ZUS DRA">
+                <group>
+                    <field name="year"/>
+                    <field name="month"/>
+                </group>
+                <footer>
+                    <button name="action_generate" string="Generuj DRA" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pl_payroll_zus_dra_wizard" model="ir.actions.act_window">
+        <field name="name">Generuj ZUS DRA</field>
+        <field name="res_model">pl.payroll.zus.dra.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_pl_payroll_zus_dra_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>
