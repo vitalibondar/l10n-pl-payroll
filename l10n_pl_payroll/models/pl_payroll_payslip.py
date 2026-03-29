@@ -71,6 +71,8 @@ class PlPayrollPayslip(models.Model):
     creative_report_id = fields.Many2one("pl.payroll.creative.report", readonly=True)
     creative_report_required = fields.Boolean(compute="_compute_creative_report_flags")
     creative_report_missing = fields.Boolean(compute="_compute_creative_report_flags")
+    etat_fraction = fields.Float(compute="_compute_etat_fraction", store=True, string="Wymiar etatu")
+    below_minimum_wage = fields.Boolean(compute="_compute_minimum_wage_warning", store=True)
 
     notes = fields.Text(string="Notes")
 
@@ -95,6 +97,34 @@ class PlPayrollPayslip(models.Model):
                 payslip.creative_report_required
                 and not payslip.creative_report_id
             )
+
+    @api.depends(
+        "contract_id.resource_calendar_id.attendance_ids.hour_from",
+        "contract_id.resource_calendar_id.attendance_ids.hour_to",
+        "company_id.resource_calendar_id.attendance_ids.hour_from",
+        "company_id.resource_calendar_id.attendance_ids.hour_to",
+    )
+    def _compute_etat_fraction(self):
+        for payslip in self:
+            payslip.etat_fraction = float(payslip._get_etat_fraction())
+
+    @api.depends(
+        "gross",
+        "date_to",
+        "contract_id.resource_calendar_id.attendance_ids.hour_from",
+        "contract_id.resource_calendar_id.attendance_ids.hour_to",
+        "company_id.resource_calendar_id.attendance_ids.hour_from",
+        "company_id.resource_calendar_id.attendance_ids.hour_to",
+    )
+    def _compute_minimum_wage_warning(self):
+        for payslip in self:
+            below_minimum_wage = False
+            if payslip.gross and payslip.date_to:
+                minimum_wage = payslip._get_minimum_wage_parameter()
+                if minimum_wage is not False:
+                    threshold = payslip._round_amount(minimum_wage * payslip._get_etat_fraction())
+                    below_minimum_wage = payslip._to_decimal(payslip.gross) < threshold
+            payslip.below_minimum_wage = below_minimum_wage
 
     @api.depends("payslip_line_ids.category", "payslip_line_ids.amount")
     def _compute_payslip_line_totals(self):
@@ -347,6 +377,29 @@ class PlPayrollPayslip(models.Model):
         remaining = zus_cap - cumulative_gross_before
         return min(current_gross, remaining)
 
+    def _get_etat_fraction(self):
+        self.ensure_one()
+        calendar = self.contract_id.resource_calendar_id
+        if not calendar:
+            return Decimal("1")
+        company_calendar = self.company_id.resource_calendar_id
+        contract_hours = self._get_calendar_hours_per_week(calendar)
+        company_hours = self._get_calendar_hours_per_week(company_calendar)
+        if contract_hours <= Decimal("0") or company_hours <= Decimal("0"):
+            return Decimal("1")
+        fraction = contract_hours / company_hours
+        return min(fraction, Decimal("1"))
+
+    def _get_calendar_hours_per_week(self, calendar):
+        if not calendar:
+            return Decimal("0")
+        total = Decimal("0")
+        for attendance in calendar.attendance_ids:
+            hours = Decimal(str(attendance.hour_to or 0.0)) - Decimal(str(attendance.hour_from or 0.0))
+            if hours > Decimal("0"):
+                total += hours
+        return total
+
     def _compute_kup_amount(self, health_basis):
         self.ensure_one()
         if self.contract_id.kup_type == "autorskie":
@@ -354,7 +407,8 @@ class PlPayrollPayslip(models.Model):
             return self._round_amount(health_basis * creative_share * Decimal("0.5"))
         if self.contract_id.kup_type == "standard_20":
             return self._round_amount(health_basis * Decimal("0.20"))
-        return self._round_amount(self._get_parameter("KUP_STANDARD"))
+        kup_full = self._get_parameter("KUP_STANDARD")
+        return self._round_amount(kup_full * self._get_etat_fraction())
 
     def _compute_ppk_employee(self, gross):
         self.ensure_one()
@@ -414,6 +468,14 @@ class PlPayrollPayslip(models.Model):
         if parameter is False:
             raise UserError("Missing payroll parameter: %s" % code)
         return self._to_decimal(parameter)
+
+    def _get_minimum_wage_parameter(self):
+        self.ensure_one()
+        for code in ("MINIMUM_WAGE", "MIN_WAGE"):
+            parameter = self.env["pl.payroll.parameter"].get_value(code, self.date_to)
+            if parameter is not False:
+                return self._to_decimal(parameter)
+        return False
 
     def _round_amount(self, value):
         return self._to_decimal(value).quantize(TWOPLACES, rounding=ROUND_HALF_UP)

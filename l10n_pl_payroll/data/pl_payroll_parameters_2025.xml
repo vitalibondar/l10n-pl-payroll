@@ -181,6 +181,24 @@
             <field name="value_type">amount</field>
             <field name="note">Minimalne miesięczne wynagrodzenie brutto.</field>
         </record>
+        <record id="pl_payroll_parameter_2025_minimum_wage_h1" model="pl.payroll.parameter">
+            <field name="name">Minimalne wynagrodzenie</field>
+            <field name="code">MINIMUM_WAGE</field>
+            <field name="value">4666</field>
+            <field name="date_from">2025-01-01</field>
+            <field name="date_to">2025-06-30</field>
+            <field name="value_type">amount</field>
+            <field name="note">Minimalne miesięczne wynagrodzenie brutto.</field>
+        </record>
+        <record id="pl_payroll_parameter_2025_minimum_wage_h2" model="pl.payroll.parameter">
+            <field name="name">Minimalne wynagrodzenie</field>
+            <field name="code">MINIMUM_WAGE</field>
+            <field name="value">4666</field>
+            <field name="date_from">2025-07-01</field>
+            <field name="date_to">2025-12-31</field>
+            <field name="value_type">amount</field>
+            <field name="note">Minimalne miesięczne wynagrodzenie brutto.</field>
+        </record>
         <record id="pl_payroll_parameter_2025_min_hourly" model="pl.payroll.parameter">
             <field name="name">Minimalna stawka godzinowa</field>
             <field name="code">MIN_HOURLY</field>

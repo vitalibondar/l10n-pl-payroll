@@ -161,6 +161,14 @@
             <field name="value_type">amount</field>
             <field name="note">Minimalne miesięczne wynagrodzenie brutto.</field>
         </record>
+        <record id="pl_payroll_parameter_2026_minimum_wage" model="pl.payroll.parameter">
+            <field name="name">Minimalne wynagrodzenie</field>
+            <field name="code">MINIMUM_WAGE</field>
+            <field name="value">4806</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="value_type">amount</field>
+            <field name="note">Minimalne miesięczne wynagrodzenie brutto.</field>
+        </record>
         <record id="pl_payroll_parameter_2026_min_hourly" model="pl.payroll.parameter">
             <field name="name">Minimalna stawka godzinowa</field>
             <field name="code">MIN_HOURLY</field>
