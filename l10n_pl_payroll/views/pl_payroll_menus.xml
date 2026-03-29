@@ -2,14 +2,14 @@
 <odoo>
     <menuitem
         id="menu_pl_payroll_root"
-        name="Payroll"
+        name="Płace PL"
         sequence="10"
         groups="l10n_pl_payroll.group_payroll_employee,l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />
 
     <menuitem
         id="menu_pl_payroll_payslips"
-        name="Payslips"
+        name="Listy płac"
         parent="menu_pl_payroll_root"
         action="action_pl_payroll_payslip"
         sequence="10"
@@ -18,7 +18,7 @@
 
     <menuitem
         id="menu_pl_payroll_batch_compute"
-        name="Generate Payslips"
+        name="Generowanie list płac"
         parent="menu_pl_payroll_root"
         action="action_pl_payroll_batch_wizard"
         sequence="20"
@@ -27,7 +27,7 @@
 
     <menuitem
         id="menu_pl_payroll_creative_reports"
-        name="Creative Reports"
+        name="Raporty twórcze"
         parent="menu_pl_payroll_root"
         action="action_pl_payroll_creative_report"
         sequence="30"
@@ -36,7 +36,7 @@
 
     <menuitem
         id="menu_pl_payroll_reports"
-        name="Reports"
+        name="Deklaracje i raporty"
         parent="menu_pl_payroll_root"
         sequence="35"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
@@ -62,7 +62,7 @@
 
     <menuitem
         id="menu_pl_payroll_configuration"
-        name="Configuration"
+        name="Konfiguracja"
         parent="menu_pl_payroll_root"
         sequence="40"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
@@ -70,7 +70,7 @@
 
     <menuitem
         id="menu_pl_payroll_parameters"
-        name="Parameters"
+        name="Parametry płacowe"
         parent="menu_pl_payroll_configuration"
         action="action_pl_payroll_parameter"
         sequence="10"

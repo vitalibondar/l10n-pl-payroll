@@ -4,7 +4,7 @@
         <field name="name">pl.payroll.payslip.tree</field>
         <field name="model">pl.payroll.payslip</field>
         <field name="arch" type="xml">
-            <list string="Payslips" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancelled'">
+            <list string="Listy płac" decoration-success="state == 'confirmed'" decoration-muted="state == 'cancelled'">
                 <field name="employee_id"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
@@ -24,36 +24,36 @@
         <field name="name">pl.payroll.payslip.search</field>
         <field name="model">pl.payroll.payslip</field>
         <field name="arch" type="xml">
-            <search string="Payslips">
+            <search string="Listy płac">
                 <field name="employee_id"/>
                 <field name="contract_id"/>
                 <field name="department_id"/>
                 <field name="date_from"/>
-                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
-                <filter name="filter_computed" string="Computed" domain="[('state', '=', 'computed')]"/>
-                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
-                <filter name="filter_cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <filter name="filter_draft" string="Szkic" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_computed" string="Obliczona" domain="[('state', '=', 'computed')]"/>
+                <filter name="filter_confirmed" string="Zatwierdzona" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_cancelled" string="Anulowana" domain="[('state', '=', 'cancelled')]"/>
                 <separator/>
                 <filter
                     name="filter_this_month"
-                    string="This Month"
+                    string="Bieżący miesiąc"
                     domain="[('date_from', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d')), ('date_from', '&lt;', (context_today() + relativedelta(months=1, day=1)).strftime('%Y-%m-%d'))]"
                 />
                 <filter
                     name="filter_last_month"
-                    string="Last Month"
+                    string="Poprzedni miesiąc"
                     domain="[('date_from', '&gt;=', (context_today() + relativedelta(months=-1, day=1)).strftime('%Y-%m-%d')), ('date_from', '&lt;', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"
                 />
                 <filter
                     name="filter_this_year"
-                    string="This Year"
+                    string="Bieżący rok"
                     domain="[('date_from', '&gt;=', context_today().strftime('%Y-01-01')), ('date_from', '&lt;=', context_today().strftime('%Y-12-31'))]"
                 />
-                <group expand="0" string="Group By">
-                    <filter name="group_by_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
-                    <filter name="group_by_department" string="Department" context="{'group_by': 'department_id'}"/>
-                    <filter name="group_by_month" string="Month" context="{'group_by': 'date_from:month'}"/>
-                    <filter name="group_by_state" string="State" context="{'group_by': 'state'}"/>
+                <group expand="0" string="Grupuj wg">
+                    <filter name="group_by_employee" string="Pracownik" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_by_department" string="Wydział" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_by_month" string="Miesiąc" context="{'group_by': 'date_from:month'}"/>
+                    <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>
@@ -63,25 +63,26 @@
         <field name="name">pl.payroll.payslip.form</field>
         <field name="model">pl.payroll.payslip</field>
         <field name="arch" type="xml">
-            <form string="Payslip">
+            <form string="Lista płac">
                 <header>
-                    <button name="action_compute" string="Compute" type="object" class="btn-primary" invisible="state != 'draft'"/>
-                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="state not in ['draft', 'computed']"/>
-                    <button name="action_cancel" string="Cancel" type="object" invisible="state == 'cancelled'"/>
+                    <button name="action_compute" string="Oblicz" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_confirm" string="Zatwierdź" type="object" class="btn-primary" invisible="state not in ['draft', 'computed']"/>
+                    <button name="action_cancel" string="Anuluj" type="object" invisible="state == 'cancelled'"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,computed,confirmed,cancelled"/>
                 </header>
                 <sheet>
                     <div class="alert alert-warning" role="alert" invisible="not creative_report_missing">
-                        <strong>Warning:</strong> Creative work report (raport autorski) is missing for this employee.
-                        Autorskie koszty (50% KUP) require an accepted monthly creative work report for KAS compliance.
+                        <strong>Uwaga:</strong> Brakuje zatwierdzonego raportu twórczego dla tej listy płac.
+                        Bez niego nie należy rozliczać 50% kosztów autorskich.
                     </div>
                     <div class="alert alert-warning" role="alert" invisible="not below_minimum_wage">
-                        <strong>Warning:</strong> Gross pay is below the proportional minimum wage for this employment fraction.
+                        <strong>Uwaga:</strong> Wynagrodzenie brutto jest niższe od proporcjonalnego minimalnego wynagrodzenia
+                        dla tego wymiaru etatu.
                     </div>
                     <field name="creative_report_required" invisible="1"/>
                     <field name="creative_report_missing" invisible="1"/>
                     <field name="below_minimum_wage" invisible="1"/>
-                    <group string="Identyfikacja">
+                    <group string="Dane podstawowe">
                         <group>
                             <field name="employee_id" readonly="state != 'draft'"/>
                             <field name="contract_id" readonly="state != 'draft'"/>
@@ -96,18 +97,18 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Wynagrodzenie">
+                        <page string="Rozliczenie pracownika">
                             <group>
-                                <group string="Brutto">
+                                <group string="Wynagrodzenie brutto">
                                     <field name="gross" readonly="1"/>
                                     <field name="etat_fraction" readonly="1"/>
-                                    <field name="overtime_amount" readonly="1"/>
                                     <field name="overtime_hours_150" readonly="state != 'draft'"/>
                                     <field name="overtime_hours_200" readonly="state != 'draft'"/>
+                                    <field name="overtime_amount" readonly="1"/>
                                     <field name="vacation_days" readonly="state != 'draft'"/>
                                     <field name="vacation_pay" readonly="1"/>
                                 </group>
-                                <group string="Zwolnienie chorobowe">
+                                <group string="Chorobowe i nieobecności">
                                     <field name="sick_days" readonly="state != 'draft'"/>
                                     <field name="sick_days_100" readonly="state != 'draft'"/>
                                     <field name="working_days_in_month" readonly="state != 'draft'"/>
@@ -115,46 +116,56 @@
                                     <field name="sick_leave_basis" readonly="1"/>
                                     <field name="sick_leave_amount" readonly="1"/>
                                 </group>
-                                <group string="ZUS Pracownik">
+                            </group>
+                            <group>
+                                <group string="Składki ZUS pracownika">
                                     <field name="zus_emerytalne_ee" readonly="1"/>
                                     <field name="zus_rentowe_ee" readonly="1"/>
                                     <field name="zus_chorobowe_ee" readonly="1"/>
                                     <field name="zus_total_ee" readonly="1"/>
                                 </group>
-                            </group>
-                            <group>
-                                <group string="Podatek">
+                                <group string="Składka zdrowotna">
                                     <field name="health_basis" readonly="1"/>
                                     <field name="health" readonly="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Koszty uzyskania przychodu">
                                     <field name="kup_type" readonly="1"/>
                                     <field name="kup_amount" readonly="1"/>
+                                </group>
+                                <group string="Zaliczka na podatek dochodowy">
                                     <field name="taxable_income" readonly="1"/>
                                     <field name="pit_advance" readonly="1"/>
                                     <field name="pit_reducing" readonly="1"/>
                                     <field name="pit_due" readonly="1"/>
                                 </group>
-                                <group string="PPK i Netto">
+                            </group>
+                            <group>
+                                <group string="PPK">
                                     <field name="ppk_ee" readonly="1"/>
+                                </group>
+                                <group string="Wynagrodzenie netto">
                                     <field name="net" readonly="1"/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Koszty pracodawcy">
+                        <page string="Składki pracodawcy">
                             <group>
-                                <group string="ZUS Pracodawca">
+                                <group string="Składki ZUS pracodawcy">
                                     <field name="zus_emerytalne_er" readonly="1"/>
                                     <field name="zus_rentowe_er" readonly="1"/>
                                     <field name="zus_wypadkowe_er" readonly="1"/>
                                     <field name="zus_fp" readonly="1"/>
                                     <field name="zus_fgsp" readonly="1"/>
                                 </group>
-                                <group string="PPK i Total">
+                                <group string="PPK i koszt zatrudnienia">
                                     <field name="ppk_er" readonly="1"/>
                                     <field name="total_employer_cost" readonly="1"/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Bonuses &amp; Deductions">
+                        <page string="Składniki dodatkowe">
                             <field name="payslip_line_ids" readonly="state != 'draft'">
                                 <list editable="bottom">
                                     <field name="name"/>
@@ -169,11 +180,11 @@
                                 <field name="creative_report_id" readonly="1"/>
                             </group>
                         </page>
-                        <page string="Notatki">
+                        <page string="Uwagi">
                             <field
                                 name="notes"
                                 nolabel="1"
-                                placeholder="Dodatkowe uwagi..."
+                                placeholder="Dodatkowe uwagi księgowe..."
                                 readonly="state in ['confirmed', 'cancelled']"
                             />
                         </page>
@@ -184,14 +195,14 @@
     </record>
 
     <record id="action_pl_payroll_payslip" model="ir.actions.act_window">
-        <field name="name">Payslips</field>
+        <field name="name">Listy płac</field>
         <field name="res_model">pl.payroll.payslip</field>
         <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_pl_payroll_payslip_search"/>
     </record>
 
     <record id="action_server_pl_payroll_batch_confirm" model="ir.actions.server">
-        <field name="name">Confirm Payslips</field>
+        <field name="name">Zatwierdź listy płac</field>
         <field name="model_id" ref="model_pl_payroll_payslip"/>
         <field name="binding_model_id" ref="model_pl_payroll_payslip"/>
         <field name="binding_view_types">list</field>

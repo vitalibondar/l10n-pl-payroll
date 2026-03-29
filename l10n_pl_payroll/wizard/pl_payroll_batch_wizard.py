@@ -6,13 +6,35 @@ from odoo.exceptions import ValidationError
 
 class PlPayrollBatchWizard(models.TransientModel):
     _name = "pl.payroll.batch.wizard"
-    _description = "Batch Payslip Generation"
+    _description = "Generowanie list płac"
 
-    date_from = fields.Date(required=True)
-    date_to = fields.Date(required=True)
-    company_id = fields.Many2one("res.company", required=True, default=lambda self: self.env.company)
-    department_ids = fields.Many2many("hr.department", string="Departments (empty = all)")
-    auto_compute = fields.Boolean(default=True, string="Auto-compute after creation")
+    date_from = fields.Date(
+        string="Okres od",
+        required=True,
+        help="Pierwszy dzień okresu list płac, który ma zostać wygenerowany.",
+    )
+    date_to = fields.Date(
+        string="Okres do",
+        required=True,
+        help="Ostatni dzień okresu list płac, który ma zostać wygenerowany.",
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Firma",
+        required=True,
+        default=lambda self: self.env.company,
+        help="Firma, dla której mają zostać wygenerowane listy płac.",
+    )
+    department_ids = fields.Many2many(
+        "hr.department",
+        string="Wydziały",
+        help="Pozostaw puste, aby wygenerować listy płac dla wszystkich wydziałów w wybranej firmie.",
+    )
+    auto_compute = fields.Boolean(
+        default=True,
+        string="Oblicz po utworzeniu",
+        help="Jeżeli zaznaczone, system od razu przeliczy nowo utworzone listy płac.",
+    )
 
     @api.onchange("date_from")
     def _onchange_date_from(self):
@@ -25,7 +47,7 @@ class PlPayrollBatchWizard(models.TransientModel):
     def action_generate(self):
         self.ensure_one()
         if self.date_from > self.date_to:
-            raise ValidationError(_("Date From must be earlier than or equal to Date To."))
+            raise ValidationError(_("Data „Okres od” nie może być późniejsza niż „Okres do”."))
 
         contract_domain = [
             ("state", "=", "open"),
@@ -72,7 +94,7 @@ class PlPayrollBatchWizard(models.TransientModel):
 
         return {
             "type": "ir.actions.act_window",
-            "name": _("Generated Payslips"),
+            "name": _("Nowo utworzone listy płac"),
             "res_model": "pl.payroll.payslip",
             "view_mode": "list,form",
             "domain": [("id", "in", created_payslips.ids)],

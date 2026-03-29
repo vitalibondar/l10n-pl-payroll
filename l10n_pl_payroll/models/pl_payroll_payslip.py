@@ -1,7 +1,7 @@
 from datetime import date
 from decimal import Decimal, ROUND_DOWN, ROUND_HALF_UP
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -11,86 +11,257 @@ WHOLE_ZLOTY = Decimal("1")
 
 class PlPayrollPayslip(models.Model):
     _name = "pl.payroll.payslip"
-    _description = "Polish Payroll Payslip"
+    _description = "Lista płac PL"
     _order = "date_from desc, id desc"
 
-    name = fields.Char(compute="_compute_name", store=True)
-    employee_id = fields.Many2one("hr.employee", required=True)
-    department_id = fields.Many2one("hr.department", related="employee_id.department_id", store=True, readonly=True)
-    contract_id = fields.Many2one("hr.contract", required=True)
-    kup_type = fields.Selection(related="contract_id.kup_type", readonly=True, string="Typ KUP")
-    company_id = fields.Many2one("res.company", related="contract_id.company_id", store=True)
-    date_from = fields.Date(required=True)
-    date_to = fields.Date(required=True)
+    name = fields.Char(compute="_compute_name", store=True, string="Nazwa")
+    employee_id = fields.Many2one(
+        "hr.employee",
+        string="Pracownik",
+        required=True,
+        help="Pracownik, dla którego naliczasz listę płac.",
+    )
+    department_id = fields.Many2one(
+        "hr.department",
+        related="employee_id.department_id",
+        store=True,
+        readonly=True,
+        string="Wydział",
+        help="Wydział pracownika pobrany z kartoteki pracownika.",
+    )
+    contract_id = fields.Many2one(
+        "hr.contract",
+        string="Umowa",
+        required=True,
+        help="Aktywna umowa, z której pobierane są stawka, KUP, PPK i kod ZUS.",
+    )
+    kup_type = fields.Selection(
+        related="contract_id.kup_type",
+        readonly=True,
+        string="Wariant KUP",
+        help="Wariant kosztów uzyskania przychodu pobrany z umowy pracownika.",
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        related="contract_id.company_id",
+        store=True,
+        string="Firma",
+        help="Firma, w której rozliczana jest lista płac.",
+    )
+    date_from = fields.Date(
+        string="Okres od",
+        required=True,
+        help="Pierwszy dzień okresu rozliczeniowego listy płac.",
+    )
+    date_to = fields.Date(
+        string="Okres do",
+        required=True,
+        help="Ostatni dzień okresu rozliczeniowego listy płac.",
+    )
     state = fields.Selection(
         [
-            ("draft", "Draft"),
-            ("computed", "Computed"),
-            ("confirmed", "Confirmed"),
-            ("cancelled", "Cancelled"),
+            ("draft", "Szkic"),
+            ("computed", "Obliczona"),
+            ("confirmed", "Zatwierdzona"),
+            ("cancelled", "Anulowana"),
         ],
+        string="Status",
         default="draft",
+        help="Status listy płac. Po zatwierdzeniu dane wchodzą do rozliczeń PIT i ZUS.",
     )
 
-    gross = fields.Float(string="Brutto", readonly=True)
-    sick_days = fields.Integer(string="Dni chorobowe (wynagrodzenie)", default=0)
-    sick_days_100 = fields.Integer(
-        string="Dni chorobowe 100%",
-        default=0,
-        help="Ciąża lub wypadek przy pracy",
+    gross = fields.Float(
+        string="Wynagrodzenie brutto",
+        readonly=True,
+        help="Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto.",
     )
-    vacation_days = fields.Float(string="Dni urlopowe", default=0)
-    vacation_pay = fields.Float(string="Wynagrodzenie za urlop", readonly=True)
-    sick_leave_amount = fields.Float(string="Wynagrodzenie chorobowe", readonly=True)
-    sick_leave_basis = fields.Float(string="Podstawa chorobowego", readonly=True)
+    sick_days = fields.Integer(
+        string="Dni choroby 80%",
+        default=0,
+        help="Liczba dni wynagrodzenia chorobowego płatnego w wysokości 80% podstawy.",
+    )
+    sick_days_100 = fields.Integer(
+        string="Dni choroby 100%",
+        default=0,
+        help="Liczba dni choroby płatnych 100% podstawy, np. w ciąży albo po wypadku przy pracy.",
+    )
+    vacation_days = fields.Float(
+        string="Dni urlopu",
+        default=0,
+        help="Liczba dni urlopu wypoczynkowego rozliczana na tej liście płac.",
+    )
+    vacation_pay = fields.Float(
+        string="Wynagrodzenie urlopowe",
+        readonly=True,
+        help="Kwota wynagrodzenia za urlop obliczona z podstawy urlopowej.",
+    )
+    sick_leave_amount = fields.Float(
+        string="Wynagrodzenie chorobowe",
+        readonly=True,
+        help="Kwota wynagrodzenia chorobowego naliczona za dni choroby w tym okresie.",
+    )
+    sick_leave_basis = fields.Float(
+        string="Podstawa wynagrodzenia chorobowego",
+        readonly=True,
+        help="Podstawa służąca do obliczenia wynagrodzenia chorobowego.",
+    )
     working_days_in_month = fields.Integer(
         string="Dni robocze w miesiącu",
         default=0,
-        help="Actual working days in month. If 0, treated as full month.",
+        help="Liczba dni roboczych w miesiącu używana do proporcji. "
+             "Jeżeli pole zostanie puste, system traktuje miesiąc jak pełny.",
     )
-    overtime_hours_150 = fields.Float(string="Overtime Hours 150%")
-    overtime_hours_200 = fields.Float(string="Overtime Hours 200%")
-    overtime_amount = fields.Float(string="Overtime Amount", readonly=True)
-    payslip_line_ids = fields.One2many("pl.payroll.payslip.line", "payslip_id")
+    overtime_hours_150 = fields.Float(
+        string="Nadgodziny 150% (godz.)",
+        help="Liczba godzin nadliczbowych rozliczanych z dodatkiem 50%.",
+    )
+    overtime_hours_200 = fields.Float(
+        string="Nadgodziny 200% (godz.)",
+        help="Liczba godzin nadliczbowych rozliczanych z dodatkiem 100%.",
+    )
+    overtime_amount = fields.Float(
+        string="Dodatek za nadgodziny",
+        readonly=True,
+        help="Łączna kwota dodatków za nadgodziny naliczona na tej liście płac.",
+    )
+    payslip_line_ids = fields.One2many(
+        "pl.payroll.payslip.line",
+        "payslip_id",
+        string="Składniki dodatkowe",
+        help="Dodatki, premie i potrącenia uwzględnione na liście płac.",
+    )
     bonus_gross_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
     deduction_gross_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
     deduction_net_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
 
-    zus_emerytalne_ee = fields.Float(string="ZUS Emerytalne (EE)")
-    zus_rentowe_ee = fields.Float(string="ZUS Rentowe (EE)")
-    zus_chorobowe_ee = fields.Float(string="ZUS Chorobowe (EE)")
-    zus_total_ee = fields.Float(string="ZUS Łącznie (EE)")
+    zus_emerytalne_ee = fields.Float(
+        string="Składka emerytalna (pracownik)",
+        help="Składka emerytalna potrącana z wynagrodzenia pracownika.",
+    )
+    zus_rentowe_ee = fields.Float(
+        string="Składka rentowa (pracownik)",
+        help="Składka rentowa potrącana z wynagrodzenia pracownika.",
+    )
+    zus_chorobowe_ee = fields.Float(
+        string="Składka chorobowa (pracownik)",
+        help="Składka chorobowa finansowana przez pracownika.",
+    )
+    zus_total_ee = fields.Float(
+        string="Składki ZUS pracownika razem",
+        help="Suma składek społecznych finansowanych przez pracownika.",
+    )
 
-    health_basis = fields.Float(string="Podstawa zdrowotna")
-    health = fields.Float(string="Składka zdrowotna")
+    health_basis = fields.Float(
+        string="Podstawa składki zdrowotnej",
+        help="Podstawa, od której nalicza się składkę zdrowotną.",
+    )
+    health = fields.Float(
+        string="Składka zdrowotna",
+        help="Składka zdrowotna pobierana z wynagrodzenia pracownika.",
+    )
 
-    kup_amount = fields.Float(string="KUP")
+    kup_amount = fields.Float(
+        string="Koszty uzyskania przychodu",
+        help="Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT.",
+    )
 
-    taxable_income = fields.Float(string="Dochód do opodatkowania")
-    pit_advance = fields.Float(string="Zaliczka PIT")
-    pit_reducing = fields.Float(string="Kwota zmniejszająca")
-    pit_due = fields.Float(string="PIT do zapłaty")
+    taxable_income = fields.Float(
+        string="Dochód do opodatkowania",
+        help="Dochód po składkach i kosztach uzyskania przychodu, który podlega PIT.",
+    )
+    pit_advance = fields.Float(
+        string="Naliczona zaliczka PIT",
+        help="Kwota podatku wyliczona według skali przed końcowym rozliczeniem zaliczki za miesiąc.",
+    )
+    pit_reducing = fields.Float(
+        string="Kwota zmniejszająca podatek",
+        help="Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2.",
+    )
+    pit_due = fields.Float(
+        string="Zaliczka PIT do urzędu",
+        help="Końcowa zaliczka PIT do odprowadzenia za ten miesiąc po zastosowaniu ulg i zaokrągleń.",
+    )
 
-    ppk_ee = fields.Float(string="PPK (EE)")
+    ppk_ee = fields.Float(
+        string="Wpłata PPK pracownika",
+        help="Wpłata finansowana przez pracownika w ramach PPK.",
+    )
 
-    net = fields.Float(string="Netto")
+    net = fields.Float(
+        string="Wynagrodzenie netto",
+        help="Kwota do wypłaty pracownikowi po wszystkich potrąceniach.",
+    )
 
-    zus_emerytalne_er = fields.Float(string="ZUS Emerytalne (ER)")
-    zus_rentowe_er = fields.Float(string="ZUS Rentowe (ER)")
-    zus_wypadkowe_er = fields.Float(string="ZUS Wypadkowe (ER)")
-    zus_fp = fields.Float(string="Fundusz Pracy")
-    zus_fgsp = fields.Float(string="FGŚP")
-    ppk_er = fields.Float(string="PPK (ER)")
-    total_employer_cost = fields.Float(string="Całkowity koszt pracodawcy")
+    zus_emerytalne_er = fields.Float(
+        string="Składka emerytalna (pracodawca)",
+        help="Składka emerytalna finansowana przez pracodawcę.",
+    )
+    zus_rentowe_er = fields.Float(
+        string="Składka rentowa (pracodawca)",
+        help="Składka rentowa finansowana przez pracodawcę.",
+    )
+    zus_wypadkowe_er = fields.Float(
+        string="Składka wypadkowa",
+        help="Składka wypadkowa finansowana przez pracodawcę według stopy firmy.",
+    )
+    zus_fp = fields.Float(
+        string="Składka na Fundusz Pracy",
+        help="Składka na Fundusz Pracy finansowana przez pracodawcę.",
+    )
+    zus_fgsp = fields.Float(
+        string="Składka na FGŚP",
+        help="Składka na Fundusz Gwarantowanych Świadczeń Pracowniczych finansowana przez pracodawcę.",
+    )
+    ppk_er = fields.Float(
+        string="Wpłata PPK pracodawcy",
+        help="Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT.",
+    )
+    total_employer_cost = fields.Float(
+        string="Łączny koszt pracodawcy",
+        help="Pełny koszt zatrudnienia: brutto plus składki i wpłaty finansowane przez pracodawcę.",
+    )
 
-    creative_report_id = fields.Many2one("pl.payroll.creative.report", readonly=True)
-    creative_report_required = fields.Boolean(compute="_compute_creative_report_flags")
-    creative_report_missing = fields.Boolean(compute="_compute_creative_report_flags")
-    etat_fraction = fields.Float(compute="_compute_etat_fraction", store=True, string="Wymiar etatu")
-    below_minimum_wage = fields.Boolean(compute="_compute_minimum_wage_warning", store=True)
-    ytd_sick_days = fields.Integer(compute="_compute_ytd_sick_days", string="Dni chorobowe (rocznie)")
+    creative_report_id = fields.Many2one(
+        "pl.payroll.creative.report",
+        string="Zatwierdzony raport twórczy",
+        readonly=True,
+        help="Raport pracy twórczej przypięty do tej listy płac.",
+    )
+    creative_report_required = fields.Boolean(
+        compute="_compute_creative_report_flags",
+        string="Wymaga raportu twórczego",
+        help="Pole informacyjne. Pokazuje, że dla tej listy płac trzeba dołączyć "
+             "zatwierdzony raport pracy twórczej, aby rozliczyć 50% KUP autorskie.",
+    )
+    creative_report_missing = fields.Boolean(
+        compute="_compute_creative_report_flags",
+        string="Brakuje raportu twórczego",
+        help="Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, "
+             "ale nie ma jeszcze podpiętego zatwierdzonego raportu.",
+    )
+    etat_fraction = fields.Float(
+        compute="_compute_etat_fraction",
+        store=True,
+        string="Wymiar etatu",
+        help="Udział etatu obliczony na podstawie kalendarza czasu pracy.",
+    )
+    below_minimum_wage = fields.Boolean(
+        compute="_compute_minimum_wage_warning",
+        store=True,
+        string="Poniżej minimalnego wynagrodzenia",
+        help="Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe "
+             "od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu.",
+    )
+    ytd_sick_days = fields.Integer(
+        compute="_compute_ytd_sick_days",
+        string="Dni choroby od początku roku",
+        help="Łączna liczba dni choroby wykorzystanych od początku roku do tej listy płac.",
+    )
 
-    notes = fields.Text(string="Notes")
+    notes = fields.Text(
+        string="Uwagi do listy płac",
+        help="Dodatkowe notatki księgowe albo kadrowe do tej listy płac.",
+    )
 
     @api.depends("employee_id.name", "date_from")
     def _compute_name(self):
@@ -468,7 +639,7 @@ class PlPayrollPayslip(models.Model):
 
         standard_monthly_hours = self._get_parameter("STANDARD_MONTHLY_HOURS")
         if standard_monthly_hours <= Decimal("0.00"):
-            raise UserError("Payroll parameter STANDARD_MONTHLY_HOURS must be greater than zero.")
+            raise UserError(_("Parametr STANDARD_MONTHLY_HOURS musi mieć wartość większą od zera."))
 
         hourly_rate = base_gross / standard_monthly_hours
         overtime_amount = (
@@ -689,7 +860,7 @@ class PlPayrollPayslip(models.Model):
             self.company_id if company_specific else False,
         )
         if parameter is False:
-            raise UserError("Missing payroll parameter: %s" % code)
+            raise UserError(_("Brakuje parametru płacowego: %s") % code)
         return self._to_decimal(parameter)
 
     def _get_minimum_wage_parameter(self):

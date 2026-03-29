@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="rule_pl_payroll_pit11_company" model="ir.rule">
-            <field name="name">Payroll PIT-11 by company</field>
+            <field name="name">Informacje PIT-11 według firmy</field>
             <field name="model_id" ref="model_pl_payroll_pit11"/>
             <field name="domain_force">[('company_id', 'in', company_ids)]</field>
             <field name="groups" eval="[(4, ref('group_payroll_officer')), (4, ref('group_payroll_manager'))]"/>

@@ -4,14 +4,14 @@
         <field name="name">pl.payroll.zus.dra.wizard.form</field>
         <field name="model">pl.payroll.zus.dra.wizard</field>
         <field name="arch" type="xml">
-            <form string="Generuj ZUS DRA">
+            <form string="Generowanie ZUS DRA">
                 <group>
                     <field name="year"/>
                     <field name="month"/>
                 </group>
                 <footer>
                     <button name="action_generate" string="Generuj DRA" type="object" class="btn-primary"/>
-                    <button string="Cancel" special="cancel"/>
+                    <button string="Anuluj" special="cancel"/>
                 </footer>
             </form>
         </field>

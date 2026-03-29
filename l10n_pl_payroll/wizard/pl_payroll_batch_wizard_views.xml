@@ -4,7 +4,7 @@
         <field name="name">pl.payroll.batch.wizard.form</field>
         <field name="model">pl.payroll.batch.wizard</field>
         <field name="arch" type="xml">
-            <form string="Generate Payslips">
+            <form string="Generowanie list płac">
                 <group>
                     <field name="company_id"/>
                     <field name="department_ids" widget="many2many_tags"/>
@@ -15,15 +15,15 @@
                     <field name="auto_compute"/>
                 </group>
                 <footer>
-                    <button name="action_generate" string="Generate" type="object" class="btn-primary"/>
-                    <button string="Cancel" special="cancel"/>
+                    <button name="action_generate" string="Generuj" type="object" class="btn-primary"/>
+                    <button string="Anuluj" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
 
     <record id="action_pl_payroll_batch_wizard" model="ir.actions.act_window">
-        <field name="name">Generate Payslips</field>
+        <field name="name">Generowanie list płac</field>
         <field name="res_model">pl.payroll.batch.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_pl_payroll_batch_wizard_form"/>

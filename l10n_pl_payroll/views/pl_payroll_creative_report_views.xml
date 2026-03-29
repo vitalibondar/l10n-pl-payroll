@@ -4,7 +4,7 @@
         <field name="name">pl.payroll.creative.report.tree</field>
         <field name="model">pl.payroll.creative.report</field>
         <field name="arch" type="xml">
-            <list string="Creative Reports" decoration-success="state == 'accepted'" decoration-danger="state == 'rejected'" decoration-muted="state == 'draft'">
+            <list string="Raporty twórcze" decoration-success="state == 'accepted'" decoration-danger="state == 'rejected'" decoration-muted="state == 'draft'">
                 <field name="employee_id"/>
                 <field name="date"/>
                 <field name="state"/>
@@ -18,18 +18,18 @@
         <field name="name">pl.payroll.creative.report.search</field>
         <field name="model">pl.payroll.creative.report</field>
         <field name="arch" type="xml">
-            <search string="Creative Reports">
+            <search string="Raporty twórcze">
                 <field name="employee_id"/>
                 <field name="date"/>
-                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
-                <filter name="filter_submitted" string="Submitted" domain="[('state', '=', 'submitted')]"/>
-                <filter name="filter_accepted" string="Accepted" domain="[('state', '=', 'accepted')]"/>
-                <filter name="filter_rejected" string="Rejected" domain="[('state', '=', 'rejected')]"/>
+                <filter name="filter_draft" string="Szkic" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_submitted" string="Przekazany" domain="[('state', '=', 'submitted')]"/>
+                <filter name="filter_accepted" string="Zatwierdzony" domain="[('state', '=', 'accepted')]"/>
+                <filter name="filter_rejected" string="Odrzucony" domain="[('state', '=', 'rejected')]"/>
                 <separator/>
-                <group expand="0" string="Group By">
-                    <filter name="group_by_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
-                    <filter name="group_by_month" string="Month" context="{'group_by': 'date:month'}"/>
-                    <filter name="group_by_state" string="State" context="{'group_by': 'state'}"/>
+                <group expand="0" string="Grupuj wg">
+                    <filter name="group_by_employee" string="Pracownik" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_by_month" string="Miesiąc" context="{'group_by': 'date:month'}"/>
+                    <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>
@@ -39,29 +39,29 @@
         <field name="name">pl.payroll.creative.report.form</field>
         <field name="model">pl.payroll.creative.report</field>
         <field name="arch" type="xml">
-            <form string="Creative Work Report">
+            <form string="Raport pracy twórczej">
                 <header>
-                    <button name="action_submit" string="Submit" type="object" class="btn-primary" invisible="state != 'draft'"/>
-                    <button name="action_accept" string="Accept" type="object" class="btn-primary" invisible="state != 'submitted'" groups="l10n_pl_payroll.group_payroll_officer"/>
-                    <button name="action_reject" string="Reject" type="object" invisible="state != 'submitted'" groups="l10n_pl_payroll.group_payroll_officer"/>
-                    <button name="action_reset" string="Reset to Draft" type="object" invisible="state == 'draft'" groups="l10n_pl_payroll.group_payroll_officer"/>
+                    <button name="action_submit" string="Przekaż" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_accept" string="Zatwierdź" type="object" class="btn-primary" invisible="state != 'submitted'" groups="l10n_pl_payroll.group_payroll_officer"/>
+                    <button name="action_reject" string="Odrzuć" type="object" invisible="state != 'submitted'" groups="l10n_pl_payroll.group_payroll_officer"/>
+                    <button name="action_reset" string="Przywróć szkic" type="object" invisible="state == 'draft'" groups="l10n_pl_payroll.group_payroll_officer"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,submitted,accepted"/>
                 </header>
                 <sheet>
                     <group>
-                        <group string="Report Details">
+                        <group string="Dane raportu">
                             <field name="employee_id" readonly="state != 'draft'"/>
                             <field name="date" readonly="state != 'draft'"/>
                             <field name="company_id" readonly="state != 'draft'"/>
                         </group>
-                        <group string="Acceptance">
+                        <group string="Akceptacja">
                             <field name="accepted_by" readonly="1"/>
                             <field name="accepted_date" readonly="1"/>
                             <field name="payslip_id" readonly="1"/>
                         </group>
                     </group>
-                    <group string="Creative Work Description">
-                        <field name="description" nolabel="1" placeholder="Describe the creative work performed this month..." readonly="state not in ['draft', 'submitted']"/>
+                    <group string="Opis pracy twórczej">
+                        <field name="description" nolabel="1" placeholder="Opisz pracę twórczą wykonaną w tym miesiącu..." readonly="state not in ['draft', 'submitted']"/>
                     </group>
                 </sheet>
             </form>
@@ -69,7 +69,7 @@
     </record>
 
     <record id="action_pl_payroll_creative_report" model="ir.actions.act_window">
-        <field name="name">Creative Reports</field>
+        <field name="name">Raporty twórcze</field>
         <field name="res_model">pl.payroll.creative.report</field>
         <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_pl_payroll_creative_report_search"/>

@@ -4,7 +4,7 @@
         <field name="name">pl.payroll.parameter.tree</field>
         <field name="model">pl.payroll.parameter</field>
         <field name="arch" type="xml">
-            <list string="Payroll Parameters">
+            <list string="Parametry płacowe">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="value"/>
@@ -20,7 +20,7 @@
         <field name="name">pl.payroll.parameter.form</field>
         <field name="model">pl.payroll.parameter</field>
         <field name="arch" type="xml">
-            <form string="Payroll Parameter">
+            <form string="Parametr płacowy">
                 <sheet>
                     <group>
                         <group>
@@ -36,8 +36,8 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Notes">
-                            <field name="note" placeholder="Optional notes..."/>
+                        <page string="Uwagi">
+                            <field name="note" placeholder="Uwagi opcjonalne..."/>
                         </page>
                     </notebook>
                 </sheet>
@@ -46,7 +46,7 @@
     </record>
 
     <record id="action_pl_payroll_parameter" model="ir.actions.act_window">
-        <field name="name">Parameters</field>
+        <field name="name">Parametry płacowe</field>
         <field name="res_model">pl.payroll.parameter</field>
         <field name="view_mode">list,form</field>
     </record>

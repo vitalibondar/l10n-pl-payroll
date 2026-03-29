@@ -4,15 +4,23 @@ from odoo.exceptions import ValidationError
 
 class PlPayrollBatchCompute(models.TransientModel):
     _name = "pl.payroll.batch.compute"
-    _description = "Polish Payroll Batch Compute"
+    _description = "Zbiorcze przeliczanie list płac"
 
-    date_from = fields.Date(required=True)
-    date_to = fields.Date(required=True)
+    date_from = fields.Date(
+        string="Okres od",
+        required=True,
+        help="Pierwszy dzień okresu, dla którego mają zostać przeliczone listy płac.",
+    )
+    date_to = fields.Date(
+        string="Okres do",
+        required=True,
+        help="Ostatni dzień okresu, dla którego mają zostać przeliczone listy płac.",
+    )
 
     def action_compute(self):
         self.ensure_one()
         if self.date_from > self.date_to:
-            raise ValidationError(_("Date From must be earlier than or equal to Date To."))
+            raise ValidationError(_("Data „Okres od” nie może być późniejsza niż „Okres do”."))
 
         contracts = self.env["hr.contract"].search(
             [
@@ -56,7 +64,7 @@ class PlPayrollBatchCompute(models.TransientModel):
 
         return {
             "type": "ir.actions.act_window",
-            "name": _("Payslips"),
+            "name": _("Listy płac"),
             "res_model": "pl.payroll.payslip",
             "view_mode": "list,form",
             "domain": [("id", "in", payslips.ids)],
