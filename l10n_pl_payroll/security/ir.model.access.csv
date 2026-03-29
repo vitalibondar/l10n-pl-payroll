@@ -20,7 +20,7 @@ access_pl_payroll_pit11_wizard_officer,pl.payroll.pit11.wizard officer,model_pl_
 access_pl_payroll_pit11_wizard_manager,pl.payroll.pit11.wizard manager,model_pl_payroll_pit11_wizard,l10n_pl_payroll.group_payroll_manager,1,1,1,1
 access_pl_payroll_zus_dra_officer,pl.payroll.zus.dra officer,model_pl_payroll_zus_dra,l10n_pl_payroll.group_payroll_officer,1,1,1,0
 access_pl_payroll_zus_dra_manager,pl.payroll.zus.dra manager,model_pl_payroll_zus_dra,l10n_pl_payroll.group_payroll_manager,1,1,1,1
-access_pl_payroll_zus_dra_line_officer,pl.payroll.zus.dra.line officer,model_pl_payroll_zus_dra_line,l10n_pl_payroll.group_payroll_officer,1,0,0,0
-access_pl_payroll_zus_dra_line_manager,pl.payroll.zus.dra.line manager,model_pl_payroll_zus_dra_line,l10n_pl_payroll.group_payroll_manager,1,0,0,0
+access_pl_payroll_zus_dra_line_officer,pl.payroll.zus.dra.line officer,model_pl_payroll_zus_dra_line,l10n_pl_payroll.group_payroll_officer,1,1,1,0
+access_pl_payroll_zus_dra_line_manager,pl.payroll.zus.dra.line manager,model_pl_payroll_zus_dra_line,l10n_pl_payroll.group_payroll_manager,1,1,1,1
 access_pl_payroll_zus_dra_wizard_officer,pl.payroll.zus.dra.wizard officer,model_pl_payroll_zus_dra_wizard,l10n_pl_payroll.group_payroll_officer,1,1,1,1
 access_pl_payroll_zus_dra_wizard_manager,pl.payroll.zus.dra.wizard manager,model_pl_payroll_zus_dra_wizard,l10n_pl_payroll.group_payroll_manager,1,1,1,1

@@ -14,426 +14,532 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#. module: l10n_pl_payroll
 msgid "Płace PL"
 msgstr "Płace PL"
 
 
+#. module: l10n_pl_payroll
 msgid "Listy płac"
 msgstr "Listy płac"
 
 
+#. module: l10n_pl_payroll
 msgid "Lista płac"
 msgstr "Lista płac"
 
 
+#. module: l10n_pl_payroll
 msgid "Generowanie list płac"
 msgstr "Generowanie list płac"
 
 
+#. module: l10n_pl_payroll
 msgid "Raporty twórcze"
 msgstr "Raporty twórcze"
 
 
+#. module: l10n_pl_payroll
 msgid "Deklaracje i raporty"
 msgstr "Deklaracje i raporty"
 
 
+#. module: l10n_pl_payroll
 msgid "Konfiguracja"
 msgstr "Konfiguracja"
 
 
+#. module: l10n_pl_payroll
 msgid "Parametry płacowe"
 msgstr "Parametry płacowe"
 
 
+#. module: l10n_pl_payroll
 msgid "Dane podstawowe"
 msgstr "Dane podstawowe"
 
 
+#. module: l10n_pl_payroll
 msgid "Rozliczenie pracownika"
 msgstr "Rozliczenie pracownika"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie brutto"
 msgstr "Wynagrodzenie brutto"
 
 
+#. module: l10n_pl_payroll
 msgid "Chorobowe i nieobecności"
 msgstr "Chorobowe i nieobecności"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki ZUS pracownika"
 msgstr "Składki ZUS pracownika"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka zdrowotna"
 msgstr "Składka zdrowotna"
 
 
+#. module: l10n_pl_payroll
 msgid "Koszty uzyskania przychodu"
 msgstr "Koszty uzyskania przychodu"
 
 
+#. module: l10n_pl_payroll
 msgid "Zaliczka na podatek dochodowy"
 msgstr "Zaliczka na podatek dochodowy"
 
 
+#. module: l10n_pl_payroll
 msgid "PPK"
 msgstr "PPK"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie netto"
 msgstr "Wynagrodzenie netto"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki pracodawcy"
 msgstr "Składki pracodawcy"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki ZUS pracodawcy"
 msgstr "Składki ZUS pracodawcy"
 
 
+#. module: l10n_pl_payroll
 msgid "PPK i koszt zatrudnienia"
 msgstr "PPK i koszt zatrudnienia"
 
 
+#. module: l10n_pl_payroll
 msgid "Składniki dodatkowe"
 msgstr "Składniki dodatkowe"
 
 
+#. module: l10n_pl_payroll
 msgid "Raport twórczy"
 msgstr "Raport twórczy"
 
 
+#. module: l10n_pl_payroll
 msgid "Uwagi"
 msgstr "Uwagi"
 
 
+#. module: l10n_pl_payroll
 msgid "Oblicz"
 msgstr "Oblicz"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdź"
 msgstr "Zatwierdź"
 
 
+#. module: l10n_pl_payroll
 msgid "Anuluj"
 msgstr "Anuluj"
 
 
+#. module: l10n_pl_payroll
 msgid "Generuj"
 msgstr "Generuj"
 
 
+#. module: l10n_pl_payroll
 msgid "Generuj PIT-11"
 msgstr "Generuj PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "Generuj DRA"
 msgstr "Generuj DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Przelicz"
 msgstr "Przelicz"
 
 
 
+#. module: l10n_pl_payroll
 msgid "Udział pracy twórczej (%)"
 msgstr "Udział pracy twórczej (%)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wariant PPK"
 msgstr "Wariant PPK"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata pracownika do PPK (%)"
 msgstr "Wpłata pracownika do PPK (%)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata dodatkowa pracownika do PPK (%)"
 msgstr "Wpłata dodatkowa pracownika do PPK (%)"
 
 
+#. module: l10n_pl_payroll
 msgid "Złożono PIT-2"
 msgstr "Złożono PIT-2"
 
 
+#. module: l10n_pl_payroll
 msgid "Ulga podatkowa"
 msgstr "Ulga podatkowa"
 
 
+#. module: l10n_pl_payroll
 msgid "Kod tytułu ubezpieczenia ZUS"
 msgstr "Kod tytułu ubezpieczenia ZUS"
 
 
+#. module: l10n_pl_payroll
 msgid "Status ucznia / studenta"
 msgstr "Status ucznia / studenta"
 
 
+#. module: l10n_pl_payroll
 msgid "Wariant KUP"
 msgstr "Wariant KUP"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni choroby 80%"
 msgstr "Dni choroby 80%"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni choroby 100%"
 msgstr "Dni choroby 100%"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni urlopu"
 msgstr "Dni urlopu"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie urlopowe"
 msgstr "Wynagrodzenie urlopowe"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie chorobowe"
 msgstr "Wynagrodzenie chorobowe"
 
 
+#. module: l10n_pl_payroll
 msgid "Podstawa wynagrodzenia chorobowego"
 msgstr "Podstawa wynagrodzenia chorobowego"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni robocze w miesiącu"
 msgstr "Dni robocze w miesiącu"
 
 
+#. module: l10n_pl_payroll
 msgid "Nadgodziny 150% (godz.)"
 msgstr "Nadgodziny 150% (godz.)"
 
 
+#. module: l10n_pl_payroll
 msgid "Nadgodziny 200% (godz.)"
 msgstr "Nadgodziny 200% (godz.)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dodatek za nadgodziny"
 msgstr "Dodatek za nadgodziny"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka emerytalna (pracownik)"
 msgstr "Składka emerytalna (pracownik)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka rentowa (pracownik)"
 msgstr "Składka rentowa (pracownik)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka chorobowa (pracownik)"
 msgstr "Składka chorobowa (pracownik)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki ZUS pracownika razem"
 msgstr "Składki ZUS pracownika razem"
 
 
+#. module: l10n_pl_payroll
 msgid "Podstawa składki zdrowotnej"
 msgstr "Podstawa składki zdrowotnej"
 
 
+#. module: l10n_pl_payroll
 msgid "Dochód do opodatkowania"
 msgstr "Dochód do opodatkowania"
 
 
+#. module: l10n_pl_payroll
 msgid "Naliczona zaliczka PIT"
 msgstr "Naliczona zaliczka PIT"
 
 
+#. module: l10n_pl_payroll
 msgid "Kwota zmniejszająca podatek"
 msgstr "Kwota zmniejszająca podatek"
 
 
+#. module: l10n_pl_payroll
 msgid "Zaliczka PIT do urzędu"
 msgstr "Zaliczka PIT do urzędu"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata PPK pracownika"
 msgstr "Wpłata PPK pracownika"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka emerytalna (pracodawca)"
 msgstr "Składka emerytalna (pracodawca)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka rentowa (pracodawca)"
 msgstr "Składka rentowa (pracodawca)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka wypadkowa"
 msgstr "Składka wypadkowa"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka na Fundusz Pracy"
 msgstr "Składka na Fundusz Pracy"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka na FGŚP"
 msgstr "Składka na FGŚP"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata PPK pracodawcy"
 msgstr "Wpłata PPK pracodawcy"
 
 
+#. module: l10n_pl_payroll
 msgid "Łączny koszt pracodawcy"
 msgstr "Łączny koszt pracodawcy"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdzony raport twórczy"
 msgstr "Zatwierdzony raport twórczy"
 
 
+#. module: l10n_pl_payroll
 msgid "Wymaga raportu twórczego"
 msgstr "Wymaga raportu twórczego"
 
 
+#. module: l10n_pl_payroll
 msgid "Brakuje raportu twórczego"
 msgstr "Brakuje raportu twórczego"
 
 
+#. module: l10n_pl_payroll
 msgid "Wymiar etatu"
 msgstr "Wymiar etatu"
 
 
+#. module: l10n_pl_payroll
 msgid "Poniżej minimalnego wynagrodzenia"
 msgstr "Poniżej minimalnego wynagrodzenia"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni choroby od początku roku"
 msgstr "Dni choroby od początku roku"
 
 
+#. module: l10n_pl_payroll
 msgid "Uwagi do listy płac"
 msgstr "Uwagi do listy płac"
 
 
+#. module: l10n_pl_payroll
 msgid "PIT-11"
 msgstr "PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "ZUS DRA"
 msgstr "ZUS DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Generowanie PIT-11"
 msgstr "Generowanie PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "Generowanie deklaracji ZUS DRA"
 msgstr "Generowanie deklaracji ZUS DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Deklaracja ZUS DRA"
 msgstr "Deklaracja ZUS DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Deklaracje ZUS DRA"
 msgstr "Deklaracje ZUS DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Informacja PIT-11"
 msgstr "Informacja PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "Informacje PIT-11"
 msgstr "Informacje PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "Parametr płacowy"
 msgstr "Parametr płacowy"
 
 
+#. module: l10n_pl_payroll
 msgid "Raport pracy twórczej"
 msgstr "Raport pracy twórczej"
 
 
+#. module: l10n_pl_payroll
 msgid "Pozycja listy płac"
 msgstr "Pozycja listy płac"
 
 
+#. module: l10n_pl_payroll
 msgid "Pozycja deklaracji ZUS DRA"
 msgstr "Pozycja deklaracji ZUS DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Informacja roczna PIT-11"
 msgstr "Informacja roczna PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "Szkic"
 msgstr "Szkic"
 
 
+#. module: l10n_pl_payroll
 msgid "Obliczona"
 msgstr "Obliczona"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdzona"
 msgstr "Zatwierdzona"
 
 
+#. module: l10n_pl_payroll
 msgid "Anulowana"
 msgstr "Anulowana"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdzony"
 msgstr "Zatwierdzony"
 
 
+#. module: l10n_pl_payroll
 msgid "Przekazany"
 msgstr "Przekazany"
 
 
+#. module: l10n_pl_payroll
 msgid "Odrzucony"
 msgstr "Odrzucony"
 
 
+#. module: l10n_pl_payroll
 msgid "Akceptacja"
 msgstr "Akceptacja"
 
 
+#. module: l10n_pl_payroll
 msgid "Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To ustawienie wpływa na podstawę opodatkowania PIT."
 msgstr "Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To ustawienie wpływa na podstawę opodatkowania PIT."
 
 
+#. module: l10n_pl_payroll
 msgid "Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy twórczej."
 msgstr "Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy twórczej."
 
 
+#. module: l10n_pl_payroll
 msgid "Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować miesięczną kwotę zmniejszającą podatek."
 msgstr "Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować miesięczną kwotę zmniejszającą podatek."
 
 
+#. module: l10n_pl_payroll
 msgid "Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki status może zwalniać z naliczania składek ZUS i zdrowotnej."
 msgstr "Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki status może zwalniać z naliczania składek ZUS i zdrowotnej."
 
 
+#. module: l10n_pl_payroll
 msgid "Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
 msgstr "Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
 
 
+#. module: l10n_pl_payroll
 msgid "Składka emerytalna potrącana z wynagrodzenia pracownika."
 msgstr "Składka emerytalna potrącana z wynagrodzenia pracownika."
 
 
+#. module: l10n_pl_payroll
 msgid "Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT."
 msgstr "Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT."
 
 
+#. module: l10n_pl_payroll
 msgid "Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2."
 msgstr "Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2."
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT."
 msgstr "Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT."
 
 
+#. module: l10n_pl_payroll
 msgid "Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale nie ma jeszcze podpiętego zatwierdzonego raportu."
 msgstr "Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale nie ma jeszcze podpiętego zatwierdzonego raportu."
 
 
+#. module: l10n_pl_payroll
 msgid "Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."
 msgstr "Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."

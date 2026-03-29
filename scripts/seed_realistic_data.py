@@ -268,6 +268,12 @@ def ensure_reference_data(models, uid):
 
 
 def cleanup_demo_data(models, uid):
+    if model_exists(models, uid, "pl.payroll.pit11"):
+        unlink_one_by_one(models, uid, "pl.payroll.pit11", [], "pit11")
+    if model_exists(models, uid, "pl.payroll.zus.dra.line"):
+        unlink_one_by_one(models, uid, "pl.payroll.zus.dra.line", [], "zus dra lines")
+    if model_exists(models, uid, "pl.payroll.zus.dra"):
+        unlink_one_by_one(models, uid, "pl.payroll.zus.dra", [], "zus dra")
     if model_exists(models, uid, "pl.payroll.payslip.line"):
         unlink_one_by_one(models, uid, "pl.payroll.payslip.line", [], "payslip lines")
     unlink_one_by_one(models, uid, "pl.payroll.payslip", [], "payslips")
@@ -403,6 +409,23 @@ def create_payslips(models, uid, refs, employee_ids, contract_ids):
     return created_ids, failures
 
 
+def recompute_employee_from_month(models, uid, employee_name, month_text):
+    payslip_ids = execute(
+        models,
+        uid,
+        "pl.payroll.payslip",
+        "search",
+        [[
+            ("employee_id.name", "=", employee_name),
+            ("date_from", ">=", month_text + "-01"),
+        ]],
+        {"order": "date_from asc, id asc"},
+    )
+    for payslip_id in payslip_ids:
+        execute(models, uid, "pl.payroll.payslip", "action_compute", [[payslip_id]])
+        execute(models, uid, "pl.payroll.payslip", "action_confirm", [[payslip_id]])
+
+
 def add_adjustments(models, uid):
     if not model_exists(models, uid, "pl.payroll.payslip.line"):
         print("Payslip line model missing, skipping bonus/deduction seed.")
@@ -438,8 +461,7 @@ def add_adjustments(models, uid):
                     "amount": adjustment["amount"],
                 }],
             )
-            execute(models, uid, "pl.payroll.payslip", "action_compute", [[payslip_id]])
-            execute(models, uid, "pl.payroll.payslip", "action_confirm", [[payslip_id]])
+            recompute_employee_from_month(models, uid, adjustment["name"], adjustment["month"])
             applied.append(adjustment)
             print(f"Applied {adjustment['label']} to {adjustment['name']} {adjustment['month']}")
         except Exception as exc:
@@ -477,8 +499,7 @@ def add_sick_leave_entries(models, uid):
                     "working_days_in_month": count_weekdays_in_month(entry["month"]),
                 }],
             )
-            execute(models, uid, "pl.payroll.payslip", "action_compute", [[payslip_id]])
-            execute(models, uid, "pl.payroll.payslip", "action_confirm", [[payslip_id]])
+            recompute_employee_from_month(models, uid, entry["name"], entry["month"])
             applied.append(entry)
             print(f"Applied sick leave to {entry['name']} {entry['month']}")
         except Exception as exc:
@@ -512,8 +533,7 @@ def add_vacation_entries(models, uid):
                 "write",
                 [[payslip_id], {"vacation_days": entry["vacation_days"]}],
             )
-            execute(models, uid, "pl.payroll.payslip", "action_compute", [[payslip_id]])
-            execute(models, uid, "pl.payroll.payslip", "action_confirm", [[payslip_id]])
+            recompute_employee_from_month(models, uid, entry["name"], entry["month"])
             applied.append(entry)
             print(f"Applied vacation days to {entry['name']} {entry['month']}")
         except Exception as exc:
