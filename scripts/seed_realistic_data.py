@@ -51,6 +51,8 @@ EMPLOYEES = [
     {"index": 21, "name": "Jakub Wiśniewski", "job_title": "Student magazynu", "department": "Magazyn", "nationality": "PL", "birthday": "2003-05-11", "gender": "male", "wage": 4200.0, "date_start": "2025-07-01", "contract_type": "zlecenie", "is_student": True, "kup_type": "standard_20", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 22, "name": "Oliwia Kowalska", "job_title": "Studentka biura", "department": "Biuro", "nationality": "PL", "birthday": "2001-09-18", "gender": "female", "wage": 4300.0, "date_start": "2025-09-01", "contract_type": "zlecenie", "is_student": True, "kup_type": "standard_20", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 23, "name": "Bartosz Nowicki", "job_title": "Freelance graphic designer", "department": "Biuro", "nationality": "PL", "birthday": "1994-04-08", "gender": "male", "wage": 3000.0, "date_start": "2025-11-01", "contract_type": "dzielo", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 24, "name": "Marek Jabłoński", "job_title": "Pracownik magazynu", "department": "Magazyn", "nationality": "PL", "birthday": "1991-06-15", "gender": "male", "wage": 4200.0, "date_start": "2025-01-01", "date_end": "2025-06-30", "contract_type": "zlecenie", "is_student": False, "kup_type": "standard_20", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 25, "name": "Marek Jabłoński", "job_title": "Pracownik magazynu", "department": "Magazyn", "nationality": "PL", "birthday": "1991-06-15", "gender": "male", "wage": 5200.0, "date_start": "2025-07-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
 ]
 
 PAYSLIP_ADJUSTMENTS = [
@@ -287,6 +289,8 @@ def cleanup_demo_data(models, uid):
 def create_employees(models, uid, refs):
     employee_ids = {}
     for employee in EMPLOYEES:
+        if employee["name"] in employee_ids:
+            continue
         record_id = execute(
             models,
             uid,
@@ -312,35 +316,42 @@ def create_employees(models, uid, refs):
 
 def create_contracts(models, uid, refs, employee_ids):
     contract_ids = {}
+    all_contract_ids = []
     for employee in EMPLOYEES:
         calendar_key = employee.get("calendar", "full_time")
+        date_end = employee.get("date_end")
+        state = "close" if date_end else "open"
+        values = {
+            "name": f"TASK-015/{employee['index']:02d} {employee['name']}",
+            "employee_id": employee_ids[employee["name"]],
+            "company_id": refs["company_id"],
+            "resource_calendar_id": refs["calendar_ids"][calendar_key],
+            "contract_type_id": refs["contract_type_ids"][employee["contract_type"]],
+            "wage": employee["wage"],
+            "date_start": employee["date_start"],
+            "state": state,
+            "kup_type": employee["kup_type"],
+            "kup_autorskie_pct": employee["kup_autorskie_pct"],
+            "ppk_participation": employee["ppk_participation"],
+            "ppk_ee_rate": employee["ppk_ee_rate"],
+            "ppk_additional": 0.0,
+            "pit2_filed": True,
+            "ulga_type": "none",
+            "zus_code": "0110",
+        }
+        if date_end:
+            values["date_end"] = date_end
         contract_id = execute(
             models,
             uid,
             "hr.contract",
             "create",
-            [{
-                "name": f"TASK-015/{employee['index']:02d} {employee['name']}",
-                "employee_id": employee_ids[employee["name"]],
-                "company_id": refs["company_id"],
-                "resource_calendar_id": refs["calendar_ids"][calendar_key],
-                "contract_type_id": refs["contract_type_ids"][employee["contract_type"]],
-                "wage": employee["wage"],
-                "date_start": employee["date_start"],
-                "state": "open",
-                "kup_type": employee["kup_type"],
-                "kup_autorskie_pct": employee["kup_autorskie_pct"],
-                "ppk_participation": employee["ppk_participation"],
-                "ppk_ee_rate": employee["ppk_ee_rate"],
-                "ppk_additional": 0.0,
-                "pit2_filed": True,
-                "ulga_type": "none",
-                "zus_code": "0110",
-            }],
+            [values],
         )
-        contract_ids[employee["name"]] = contract_id
-        print(f"Created contract for {employee['name']}")
-    return contract_ids
+        contract_ids[employee["index"]] = contract_id
+        all_contract_ids.append(contract_id)
+        print(f"Created contract for {employee['name']} ({employee['contract_type']}, {state})")
+    return contract_ids, all_contract_ids
 
 
 def create_creative_report(models, uid, company_id, employee_id, month_start, name):
@@ -364,10 +375,18 @@ def create_creative_report(models, uid, company_id, employee_id, month_start, na
     )
 
 
+def employee_end_month(employee):
+    date_end = employee.get("date_end")
+    if not date_end:
+        return END_MONTH
+    end_date = parse_date(date_end)
+    return date(end_date.year, end_date.month, 1)
+
+
 def expected_payslip_count():
     total = 0
     for employee in EMPLOYEES:
-        total += sum(1 for _ in month_range(employee["date_start"], END_MONTH))
+        total += sum(1 for _ in month_range(employee["date_start"], employee_end_month(employee)))
     return total
 
 
@@ -378,12 +397,13 @@ def create_payslips(models, uid, refs, employee_ids, contract_ids):
     failures = []
     for employee in EMPLOYEES:
         employee_id = employee_ids[employee["name"]]
-        contract_id = contract_ids[employee["name"]]
-        created_ids[employee["name"]] = []
-        for month_start in month_range(employee["date_start"], END_MONTH):
+        contract_id = contract_ids[employee["index"]]
+        if employee["name"] not in created_ids:
+            created_ids[employee["name"]] = []
+        for month_start in month_range(employee["date_start"], employee_end_month(employee)):
             progress += 1
             period = month_start.strftime("%Y-%m")
-            print(f"[{progress:03d}/{total_expected}] Creating payslip for {employee['name']} {period}")
+            print(f"[{progress:03d}/{total_expected}] Creating payslip for {employee['name']} {period} ({employee['contract_type']})")
             try:
                 if employee["kup_type"] == "autorskie":
                     create_creative_report(models, uid, refs["company_id"], employee_id, month_start, employee["name"])
@@ -552,13 +572,13 @@ def build_summary(models, uid, employee_ids):
     separator = "-------------------------+--------+-------------+-----------+--------------"
     lines.append(header)
     lines.append(separator)
-    for employee in EMPLOYEES:
+    for employee_name, employee_id in employee_ids.items():
         payslips = execute(
             models,
             uid,
             "pl.payroll.payslip",
             "search_read",
-            [[("employee_id", "=", employee_ids[employee["name"]])]],
+            [[("employee_id", "=", employee_id)]],
             {"fields": ["gross", "net"], "order": "date_from asc, id asc", "limit": 200},
         )
         months = len(payslips)
@@ -569,7 +589,7 @@ def build_summary(models, uid, employee_ids):
         totals["gross"] += total_gross
         totals["net"] += total_net
         lines.append(
-            f"{employee['name'][:24]:24} | {months:>6} | {format_money(total_gross):>11} | {format_money(total_net):>9} | {format_money(avg_net):>12}"
+            f"{employee_name[:24]:24} | {months:>6} | {format_money(total_gross):>11} | {format_money(total_net):>9} | {format_money(avg_net):>12}"
         )
     lines.append(separator)
     lines.append(
@@ -640,7 +660,7 @@ def main():
     cleanup_demo_data(models, uid)
     refs = ensure_reference_data(models, uid)
     employee_ids = create_employees(models, uid, refs)
-    contract_ids = create_contracts(models, uid, refs, employee_ids)
+    contract_ids, all_contract_ids = create_contracts(models, uid, refs, employee_ids)
     _, failures = create_payslips(models, uid, refs, employee_ids, contract_ids)
     sick_leave_entries = add_sick_leave_entries(models, uid)
     adjustments = add_adjustments(models, uid)
@@ -661,7 +681,8 @@ def main():
 
     print("")
     print(f"Employees created: {len(employee_ids)}")
-    print(f"Contracts created: {len(contract_ids)}")
+    print(f"Contracts created: {len(all_contract_ids)}")
+    print(f"Expected payslips: {expected_payslip_count()}")
     print(f"Sick leave entries applied: {len(sick_leave_entries)}")
     print(f"Adjustments applied: {len(adjustments)}")
     print(f"Vacation entries applied: {len(vacation_entries)}")
