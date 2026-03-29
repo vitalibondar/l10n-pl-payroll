@@ -6,3 +6,4 @@ from . import test_batch_compute_wizard
 from . import test_creative_report
 from . import test_student_exemption
 from . import test_part_time
+from . import test_sick_leave

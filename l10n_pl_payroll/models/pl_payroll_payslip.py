@@ -33,6 +33,19 @@ class PlPayrollPayslip(models.Model):
     )
 
     gross = fields.Float(string="Brutto", readonly=True)
+    sick_days = fields.Integer(string="Dni chorobowe (wynagrodzenie)", default=0)
+    sick_days_100 = fields.Integer(
+        string="Dni chorobowe 100%",
+        default=0,
+        help="Ciąża lub wypadek przy pracy",
+    )
+    sick_leave_amount = fields.Float(string="Wynagrodzenie chorobowe", readonly=True)
+    sick_leave_basis = fields.Float(string="Podstawa chorobowego", readonly=True)
+    working_days_in_month = fields.Integer(
+        string="Dni robocze w miesiącu",
+        default=0,
+        help="Actual working days in month. If 0, treated as full month.",
+    )
     overtime_hours_150 = fields.Float(string="Overtime Hours 150%")
     overtime_hours_200 = fields.Float(string="Overtime Hours 200%")
     overtime_amount = fields.Float(string="Overtime Amount", readonly=True)
@@ -73,6 +86,7 @@ class PlPayrollPayslip(models.Model):
     creative_report_missing = fields.Boolean(compute="_compute_creative_report_flags")
     etat_fraction = fields.Float(compute="_compute_etat_fraction", store=True, string="Wymiar etatu")
     below_minimum_wage = fields.Boolean(compute="_compute_minimum_wage_warning", store=True)
+    ytd_sick_days = fields.Integer(compute="_compute_ytd_sick_days", string="Dni chorobowe (rocznie)")
 
     notes = fields.Text(string="Notes")
 
@@ -144,6 +158,16 @@ class PlPayrollPayslip(models.Model):
             payslip.deduction_gross_total = float(payslip._round_amount(deduction_gross_total))
             payslip.deduction_net_total = float(payslip._round_amount(deduction_net_total))
 
+    @api.depends("employee_id", "date_from", "sick_days", "sick_days_100")
+    def _compute_ytd_sick_days(self):
+        for payslip in self:
+            if not payslip.employee_id or not payslip.date_from:
+                payslip.ytd_sick_days = 0
+                continue
+            current_year = fields.Date.to_date(payslip.date_from).year
+            ytd = payslip._get_ytd_totals(payslip.employee_id.id, current_year, payslip.date_from)
+            payslip.ytd_sick_days = ytd["sick_days_used"] + payslip._get_total_sick_days()
+
     def compute_payslip(self):
         for payslip in self:
             payslip._compute_single_payslip()
@@ -177,9 +201,11 @@ class PlPayrollPayslip(models.Model):
         deduction_gross_total = self._to_decimal(self.deduction_gross_total)
         deduction_net_total = self._to_decimal(self.deduction_net_total)
         gross = self._round_amount(base_gross + overtime_amount + bonus_gross_total - deduction_gross_total)
+        sick_amount, sick_basis, adjusted_gross = self._compute_sick_leave(gross)
+        effective_gross = self._round_amount(adjusted_gross + sick_amount)
         current_year = fields.Date.to_date(self.date_from).year
         ytd = self._get_ytd_totals(self.employee_id.id, current_year, self.date_from)
-        zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], gross)
+        zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], adjusted_gross)
         student_zlecenie_exempt = self._is_student_zlecenie_exempt()
 
         if student_zlecenie_exempt:
@@ -190,20 +216,20 @@ class PlPayrollPayslip(models.Model):
         else:
             zus_emerytalne_ee = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_EE")
             zus_rentowe_ee = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_EE")
-            zus_chorobowe_ee = self._percent_of_gross(gross, "ZUS_CHOR_EE")
+            zus_chorobowe_ee = self._percent_of_gross(adjusted_gross, "ZUS_CHOR_EE")
             zus_total_ee = self._round_amount(zus_emerytalne_ee + zus_rentowe_ee + zus_chorobowe_ee)
 
-        health_basis = self._round_amount(gross - zus_total_ee)
+        health_basis = self._round_amount(adjusted_gross - zus_total_ee + sick_amount)
         if student_zlecenie_exempt:
             health = Decimal("0.00")
             ppk_er = Decimal("0.00")
         else:
             health = self._round_amount(health_basis * self._get_parameter("HEALTH") / Decimal("100"))
-            ppk_er = self._compute_ppk_employer(gross)
+            ppk_er = self._compute_ppk_employer(adjusted_gross)
         kup_amount = self._compute_kup_amount(health_basis)
         taxable_income = self._floor_amount(health_basis - kup_amount + ppk_er)
         pit_advance, pit_reducing, pit_due = self._compute_pit_amounts(
-            gross,
+            effective_gross,
             taxable_income,
             ytd,
         )
@@ -211,8 +237,8 @@ class PlPayrollPayslip(models.Model):
         if student_zlecenie_exempt:
             ppk_ee = Decimal("0.00")
         else:
-            ppk_ee = self._compute_ppk_employee(gross)
-        net_before_deductions = self._round_amount(gross - zus_total_ee - health - pit_due - ppk_ee)
+            ppk_ee = self._compute_ppk_employee(adjusted_gross)
+        net_before_deductions = self._round_amount(effective_gross - zus_total_ee - health - pit_due - ppk_ee)
         net = self._round_amount(net_before_deductions - deduction_net_total)
 
         if student_zlecenie_exempt:
@@ -224,11 +250,11 @@ class PlPayrollPayslip(models.Model):
         else:
             zus_emerytalne_er = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_ER")
             zus_rentowe_er = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_ER")
-            zus_wypadkowe_er = self._percent_of_gross(gross, "ZUS_WYPAD_ER", company_specific=True)
-            zus_fp = self._percent_of_gross(gross, "ZUS_FP")
-            zus_fgsp = self._percent_of_gross(gross, "ZUS_FGSP")
+            zus_wypadkowe_er = self._percent_of_gross(adjusted_gross, "ZUS_WYPAD_ER", company_specific=True)
+            zus_fp = self._percent_of_gross(adjusted_gross, "ZUS_FP")
+            zus_fgsp = self._percent_of_gross(adjusted_gross, "ZUS_FGSP")
         total_employer_cost = self._round_amount(
-            gross
+            effective_gross
             + zus_emerytalne_er
             + zus_rentowe_er
             + zus_wypadkowe_er
@@ -240,6 +266,8 @@ class PlPayrollPayslip(models.Model):
         self.write(
             {
                 "gross": float(gross),
+                "sick_leave_amount": float(sick_amount),
+                "sick_leave_basis": float(sick_basis),
                 "overtime_amount": float(overtime_amount),
                 "zus_emerytalne_ee": float(zus_emerytalne_ee),
                 "zus_rentowe_ee": float(zus_rentowe_ee),
@@ -264,6 +292,53 @@ class PlPayrollPayslip(models.Model):
                 "state": "computed",
             }
         )
+
+    def _compute_sick_leave_basis(self):
+        self.ensure_one()
+        prior_payslips = self.search(
+            [
+                ("employee_id", "=", self.employee_id.id),
+                ("state", "=", "confirmed"),
+                ("date_from", "<", self.date_from),
+            ],
+            order="date_from desc, id desc",
+            limit=12,
+        )
+
+        if not prior_payslips:
+            wage = self._to_decimal(self.contract_id.wage)
+            zus_rate = (
+                self._get_parameter("ZUS_EMERY_EE")
+                + self._get_parameter("ZUS_RENT_EE")
+                + self._get_parameter("ZUS_CHOR_EE")
+            ) / Decimal("100")
+            return self._round_amount(wage * (Decimal("1") - zus_rate))
+
+        total = sum(
+            (
+                self._to_decimal(payslip.gross) - self._to_decimal(payslip.zus_total_ee)
+                for payslip in prior_payslips
+            ),
+            Decimal("0.00"),
+        )
+        return self._round_amount(total / Decimal(str(len(prior_payslips))))
+
+    def _compute_sick_leave(self, gross):
+        self.ensure_one()
+        sick_80 = self.sick_days or 0
+        sick_100 = self.sick_days_100 or 0
+        total_sick = sick_80 + sick_100
+        if total_sick <= 0:
+            return Decimal("0.00"), Decimal("0.00"), gross
+
+        basis = self._compute_sick_leave_basis()
+        daily_rate = basis / Decimal("30")
+        sick_amount = self._round_amount(
+            daily_rate * Decimal(str(sick_80)) * Decimal("0.80")
+            + daily_rate * Decimal(str(sick_100)) * Decimal("1.00")
+        )
+        adjusted_gross = self._get_adjusted_gross_for_sick(gross)
+        return sick_amount, basis, adjusted_gross
 
     def _link_creative_report(self):
         self.ensure_one()
@@ -315,8 +390,11 @@ class PlPayrollPayslip(models.Model):
         )
         pit_payslips = payslips.filtered(lambda slip: self._to_decimal(slip.pit_advance) > Decimal("0.00"))
         return {
-            "gross": sum((self._to_decimal(value) for value in payslips.mapped("gross")), Decimal("0.00")),
-            "zus_basis": sum((self._to_decimal(value) for value in payslips.mapped("gross")), Decimal("0.00")),
+            "gross": sum((payslip._get_effective_gross_amount() for payslip in payslips), Decimal("0.00")),
+            "zus_basis": sum(
+                (payslip._get_adjusted_gross_for_sick(payslip.gross) for payslip in payslips),
+                Decimal("0.00"),
+            ),
             "taxable_income": sum(
                 (self._to_decimal(value) for value in payslips.mapped("taxable_income")),
                 Decimal("0.00"),
@@ -330,6 +408,7 @@ class PlPayrollPayslip(models.Model):
                 Decimal("0.00"),
             ),
             "pit_paid": sum((self._to_decimal(value) for value in payslips.mapped("pit_due")), Decimal("0.00")),
+            "sick_days_used": sum((payslip._get_total_sick_days() for payslip in payslips), 0),
         }
 
     def _compute_pit_amounts(self, gross, current_taxable_income, ytd):
@@ -389,6 +468,32 @@ class PlPayrollPayslip(models.Model):
             return Decimal("1")
         fraction = contract_hours / company_hours
         return min(fraction, Decimal("1"))
+
+    def _get_total_sick_days(self):
+        self.ensure_one()
+        return (self.sick_days or 0) + (self.sick_days_100 or 0)
+
+    def _get_adjusted_gross_for_sick(self, gross):
+        self.ensure_one()
+        gross = self._to_decimal(gross)
+        total_sick = self._get_total_sick_days()
+        working_days = self.working_days_in_month or 30
+        if total_sick <= 0 or working_days <= 0:
+            return gross
+
+        gross_reduction = self._round_amount(
+            gross / Decimal(str(working_days)) * Decimal(str(total_sick))
+        )
+        return max(Decimal("0.00"), gross - gross_reduction)
+
+    def _get_effective_gross_amount(self):
+        self.ensure_one()
+        gross = self._to_decimal(self.gross)
+        if self._get_total_sick_days() <= 0:
+            return gross
+        return self._round_amount(
+            self._get_adjusted_gross_for_sick(gross) + self._to_decimal(self.sick_leave_amount)
+        )
 
     def _get_calendar_hours_per_week(self, calendar):
         if not calendar:
