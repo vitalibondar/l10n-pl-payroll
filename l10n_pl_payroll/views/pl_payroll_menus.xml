@@ -18,9 +18,9 @@
 
     <menuitem
         id="menu_pl_payroll_batch_compute"
-        name="Batch Compute"
+        name="Generate Payslips"
         parent="menu_pl_payroll_root"
-        action="action_pl_payroll_batch_compute"
+        action="action_pl_payroll_batch_wizard"
         sequence="20"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />

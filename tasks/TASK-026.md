@@ -1,6 +1,6 @@
 # TASK-026: Batch payslip generation wizard
 
-**Status:** pending
+**Status:** done
 **Branch:** task/026-batch-payslip
 **Created:** 2026-03-29
 **Depends on:** none
