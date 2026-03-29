@@ -75,8 +75,12 @@
                         <strong>Warning:</strong> Creative work report (raport autorski) is missing for this employee.
                         Autorskie koszty (50% KUP) require an accepted monthly creative work report for KAS compliance.
                     </div>
+                    <div class="alert alert-warning" role="alert" invisible="not below_minimum_wage">
+                        <strong>Warning:</strong> Gross pay is below the proportional minimum wage for this employment fraction.
+                    </div>
                     <field name="creative_report_required" invisible="1"/>
                     <field name="creative_report_missing" invisible="1"/>
+                    <field name="below_minimum_wage" invisible="1"/>
                     <group string="Identyfikacja">
                         <group>
                             <field name="employee_id" readonly="state != 'draft'"/>
@@ -96,6 +100,7 @@
                             <group>
                                 <group string="Brutto">
                                     <field name="gross" readonly="1"/>
+                                    <field name="etat_fraction" readonly="1"/>
                                     <field name="overtime_amount" readonly="1"/>
                                     <field name="overtime_hours_150" readonly="state != 'draft'"/>
                                     <field name="overtime_hours_200" readonly="state != 'draft'"/>

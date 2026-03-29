@@ -21,6 +21,11 @@ DEPARTMENTS = [
     "Biuro",
     "Zarząd",
 ]
+CALENDAR_SPECS = {
+    "full_time": {"name": "TASK-019 Full Time", "hour_to": 16.0},
+    "half_time": {"name": "TASK-019 Half Time", "hour_to": 12.0},
+    "three_quarter_time": {"name": "TASK-019 Three Quarter Time", "hour_to": 14.0},
+}
 
 EMPLOYEES = [
     {"index": 1, "name": "Tomasz Kowalski", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1989-01-17", "gender": "male", "wage": 4806.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
@@ -32,12 +37,12 @@ EMPLOYEES = [
     {"index": 7, "name": "Oleksandr Kovalenko", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1990-06-19", "gender": "male", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 8, "name": "Nataliia Shevchenko", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1996-09-03", "gender": "female", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 9, "name": "Dmytro Melnyk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1988-12-11", "gender": "male", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 10, "name": "Yuliia Kravchuk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1993-04-24", "gender": "female", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 10, "name": "Yuliia Kravchuk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1993-04-24", "gender": "female", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0, "calendar": "three_quarter_time"},
     {"index": 11, "name": "Mikołaj Szymański", "job_title": "Kierownik zmiany", "department": "Produkcja", "nationality": "PL", "birthday": "1984-08-16", "gender": "male", "wage": 7500.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 12, "name": "Paulina Dąbrowska", "job_title": "Kierownik zmiany", "department": "Produkcja", "nationality": "PL", "birthday": "1989-10-07", "gender": "female", "wage": 6500.0, "date_start": "2025-06-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 13, "name": "Kacper Wójcik", "job_title": "Laborant", "department": "Laboratorium", "nationality": "PL", "birthday": "1995-01-12", "gender": "male", "wage": 6000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 14, "name": "Michał Adamski", "job_title": "Inżynier procesu", "department": "Laboratorium", "nationality": "PL", "birthday": "1986-05-27", "gender": "male", "wage": 8000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 15, "name": "Natalia Ivanchuk", "job_title": "Magazynierka", "department": "Magazyn", "nationality": "UA", "birthday": "1998-02-18", "gender": "female", "wage": 4806.0, "date_start": "2025-04-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 15, "name": "Natalia Ivanchuk", "job_title": "Magazynierka", "department": "Magazyn", "nationality": "UA", "birthday": "1998-02-18", "gender": "female", "wage": 4806.0, "date_start": "2025-04-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0, "calendar": "half_time"},
     {"index": 16, "name": "Monika Brzeska", "job_title": "Administrator materiałowy", "department": "Magazyn", "nationality": "PL", "birthday": "1990-07-30", "gender": "female", "wage": 5500.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "opt_out", "ppk_ee_rate": 0.0},
     {"index": 17, "name": "Liudmyla Savchenko", "job_title": "Specjalistka ds. księgowości", "department": "Biuro", "nationality": "UA", "birthday": "1987-03-13", "gender": "female", "wage": 7000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
     {"index": 18, "name": "Szymon Jankowski", "job_title": "Inżynier mechanik", "department": "Biuro", "nationality": "PL", "birthday": "1988-11-26", "gender": "male", "wage": 8500.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
@@ -155,12 +160,48 @@ def ensure_named_record(models, uid, model, name, extra_vals=None):
     return execute(models, uid, model, "create", [values])
 
 
+def ensure_calendar(models, uid, company_id, key):
+    spec = CALENDAR_SPECS[key]
+    calendar_id = ensure_named_record(
+        models,
+        uid,
+        "resource.calendar",
+        spec["name"],
+        {
+            "tz": "Europe/Warsaw",
+            "company_id": company_id,
+        },
+    )
+    attendance_ids = execute(
+        models,
+        uid,
+        "resource.calendar.attendance",
+        "search",
+        [[("calendar_id", "=", calendar_id)]],
+    )
+    if attendance_ids:
+        execute(models, uid, "resource.calendar.attendance", "unlink", [attendance_ids])
+    for dayofweek in range(5):
+        execute(
+            models,
+            uid,
+            "resource.calendar.attendance",
+            "create",
+            [{
+                "name": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"][dayofweek],
+                "calendar_id": calendar_id,
+                "dayofweek": str(dayofweek),
+                "hour_from": 8.0,
+                "hour_to": spec["hour_to"],
+                "day_period": "morning",
+            }],
+        )
+    return calendar_id
+
+
 def ensure_reference_data(models, uid):
     user_data = execute(models, uid, "res.users", "read", [[uid]], {"fields": ["company_id"]})[0]
     company_id = user_data["company_id"][0]
-    calendar_ids = execute(models, uid, "resource.calendar", "search", [[]], {"limit": 1, "order": "id asc"})
-    if not calendar_ids:
-        raise RuntimeError("No resource calendar found.")
     contract_type_ids = {
         "o_prace": ensure_named_record(models, uid, "hr.contract.type", "Umowa o pracę"),
         "zlecenie": ensure_named_record(models, uid, "hr.contract.type", "Umowa zlecenie"),
@@ -183,9 +224,21 @@ def ensure_reference_data(models, uid):
     for department_name in DEPARTMENTS:
         department_ids[department_name] = ensure_named_record(models, uid, "hr.department", department_name)
 
+    calendar_ids = {
+        key: ensure_calendar(models, uid, company_id, key)
+        for key in CALENDAR_SPECS
+    }
+    execute(
+        models,
+        uid,
+        "res.company",
+        "write",
+        [[company_id], {"resource_calendar_id": calendar_ids["full_time"]}],
+    )
+
     return {
         "company_id": company_id,
-        "calendar_id": calendar_ids[0],
+        "calendar_ids": calendar_ids,
         "contract_type_ids": contract_type_ids,
         "country_ids": country_ids,
         "department_ids": department_ids,
@@ -232,6 +285,7 @@ def create_employees(models, uid, refs):
 def create_contracts(models, uid, refs, employee_ids):
     contract_ids = {}
     for employee in EMPLOYEES:
+        calendar_key = employee.get("calendar", "full_time")
         contract_id = execute(
             models,
             uid,
@@ -241,7 +295,7 @@ def create_contracts(models, uid, refs, employee_ids):
                 "name": f"TASK-015/{employee['index']:02d} {employee['name']}",
                 "employee_id": employee_ids[employee["name"]],
                 "company_id": refs["company_id"],
-                "resource_calendar_id": refs["calendar_id"],
+                "resource_calendar_id": refs["calendar_ids"][calendar_key],
                 "contract_type_id": refs["contract_type_ids"][employee["contract_type"]],
                 "wage": employee["wage"],
                 "date_start": employee["date_start"],
