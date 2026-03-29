@@ -14,6 +14,7 @@
     "depends": ["hr_contract", "hr_attendance"],
     "data": [
         "security/pl_payroll_security.xml",
+        "security/pl_payroll_payslip_line_security.xml",
         "security/ir.model.access.csv",
         "data/pl_payroll_parameters_2025.xml",
         "data/pl_payroll_parameters_2026.xml",

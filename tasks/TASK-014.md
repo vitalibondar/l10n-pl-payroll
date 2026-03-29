@@ -1,6 +1,6 @@
 # TASK-014: Bonuses and deductions (premie, potrącenia)
 
-**Status:** open
+**Status:** done
 **Branch:** task/014-bonuses-deductions
 **Created:** 2026-03-28
 

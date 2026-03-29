@@ -143,7 +143,144 @@ class TestPayrollPayslip(TransactionCase):
         self.assertDecimalEqual(payslip.gross, expected["gross"])
         self.assertDecimalEqual(payslip.net, expected["net"])
 
-    def _create_payslip(self, contract, overtime_hours_150=0.0, overtime_hours_200=0.0):
+    def test_bonus_gross_increases_gross_and_recalculates_contributions(self):
+        _employee, contract = self.scenarios[1]
+        payslip = self._create_payslip(
+            contract,
+            payslip_lines=[
+                {
+                    "name": "Premia kwartalna",
+                    "category": "bonus_gross",
+                    "amount": 500.0,
+                }
+            ],
+        )
+
+        payslip.compute_payslip()
+        expected = self._expected_amounts_with_overtime(
+            contract,
+            payslip.date_to,
+            bonus_gross=Decimal("500.0"),
+        )
+
+        self.assertDecimalEqual(payslip.bonus_gross_total, Decimal("500.0"))
+        self.assertDecimalEqual(payslip.deduction_gross_total, Decimal("0.0"))
+        self.assertDecimalEqual(payslip.deduction_net_total, Decimal("0.0"))
+        self.assertDecimalEqual(payslip.gross, expected["gross"])
+        self.assertDecimalEqual(payslip.zus_total_ee, expected["zus_total_ee"])
+        self.assertDecimalEqual(payslip.pit_due, expected["pit_due"])
+        self.assertDecimalEqual(payslip.net, expected["net"])
+
+    def test_deduction_net_decreases_net_only(self):
+        _employee, contract = self.scenarios[1]
+        payslip = self._create_payslip(
+            contract,
+            payslip_lines=[
+                {
+                    "name": "Potrącenie prywatne",
+                    "category": "deduction_net",
+                    "amount": 200.0,
+                }
+            ],
+        )
+
+        payslip.compute_payslip()
+        expected = self._expected_amounts_with_overtime(
+            contract,
+            payslip.date_to,
+            deduction_net=Decimal("200.0"),
+        )
+
+        self.assertDecimalEqual(payslip.gross, expected["gross"])
+        self.assertDecimalEqual(payslip.zus_total_ee, expected["zus_total_ee"])
+        self.assertDecimalEqual(payslip.pit_due, expected["pit_due"])
+        self.assertDecimalEqual(payslip.deduction_net_total, Decimal("200.0"))
+        self.assertDecimalEqual(payslip.net, expected["net"])
+
+    def test_deduction_gross_decreases_gross(self):
+        _employee, contract = self.scenarios[1]
+        payslip = self._create_payslip(
+            contract,
+            payslip_lines=[
+                {
+                    "name": "Kara porządkowa",
+                    "category": "deduction_gross",
+                    "amount": 350.0,
+                }
+            ],
+        )
+
+        payslip.compute_payslip()
+        expected = self._expected_amounts_with_overtime(
+            contract,
+            payslip.date_to,
+            deduction_gross=Decimal("350.0"),
+        )
+
+        self.assertDecimalEqual(payslip.bonus_gross_total, Decimal("0.0"))
+        self.assertDecimalEqual(payslip.deduction_gross_total, Decimal("350.0"))
+        self.assertDecimalEqual(payslip.gross, expected["gross"])
+        self.assertDecimalEqual(payslip.zus_total_ee, expected["zus_total_ee"])
+        self.assertDecimalEqual(payslip.net, expected["net"])
+
+    def test_mix_of_bonus_and_deductions(self):
+        _employee, contract = self.scenarios[1]
+        payslip = self._create_payslip(
+            contract,
+            payslip_lines=[
+                {
+                    "name": "Premia za wynik",
+                    "category": "bonus_gross",
+                    "amount": 600.0,
+                },
+                {
+                    "name": "Kara jakościowa",
+                    "category": "deduction_gross",
+                    "amount": 150.0,
+                },
+                {
+                    "name": "Potrącenie komornicze",
+                    "category": "deduction_net",
+                    "amount": 250.0,
+                },
+            ],
+        )
+
+        payslip.compute_payslip()
+        expected = self._expected_amounts_with_overtime(
+            contract,
+            payslip.date_to,
+            bonus_gross=Decimal("600.0"),
+            deduction_gross=Decimal("150.0"),
+            deduction_net=Decimal("250.0"),
+        )
+
+        self.assertDecimalEqual(payslip.bonus_gross_total, Decimal("600.0"))
+        self.assertDecimalEqual(payslip.deduction_gross_total, Decimal("150.0"))
+        self.assertDecimalEqual(payslip.deduction_net_total, Decimal("250.0"))
+        self.assertDecimalEqual(payslip.gross, expected["gross"])
+        self.assertDecimalEqual(payslip.zus_total_ee, expected["zus_total_ee"])
+        self.assertDecimalEqual(payslip.pit_due, expected["pit_due"])
+        self.assertDecimalEqual(payslip.net, expected["net"])
+
+    def test_empty_bonus_and_deduction_lines_have_no_effect(self):
+        _employee, contract = self.scenarios[1]
+        payslip = self._create_payslip(contract)
+
+        payslip.compute_payslip()
+        expected = self._expected_amounts_with_overtime(contract, payslip.date_to)
+
+        self.assertFalse(payslip.payslip_line_ids)
+        self.assertDecimalEqual(payslip.bonus_gross_total, Decimal("0.0"))
+        self.assertDecimalEqual(payslip.deduction_gross_total, Decimal("0.0"))
+        self.assertDecimalEqual(payslip.deduction_net_total, Decimal("0.0"))
+        self.assertDecimalEqual(payslip.gross, expected["gross"])
+        self.assertDecimalEqual(payslip.zus_total_ee, expected["zus_total_ee"])
+        self.assertDecimalEqual(payslip.pit_due, expected["pit_due"])
+        self.assertDecimalEqual(payslip.net, expected["net"])
+
+    def _create_payslip(self, contract, overtime_hours_150=0.0, overtime_hours_200=0.0, payslip_lines=None):
+        payslip_lines = payslip_lines or []
         target_date = date(2026, 1, 1)
         return self.Payslip.create(
             {
@@ -153,6 +290,7 @@ class TestPayrollPayslip(TransactionCase):
                 "date_to": target_date.replace(day=monthrange(target_date.year, target_date.month)[1]),
                 "overtime_hours_150": overtime_hours_150,
                 "overtime_hours_200": overtime_hours_200,
+                "payslip_line_ids": [(0, 0, values) for values in payslip_lines],
             }
         )
 
@@ -162,6 +300,9 @@ class TestPayrollPayslip(TransactionCase):
         target_date,
         overtime_hours_150=Decimal("0.0"),
         overtime_hours_200=Decimal("0.0"),
+        bonus_gross=Decimal("0.0"),
+        deduction_gross=Decimal("0.0"),
+        deduction_net=Decimal("0.0"),
     ):
         base_gross = self.to_decimal(contract.wage)
         standard_monthly_hours = self.to_decimal(self.Parameter.get_value("STANDARD_MONTHLY_HOURS", target_date))
@@ -170,7 +311,7 @@ class TestPayrollPayslip(TransactionCase):
             overtime_hours_150 * hourly_rate * Decimal("1.5")
             + overtime_hours_200 * hourly_rate * Decimal("2.0")
         )
-        gross = self.round_amount(base_gross + overtime_amount)
+        gross = self.round_amount(base_gross + overtime_amount + bonus_gross - deduction_gross)
 
         zus_emerytalne_ee = self.percent_of(gross, "ZUS_EMERY_EE", target_date)
         zus_rentowe_ee = self.percent_of(gross, "ZUS_RENT_EE", target_date)
@@ -192,11 +333,13 @@ class TestPayrollPayslip(TransactionCase):
 
         ppk_ee_rate = self.to_decimal(contract.ppk_ee_rate) + self.to_decimal(contract.ppk_additional)
         ppk_ee = self.round_amount(gross * ppk_ee_rate / Decimal("100"))
-        net = self.round_amount(gross - zus_total_ee - health - pit_due - ppk_ee)
+        net = self.round_amount(gross - zus_total_ee - health - pit_due - ppk_ee - deduction_net)
 
         return {
             "overtime_amount": overtime_amount,
             "gross": gross,
+            "zus_total_ee": zus_total_ee,
+            "pit_due": pit_due,
             "net": net,
         }
 
