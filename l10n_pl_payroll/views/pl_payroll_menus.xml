@@ -30,7 +30,7 @@
         name="Creative Reports"
         parent="menu_pl_payroll_root"
         action="action_pl_payroll_creative_report"
-        sequence="25"
+        sequence="30"
         groups="l10n_pl_payroll.group_payroll_employee,l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />
 
@@ -38,7 +38,7 @@
         id="menu_pl_payroll_configuration"
         name="Configuration"
         parent="menu_pl_payroll_root"
-        sequence="30"
+        sequence="40"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />
 

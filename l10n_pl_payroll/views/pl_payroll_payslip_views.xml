@@ -8,8 +8,13 @@
                 <field name="employee_id"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
+                <field name="contract_id" optional="hide"/>
+                <field name="kup_type" optional="show"/>
                 <field name="gross"/>
+                <field name="zus_total_ee" optional="hide"/>
+                <field name="pit_due" optional="hide"/>
                 <field name="net"/>
+                <field name="total_employer_cost" optional="hide"/>
                 <field name="state"/>
             </list>
         </field>
@@ -72,88 +77,80 @@
                     </div>
                     <field name="creative_report_required" invisible="1"/>
                     <field name="creative_report_missing" invisible="1"/>
-                    <group>
-                        <group string="Payslip">
+                    <group string="Identyfikacja">
+                        <group>
                             <field name="employee_id" readonly="state != 'draft'"/>
                             <field name="contract_id" readonly="state != 'draft'"/>
-                            <field name="department_id" readonly="1"/>
-                            <field name="company_id" readonly="1"/>
-                        </group>
-                        <group string="Period">
                             <field name="date_from" readonly="state != 'draft'"/>
                             <field name="date_to" readonly="state != 'draft'"/>
                             <field name="state" readonly="1"/>
+                        </group>
+                        <group>
                             <field name="name" readonly="1"/>
-                        </group>
-                    </group>
-                    <group>
-                        <group string="Gross">
-                            <field name="gross" readonly="1"/>
-                        </group>
-                        <group string="Net">
-                            <div class="oe_title">
-                                <label for="net"/>
-                                <h1>
-                                    <field name="net" readonly="1" class="oe_inline"/>
-                                </h1>
-                            </div>
-                        </group>
-                    </group>
-                    <group string="Overtime">
-                        <group>
-                            <field name="overtime_hours_150" readonly="state != 'draft'"/>
-                            <field name="overtime_hours_200" readonly="state != 'draft'"/>
-                            <field name="overtime_amount" readonly="1"/>
-                        </group>
-                    </group>
-                    <group string="Employee Deductions">
-                        <group string="ZUS">
-                            <field name="zus_emerytalne_ee" readonly="1"/>
-                            <field name="zus_rentowe_ee" readonly="1"/>
-                            <field name="zus_chorobowe_ee" readonly="1"/>
-                            <field name="zus_total_ee" readonly="1"/>
-                        </group>
-                        <group string="Health">
-                            <field name="health_basis" readonly="1"/>
-                            <field name="health" readonly="1"/>
-                        </group>
-                        <group string="KUP">
-                            <field name="kup_type" readonly="1"/>
-                            <field name="kup_amount" readonly="1"/>
-                        </group>
-                        <group string="PIT">
-                            <field name="taxable_income" readonly="1"/>
-                            <field name="pit_advance" readonly="1"/>
-                            <field name="pit_reducing" readonly="1"/>
-                            <field name="pit_due" readonly="1"/>
-                        </group>
-                        <group string="PPK">
-                            <field name="ppk_ee" readonly="1"/>
-                        </group>
-                    </group>
-                    <group string="Employer Side">
-                        <group string="ZUS Employer">
-                            <field name="zus_emerytalne_er" readonly="1"/>
-                            <field name="zus_rentowe_er" readonly="1"/>
-                            <field name="zus_wypadkowe_er" readonly="1"/>
-                            <field name="zus_fp" readonly="1"/>
-                            <field name="zus_fgsp" readonly="1"/>
-                        </group>
-                        <group string="PPK Employer">
-                            <field name="ppk_er" readonly="1"/>
-                        </group>
-                        <group string="Total Employer Cost">
-                            <field name="total_employer_cost" readonly="1"/>
-                        </group>
-                    </group>
-                    <group string="Creative Work Report" invisible="not creative_report_required">
-                        <group>
-                            <field name="creative_report_id" readonly="1"/>
+                            <field name="department_id" readonly="1"/>
+                            <field name="company_id" readonly="1"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Notes">
-                            <field name="notes" placeholder="Internal notes..." readonly="state != 'draft'"/>
+                        <page string="Wynagrodzenie">
+                            <group>
+                                <group string="Brutto">
+                                    <field name="gross" readonly="1"/>
+                                    <field name="overtime_amount" readonly="1"/>
+                                    <field name="overtime_hours_150" readonly="state != 'draft'"/>
+                                    <field name="overtime_hours_200" readonly="state != 'draft'"/>
+                                </group>
+                                <group string="ZUS Pracownik">
+                                    <field name="zus_emerytalne_ee" readonly="1"/>
+                                    <field name="zus_rentowe_ee" readonly="1"/>
+                                    <field name="zus_chorobowe_ee" readonly="1"/>
+                                    <field name="zus_total_ee" readonly="1"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Podatek">
+                                    <field name="health_basis" readonly="1"/>
+                                    <field name="health" readonly="1"/>
+                                    <field name="kup_type" readonly="1"/>
+                                    <field name="kup_amount" readonly="1"/>
+                                    <field name="taxable_income" readonly="1"/>
+                                    <field name="pit_advance" readonly="1"/>
+                                    <field name="pit_reducing" readonly="1"/>
+                                    <field name="pit_due" readonly="1"/>
+                                </group>
+                                <group string="PPK i Netto">
+                                    <field name="ppk_ee" readonly="1"/>
+                                    <field name="net" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Koszty pracodawcy">
+                            <group>
+                                <group string="ZUS Pracodawca">
+                                    <field name="zus_emerytalne_er" readonly="1"/>
+                                    <field name="zus_rentowe_er" readonly="1"/>
+                                    <field name="zus_wypadkowe_er" readonly="1"/>
+                                    <field name="zus_fp" readonly="1"/>
+                                    <field name="zus_fgsp" readonly="1"/>
+                                </group>
+                                <group string="PPK i Total">
+                                    <field name="ppk_er" readonly="1"/>
+                                    <field name="total_employer_cost" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Raport twórczy" invisible="not creative_report_required">
+                            <group>
+                                <field name="creative_report_id" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Notatki">
+                            <field
+                                name="notes"
+                                nolabel="1"
+                                placeholder="Dodatkowe uwagi..."
+                                readonly="state in ['confirmed', 'cancelled']"
+                            />
                         </page>
                     </notebook>
                 </sheet>
