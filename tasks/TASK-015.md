@@ -1,6 +1,6 @@
 # TASK-015: Realistic test data seed script
 
-**Status:** todo
+**Status:** done
 **Branch:** task/015-realistic-seed-data
 **Created:** 2026-03-29
 
