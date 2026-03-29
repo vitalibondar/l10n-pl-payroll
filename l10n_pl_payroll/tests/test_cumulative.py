@@ -20,7 +20,7 @@ class TestPayrollCumulative(TransactionCase):
         cls.Payslip = cls.env["pl.payroll.payslip"]
         cls.Parameter = cls.env["pl.payroll.parameter"]
         cls.calendar = cls.env.ref("l10n_pl_payroll.demo_calendar_full_time")
-        cls.contract_type = cls.env.ref("l10n_pl_payroll.demo_contract_type_umowa_o_prace")
+        cls.contract_type = cls.env.ref("l10n_pl_payroll.contract_type_umowa_o_prace")
         cls.demo_andrzej = cls.env.ref("l10n_pl_payroll.demo_employee_andrzej_dabrowski")
 
     def test_scenario_10_pit_bracket_transition(self):

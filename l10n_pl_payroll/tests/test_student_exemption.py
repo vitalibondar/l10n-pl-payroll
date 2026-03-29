@@ -17,9 +17,34 @@ class TestStudentExemption(TransactionCase):
         cls.Employee = cls.env["hr.employee"]
         cls.Contract = cls.env["hr.contract"]
         cls.Payslip = cls.env["pl.payroll.payslip"]
-        cls.calendar = cls.env.ref("l10n_pl_payroll.demo_calendar_full_time")
-        cls.contract_type_praca = cls.env.ref("l10n_pl_payroll.demo_contract_type_umowa_o_prace")
-        cls.contract_type_zlecenie = cls.env.ref("l10n_pl_payroll.demo_contract_type_umowa_zlecenie")
+        cls.Calendar = cls.env["resource.calendar"]
+        cls.CalendarAttendance = cls.env["resource.calendar.attendance"]
+        cls.calendar = cls._make_calendar("Test Student Exemption Full Time", 16.0)
+        cls.contract_type_praca = cls.env.ref("l10n_pl_payroll.contract_type_umowa_o_prace")
+        cls.contract_type_zlecenie = cls.env.ref("l10n_pl_payroll.contract_type_umowa_zlecenie")
+
+    @classmethod
+    def _make_calendar(cls, name, hour_to):
+        calendar = cls.Calendar.create(
+            {
+                "name": name,
+                "tz": "Europe/Warsaw",
+                "company_id": cls.env.company.id,
+            }
+        )
+        weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+        for dayofweek, weekday in enumerate(weekdays):
+            cls.CalendarAttendance.create(
+                {
+                    "name": weekday,
+                    "calendar_id": calendar.id,
+                    "dayofweek": str(dayofweek),
+                    "hour_from": 8.0,
+                    "hour_to": hour_to,
+                    "day_period": "morning",
+                }
+            )
+        return calendar
 
     def test_student_zlecenie_no_zus(self):
         employee = self._make_employee("Student Zlecenie", "2004-06-15", is_student=True)

@@ -90,7 +90,7 @@ class TestPayrollFixtures(TransactionCase):
         self.assertEqual(contract_5.resource_calendar_id, self.env.ref("l10n_pl_payroll.demo_calendar_half_time"))
 
         contract_8 = self.scenarios[8][1]
-        self.assertEqual(contract_8.contract_type_id, self.env.ref("l10n_pl_payroll.demo_contract_type_umowa_zlecenie"))
+        self.assertEqual(contract_8.contract_type_id, self.env.ref("l10n_pl_payroll.contract_type_umowa_zlecenie"))
         self.assertEqual(contract_8.kup_type, "standard_20")
         self.assertEqual(contract_8.ppk_participation, "opt_out")
 

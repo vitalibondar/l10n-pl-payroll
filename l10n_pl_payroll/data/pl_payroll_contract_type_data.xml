@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="contract_type_umowa_o_prace" model="hr.contract.type">
+            <field name="name">Umowa o pracę</field>
+        </record>
+
+        <record id="contract_type_umowa_zlecenie" model="hr.contract.type">
+            <field name="name">Umowa zlecenie</field>
+        </record>
+
+        <record id="contract_type_umowa_o_dzielo" model="hr.contract.type">
+            <field name="name">Umowa o dzieło</field>
+        </record>
+    </data>
+</odoo>
