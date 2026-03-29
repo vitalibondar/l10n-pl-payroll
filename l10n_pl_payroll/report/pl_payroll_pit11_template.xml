@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_pl_payroll_pit11" model="ir.actions.report">
+        <field name="name">PIT-11</field>
+        <field name="model">pl.payroll.pit11</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_pl_payroll.report_pl_payroll_pit11_document</field>
+        <field name="report_file">l10n_pl_payroll.report_pl_payroll_pit11_document</field>
+        <field name="binding_model_id" ref="model_pl_payroll_pit11"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_pl_payroll_payslip"/>
+        <field name="print_report_name">'PIT-11 - %s - %s' % ((object.employee_id.name or 'pracownik'), object.year)</field>
+    </record>
+
+    <template id="report_pl_payroll_pit11_document">
+        <t t-call="web.html_container">
+            <style type="text/css">
+                .pl-pit11-page {
+                    color: #1f2933;
+                    font-family: DejaVu Sans, sans-serif;
+                    font-size: 11px;
+                    line-height: 1.45;
+                    page-break-after: always;
+                }
+                .pl-pit11-page:last-of-type {
+                    page-break-after: auto;
+                }
+                .pl-pit11-card {
+                    border: 1px solid #d9e2ec;
+                    border-radius: 14px;
+                    overflow: hidden;
+                }
+                .pl-pit11-header {
+                    background: #0f172a;
+                    color: #ffffff;
+                    padding: 18px 20px;
+                }
+                .pl-pit11-header h2 {
+                    color: inherit;
+                    font-size: 26px;
+                    font-weight: 800;
+                    margin: 0;
+                }
+                .pl-pit11-section {
+                    padding: 16px 20px;
+                }
+                .pl-pit11-eyebrow {
+                    color: #7b8794;
+                    font-size: 9px;
+                    font-weight: 700;
+                    letter-spacing: 0.08em;
+                    margin: 0 0 6px 0;
+                    text-transform: uppercase;
+                }
+                .pl-pit11-grid {
+                    width: 100%;
+                }
+                .pl-pit11-grid td {
+                    vertical-align: top;
+                    width: 50%;
+                }
+                .pl-pit11-table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                .pl-pit11-table th,
+                .pl-pit11-table td {
+                    border-bottom: 1px solid #e4e7eb;
+                    padding: 8px 0;
+                    text-align: left;
+                }
+                .pl-pit11-table th:last-child,
+                .pl-pit11-table td:last-child {
+                    text-align: right;
+                    white-space: nowrap;
+                }
+                .pl-pit11-table tr:last-child th,
+                .pl-pit11-table tr:last-child td {
+                    border-bottom: none;
+                }
+                .pl-pit11-subtitle {
+                    font-size: 16px;
+                    font-weight: 700;
+                    margin: 0 0 10px 0;
+                }
+                .pl-pit11-muted {
+                    color: #52606d;
+                }
+                .pl-pit11-footer {
+                    border-top: 1px solid #d9e2ec;
+                    color: #52606d;
+                    font-size: 10px;
+                    margin-top: 16px;
+                    padding-top: 12px;
+                }
+                .pl-pit11-footer p {
+                    margin: 3px 0;
+                }
+            </style>
+            <t t-foreach="docs" t-as="o">
+                <t t-set="company" t-value="o.company_id"/>
+                <t t-set="employee" t-value="o.employee_id"/>
+                <t t-set="employee_address" t-value="'address_home_id' in employee._fields and employee.address_home_id or False"/>
+                <t t-set="employee_private_street" t-value="'private_street' in employee._fields and employee.private_street or ''"/>
+                <t t-set="employee_private_street2" t-value="'private_street2' in employee._fields and employee.private_street2 or ''"/>
+                <t t-set="employee_private_zip" t-value="'private_zip' in employee._fields and employee.private_zip or ''"/>
+                <t t-set="employee_private_city" t-value="'private_city' in employee._fields and employee.private_city or ''"/>
+                <t t-call="web.external_layout" t-lang="'pl_PL'">
+                    <main class="page pl-pit11-page" lang="pl" role="document" aria-label="PIT-11">
+                        <article class="pl-pit11-card">
+                            <section class="pl-pit11-header">
+                                <p class="pl-pit11-eyebrow">Informacja roczna</p>
+                                <h2>PIT-11 za <span t-out="o.year"/></h2>
+                            </section>
+                            <section class="pl-pit11-section">
+                                <table class="pl-pit11-grid" role="presentation">
+                                    <tr>
+                                        <td>
+                                            <p class="pl-pit11-eyebrow">Płatnik</p>
+                                            <p><strong t-out="company.name"/></p>
+                                            <p class="pl-pit11-muted">
+                                                NIP:
+                                                <span t-out="company.vat or company.company_registry or 'Brak danych'"/>
+                                            </p>
+                                            <p class="pl-pit11-muted">
+                                                <span t-out="company.street or ''"/>
+                                                <t t-if="company.street2">
+                                                    <span>, </span>
+                                                    <span t-out="company.street2"/>
+                                                </t>
+                                                <t t-if="company.zip or company.city">
+                                                    <br/>
+                                                    <span t-out="'%s %s' % (company.zip or '', company.city or '')"/>
+                                                </t>
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p class="pl-pit11-eyebrow">Pracownik</p>
+                                            <p><strong t-out="employee.name"/></p>
+                                            <p class="pl-pit11-muted">
+                                                PESEL:
+                                                <span t-out="employee.ssnid or 'Brak danych'"/>
+                                            </p>
+                                            <p class="pl-pit11-muted" t-if="employee_address">
+                                                <span t-out="employee_address.street or ''"/>
+                                                <t t-if="employee_address.street2">
+                                                    <span>, </span>
+                                                    <span t-out="employee_address.street2"/>
+                                                </t>
+                                                <t t-if="employee_address.zip or employee_address.city">
+                                                    <br/>
+                                                    <span t-out="'%s %s' % (employee_address.zip or '', employee_address.city or '')"/>
+                                                </t>
+                                            </p>
+                                            <p class="pl-pit11-muted" t-elif="employee_private_street or employee_private_zip or employee_private_city">
+                                                <span t-out="employee_private_street"/>
+                                                <t t-if="employee_private_street2">
+                                                    <span>, </span>
+                                                    <span t-out="employee_private_street2"/>
+                                                </t>
+                                                <t t-if="employee_private_zip or employee_private_city">
+                                                    <br/>
+                                                    <span t-out="'%s %s' % (employee_private_zip or '', employee_private_city or '')"/>
+                                                </t>
+                                            </p>
+                                            <p class="pl-pit11-muted" t-else="">Adres: Brak danych</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </section>
+                            <section class="pl-pit11-section">
+                                <h3 class="pl-pit11-subtitle">Sekcja D. Przychód i koszty</h3>
+                                <table class="pl-pit11-table">
+                                    <tr>
+                                        <th>Pozycja</th>
+                                        <th>Kwota</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Przychód łącznie</td>
+                                        <td t-out="formatLang(o.total_gross, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>PPK pracodawcy jako przychód</td>
+                                        <td t-out="formatLang(o.total_ppk_er, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Koszty uzyskania przychodu</td>
+                                        <td t-out="formatLang(o.total_kup, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Dochód łącznie</td>
+                                        <td t-out="formatLang(o.total_income, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                </table>
+                            </section>
+                            <section class="pl-pit11-section">
+                                <h3 class="pl-pit11-subtitle">Sekcje E-G. Składki i zaliczki</h3>
+                                <table class="pl-pit11-table">
+                                    <tr>
+                                        <th>Pozycja</th>
+                                        <th>Kwota</th>
+                                    </tr>
+                                    <tr>
+                                        <td>ZUS pracownika łącznie</td>
+                                        <td t-out="formatLang(o.total_zus_ee, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Składka zdrowotna łącznie</td>
+                                        <td t-out="formatLang(o.total_health, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Składka zdrowotna odliczana (7.75%)</td>
+                                        <td t-out="formatLang(o.health_deductible, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Zaliczki PIT zapłacone</td>
+                                        <td t-out="formatLang(o.total_pit_paid, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                </table>
+                            </section>
+                            <section class="pl-pit11-section pl-pit11-footer">
+                                <p>Liczba pasków wynagrodzeń ujętych w zestawieniu: <span t-out="o.payslip_count"/></p>
+                                <p>Data wygenerowania: <span t-out="(o.write_date or o.create_date or '')"/></p>
+                            </section>
+                        </article>
+                    </main>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

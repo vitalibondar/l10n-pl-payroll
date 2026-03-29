@@ -35,6 +35,23 @@
     />
 
     <menuitem
+        id="menu_pl_payroll_reports"
+        name="Reports"
+        parent="menu_pl_payroll_root"
+        sequence="35"
+        groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
+    />
+
+    <menuitem
+        id="menu_pl_payroll_pit11"
+        name="PIT-11"
+        parent="menu_pl_payroll_reports"
+        action="action_pl_payroll_pit11_wizard"
+        sequence="10"
+        groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
+    />
+
+    <menuitem
         id="menu_pl_payroll_configuration"
         name="Configuration"
         parent="menu_pl_payroll_root"

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pl_payroll_pit11_wizard_form" model="ir.ui.view">
+        <field name="name">pl.payroll.pit11.wizard.form</field>
+        <field name="model">pl.payroll.pit11.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generuj PIT-11">
+                <group>
+                    <field name="year"/>
+                </group>
+                <footer>
+                    <button name="action_generate" string="Generuj PIT-11" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pl_payroll_pit11_wizard" model="ir.actions.act_window">
+        <field name="name">Generuj PIT-11</field>
+        <field name="res_model">pl.payroll.pit11.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_pl_payroll_pit11_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

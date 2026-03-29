@@ -9,3 +9,4 @@ from . import test_part_time
 from . import test_sick_leave
 from . import test_dzielo
 from . import test_health_minimum
+from . import test_pit11
