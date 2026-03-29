@@ -267,15 +267,19 @@ class PlPayrollPayslip(models.Model):
             zus_chorobowe_ee = self._percent_of_gross(adjusted_gross, "ZUS_CHOR_EE")
             zus_total_ee = self._round_amount(zus_emerytalne_ee + zus_rentowe_ee + zus_chorobowe_ee)
 
-        health_basis = self._round_amount(adjusted_gross - zus_total_ee + sick_amount)
+        health_basis_raw = self._round_amount(adjusted_gross - zus_total_ee + sick_amount)
+        health_basis = health_basis_raw
         if student_zlecenie_exempt:
             health = Decimal("0.00")
             ppk_er = Decimal("0.00")
         else:
+            minimum_health_basis = self._get_minimum_health_basis()
+            if health_basis < minimum_health_basis:
+                health_basis = minimum_health_basis
             health = self._round_amount(health_basis * self._get_parameter("HEALTH") / Decimal("100"))
             ppk_er = self._compute_ppk_employer(adjusted_gross)
-        kup_amount = self._compute_kup_amount(health_basis)
-        taxable_income = self._floor_amount(health_basis - kup_amount + ppk_er)
+        kup_amount = self._compute_kup_amount(health_basis_raw)
+        taxable_income = self._floor_amount(health_basis_raw - kup_amount + ppk_er)
         pit_advance, pit_reducing, pit_due = self._compute_pit_amounts(
             effective_gross,
             taxable_income,
@@ -552,6 +556,19 @@ class PlPayrollPayslip(models.Model):
             if hours > Decimal("0"):
                 total += hours
         return total
+
+    def _get_minimum_health_basis(self):
+        self.ensure_one()
+        minimum_wage = self._get_minimum_wage_parameter()
+        if minimum_wage is False:
+            return Decimal("0.00")
+        minimum_gross = self._round_amount(minimum_wage * self._get_etat_fraction())
+        zus_rate = (
+            self._get_parameter("ZUS_EMERY_EE")
+            + self._get_parameter("ZUS_RENT_EE")
+            + self._get_parameter("ZUS_CHOR_EE")
+        ) / Decimal("100")
+        return self._round_amount(minimum_gross * (Decimal("1") - zus_rate))
 
     def _compute_kup_amount(self, health_basis):
         self.ensure_one()

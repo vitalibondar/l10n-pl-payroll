@@ -1,6 +1,6 @@
 # TASK-022: Minimum health contribution basis
 
-**Status:** pending
+**Status:** done
 **Branch:** task/022-health-min-basis
 **Created:** 2026-03-29
 **Depends on:** TASK-019 (needs MINIMUM_WAGE parameter)
