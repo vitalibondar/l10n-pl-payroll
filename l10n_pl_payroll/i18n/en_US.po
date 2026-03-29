@@ -14,426 +14,532 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. module: l10n_pl_payroll
 msgid "Płace PL"
 msgstr "Polish Payroll (Płace PL)"
 
 
+#. module: l10n_pl_payroll
 msgid "Listy płac"
 msgstr "Payroll runs (listy płac)"
 
 
+#. module: l10n_pl_payroll
 msgid "Lista płac"
 msgstr "Payroll run (lista płac)"
 
 
+#. module: l10n_pl_payroll
 msgid "Generowanie list płac"
 msgstr "Payroll run generation (generowanie list płac)"
 
 
+#. module: l10n_pl_payroll
 msgid "Raporty twórcze"
 msgstr "Creative work reports (raporty twórcze)"
 
 
+#. module: l10n_pl_payroll
 msgid "Deklaracje i raporty"
 msgstr "Declarations and reports (deklaracje i raporty)"
 
 
+#. module: l10n_pl_payroll
 msgid "Konfiguracja"
 msgstr "Configuration (konfiguracja)"
 
 
+#. module: l10n_pl_payroll
 msgid "Parametry płacowe"
 msgstr "Payroll parameters (parametry płacowe)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dane podstawowe"
 msgstr "Basic data (dane podstawowe)"
 
 
+#. module: l10n_pl_payroll
 msgid "Rozliczenie pracownika"
 msgstr "Employee settlement (rozliczenie pracownika)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie brutto"
 msgstr "Gross pay (wynagrodzenie brutto)"
 
 
+#. module: l10n_pl_payroll
 msgid "Chorobowe i nieobecności"
 msgstr "Sick pay and absences (chorobowe i nieobecności)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki ZUS pracownika"
 msgstr "Employee ZUS contributions (składki ZUS pracownika)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka zdrowotna"
 msgstr "Health insurance contribution (składka zdrowotna)"
 
 
+#. module: l10n_pl_payroll
 msgid "Koszty uzyskania przychodu"
 msgstr "Tax-deductible earning costs (koszty uzyskania przychodu)"
 
 
+#. module: l10n_pl_payroll
 msgid "Zaliczka na podatek dochodowy"
 msgstr "Income tax advance (zaliczka na podatek dochodowy)"
 
 
+#. module: l10n_pl_payroll
 msgid "PPK"
 msgstr "PPK"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie netto"
 msgstr "Net pay (wynagrodzenie netto)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki pracodawcy"
 msgstr "Employer charges (składki pracodawcy)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki ZUS pracodawcy"
 msgstr "Employer ZUS contributions (składki ZUS pracodawcy)"
 
 
+#. module: l10n_pl_payroll
 msgid "PPK i koszt zatrudnienia"
 msgstr "PPK and employment cost (PPK i koszt zatrudnienia)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składniki dodatkowe"
 msgstr "Additional payroll items (składniki dodatkowe)"
 
 
+#. module: l10n_pl_payroll
 msgid "Raport twórczy"
 msgstr "Creative work report (raport twórczy)"
 
 
+#. module: l10n_pl_payroll
 msgid "Uwagi"
 msgstr "Notes (uwagi)"
 
 
+#. module: l10n_pl_payroll
 msgid "Oblicz"
 msgstr "Compute (oblicz)"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdź"
 msgstr "Confirm (zatwierdź)"
 
 
+#. module: l10n_pl_payroll
 msgid "Anuluj"
 msgstr "Cancel (anuluj)"
 
 
+#. module: l10n_pl_payroll
 msgid "Generuj"
 msgstr "Generate (generuj)"
 
 
+#. module: l10n_pl_payroll
 msgid "Generuj PIT-11"
 msgstr "Generate PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "Generuj DRA"
 msgstr "Generate DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Przelicz"
 msgstr "Recompute (przelicz)"
 
 
 
+#. module: l10n_pl_payroll
 msgid "Udział pracy twórczej (%)"
 msgstr "Creative work share (%) (udział pracy twórczej)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wariant PPK"
 msgstr "PPK option (wariant PPK)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata pracownika do PPK (%)"
 msgstr "Employee PPK contribution (%) (wpłata pracownika do PPK)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata dodatkowa pracownika do PPK (%)"
 msgstr "Additional employee PPK contribution (%) (wpłata dodatkowa pracownika do PPK)"
 
 
+#. module: l10n_pl_payroll
 msgid "Złożono PIT-2"
 msgstr "PIT-2 filed (złożono PIT-2)"
 
 
+#. module: l10n_pl_payroll
 msgid "Ulga podatkowa"
 msgstr "Tax relief (ulga podatkowa)"
 
 
+#. module: l10n_pl_payroll
 msgid "Kod tytułu ubezpieczenia ZUS"
 msgstr "ZUS insurance title code (kod tytułu ubezpieczenia ZUS)"
 
 
+#. module: l10n_pl_payroll
 msgid "Status ucznia / studenta"
 msgstr "Pupil / student status (status ucznia / studenta)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wariant KUP"
 msgstr "KUP option (wariant KUP)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni choroby 80%"
 msgstr "Sick days 80% (dni choroby 80%)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni choroby 100%"
 msgstr "Sick days 100% (dni choroby 100%)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni urlopu"
 msgstr "Vacation days (dni urlopu)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie urlopowe"
 msgstr "Vacation pay (wynagrodzenie urlopowe)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wynagrodzenie chorobowe"
 msgstr "Sick pay (wynagrodzenie chorobowe)"
 
 
+#. module: l10n_pl_payroll
 msgid "Podstawa wynagrodzenia chorobowego"
 msgstr "Sick-pay base (podstawa wynagrodzenia chorobowego)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni robocze w miesiącu"
 msgstr "Working days in month (dni robocze w miesiącu)"
 
 
+#. module: l10n_pl_payroll
 msgid "Nadgodziny 150% (godz.)"
 msgstr "Overtime 150% (hours) (nadgodziny 150%)"
 
 
+#. module: l10n_pl_payroll
 msgid "Nadgodziny 200% (godz.)"
 msgstr "Overtime 200% (hours) (nadgodziny 200%)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dodatek za nadgodziny"
 msgstr "Overtime premium (dodatek za nadgodziny)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka emerytalna (pracownik)"
 msgstr "Pension contribution, employee side (składka emerytalna)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka rentowa (pracownik)"
 msgstr "Disability contribution, employee side (składka rentowa)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka chorobowa (pracownik)"
 msgstr "Sickness contribution, employee side (składka chorobowa)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składki ZUS pracownika razem"
 msgstr "Total employee ZUS contributions (składki ZUS pracownika razem)"
 
 
+#. module: l10n_pl_payroll
 msgid "Podstawa składki zdrowotnej"
 msgstr "Health contribution base (podstawa składki zdrowotnej)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dochód do opodatkowania"
 msgstr "Taxable income (dochód do opodatkowania)"
 
 
+#. module: l10n_pl_payroll
 msgid "Naliczona zaliczka PIT"
 msgstr "Calculated PIT advance (naliczona zaliczka PIT)"
 
 
+#. module: l10n_pl_payroll
 msgid "Kwota zmniejszająca podatek"
 msgstr "Tax-reducing amount (kwota zmniejszająca podatek)"
 
 
+#. module: l10n_pl_payroll
 msgid "Zaliczka PIT do urzędu"
 msgstr "PIT advance payable to tax office (zaliczka PIT do urzędu)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata PPK pracownika"
 msgstr "Employee PPK contribution (wpłata PPK pracownika)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka emerytalna (pracodawca)"
 msgstr "Pension contribution, employer side (składka emerytalna)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka rentowa (pracodawca)"
 msgstr "Disability contribution, employer side (składka rentowa)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka wypadkowa"
 msgstr "Accident insurance contribution (składka wypadkowa)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka na Fundusz Pracy"
 msgstr "Labour Fund contribution (składka na Fundusz Pracy)"
 
 
+#. module: l10n_pl_payroll
 msgid "Składka na FGŚP"
 msgstr "Guaranteed Employee Benefits Fund contribution (składka na FGŚP)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata PPK pracodawcy"
 msgstr "Employer PPK contribution (wpłata PPK pracodawcy)"
 
 
+#. module: l10n_pl_payroll
 msgid "Łączny koszt pracodawcy"
 msgstr "Total employer cost (łączny koszt pracodawcy)"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdzony raport twórczy"
 msgstr "Approved creative work report (zatwierdzony raport twórczy)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wymaga raportu twórczego"
 msgstr "Creative report required (wymaga raportu twórczego)"
 
 
+#. module: l10n_pl_payroll
 msgid "Brakuje raportu twórczego"
 msgstr "Creative report missing (brakuje raportu twórczego)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wymiar etatu"
 msgstr "FTE fraction (wymiar etatu)"
 
 
+#. module: l10n_pl_payroll
 msgid "Poniżej minimalnego wynagrodzenia"
 msgstr "Below minimum wage (poniżej minimalnego wynagrodzenia)"
 
 
+#. module: l10n_pl_payroll
 msgid "Dni choroby od początku roku"
 msgstr "Sick days year-to-date (dni choroby od początku roku)"
 
 
+#. module: l10n_pl_payroll
 msgid "Uwagi do listy płac"
 msgstr "Payroll notes (uwagi do listy płac)"
 
 
+#. module: l10n_pl_payroll
 msgid "PIT-11"
 msgstr "PIT-11"
 
 
+#. module: l10n_pl_payroll
 msgid "ZUS DRA"
 msgstr "ZUS DRA"
 
 
+#. module: l10n_pl_payroll
 msgid "Generowanie PIT-11"
 msgstr "PIT-11 generation (generowanie PIT-11)"
 
 
+#. module: l10n_pl_payroll
 msgid "Generowanie deklaracji ZUS DRA"
 msgstr "ZUS DRA declaration generation (generowanie deklaracji ZUS DRA)"
 
 
+#. module: l10n_pl_payroll
 msgid "Deklaracja ZUS DRA"
 msgstr "ZUS DRA declaration (deklaracja ZUS DRA)"
 
 
+#. module: l10n_pl_payroll
 msgid "Deklaracje ZUS DRA"
 msgstr "ZUS DRA declarations (deklaracje ZUS DRA)"
 
 
+#. module: l10n_pl_payroll
 msgid "Informacja PIT-11"
 msgstr "PIT-11 information (informacja PIT-11)"
 
 
+#. module: l10n_pl_payroll
 msgid "Informacje PIT-11"
 msgstr "PIT-11 information records (informacje PIT-11)"
 
 
+#. module: l10n_pl_payroll
 msgid "Parametr płacowy"
 msgstr "Payroll parameter (parametr płacowy)"
 
 
+#. module: l10n_pl_payroll
 msgid "Raport pracy twórczej"
 msgstr "Creative work report (raport pracy twórczej)"
 
 
+#. module: l10n_pl_payroll
 msgid "Pozycja listy płac"
 msgstr "Payroll line item (pozycja listy płac)"
 
 
+#. module: l10n_pl_payroll
 msgid "Pozycja deklaracji ZUS DRA"
 msgstr "ZUS DRA declaration line (pozycja deklaracji ZUS DRA)"
 
 
+#. module: l10n_pl_payroll
 msgid "Informacja roczna PIT-11"
 msgstr "Annual PIT-11 information (informacja roczna PIT-11)"
 
 
+#. module: l10n_pl_payroll
 msgid "Szkic"
 msgstr "Draft (szkic)"
 
 
+#. module: l10n_pl_payroll
 msgid "Obliczona"
 msgstr "Computed (obliczona)"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdzona"
 msgstr "Confirmed (zatwierdzona)"
 
 
+#. module: l10n_pl_payroll
 msgid "Anulowana"
 msgstr "Cancelled (anulowana)"
 
 
+#. module: l10n_pl_payroll
 msgid "Zatwierdzony"
 msgstr "Confirmed (zatwierdzony)"
 
 
+#. module: l10n_pl_payroll
 msgid "Przekazany"
 msgstr "Submitted (przekazany)"
 
 
+#. module: l10n_pl_payroll
 msgid "Odrzucony"
 msgstr "Rejected (odrzucony)"
 
 
+#. module: l10n_pl_payroll
 msgid "Akceptacja"
 msgstr "Acceptance (akceptacja)"
 
 
+#. module: l10n_pl_payroll
 msgid "Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To ustawienie wpływa na podstawę opodatkowania PIT."
 msgstr "Choose how tax-deductible earning costs (koszty uzyskania przychodu) are calculated for this contract. This setting affects the PIT tax base."
 
 
+#. module: l10n_pl_payroll
 msgid "Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy twórczej."
 msgstr "Percentage of pay assigned to creative work (praca twórcza). This portion uses 50% author's KUP. This is not the KUP rate; it is the share of creative work."
 
 
+#. module: l10n_pl_payroll
 msgid "Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować miesięczną kwotę zmniejszającą podatek."
 msgstr "If the employee filed PIT-2, the monthly tax-reducing amount (kwota zmniejszająca podatek) may reduce the PIT advance."
 
 
+#. module: l10n_pl_payroll
 msgid "Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki status może zwalniać z naliczania składek ZUS i zdrowotnej."
 msgstr "Enable for a person studying up to age 26. For a mandate contract (umowa zlecenia), this status may exempt the person from ZUS and health contributions."
 
 
+#. module: l10n_pl_payroll
 msgid "Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
 msgstr "Total gross pay (wynagrodzenie brutto) after adding gross extras and subtracting gross deductions."
 
 
+#. module: l10n_pl_payroll
 msgid "Składka emerytalna potrącana z wynagrodzenia pracownika."
 msgstr "Pension contribution (składka emerytalna) withheld from the employee's pay."
 
 
+#. module: l10n_pl_payroll
 msgid "Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT."
 msgstr "Tax-deductible earning costs (koszty uzyskania przychodu) used when calculating the PIT advance."
 
 
+#. module: l10n_pl_payroll
 msgid "Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2."
 msgstr "Monthly amount reducing the PIT advance after filing PIT-2."
 
 
+#. module: l10n_pl_payroll
 msgid "Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT."
 msgstr "Employer-financed PPK contribution (wpłata PPK pracodawcy). For the employee, it counts as taxable PIT income."
 
 
+#. module: l10n_pl_payroll
 msgid "Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale nie ma jeszcze podpiętego zatwierdzonego raportu."
 msgstr "Warning field. It shows that the payroll run uses creative work (praca twórcza), but no approved report is attached yet."
 
 
+#. module: l10n_pl_payroll
 msgid "Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."
 msgstr "Warning field. It shows that gross pay on this payroll run is below the minimum wage calculated for the given FTE fraction."
