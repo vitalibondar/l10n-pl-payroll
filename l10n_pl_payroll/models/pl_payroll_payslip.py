@@ -18,7 +18,7 @@ class PlPayrollPayslip(models.Model):
     employee_id = fields.Many2one("hr.employee", required=True)
     department_id = fields.Many2one("hr.department", related="employee_id.department_id", store=True, readonly=True)
     contract_id = fields.Many2one("hr.contract", required=True)
-    kup_type = fields.Selection(related="contract_id.kup_type", readonly=True)
+    kup_type = fields.Selection(related="contract_id.kup_type", readonly=True, string="Typ KUP")
     company_id = fields.Many2one("res.company", related="contract_id.company_id", store=True)
     date_from = fields.Date(required=True)
     date_to = fields.Date(required=True)
@@ -32,43 +32,43 @@ class PlPayrollPayslip(models.Model):
         default="draft",
     )
 
-    gross = fields.Float(readonly=True)
+    gross = fields.Float(string="Brutto", readonly=True)
     overtime_hours_150 = fields.Float(string="Overtime Hours 150%")
     overtime_hours_200 = fields.Float(string="Overtime Hours 200%")
     overtime_amount = fields.Float(string="Overtime Amount", readonly=True)
 
-    zus_emerytalne_ee = fields.Float()
-    zus_rentowe_ee = fields.Float()
-    zus_chorobowe_ee = fields.Float()
-    zus_total_ee = fields.Float()
+    zus_emerytalne_ee = fields.Float(string="ZUS Emerytalne (EE)")
+    zus_rentowe_ee = fields.Float(string="ZUS Rentowe (EE)")
+    zus_chorobowe_ee = fields.Float(string="ZUS Chorobowe (EE)")
+    zus_total_ee = fields.Float(string="ZUS Łącznie (EE)")
 
-    health_basis = fields.Float()
-    health = fields.Float()
+    health_basis = fields.Float(string="Podstawa zdrowotna")
+    health = fields.Float(string="Składka zdrowotna")
 
-    kup_amount = fields.Float()
+    kup_amount = fields.Float(string="KUP")
 
-    taxable_income = fields.Float()
-    pit_advance = fields.Float()
-    pit_reducing = fields.Float()
-    pit_due = fields.Float()
+    taxable_income = fields.Float(string="Dochód do opodatkowania")
+    pit_advance = fields.Float(string="Zaliczka PIT")
+    pit_reducing = fields.Float(string="Kwota zmniejszająca")
+    pit_due = fields.Float(string="PIT do zapłaty")
 
-    ppk_ee = fields.Float()
+    ppk_ee = fields.Float(string="PPK (EE)")
 
-    net = fields.Float()
+    net = fields.Float(string="Netto")
 
-    zus_emerytalne_er = fields.Float()
-    zus_rentowe_er = fields.Float()
-    zus_wypadkowe_er = fields.Float()
-    zus_fp = fields.Float()
-    zus_fgsp = fields.Float()
-    ppk_er = fields.Float()
-    total_employer_cost = fields.Float()
+    zus_emerytalne_er = fields.Float(string="ZUS Emerytalne (ER)")
+    zus_rentowe_er = fields.Float(string="ZUS Rentowe (ER)")
+    zus_wypadkowe_er = fields.Float(string="ZUS Wypadkowe (ER)")
+    zus_fp = fields.Float(string="Fundusz Pracy")
+    zus_fgsp = fields.Float(string="FGŚP")
+    ppk_er = fields.Float(string="PPK (ER)")
+    total_employer_cost = fields.Float(string="Całkowity koszt pracodawcy")
 
     creative_report_id = fields.Many2one("pl.payroll.creative.report", readonly=True)
     creative_report_required = fields.Boolean(compute="_compute_creative_report_flags")
     creative_report_missing = fields.Boolean(compute="_compute_creative_report_flags")
 
-    notes = fields.Text()
+    notes = fields.Text(string="Notes")
 
     @api.depends("employee_id.name", "date_from")
     def _compute_name(self):
