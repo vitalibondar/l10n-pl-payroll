@@ -1,6 +1,6 @@
 # TASK-024: ZUS DRA monthly declaration generation
 
-**Status:** pending
+**Status:** done
 **Branch:** task/024-zus-dra
 **Created:** 2026-03-29
 **Depends on:** none

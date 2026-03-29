@@ -30,6 +30,8 @@
         "views/pl_payroll_creative_report_views.xml",
         "views/pl_payroll_pit11_views.xml",
         "wizard/pl_payroll_pit11_wizard_views.xml",
+        "views/pl_payroll_zus_dra_views.xml",
+        "wizard/pl_payroll_zus_dra_wizard_views.xml",
         "views/pl_payroll_menus.xml",
     ],
     "demo": [

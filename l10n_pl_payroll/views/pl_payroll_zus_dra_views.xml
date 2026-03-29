@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pl_payroll_zus_dra_tree" model="ir.ui.view">
+        <field name="name">pl.payroll.zus.dra.tree</field>
+        <field name="model">pl.payroll.zus.dra</field>
+        <field name="arch" type="xml">
+            <list string="ZUS DRA" decoration-success="state == 'confirmed'" decoration-muted="state == 'draft'">
+                <field name="company_id" optional="hide"/>
+                <field name="year"/>
+                <field name="month"/>
+                <field name="employee_count"/>
+                <field name="payslip_count" optional="hide"/>
+                <field name="total_all"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pl_payroll_zus_dra_search" model="ir.ui.view">
+        <field name="name">pl.payroll.zus.dra.search</field>
+        <field name="model">pl.payroll.zus.dra</field>
+        <field name="arch" type="xml">
+            <search string="ZUS DRA">
+                <field name="company_id"/>
+                <field name="year"/>
+                <field name="month"/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_company" string="Company" context="{'group_by': 'company_id'}"/>
+                    <filter name="group_by_year" string="Year" context="{'group_by': 'year'}"/>
+                    <filter name="group_by_month" string="Month" context="{'group_by': 'month'}"/>
+                    <filter name="group_by_state" string="State" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pl_payroll_zus_dra_form" model="ir.ui.view">
+        <field name="name">pl.payroll.zus.dra.form</field>
+        <field name="model">pl.payroll.zus.dra</field>
+        <field name="arch" type="xml">
+            <form string="ZUS DRA">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <group string="Identyfikacja">
+                        <group>
+                            <field name="company_id" readonly="1"/>
+                            <field name="year" readonly="1"/>
+                            <field name="month" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="employee_count" readonly="1"/>
+                            <field name="payslip_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Podsumowanie składek">
+                        <group>
+                            <field name="total_emerytalne_ee" readonly="1"/>
+                            <field name="total_emerytalne_er" readonly="1"/>
+                            <field name="total_rentowe_ee" readonly="1"/>
+                            <field name="total_rentowe_er" readonly="1"/>
+                            <field name="total_chorobowe" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_wypadkowe" readonly="1"/>
+                            <field name="total_health" readonly="1"/>
+                            <field name="total_fp" readonly="1"/>
+                            <field name="total_fgsp" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Suma">
+                        <group>
+                            <field name="total_zus_employee" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_zus_employer" readonly="1"/>
+                            <field name="total_all" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Pozycje pracowników">
+                        <field name="line_ids" readonly="1">
+                            <list>
+                                <field name="employee_id"/>
+                                <field name="payslip_id" optional="hide"/>
+                                <field name="gross" optional="hide"/>
+                                <field name="emerytalne_ee"/>
+                                <field name="emerytalne_er"/>
+                                <field name="rentowe_ee"/>
+                                <field name="rentowe_er"/>
+                                <field name="chorobowe"/>
+                                <field name="wypadkowe"/>
+                                <field name="health"/>
+                                <field name="fp"/>
+                                <field name="fgsp"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pl_payroll_zus_dra" model="ir.actions.act_window">
+        <field name="name">ZUS DRA</field>
+        <field name="res_model">pl.payroll.zus.dra</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_pl_payroll_zus_dra_search"/>
+    </record>
+
+    <record id="action_report_pl_payroll_zus_dra" model="ir.actions.report">
+        <field name="name">ZUS DRA</field>
+        <field name="model">pl.payroll.zus.dra</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_pl_payroll.report_pl_payroll_zus_dra_document</field>
+        <field name="report_file">l10n_pl_payroll.report_pl_payroll_zus_dra_document</field>
+        <field name="binding_model_id" ref="model_pl_payroll_zus_dra"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_pl_payroll_payslip"/>
+        <field name="print_report_name">'ZUS DRA - %s-%02d - %s' % (object.year, object.month, object.company_id.name or 'firma')</field>
+    </record>
+
+    <template id="report_pl_payroll_zus_dra_document">
+        <t t-call="web.html_container">
+            <style type="text/css">
+                .pl-dra-page {
+                    color: #1f2933;
+                    font-family: DejaVu Sans, sans-serif;
+                    font-size: 11px;
+                    line-height: 1.45;
+                    page-break-after: always;
+                }
+                .pl-dra-page:last-of-type {
+                    page-break-after: auto;
+                }
+                .pl-dra-card {
+                    border: 1px solid #d9e2ec;
+                    border-radius: 14px;
+                    overflow: hidden;
+                }
+                .pl-dra-header {
+                    background: #0f172a;
+                    color: #ffffff;
+                    padding: 18px 20px;
+                }
+                .pl-dra-header h2 {
+                    color: inherit;
+                    font-size: 26px;
+                    font-weight: 800;
+                    margin: 0;
+                }
+                .pl-dra-section {
+                    padding: 16px 20px;
+                }
+                .pl-dra-table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                .pl-dra-table th,
+                .pl-dra-table td {
+                    border-bottom: 1px solid #e4e7eb;
+                    padding: 8px 0;
+                    text-align: left;
+                }
+                .pl-dra-table th:last-child,
+                .pl-dra-table td:last-child {
+                    text-align: right;
+                    white-space: nowrap;
+                }
+                .pl-dra-table tr:last-child th,
+                .pl-dra-table tr:last-child td {
+                    border-bottom: none;
+                }
+                .pl-dra-subtitle {
+                    font-size: 16px;
+                    font-weight: 700;
+                    margin: 0 0 10px 0;
+                }
+                .pl-dra-footer {
+                    border-top: 1px solid #d9e2ec;
+                    color: #52606d;
+                    font-size: 10px;
+                    margin-top: 16px;
+                    padding-top: 12px;
+                }
+            </style>
+            <t t-foreach="docs" t-as="o">
+                <t t-set="company" t-value="o.company_id"/>
+                <t t-call="web.external_layout" t-lang="'pl_PL'">
+                    <main class="page pl-dra-page" lang="pl" role="document" aria-label="ZUS DRA">
+                        <article class="pl-dra-card">
+                            <section class="pl-dra-header">
+                                <h2>ZUS DRA za <span t-out="'%02d/%s' % (o.month, o.year)"/></h2>
+                            </section>
+                            <section class="pl-dra-section">
+                                <p><strong t-out="company.name"/></p>
+                                <p>NIP: <span t-out="company.vat or company.company_registry or 'Brak danych'"/></p>
+                                <p>Liczba pracowników: <span t-out="o.employee_count"/> | Liczba pasków: <span t-out="o.payslip_count"/></p>
+                            </section>
+                            <section class="pl-dra-section">
+                                <h3 class="pl-dra-subtitle">Podsumowanie deklaracji</h3>
+                                <table class="pl-dra-table">
+                                    <tr>
+                                        <th>Pozycja</th>
+                                        <th>Kwota</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Emerytalne pracownik</td>
+                                        <td t-out="formatLang(o.total_emerytalne_ee, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Emerytalne pracodawca</td>
+                                        <td t-out="formatLang(o.total_emerytalne_er, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Rentowe pracownik</td>
+                                        <td t-out="formatLang(o.total_rentowe_ee, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Rentowe pracodawca</td>
+                                        <td t-out="formatLang(o.total_rentowe_er, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Chorobowe</td>
+                                        <td t-out="formatLang(o.total_chorobowe, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Wypadkowe</td>
+                                        <td t-out="formatLang(o.total_wypadkowe, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Zdrowotne</td>
+                                        <td t-out="formatLang(o.total_health, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>FP</td>
+                                        <td t-out="formatLang(o.total_fp, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>FGŚP</td>
+                                        <td t-out="formatLang(o.total_fgsp, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                    <tr>
+                                        <td>Suma do zapłaty</td>
+                                        <td t-out="formatLang(o.total_all, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                </table>
+                            </section>
+                            <section class="pl-dra-section">
+                                <h3 class="pl-dra-subtitle">Pozycje pracowników</h3>
+                                <table class="pl-dra-table">
+                                    <tr>
+                                        <th>Pracownik</th>
+                                        <th>EE+ER</th>
+                                    </tr>
+                                    <tr t-foreach="o.line_ids" t-as="line">
+                                        <td t-out="line.employee_id.name"/>
+                                        <td t-out="formatLang(line.emerytalne_ee + line.emerytalne_er + line.rentowe_ee + line.rentowe_er + line.chorobowe + line.wypadkowe + line.health + line.fp + line.fgsp, monetary=True, currency_obj=company.currency_id)"/>
+                                    </tr>
+                                </table>
+                            </section>
+                            <section class="pl-dra-section pl-dra-footer">
+                                <p>Data wygenerowania: <span t-out="(o.write_date or o.create_date or '')"/></p>
+                            </section>
+                        </article>
+                    </main>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
