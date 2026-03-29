@@ -27,6 +27,7 @@
         "views/pl_payroll_employee_views.xml",
         "views/pl_payroll_parameter_views.xml",
         "views/pl_payroll_compute_wizard_views.xml",
+        "wizard/pl_payroll_batch_wizard_views.xml",
         "views/pl_payroll_creative_report_views.xml",
         "views/pl_payroll_pit11_views.xml",
         "wizard/pl_payroll_pit11_wizard_views.xml",
