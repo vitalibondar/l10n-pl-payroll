@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pl_payroll_pit11_tree" model="ir.ui.view">
+        <field name="name">pl.payroll.pit11.tree</field>
+        <field name="model">pl.payroll.pit11</field>
+        <field name="arch" type="xml">
+            <list string="PIT-11" decoration-success="state == 'confirmed'" decoration-muted="state == 'draft'">
+                <field name="employee_id"/>
+                <field name="company_id" optional="hide"/>
+                <field name="year"/>
+                <field name="total_gross"/>
+                <field name="total_income" optional="hide"/>
+                <field name="total_pit_paid"/>
+                <field name="payslip_count" optional="hide"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pl_payroll_pit11_search" model="ir.ui.view">
+        <field name="name">pl.payroll.pit11.search</field>
+        <field name="model">pl.payroll.pit11</field>
+        <field name="arch" type="xml">
+            <search string="PIT-11">
+                <field name="employee_id"/>
+                <field name="company_id"/>
+                <field name="year"/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_by_company" string="Company" context="{'group_by': 'company_id'}"/>
+                    <filter name="group_by_year" string="Year" context="{'group_by': 'year'}"/>
+                    <filter name="group_by_state" string="State" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pl_payroll_pit11_form" model="ir.ui.view">
+        <field name="name">pl.payroll.pit11.form</field>
+        <field name="model">pl.payroll.pit11</field>
+        <field name="arch" type="xml">
+            <form string="PIT-11">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <group string="Identyfikacja">
+                        <group>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="year" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="payslip_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Sekcja D. Przychód i koszty">
+                        <group>
+                            <field name="total_gross" readonly="1"/>
+                            <field name="total_ppk_er" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_kup" readonly="1"/>
+                            <field name="total_income" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Sekcja E. ZUS">
+                        <field name="total_zus_ee" readonly="1"/>
+                    </group>
+                    <group string="Sekcja F. Zdrowotne">
+                        <group>
+                            <field name="total_health" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="health_deductible" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Sekcja G. Zaliczki PIT">
+                        <field name="total_pit_paid" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pl_payroll_pit11" model="ir.actions.act_window">
+        <field name="name">PIT-11</field>
+        <field name="res_model">pl.payroll.pit11</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_pl_payroll_pit11_search"/>
+    </record>
+</odoo>

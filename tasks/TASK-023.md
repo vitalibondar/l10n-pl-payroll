@@ -1,6 +1,6 @@
 # TASK-023: PIT-11 annual declaration generation
 
-**Status:** pending
+**Status:** done
 **Branch:** task/023-pit11
 **Created:** 2026-03-29
 **Depends on:** none (uses existing YTD data)

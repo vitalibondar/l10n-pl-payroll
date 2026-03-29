@@ -12,3 +12,7 @@ access_pl_payroll_batch_compute_manager,pl.payroll.batch.compute manager,model_p
 access_pl_payroll_creative_report_employee,pl.payroll.creative.report employee,model_pl_payroll_creative_report,l10n_pl_payroll.group_payroll_employee,1,0,0,0
 access_pl_payroll_creative_report_officer,pl.payroll.creative.report officer,model_pl_payroll_creative_report,l10n_pl_payroll.group_payroll_officer,1,1,1,1
 access_pl_payroll_creative_report_manager,pl.payroll.creative.report manager,model_pl_payroll_creative_report,l10n_pl_payroll.group_payroll_manager,1,1,1,1
+access_pl_payroll_pit11_officer,pl.payroll.pit11 officer,model_pl_payroll_pit11,l10n_pl_payroll.group_payroll_officer,1,1,1,0
+access_pl_payroll_pit11_manager,pl.payroll.pit11 manager,model_pl_payroll_pit11,l10n_pl_payroll.group_payroll_manager,1,1,1,1
+access_pl_payroll_pit11_wizard_officer,pl.payroll.pit11.wizard officer,model_pl_payroll_pit11_wizard,l10n_pl_payroll.group_payroll_officer,1,1,1,1
+access_pl_payroll_pit11_wizard_manager,pl.payroll.pit11.wizard manager,model_pl_payroll_pit11_wizard,l10n_pl_payroll.group_payroll_manager,1,1,1,1
