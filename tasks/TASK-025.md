@@ -1,6 +1,6 @@
 # TASK-025: Vacation pay (wynagrodzenie za urlop)
 
-**Status:** pending
+**Status:** done
 **Branch:** task/025-vacation-pay
 **Created:** 2026-03-29
 **Depends on:** TASK-019 (etat fraction)

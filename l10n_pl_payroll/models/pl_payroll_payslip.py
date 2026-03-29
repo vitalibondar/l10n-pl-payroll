@@ -39,6 +39,8 @@ class PlPayrollPayslip(models.Model):
         default=0,
         help="Ciąża lub wypadek przy pracy",
     )
+    vacation_days = fields.Float(string="Dni urlopowe", default=0)
+    vacation_pay = fields.Float(string="Wynagrodzenie za urlop", readonly=True)
     sick_leave_amount = fields.Float(string="Wynagrodzenie chorobowe", readonly=True)
     sick_leave_basis = fields.Float(string="Podstawa chorobowego", readonly=True)
     working_days_in_month = fields.Integer(
@@ -197,10 +199,13 @@ class PlPayrollPayslip(models.Model):
 
         base_gross = self._to_decimal(self.contract_id.wage)
         overtime_amount = self._compute_overtime_amount(base_gross)
+        vacation_supplement, _base_gross = self._compute_vacation_pay(base_gross)
         bonus_gross_total = self._to_decimal(self.bonus_gross_total)
         deduction_gross_total = self._to_decimal(self.deduction_gross_total)
         deduction_net_total = self._to_decimal(self.deduction_net_total)
-        gross = self._round_amount(base_gross + overtime_amount + bonus_gross_total - deduction_gross_total)
+        gross = self._round_amount(
+            base_gross + overtime_amount + vacation_supplement + bonus_gross_total - deduction_gross_total
+        )
 
         if self._is_dzielo_contract():
             if gross <= Decimal("200.00"):
@@ -223,6 +228,7 @@ class PlPayrollPayslip(models.Model):
                     "gross": float(gross),
                     "sick_leave_amount": 0.0,
                     "sick_leave_basis": 0.0,
+                    "vacation_pay": 0.0,
                     "overtime_amount": float(overtime_amount),
                     "zus_emerytalne_ee": 0.0,
                     "zus_rentowe_ee": 0.0,
@@ -320,6 +326,7 @@ class PlPayrollPayslip(models.Model):
                 "gross": float(gross),
                 "sick_leave_amount": float(sick_amount),
                 "sick_leave_basis": float(sick_basis),
+                "vacation_pay": float(vacation_supplement),
                 "overtime_amount": float(overtime_amount),
                 "zus_emerytalne_ee": float(zus_emerytalne_ee),
                 "zus_rentowe_ee": float(zus_rentowe_ee),
@@ -374,6 +381,47 @@ class PlPayrollPayslip(models.Model):
             Decimal("0.00"),
         )
         return self._round_amount(total / Decimal(str(len(prior_payslips))))
+
+    def _compute_vacation_pay(self, base_gross):
+        self.ensure_one()
+        if self._is_mandate_contract() or self._is_dzielo_contract():
+            return Decimal("0.00"), base_gross
+
+        vacation_days = self._to_decimal(self.vacation_days)
+        if vacation_days <= Decimal("0.00"):
+            return Decimal("0.00"), base_gross
+
+        prior_payslips = self.search(
+            [
+                ("employee_id", "=", self.employee_id.id),
+                ("state", "=", "confirmed"),
+                ("date_from", "<", self.date_from),
+            ],
+            order="date_from desc, id desc",
+            limit=3,
+        )
+        if not prior_payslips:
+            return Decimal("0.00"), base_gross
+
+        total_variable = Decimal("0.00")
+        total_hours_worked = Decimal("0.00")
+        standard_hours = self._get_parameter("STANDARD_MONTHLY_HOURS")
+
+        for payslip in prior_payslips:
+            variable_amount = (
+                self._to_decimal(payslip.overtime_amount)
+                + self._to_decimal(payslip.bonus_gross_total)
+            )
+            total_variable += variable_amount
+            total_hours_worked += standard_hours * payslip._get_etat_fraction()
+
+        if total_variable <= Decimal("0.00") or total_hours_worked <= Decimal("0.00"):
+            return Decimal("0.00"), base_gross
+
+        day_hours = Decimal("8.00") * self._get_etat_fraction()
+        vacation_hours = vacation_days * day_hours
+        supplement = self._round_amount(total_variable / total_hours_worked * vacation_hours)
+        return supplement, base_gross
 
     def _compute_sick_leave(self, gross):
         self.ensure_one()

@@ -145,6 +145,15 @@
             <field name="value_type">amount</field>
             <field name="note">Standardowe miesięczne koszty uzyskania przychodu.</field>
         </record>
+        <record id="pl_payroll_parameter_2025_standard_monthly_hours" model="pl.payroll.parameter">
+            <field name="name">Standard Monthly Hours</field>
+            <field name="code">STANDARD_MONTHLY_HOURS</field>
+            <field name="value">168.0</field>
+            <field name="date_from">2025-01-01</field>
+            <field name="date_to">2025-12-31</field>
+            <field name="value_type">amount</field>
+            <field name="note">Standardowa liczba godzin w miesiącu do dodatków zmiennych.</field>
+        </record>
         <record id="pl_payroll_parameter_2025_ppk_ee" model="pl.payroll.parameter">
             <field name="name">PPK employee default</field>
             <field name="code">PPK_EE</field>

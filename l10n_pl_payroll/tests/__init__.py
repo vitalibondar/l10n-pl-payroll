@@ -11,3 +11,4 @@ from . import test_dzielo
 from . import test_health_minimum
 from . import test_pit11
 from . import test_zus_dra
+from . import test_vacation_pay

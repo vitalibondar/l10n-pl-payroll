@@ -65,6 +65,11 @@ SICK_LEAVE_ENTRIES = [
     {"name": "Anna Wiśniewska", "month": "2025-03", "sick_days": 10, "sick_days_100": 0},
     {"name": "Ewa Krawczyk", "month": "2025-07", "sick_days": 10, "sick_days_100": 5},
 ]
+VACATION_ENTRIES = [
+    {"name": "Tomasz Kowalski", "month": "2025-08", "vacation_days": 3.0},
+    {"name": "Mikołaj Szymański", "month": "2026-02", "vacation_days": 4.0},
+    {"name": "Marta Lewandowska", "month": "2026-02", "vacation_days": 2.0},
+]
 
 
 def connect():
@@ -481,6 +486,41 @@ def add_sick_leave_entries(models, uid):
     return applied
 
 
+def add_vacation_entries(models, uid):
+    applied = []
+    for entry in VACATION_ENTRIES:
+        payslip_ids = execute(
+            models,
+            uid,
+            "pl.payroll.payslip",
+            "search",
+            [[
+                ("employee_id.name", "=", entry["name"]),
+                ("date_from", "=", entry["month"] + "-01"),
+            ]],
+            {"limit": 1},
+        )
+        if not payslip_ids:
+            print(f"  ! Vacation target not found: {entry['name']} {entry['month']}")
+            continue
+        payslip_id = payslip_ids[0]
+        try:
+            execute(
+                models,
+                uid,
+                "pl.payroll.payslip",
+                "write",
+                [[payslip_id], {"vacation_days": entry["vacation_days"]}],
+            )
+            execute(models, uid, "pl.payroll.payslip", "action_compute", [[payslip_id]])
+            execute(models, uid, "pl.payroll.payslip", "action_confirm", [[payslip_id]])
+            applied.append(entry)
+            print(f"Applied vacation days to {entry['name']} {entry['month']}")
+        except Exception as exc:
+            print(f"  ! Failed vacation entry for {entry['name']} {entry['month']}: {exc}")
+    return applied
+
+
 def format_money(value):
     return f"{value:,.2f}"
 
@@ -584,6 +624,7 @@ def main():
     _, failures = create_payslips(models, uid, refs, employee_ids, contract_ids)
     sick_leave_entries = add_sick_leave_entries(models, uid)
     adjustments = add_adjustments(models, uid)
+    vacation_entries = add_vacation_entries(models, uid)
 
     print("")
     print("Summary")
@@ -603,6 +644,7 @@ def main():
     print(f"Contracts created: {len(contract_ids)}")
     print(f"Sick leave entries applied: {len(sick_leave_entries)}")
     print(f"Adjustments applied: {len(adjustments)}")
+    print(f"Vacation entries applied: {len(vacation_entries)}")
     print(f"Payslip failures: {len(failures)}")
     if failures:
         print("Failures:")

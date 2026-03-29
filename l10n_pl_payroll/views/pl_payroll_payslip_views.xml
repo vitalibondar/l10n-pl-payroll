@@ -104,6 +104,8 @@
                                     <field name="overtime_amount" readonly="1"/>
                                     <field name="overtime_hours_150" readonly="state != 'draft'"/>
                                     <field name="overtime_hours_200" readonly="state != 'draft'"/>
+                                    <field name="vacation_days" readonly="state != 'draft'"/>
+                                    <field name="vacation_pay" readonly="1"/>
                                 </group>
                                 <group string="Zwolnienie chorobowe">
                                     <field name="sick_days" readonly="state != 'draft'"/>
