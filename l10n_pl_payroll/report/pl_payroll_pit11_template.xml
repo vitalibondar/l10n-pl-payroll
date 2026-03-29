@@ -9,7 +9,7 @@
         <field name="binding_model_id" ref="model_pl_payroll_pit11"/>
         <field name="binding_type">report</field>
         <field name="paperformat_id" ref="paperformat_pl_payroll_payslip"/>
-        <field name="print_report_name">'PIT-11 - %s - %s' % ((object.employee_id.name or 'pracownik'), object.year)</field>
+        <field name="print_report_name">'Informacja PIT-11 - %s - %s' % ((object.employee_id.name or 'pracownik'), object.year)</field>
     </record>
 
     <template id="report_pl_payroll_pit11_document">
@@ -201,7 +201,7 @@
                                         <th>Kwota</th>
                                     </tr>
                                     <tr>
-                                        <td>ZUS pracownika łącznie</td>
+                                        <td>Składki ZUS pracownika łącznie</td>
                                         <td t-out="formatLang(o.total_zus_ee, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
@@ -209,17 +209,17 @@
                                         <td t-out="formatLang(o.total_health, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Składka zdrowotna odliczana (7.75%)</td>
+                                        <td>Składka zdrowotna odliczana (7,75%)</td>
                                         <td t-out="formatLang(o.health_deductible, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Zaliczki PIT zapłacone</td>
+                                        <td>Pobrane zaliczki PIT</td>
                                         <td t-out="formatLang(o.total_pit_paid, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                 </table>
                             </section>
                             <section class="pl-pit11-section pl-pit11-footer">
-                                <p>Liczba pasków wynagrodzeń ujętych w zestawieniu: <span t-out="o.payslip_count"/></p>
+                                <p>Liczba list płac ujętych w zestawieniu: <span t-out="o.payslip_count"/></p>
                                 <p>Data wygenerowania: <span t-out="(o.write_date or o.create_date or '')"/></p>
                             </section>
                         </article>

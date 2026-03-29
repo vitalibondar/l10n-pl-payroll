@@ -2,7 +2,7 @@
 <odoo>
     <data noupdate="1">
         <record id="pl_payroll_parameter_2025_zus_emery_ee" model="pl.payroll.parameter">
-            <field name="name">ZUS emerytalne employee</field>
+            <field name="name">Składka emerytalna pracownika</field>
             <field name="code">ZUS_EMERY_EE</field>
             <field name="value">9.76</field>
             <field name="date_from">2025-01-01</field>
@@ -11,7 +11,7 @@
             <field name="note">Składka emerytalna pracownika.</field>
         </record>
         <record id="pl_payroll_parameter_2025_zus_rent_ee" model="pl.payroll.parameter">
-            <field name="name">ZUS rentowe employee</field>
+            <field name="name">Składka rentowa pracownika</field>
             <field name="code">ZUS_RENT_EE</field>
             <field name="value">1.5</field>
             <field name="date_from">2025-01-01</field>
@@ -20,7 +20,7 @@
             <field name="note">Składka rentowa pracownika.</field>
         </record>
         <record id="pl_payroll_parameter_2025_zus_chor_ee" model="pl.payroll.parameter">
-            <field name="name">ZUS chorobowe employee</field>
+            <field name="name">Składka chorobowa pracownika</field>
             <field name="code">ZUS_CHOR_EE</field>
             <field name="value">2.45</field>
             <field name="date_from">2025-01-01</field>
@@ -29,7 +29,7 @@
             <field name="note">Składka chorobowa pracownika.</field>
         </record>
         <record id="pl_payroll_parameter_2025_zus_emery_er" model="pl.payroll.parameter">
-            <field name="name">ZUS emerytalne employer</field>
+            <field name="name">Składka emerytalna pracodawcy</field>
             <field name="code">ZUS_EMERY_ER</field>
             <field name="value">9.76</field>
             <field name="date_from">2025-01-01</field>
@@ -38,7 +38,7 @@
             <field name="note">Składka emerytalna pracodawcy.</field>
         </record>
         <record id="pl_payroll_parameter_2025_zus_rent_er" model="pl.payroll.parameter">
-            <field name="name">ZUS rentowe employer</field>
+            <field name="name">Składka rentowa pracodawcy</field>
             <field name="code">ZUS_RENT_ER</field>
             <field name="value">6.5</field>
             <field name="date_from">2025-01-01</field>
@@ -47,7 +47,7 @@
             <field name="note">Składka rentowa pracodawcy.</field>
         </record>
         <record id="pl_payroll_parameter_2025_zus_wypad_er" model="pl.payroll.parameter">
-            <field name="name">ZUS wypadkowe employer (default)</field>
+            <field name="name">Składka wypadkowa pracodawcy (domyślna)</field>
             <field name="code">ZUS_WYPAD_ER</field>
             <field name="value">1.67</field>
             <field name="date_from">2025-01-01</field>
@@ -56,7 +56,7 @@
             <field name="note">Domyślna stopa wypadkowa dla płatnika.</field>
         </record>
         <record id="pl_payroll_parameter_2025_zus_fp" model="pl.payroll.parameter">
-            <field name="name">Fundusz Pracy</field>
+            <field name="name">Składka na Fundusz Pracy</field>
             <field name="code">ZUS_FP</field>
             <field name="value">2.45</field>
             <field name="date_from">2025-01-01</field>
@@ -65,7 +65,7 @@
             <field name="note">Składka na Fundusz Pracy.</field>
         </record>
         <record id="pl_payroll_parameter_2025_zus_fgsp" model="pl.payroll.parameter">
-            <field name="name">FGŚP</field>
+            <field name="name">Składka na FGŚP</field>
             <field name="code">ZUS_FGSP</field>
             <field name="value">0.1</field>
             <field name="date_from">2025-01-01</field>
@@ -83,7 +83,7 @@
             <field name="note">Limit roczny dla składek emerytalnej i rentowej.</field>
         </record>
         <record id="pl_payroll_parameter_2025_health" model="pl.payroll.parameter">
-            <field name="name">Health insurance</field>
+            <field name="name">Składka zdrowotna</field>
             <field name="code">HEALTH</field>
             <field name="value">9.0</field>
             <field name="date_from">2025-01-01</field>
@@ -92,7 +92,7 @@
             <field name="note">Składka zdrowotna pracownika.</field>
         </record>
         <record id="pl_payroll_parameter_2025_pit_rate_1" model="pl.payroll.parameter">
-            <field name="name">PIT first bracket</field>
+            <field name="name">Stawka PIT w pierwszym progu</field>
             <field name="code">PIT_RATE_1</field>
             <field name="value">12.0</field>
             <field name="date_from">2025-01-01</field>
@@ -101,7 +101,7 @@
             <field name="note">Stawka PIT do pierwszego progu.</field>
         </record>
         <record id="pl_payroll_parameter_2025_pit_rate_2" model="pl.payroll.parameter">
-            <field name="name">PIT second bracket</field>
+            <field name="name">Stawka PIT w drugim progu</field>
             <field name="code">PIT_RATE_2</field>
             <field name="value">32.0</field>
             <field name="date_from">2025-01-01</field>
@@ -110,7 +110,7 @@
             <field name="note">Stawka PIT powyżej pierwszego progu.</field>
         </record>
         <record id="pl_payroll_parameter_2025_pit_threshold" model="pl.payroll.parameter">
-            <field name="name">PIT threshold</field>
+            <field name="name">Próg podatkowy PIT</field>
             <field name="code">PIT_THRESHOLD</field>
             <field name="value">120000</field>
             <field name="date_from">2025-01-01</field>
@@ -119,7 +119,7 @@
             <field name="note">Próg podatkowy PIT.</field>
         </record>
         <record id="pl_payroll_parameter_2025_pit_free" model="pl.payroll.parameter">
-            <field name="name">Kwota wolna od podatku (annual)</field>
+            <field name="name">Kwota wolna od podatku (rocznie)</field>
             <field name="code">PIT_FREE</field>
             <field name="value">30000</field>
             <field name="date_from">2025-01-01</field>
@@ -128,7 +128,7 @@
             <field name="note">Roczna kwota wolna od podatku.</field>
         </record>
         <record id="pl_payroll_parameter_2025_pit_reducing" model="pl.payroll.parameter">
-            <field name="name">Kwota zmniejszająca podatek (monthly)</field>
+            <field name="name">Kwota zmniejszająca podatek (miesięcznie)</field>
             <field name="code">PIT_REDUCING</field>
             <field name="value">300</field>
             <field name="date_from">2025-01-01</field>
@@ -137,7 +137,7 @@
             <field name="note">Miesięczna kwota zmniejszająca podatek przy PIT-2.</field>
         </record>
         <record id="pl_payroll_parameter_2025_kup_standard" model="pl.payroll.parameter">
-            <field name="name">KUP standard (monthly)</field>
+            <field name="name">Pracownicze KUP (miesięcznie)</field>
             <field name="code">KUP_STANDARD</field>
             <field name="value">250</field>
             <field name="date_from">2025-01-01</field>
@@ -146,7 +146,7 @@
             <field name="note">Standardowe miesięczne koszty uzyskania przychodu.</field>
         </record>
         <record id="pl_payroll_parameter_2025_standard_monthly_hours" model="pl.payroll.parameter">
-            <field name="name">Standard Monthly Hours</field>
+            <field name="name">Nominalny czas pracy w miesiącu</field>
             <field name="code">STANDARD_MONTHLY_HOURS</field>
             <field name="value">168.0</field>
             <field name="date_from">2025-01-01</field>
@@ -155,7 +155,7 @@
             <field name="note">Standardowa liczba godzin w miesiącu do dodatków zmiennych.</field>
         </record>
         <record id="pl_payroll_parameter_2025_ppk_ee" model="pl.payroll.parameter">
-            <field name="name">PPK employee default</field>
+            <field name="name">Wpłata podstawowa PPK pracownika</field>
             <field name="code">PPK_EE</field>
             <field name="value">2.0</field>
             <field name="date_from">2025-01-01</field>
@@ -164,7 +164,7 @@
             <field name="note">Podstawowa wpłata pracownika do PPK.</field>
         </record>
         <record id="pl_payroll_parameter_2025_ppk_ee_reduced" model="pl.payroll.parameter">
-            <field name="name">PPK employee reduced</field>
+            <field name="name">Wpłata obniżona PPK pracownika</field>
             <field name="code">PPK_EE_REDUCED</field>
             <field name="value">0.5</field>
             <field name="date_from">2025-01-01</field>
@@ -173,7 +173,7 @@
             <field name="note">Obniżona wpłata pracownika do PPK.</field>
         </record>
         <record id="pl_payroll_parameter_2025_ppk_er" model="pl.payroll.parameter">
-            <field name="name">PPK employer default</field>
+            <field name="name">Wpłata podstawowa PPK pracodawcy</field>
             <field name="code">PPK_ER</field>
             <field name="value">1.5</field>
             <field name="date_from">2025-01-01</field>

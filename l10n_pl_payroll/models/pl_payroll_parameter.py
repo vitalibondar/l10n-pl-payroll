@@ -1,29 +1,58 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class PlPayrollParameter(models.Model):
     _name = "pl.payroll.parameter"
-    _description = "Polish Payroll Parameter"
+    _description = "Parametr płacowy PL"
     _order = "code, date_from desc"
 
-    name = fields.Char(required=True)
-    code = fields.Char(required=True, index=True)
-    value = fields.Float(required=True)
-    date_from = fields.Date(required=True)
-    date_to = fields.Date()
-    value_type = fields.Selection(
-        [("percent", "Відсоток"), ("amount", "Сума")],
+    name = fields.Char(
+        string="Nazwa parametru",
         required=True,
+        help="Czytelna nazwa parametru widoczna dla księgowej.",
     )
-    company_id = fields.Many2one("res.company")
-    note = fields.Text()
+    code = fields.Char(
+        string="Kod parametru",
+        required=True,
+        index=True,
+        help="Stały kod techniczny używany w obliczeniach payroll.",
+    )
+    value = fields.Float(
+        string="Wartość",
+        required=True,
+        help="Wartość liczbowa parametru obowiązująca w danym okresie.",
+    )
+    date_from = fields.Date(
+        string="Data od",
+        required=True,
+        help="Pierwszy dzień obowiązywania parametru.",
+    )
+    date_to = fields.Date(
+        string="Data do",
+        help="Ostatni dzień obowiązywania parametru. Puste pole oznacza brak końca okresu.",
+    )
+    value_type = fields.Selection(
+        [("percent", "Procent"), ("amount", "Kwota")],
+        string="Typ wartości",
+        required=True,
+        help="Określa, czy parametr przechowuje procent czy kwotę.",
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Firma",
+        help="Jeżeli pole jest puste, parametr obowiązuje globalnie dla wszystkich firm.",
+    )
+    note = fields.Text(
+        string="Uwagi",
+        help="Dowolne objaśnienia, źródło stawki albo notatka o zmianie przepisów.",
+    )
 
     @api.constrains("date_from", "date_to")
     def _check_date_range(self):
         for record in self:
             if record.date_to and record.date_to < record.date_from:
-                raise ValidationError("Date To must be greater than or equal to Date From.")
+                raise ValidationError(_("Data do nie może być wcześniejsza niż data od."))
 
     @api.constrains("code", "date_from", "date_to", "company_id")
     def _check_no_overlap(self):
@@ -43,7 +72,7 @@ class PlPayrollParameter(models.Model):
                     other.date_to,
                 ):
                     raise ValidationError(
-                        "Parameter periods cannot overlap for the same code and company."
+                        _("Okresy parametrów nie mogą się nakładać dla tego samego kodu i firmy.")
                     )
 
     @api.model

@@ -4,21 +4,21 @@
         <field name="name">pl.payroll.batch.compute.form</field>
         <field name="model">pl.payroll.batch.compute</field>
         <field name="arch" type="xml">
-            <form string="Batch Compute Payslips">
+            <form string="Zbiorcze przeliczanie list płac">
                 <group>
                     <field name="date_from"/>
                     <field name="date_to"/>
                 </group>
                 <footer>
-                    <button name="action_compute" string="Compute" type="object" class="btn-primary"/>
-                    <button string="Cancel" special="cancel"/>
+                    <button name="action_compute" string="Przelicz" type="object" class="btn-primary"/>
+                    <button string="Anuluj" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
 
     <record id="action_pl_payroll_batch_compute" model="ir.actions.act_window">
-        <field name="name">Batch Compute</field>
+        <field name="name">Przelicz listy płac</field>
         <field name="res_model">pl.payroll.batch.compute</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_pl_payroll_batch_compute_form"/>

@@ -4,13 +4,13 @@
         <field name="name">pl.payroll.pit11.wizard.form</field>
         <field name="model">pl.payroll.pit11.wizard</field>
         <field name="arch" type="xml">
-            <form string="Generuj PIT-11">
+            <form string="Generowanie PIT-11">
                 <group>
                     <field name="year"/>
                 </group>
                 <footer>
                     <button name="action_generate" string="Generuj PIT-11" type="object" class="btn-primary"/>
-                    <button string="Cancel" special="cancel"/>
+                    <button string="Anuluj" special="cancel"/>
                 </footer>
             </form>
         </field>

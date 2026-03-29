@@ -7,15 +7,25 @@ from odoo.exceptions import UserError
 
 class PlPayrollZusDraWizard(models.TransientModel):
     _name = "pl.payroll.zus.dra.wizard"
-    _description = "Generate ZUS DRA"
+    _description = "Generowanie deklaracji ZUS DRA"
 
-    year = fields.Integer(required=True, default=lambda self: fields.Date.context_today(self).year)
-    month = fields.Integer(required=True, default=lambda self: fields.Date.context_today(self).month)
+    year = fields.Integer(
+        string="Rok rozliczenia",
+        required=True,
+        default=lambda self: fields.Date.context_today(self).year,
+        help="Rok, za który ma zostać przygotowana deklaracja ZUS DRA.",
+    )
+    month = fields.Integer(
+        string="Miesiąc rozliczenia",
+        required=True,
+        default=lambda self: fields.Date.context_today(self).month,
+        help="Miesiąc, za który ma zostać przygotowana deklaracja ZUS DRA.",
+    )
 
     def action_generate(self):
         self.ensure_one()
         if self.month < 1 or self.month > 12:
-            raise UserError(_("Month must be between 1 and 12."))
+            raise UserError(_("Miesiąc rozliczenia musi mieścić się w zakresie od 1 do 12."))
 
         date_from = date(self.year, self.month, 1)
         date_to = date(self.year, self.month, monthrange(self.year, self.month)[1])
@@ -29,7 +39,9 @@ class PlPayrollZusDraWizard(models.TransientModel):
             order="company_id, employee_id, date_from, id",
         )
         if not payslips:
-            raise UserError(_("No confirmed payslips found for %02d/%s.") % (self.month, self.year))
+            raise UserError(
+                _("Nie znaleziono zatwierdzonych list płac za okres %02d/%s.") % (self.month, self.year)
+            )
 
         dra_model = self.env["pl.payroll.zus.dra"]
         grouped_payslips = {}

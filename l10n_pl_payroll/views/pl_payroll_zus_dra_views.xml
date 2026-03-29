@@ -4,7 +4,7 @@
         <field name="name">pl.payroll.zus.dra.tree</field>
         <field name="model">pl.payroll.zus.dra</field>
         <field name="arch" type="xml">
-            <list string="ZUS DRA" decoration-success="state == 'confirmed'" decoration-muted="state == 'draft'">
+            <list string="Deklaracje ZUS DRA" decoration-success="state == 'confirmed'" decoration-muted="state == 'draft'">
                 <field name="company_id" optional="hide"/>
                 <field name="year"/>
                 <field name="month"/>
@@ -20,17 +20,17 @@
         <field name="name">pl.payroll.zus.dra.search</field>
         <field name="model">pl.payroll.zus.dra</field>
         <field name="arch" type="xml">
-            <search string="ZUS DRA">
+            <search string="Deklaracje ZUS DRA">
                 <field name="company_id"/>
                 <field name="year"/>
                 <field name="month"/>
-                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
-                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
-                <group expand="0" string="Group By">
-                    <filter name="group_by_company" string="Company" context="{'group_by': 'company_id'}"/>
-                    <filter name="group_by_year" string="Year" context="{'group_by': 'year'}"/>
-                    <filter name="group_by_month" string="Month" context="{'group_by': 'month'}"/>
-                    <filter name="group_by_state" string="State" context="{'group_by': 'state'}"/>
+                <filter name="filter_draft" string="Szkic" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_confirmed" string="Zatwierdzona" domain="[('state', '=', 'confirmed')]"/>
+                <group expand="0" string="Grupuj wg">
+                    <filter name="group_by_company" string="Firma" context="{'group_by': 'company_id'}"/>
+                    <filter name="group_by_year" string="Rok" context="{'group_by': 'year'}"/>
+                    <filter name="group_by_month" string="Miesiąc" context="{'group_by': 'month'}"/>
+                    <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
                 </group>
             </search>
         </field>
@@ -40,7 +40,7 @@
         <field name="name">pl.payroll.zus.dra.form</field>
         <field name="model">pl.payroll.zus.dra</field>
         <field name="arch" type="xml">
-            <form string="ZUS DRA">
+            <form string="Deklaracja ZUS DRA">
                 <header>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed"/>
                 </header>
@@ -105,14 +105,14 @@
     </record>
 
     <record id="action_pl_payroll_zus_dra" model="ir.actions.act_window">
-        <field name="name">ZUS DRA</field>
+        <field name="name">Deklaracje ZUS DRA</field>
         <field name="res_model">pl.payroll.zus.dra</field>
         <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_pl_payroll_zus_dra_search"/>
     </record>
 
     <record id="action_report_pl_payroll_zus_dra" model="ir.actions.report">
-        <field name="name">ZUS DRA</field>
+        <field name="name">Deklaracja ZUS DRA</field>
         <field name="model">pl.payroll.zus.dra</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">l10n_pl_payroll.report_pl_payroll_zus_dra_document</field>
@@ -198,7 +198,7 @@
                             <section class="pl-dra-section">
                                 <p><strong t-out="company.name"/></p>
                                 <p>NIP: <span t-out="company.vat or company.company_registry or 'Brak danych'"/></p>
-                                <p>Liczba pracowników: <span t-out="o.employee_count"/> | Liczba pasków: <span t-out="o.payslip_count"/></p>
+                                <p>Liczba pracowników: <span t-out="o.employee_count"/> | Liczba list płac: <span t-out="o.payslip_count"/></p>
                             </section>
                             <section class="pl-dra-section">
                                 <h3 class="pl-dra-subtitle">Podsumowanie deklaracji</h3>
@@ -208,43 +208,43 @@
                                         <th>Kwota</th>
                                     </tr>
                                     <tr>
-                                        <td>Emerytalne pracownik</td>
+                                        <td>Składka emerytalna (pracownik)</td>
                                         <td t-out="formatLang(o.total_emerytalne_ee, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Emerytalne pracodawca</td>
+                                        <td>Składka emerytalna (pracodawca)</td>
                                         <td t-out="formatLang(o.total_emerytalne_er, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Rentowe pracownik</td>
+                                        <td>Składka rentowa (pracownik)</td>
                                         <td t-out="formatLang(o.total_rentowe_ee, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Rentowe pracodawca</td>
+                                        <td>Składka rentowa (pracodawca)</td>
                                         <td t-out="formatLang(o.total_rentowe_er, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Chorobowe</td>
+                                        <td>Składka chorobowa</td>
                                         <td t-out="formatLang(o.total_chorobowe, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Wypadkowe</td>
+                                        <td>Składka wypadkowa</td>
                                         <td t-out="formatLang(o.total_wypadkowe, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Zdrowotne</td>
+                                        <td>Składka zdrowotna</td>
                                         <td t-out="formatLang(o.total_health, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>FP</td>
+                                        <td>Składka na Fundusz Pracy</td>
                                         <td t-out="formatLang(o.total_fp, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>FGŚP</td>
+                                        <td>Składka na FGŚP</td>
                                         <td t-out="formatLang(o.total_fgsp, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                     <tr>
-                                        <td>Suma do zapłaty</td>
+                                        <td>Łącznie do zapłaty</td>
                                         <td t-out="formatLang(o.total_all, monetary=True, currency_obj=company.currency_id)"/>
                                     </tr>
                                 </table>

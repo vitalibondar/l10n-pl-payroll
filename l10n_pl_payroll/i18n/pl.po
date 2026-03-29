@@ -1,0 +1,439 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_pl_payroll
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-29 00:00+0000\n"
+"PO-Revision-Date: 2026-03-29 00:00+0000\n"
+"Last-Translator: Codex\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Płace PL"
+msgstr "Płace PL"
+
+
+msgid "Listy płac"
+msgstr "Listy płac"
+
+
+msgid "Lista płac"
+msgstr "Lista płac"
+
+
+msgid "Generowanie list płac"
+msgstr "Generowanie list płac"
+
+
+msgid "Raporty twórcze"
+msgstr "Raporty twórcze"
+
+
+msgid "Deklaracje i raporty"
+msgstr "Deklaracje i raporty"
+
+
+msgid "Konfiguracja"
+msgstr "Konfiguracja"
+
+
+msgid "Parametry płacowe"
+msgstr "Parametry płacowe"
+
+
+msgid "Dane podstawowe"
+msgstr "Dane podstawowe"
+
+
+msgid "Rozliczenie pracownika"
+msgstr "Rozliczenie pracownika"
+
+
+msgid "Wynagrodzenie brutto"
+msgstr "Wynagrodzenie brutto"
+
+
+msgid "Chorobowe i nieobecności"
+msgstr "Chorobowe i nieobecności"
+
+
+msgid "Składki ZUS pracownika"
+msgstr "Składki ZUS pracownika"
+
+
+msgid "Składka zdrowotna"
+msgstr "Składka zdrowotna"
+
+
+msgid "Koszty uzyskania przychodu"
+msgstr "Koszty uzyskania przychodu"
+
+
+msgid "Zaliczka na podatek dochodowy"
+msgstr "Zaliczka na podatek dochodowy"
+
+
+msgid "PPK"
+msgstr "PPK"
+
+
+msgid "Wynagrodzenie netto"
+msgstr "Wynagrodzenie netto"
+
+
+msgid "Składki pracodawcy"
+msgstr "Składki pracodawcy"
+
+
+msgid "Składki ZUS pracodawcy"
+msgstr "Składki ZUS pracodawcy"
+
+
+msgid "PPK i koszt zatrudnienia"
+msgstr "PPK i koszt zatrudnienia"
+
+
+msgid "Składniki dodatkowe"
+msgstr "Składniki dodatkowe"
+
+
+msgid "Raport twórczy"
+msgstr "Raport twórczy"
+
+
+msgid "Uwagi"
+msgstr "Uwagi"
+
+
+msgid "Oblicz"
+msgstr "Oblicz"
+
+
+msgid "Zatwierdź"
+msgstr "Zatwierdź"
+
+
+msgid "Anuluj"
+msgstr "Anuluj"
+
+
+msgid "Generuj"
+msgstr "Generuj"
+
+
+msgid "Generuj PIT-11"
+msgstr "Generuj PIT-11"
+
+
+msgid "Generuj DRA"
+msgstr "Generuj DRA"
+
+
+msgid "Przelicz"
+msgstr "Przelicz"
+
+
+
+msgid "Udział pracy twórczej (%)"
+msgstr "Udział pracy twórczej (%)"
+
+
+msgid "Wariant PPK"
+msgstr "Wariant PPK"
+
+
+msgid "Wpłata pracownika do PPK (%)"
+msgstr "Wpłata pracownika do PPK (%)"
+
+
+msgid "Wpłata dodatkowa pracownika do PPK (%)"
+msgstr "Wpłata dodatkowa pracownika do PPK (%)"
+
+
+msgid "Złożono PIT-2"
+msgstr "Złożono PIT-2"
+
+
+msgid "Ulga podatkowa"
+msgstr "Ulga podatkowa"
+
+
+msgid "Kod tytułu ubezpieczenia ZUS"
+msgstr "Kod tytułu ubezpieczenia ZUS"
+
+
+msgid "Status ucznia / studenta"
+msgstr "Status ucznia / studenta"
+
+
+msgid "Wariant KUP"
+msgstr "Wariant KUP"
+
+
+msgid "Dni choroby 80%"
+msgstr "Dni choroby 80%"
+
+
+msgid "Dni choroby 100%"
+msgstr "Dni choroby 100%"
+
+
+msgid "Dni urlopu"
+msgstr "Dni urlopu"
+
+
+msgid "Wynagrodzenie urlopowe"
+msgstr "Wynagrodzenie urlopowe"
+
+
+msgid "Wynagrodzenie chorobowe"
+msgstr "Wynagrodzenie chorobowe"
+
+
+msgid "Podstawa wynagrodzenia chorobowego"
+msgstr "Podstawa wynagrodzenia chorobowego"
+
+
+msgid "Dni robocze w miesiącu"
+msgstr "Dni robocze w miesiącu"
+
+
+msgid "Nadgodziny 150% (godz.)"
+msgstr "Nadgodziny 150% (godz.)"
+
+
+msgid "Nadgodziny 200% (godz.)"
+msgstr "Nadgodziny 200% (godz.)"
+
+
+msgid "Dodatek za nadgodziny"
+msgstr "Dodatek za nadgodziny"
+
+
+msgid "Składka emerytalna (pracownik)"
+msgstr "Składka emerytalna (pracownik)"
+
+
+msgid "Składka rentowa (pracownik)"
+msgstr "Składka rentowa (pracownik)"
+
+
+msgid "Składka chorobowa (pracownik)"
+msgstr "Składka chorobowa (pracownik)"
+
+
+msgid "Składki ZUS pracownika razem"
+msgstr "Składki ZUS pracownika razem"
+
+
+msgid "Podstawa składki zdrowotnej"
+msgstr "Podstawa składki zdrowotnej"
+
+
+msgid "Dochód do opodatkowania"
+msgstr "Dochód do opodatkowania"
+
+
+msgid "Naliczona zaliczka PIT"
+msgstr "Naliczona zaliczka PIT"
+
+
+msgid "Kwota zmniejszająca podatek"
+msgstr "Kwota zmniejszająca podatek"
+
+
+msgid "Zaliczka PIT do urzędu"
+msgstr "Zaliczka PIT do urzędu"
+
+
+msgid "Wpłata PPK pracownika"
+msgstr "Wpłata PPK pracownika"
+
+
+msgid "Składka emerytalna (pracodawca)"
+msgstr "Składka emerytalna (pracodawca)"
+
+
+msgid "Składka rentowa (pracodawca)"
+msgstr "Składka rentowa (pracodawca)"
+
+
+msgid "Składka wypadkowa"
+msgstr "Składka wypadkowa"
+
+
+msgid "Składka na Fundusz Pracy"
+msgstr "Składka na Fundusz Pracy"
+
+
+msgid "Składka na FGŚP"
+msgstr "Składka na FGŚP"
+
+
+msgid "Wpłata PPK pracodawcy"
+msgstr "Wpłata PPK pracodawcy"
+
+
+msgid "Łączny koszt pracodawcy"
+msgstr "Łączny koszt pracodawcy"
+
+
+msgid "Zatwierdzony raport twórczy"
+msgstr "Zatwierdzony raport twórczy"
+
+
+msgid "Wymaga raportu twórczego"
+msgstr "Wymaga raportu twórczego"
+
+
+msgid "Brakuje raportu twórczego"
+msgstr "Brakuje raportu twórczego"
+
+
+msgid "Wymiar etatu"
+msgstr "Wymiar etatu"
+
+
+msgid "Poniżej minimalnego wynagrodzenia"
+msgstr "Poniżej minimalnego wynagrodzenia"
+
+
+msgid "Dni choroby od początku roku"
+msgstr "Dni choroby od początku roku"
+
+
+msgid "Uwagi do listy płac"
+msgstr "Uwagi do listy płac"
+
+
+msgid "PIT-11"
+msgstr "PIT-11"
+
+
+msgid "ZUS DRA"
+msgstr "ZUS DRA"
+
+
+msgid "Generowanie PIT-11"
+msgstr "Generowanie PIT-11"
+
+
+msgid "Generowanie deklaracji ZUS DRA"
+msgstr "Generowanie deklaracji ZUS DRA"
+
+
+msgid "Deklaracja ZUS DRA"
+msgstr "Deklaracja ZUS DRA"
+
+
+msgid "Deklaracje ZUS DRA"
+msgstr "Deklaracje ZUS DRA"
+
+
+msgid "Informacja PIT-11"
+msgstr "Informacja PIT-11"
+
+
+msgid "Informacje PIT-11"
+msgstr "Informacje PIT-11"
+
+
+msgid "Parametr płacowy"
+msgstr "Parametr płacowy"
+
+
+msgid "Raport pracy twórczej"
+msgstr "Raport pracy twórczej"
+
+
+msgid "Pozycja listy płac"
+msgstr "Pozycja listy płac"
+
+
+msgid "Pozycja deklaracji ZUS DRA"
+msgstr "Pozycja deklaracji ZUS DRA"
+
+
+msgid "Informacja roczna PIT-11"
+msgstr "Informacja roczna PIT-11"
+
+
+msgid "Szkic"
+msgstr "Szkic"
+
+
+msgid "Obliczona"
+msgstr "Obliczona"
+
+
+msgid "Zatwierdzona"
+msgstr "Zatwierdzona"
+
+
+msgid "Anulowana"
+msgstr "Anulowana"
+
+
+msgid "Zatwierdzony"
+msgstr "Zatwierdzony"
+
+
+msgid "Przekazany"
+msgstr "Przekazany"
+
+
+msgid "Odrzucony"
+msgstr "Odrzucony"
+
+
+msgid "Akceptacja"
+msgstr "Akceptacja"
+
+
+msgid "Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To ustawienie wpływa na podstawę opodatkowania PIT."
+msgstr "Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To ustawienie wpływa na podstawę opodatkowania PIT."
+
+
+msgid "Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy twórczej."
+msgstr "Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy twórczej."
+
+
+msgid "Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować miesięczną kwotę zmniejszającą podatek."
+msgstr "Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować miesięczną kwotę zmniejszającą podatek."
+
+
+msgid "Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki status może zwalniać z naliczania składek ZUS i zdrowotnej."
+msgstr "Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki status może zwalniać z naliczania składek ZUS i zdrowotnej."
+
+
+msgid "Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
+msgstr "Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
+
+
+msgid "Składka emerytalna potrącana z wynagrodzenia pracownika."
+msgstr "Składka emerytalna potrącana z wynagrodzenia pracownika."
+
+
+msgid "Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT."
+msgstr "Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT."
+
+
+msgid "Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2."
+msgstr "Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2."
+
+
+msgid "Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT."
+msgstr "Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT."
+
+
+msgid "Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale nie ma jeszcze podpiętego zatwierdzonego raportu."
+msgstr "Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale nie ma jeszcze podpiętego zatwierdzonego raportu."
+
+
+msgid "Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."
+msgstr "Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."

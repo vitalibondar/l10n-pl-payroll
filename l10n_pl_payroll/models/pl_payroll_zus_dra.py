@@ -8,47 +8,93 @@ TWOPLACES = Decimal("0.01")
 
 class PlPayrollZusDra(models.Model):
     _name = "pl.payroll.zus.dra"
-    _description = "ZUS DRA Monthly Declaration"
+    _description = "Deklaracja miesięczna ZUS DRA"
     _order = "year desc, month desc, company_id"
     _sql_constraints = [
         (
             "pl_payroll_zus_dra_company_year_month_unique",
             "unique(company_id, year, month)",
-            "ZUS DRA already exists for this company and period.",
+            "Deklaracja ZUS DRA już istnieje dla tej firmy i okresu.",
         )
     ]
 
-    name = fields.Char(compute="_compute_name", store=True)
-    company_id = fields.Many2one("res.company", required=True)
-    year = fields.Integer(required=True)
-    month = fields.Integer(required=True)
+    name = fields.Char(compute="_compute_name", store=True, string="Nazwa")
+    company_id = fields.Many2one(
+        "res.company",
+        string="Firma",
+        required=True,
+        help="Firma, dla której przygotowano deklarację rozliczeniową ZUS DRA.",
+    )
+    year = fields.Integer(
+        string="Rok rozliczenia",
+        required=True,
+        help="Rok deklaracji ZUS DRA.",
+    )
+    month = fields.Integer(
+        string="Miesiąc rozliczenia",
+        required=True,
+        help="Miesiąc deklaracji ZUS DRA.",
+    )
     state = fields.Selection(
         [
-            ("draft", "Draft"),
-            ("confirmed", "Confirmed"),
+            ("draft", "Szkic"),
+            ("confirmed", "Zatwierdzona"),
         ],
+        string="Status",
         default="draft",
         required=True,
+        help="Status dokumentu ZUS DRA w module payroll.",
     )
 
-    employee_count = fields.Integer(readonly=True)
-    payslip_count = fields.Integer(readonly=True)
+    employee_count = fields.Integer(
+        readonly=True,
+        string="Liczba pracowników",
+        help="Liczba pracowników ujętych w deklaracji za dany okres.",
+    )
+    payslip_count = fields.Integer(
+        readonly=True,
+        string="Liczba list płac",
+        help="Liczba potwierdzonych list płac wykorzystanych do deklaracji.",
+    )
 
-    total_emerytalne_ee = fields.Float(readonly=True)
-    total_emerytalne_er = fields.Float(readonly=True)
-    total_rentowe_ee = fields.Float(readonly=True)
-    total_rentowe_er = fields.Float(readonly=True)
-    total_chorobowe = fields.Float(readonly=True)
-    total_wypadkowe = fields.Float(readonly=True)
-    total_health = fields.Float(readonly=True)
-    total_fp = fields.Float(readonly=True)
-    total_fgsp = fields.Float(readonly=True)
+    total_emerytalne_ee = fields.Float(readonly=True, string="Składka emerytalna (pracownik)")
+    total_emerytalne_er = fields.Float(readonly=True, string="Składka emerytalna (pracodawca)")
+    total_rentowe_ee = fields.Float(readonly=True, string="Składka rentowa (pracownik)")
+    total_rentowe_er = fields.Float(readonly=True, string="Składka rentowa (pracodawca)")
+    total_chorobowe = fields.Float(readonly=True, string="Składka chorobowa")
+    total_wypadkowe = fields.Float(readonly=True, string="Składka wypadkowa")
+    total_health = fields.Float(readonly=True, string="Składka zdrowotna")
+    total_fp = fields.Float(readonly=True, string="Składka na Fundusz Pracy")
+    total_fgsp = fields.Float(readonly=True, string="Składka na FGŚP")
 
-    total_zus_employee = fields.Float(readonly=True, compute="_compute_overall_totals", store=True, string="ZUS EE łącznie")
-    total_zus_employer = fields.Float(readonly=True, compute="_compute_overall_totals", store=True, string="ZUS ER łącznie")
-    total_all = fields.Float(readonly=True, compute="_compute_overall_totals", store=True, string="Suma do zapłaty")
+    total_zus_employee = fields.Float(
+        readonly=True,
+        compute="_compute_overall_totals",
+        store=True,
+        string="Składki pracownika razem",
+        help="Suma składek finansowanych przez pracownika wraz ze składką zdrowotną.",
+    )
+    total_zus_employer = fields.Float(
+        readonly=True,
+        compute="_compute_overall_totals",
+        store=True,
+        string="Składki pracodawcy razem",
+        help="Suma składek finansowanych przez pracodawcę za dany miesiąc.",
+    )
+    total_all = fields.Float(
+        readonly=True,
+        compute="_compute_overall_totals",
+        store=True,
+        string="Łącznie do zapłaty",
+        help="Łączna kwota zobowiązania wobec ZUS za dany okres.",
+    )
 
-    line_ids = fields.One2many("pl.payroll.zus.dra.line", "dra_id", readonly=True)
+    line_ids = fields.One2many(
+        "pl.payroll.zus.dra.line",
+        "dra_id",
+        string="Pozycje pracowników",
+        readonly=True,
+    )
 
     @api.depends("company_id.name", "year", "month")
     def _compute_name(self):

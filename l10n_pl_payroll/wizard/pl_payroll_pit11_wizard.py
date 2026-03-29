@@ -6,9 +6,14 @@ from odoo.exceptions import UserError
 
 class PlPayrollPit11Wizard(models.TransientModel):
     _name = "pl.payroll.pit11.wizard"
-    _description = "Generate PIT-11"
+    _description = "Generowanie PIT-11"
 
-    year = fields.Integer(required=True, default=lambda self: fields.Date.context_today(self).year - 1)
+    year = fields.Integer(
+        string="Rok podatkowy",
+        required=True,
+        default=lambda self: fields.Date.context_today(self).year - 1,
+        help="Rok, za który system ma przygotować informacje PIT-11 dla pracowników.",
+    )
 
     def action_generate(self):
         self.ensure_one()
@@ -23,7 +28,7 @@ class PlPayrollPit11Wizard(models.TransientModel):
             order="employee_id, company_id, date_from, id",
         )
         if not payslips:
-            raise UserError(_("No confirmed payslips found for year %s.") % self.year)
+            raise UserError(_("Nie znaleziono zatwierdzonych list płac za rok %s.") % self.year)
 
         pit11_model = self.env["pl.payroll.pit11"]
         grouped_payslips = {}

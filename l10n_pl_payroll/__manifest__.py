@@ -1,12 +1,12 @@
 {
-    "name": "Poland - Payroll",
+    "name": "Polska - Płace",
     "version": "18.0.1.0.0",
     "category": "Human Resources/Payroll",
-    "summary": "Polish payroll calculation and pay slip generation",
+    "summary": "Naliczanie wynagrodzeń i generowanie list płac dla Polski",
     "description": """
-        Calculates gross-to-net salary for Polish employees.
-        Supports umowa o pracę, umowa zlecenie, and umowa o dzieło.
-        Generates pay slips (pasek wynagrodzeń).
+        Naliczanie wynagrodzeń brutto-netto dla pracowników w Polsce.
+        Obsługa umowy o pracę, umowy zlecenia i umowy o dzieło.
+        Generowanie list płac oraz dokumentów PIT-11 i ZUS DRA.
     """,
     "author": "Om Energy Solutions",
     "website": "https://omenergysolutions.pl",
@@ -23,6 +23,7 @@
         "report/pl_payroll_payslip_report.xml",
         "report/pl_payroll_payslip_template.xml",
         "report/pl_payroll_pit11_template.xml",
+        "views/pl_payroll_contract_views.xml",
         "views/pl_payroll_payslip_views.xml",
         "views/pl_payroll_employee_views.xml",
         "views/pl_payroll_parameter_views.xml",

@@ -8,39 +8,91 @@ TWOPLACES = Decimal("0.01")
 
 class PlPayrollPit11(models.Model):
     _name = "pl.payroll.pit11"
-    _description = "PIT-11 Annual Tax Information"
+    _description = "Informacja roczna PIT-11"
     _order = "year desc, employee_id"
     _sql_constraints = [
         (
             "pl_payroll_pit11_employee_company_year_unique",
             "unique(employee_id, company_id, year)",
-            "PIT-11 already exists for this employee, company, and year.",
+            "PIT-11 już istnieje dla tego pracownika, firmy i roku.",
         )
     ]
 
-    name = fields.Char(compute="_compute_name", store=True)
-    employee_id = fields.Many2one("hr.employee", required=True)
-    company_id = fields.Many2one("res.company", required=True)
-    year = fields.Integer(required=True)
+    name = fields.Char(compute="_compute_name", store=True, string="Nazwa")
+    employee_id = fields.Many2one(
+        "hr.employee",
+        string="Pracownik",
+        required=True,
+        help="Pracownik, dla którego przygotowano informację PIT-11.",
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Firma",
+        required=True,
+        help="Firma występująca jako płatnik na informacji PIT-11.",
+    )
+    year = fields.Integer(
+        string="Rok podatkowy",
+        required=True,
+        help="Rok, za który zsumowano przychody, składki i zaliczki PIT.",
+    )
     state = fields.Selection(
         [
-            ("draft", "Draft"),
-            ("confirmed", "Confirmed"),
+            ("draft", "Szkic"),
+            ("confirmed", "Zatwierdzony"),
         ],
+        string="Status",
         default="draft",
         required=True,
+        help="Status dokumentu PIT-11 w module payroll.",
     )
 
-    total_gross = fields.Float(readonly=True, string="Przychód łącznie")
-    total_zus_ee = fields.Float(readonly=True, string="ZUS EE łącznie")
-    total_health = fields.Float(readonly=True, string="Składka zdrowotna łącznie")
-    health_deductible = fields.Float(readonly=True, string="Składka zdrowotna odliczana (7.75%)")
-    total_kup = fields.Float(readonly=True, string="KUP łącznie")
-    total_income = fields.Float(readonly=True, string="Dochód łącznie")
-    total_pit_paid = fields.Float(readonly=True, string="Zaliczki PIT zapłacone")
-    total_ppk_er = fields.Float(readonly=True, string="PPK pracodawcy (przychód)")
+    total_gross = fields.Float(
+        readonly=True,
+        string="Przychód łącznie",
+        help="Łączny przychód wykazany na PIT-11, razem z opodatkowaną wpłatą PPK pracodawcy.",
+    )
+    total_zus_ee = fields.Float(
+        readonly=True,
+        string="Składki ZUS pracownika łącznie",
+        help="Suma składek społecznych finansowanych przez pracownika.",
+    )
+    total_health = fields.Float(
+        readonly=True,
+        string="Składka zdrowotna łącznie",
+        help="Suma pobranych składek zdrowotnych za wskazany rok.",
+    )
+    health_deductible = fields.Float(
+        readonly=True,
+        string="Składka zdrowotna odliczana (7,75%)",
+        help="Wartość historycznej części zdrowotnej prezentowana informacyjnie na formularzu PIT-11.",
+    )
+    total_kup = fields.Float(
+        readonly=True,
+        string="KUP łącznie",
+        help="Suma kosztów uzyskania przychodu uwzględnionych przy rozliczeniu rocznym.",
+    )
+    total_income = fields.Float(
+        readonly=True,
+        string="Dochód łącznie",
+        help="Dochód do opodatkowania po kosztach uzyskania przychodu.",
+    )
+    total_pit_paid = fields.Float(
+        readonly=True,
+        string="Pobrane zaliczki PIT",
+        help="Łączna kwota zaliczek PIT pobranych i odprowadzonych w danym roku.",
+    )
+    total_ppk_er = fields.Float(
+        readonly=True,
+        string="Wpłata PPK pracodawcy jako przychód",
+        help="Wpłata finansowana przez pracodawcę, która zwiększa przychód pracownika do PIT.",
+    )
 
-    payslip_count = fields.Integer(readonly=True)
+    payslip_count = fields.Integer(
+        readonly=True,
+        string="Liczba list płac",
+        help="Ile list płac weszło do rozliczenia PIT-11.",
+    )
 
     @api.depends("employee_id.name", "year")
     def _compute_name(self):

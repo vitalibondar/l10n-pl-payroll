@@ -1,0 +1,439 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_pl_payroll
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-29 00:00+0000\n"
+"PO-Revision-Date: 2026-03-29 00:00+0000\n"
+"Last-Translator: Codex\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14) ? 2 : 3);\n"
+
+msgid "Płace PL"
+msgstr "Польська зарплата (Płace PL)"
+
+
+msgid "Listy płac"
+msgstr "Розрахункові відомості (listy płac)"
+
+
+msgid "Lista płac"
+msgstr "Розрахункова відомість (lista płac)"
+
+
+msgid "Generowanie list płac"
+msgstr "Створення розрахункових відомостей (generowanie list płac)"
+
+
+msgid "Raporty twórcze"
+msgstr "Звіти про творчу роботу (raporty twórcze)"
+
+
+msgid "Deklaracje i raporty"
+msgstr "Декларації та звіти (deklaracje i raporty)"
+
+
+msgid "Konfiguracja"
+msgstr "Налаштування (konfiguracja)"
+
+
+msgid "Parametry płacowe"
+msgstr "Параметри зарплати (parametry płacowe)"
+
+
+msgid "Dane podstawowe"
+msgstr "Основні дані (dane podstawowe)"
+
+
+msgid "Rozliczenie pracownika"
+msgstr "Розрахунок працівника (rozliczenie pracownika)"
+
+
+msgid "Wynagrodzenie brutto"
+msgstr "Нарахована зарплата брутто (wynagrodzenie brutto)"
+
+
+msgid "Chorobowe i nieobecności"
+msgstr "Лікарняні та відсутності (chorobowe i nieobecności)"
+
+
+msgid "Składki ZUS pracownika"
+msgstr "Внески ZUS працівника (składki ZUS pracownika)"
+
+
+msgid "Składka zdrowotna"
+msgstr "Внесок на медичне страхування (składka zdrowotna)"
+
+
+msgid "Koszty uzyskania przychodu"
+msgstr "Витрати на отримання доходу (koszty uzyskania przychodu)"
+
+
+msgid "Zaliczka na podatek dochodowy"
+msgstr "Аванс податку на доходи (zaliczka na podatek dochodowy)"
+
+
+msgid "PPK"
+msgstr "PPK"
+
+
+msgid "Wynagrodzenie netto"
+msgstr "Зарплата нетто (wynagrodzenie netto)"
+
+
+msgid "Składki pracodawcy"
+msgstr "Витрати роботодавця (składki pracodawcy)"
+
+
+msgid "Składki ZUS pracodawcy"
+msgstr "Внески ZUS роботодавця (składki ZUS pracodawcy)"
+
+
+msgid "PPK i koszt zatrudnienia"
+msgstr "PPK і вартість працевлаштування (PPK i koszt zatrudnienia)"
+
+
+msgid "Składniki dodatkowe"
+msgstr "Додаткові складові зарплати (składniki dodatkowe)"
+
+
+msgid "Raport twórczy"
+msgstr "Звіт про творчу роботу (raport twórczy)"
+
+
+msgid "Uwagi"
+msgstr "Примітки (uwagi)"
+
+
+msgid "Oblicz"
+msgstr "Обчислити (oblicz)"
+
+
+msgid "Zatwierdź"
+msgstr "Підтвердити (zatwierdź)"
+
+
+msgid "Anuluj"
+msgstr "Скасувати (anuluj)"
+
+
+msgid "Generuj"
+msgstr "Створити (generuj)"
+
+
+msgid "Generuj PIT-11"
+msgstr "Створити PIT-11"
+
+
+msgid "Generuj DRA"
+msgstr "Створити DRA"
+
+
+msgid "Przelicz"
+msgstr "Перерахувати (przelicz)"
+
+
+
+msgid "Udział pracy twórczej (%)"
+msgstr "Частка творчої роботи (%) (udział pracy twórczej)"
+
+
+msgid "Wariant PPK"
+msgstr "Варіант PPK (wariant PPK)"
+
+
+msgid "Wpłata pracownika do PPK (%)"
+msgstr "Внесок працівника до PPK (%) (wpłata pracownika do PPK)"
+
+
+msgid "Wpłata dodatkowa pracownika do PPK (%)"
+msgstr "Додатковий внесок працівника до PPK (%) (wpłata dodatkowa pracownika do PPK)"
+
+
+msgid "Złożono PIT-2"
+msgstr "Подано PIT-2 (złożono PIT-2)"
+
+
+msgid "Ulga podatkowa"
+msgstr "Податкова пільга (ulga podatkowa)"
+
+
+msgid "Kod tytułu ubezpieczenia ZUS"
+msgstr "Код підстави страхування ZUS (kod tytułu ubezpieczenia ZUS)"
+
+
+msgid "Status ucznia / studenta"
+msgstr "Статус учня / студента (status ucznia / studenta)"
+
+
+msgid "Wariant KUP"
+msgstr "Варіант KUP (wariant KUP)"
+
+
+msgid "Dni choroby 80%"
+msgstr "Дні хвороби 80% (dni choroby 80%)"
+
+
+msgid "Dni choroby 100%"
+msgstr "Дні хвороби 100% (dni choroby 100%)"
+
+
+msgid "Dni urlopu"
+msgstr "Дні відпустки (dni urlopu)"
+
+
+msgid "Wynagrodzenie urlopowe"
+msgstr "Оплата відпустки (wynagrodzenie urlopowe)"
+
+
+msgid "Wynagrodzenie chorobowe"
+msgstr "Оплата лікарняного (wynagrodzenie chorobowe)"
+
+
+msgid "Podstawa wynagrodzenia chorobowego"
+msgstr "База для оплати лікарняного (podstawa wynagrodzenia chorobowego)"
+
+
+msgid "Dni robocze w miesiącu"
+msgstr "Робочі дні в місяці (dni robocze w miesiącu)"
+
+
+msgid "Nadgodziny 150% (godz.)"
+msgstr "Надурочні 150% (год.) (nadgodziny 150%)"
+
+
+msgid "Nadgodziny 200% (godz.)"
+msgstr "Надурочні 200% (год.) (nadgodziny 200%)"
+
+
+msgid "Dodatek za nadgodziny"
+msgstr "Доплата за надурочні (dodatek za nadgodziny)"
+
+
+msgid "Składka emerytalna (pracownik)"
+msgstr "Пенсійний внесок, працівник (składka emerytalna)"
+
+
+msgid "Składka rentowa (pracownik)"
+msgstr "Внесок на страхування непрацездатності, працівник (składka rentowa)"
+
+
+msgid "Składka chorobowa (pracownik)"
+msgstr "Лікарняний внесок, працівник (składka chorobowa)"
+
+
+msgid "Składki ZUS pracownika razem"
+msgstr "Усього внесків ZUS працівника (składki ZUS pracownika razem)"
+
+
+msgid "Podstawa składki zdrowotnej"
+msgstr "База медичного внеску (podstawa składki zdrowotnej)"
+
+
+msgid "Dochód do opodatkowania"
+msgstr "Оподатковуваний дохід (dochód do opodatkowania)"
+
+
+msgid "Naliczona zaliczka PIT"
+msgstr "Розрахований аванс PIT (naliczona zaliczka PIT)"
+
+
+msgid "Kwota zmniejszająca podatek"
+msgstr "Сума, що зменшує податок (kwota zmniejszająca podatek)"
+
+
+msgid "Zaliczka PIT do urzędu"
+msgstr "Аванс PIT до податкового органу (zaliczka PIT do urzędu)"
+
+
+msgid "Wpłata PPK pracownika"
+msgstr "Внесок працівника до PPK (wpłata PPK pracownika)"
+
+
+msgid "Składka emerytalna (pracodawca)"
+msgstr "Пенсійний внесок, роботодавець (składka emerytalna)"
+
+
+msgid "Składka rentowa (pracodawca)"
+msgstr "Внесок на страхування непрацездатності, роботодавець (składka rentowa)"
+
+
+msgid "Składka wypadkowa"
+msgstr "Внесок від нещасних випадків (składka wypadkowa)"
+
+
+msgid "Składka na Fundusz Pracy"
+msgstr "Внесок до Фонду праці (składka na Fundusz Pracy)"
+
+
+msgid "Składka na FGŚP"
+msgstr "Внесок до FGŚP (składka na FGŚP)"
+
+
+msgid "Wpłata PPK pracodawcy"
+msgstr "Внесок роботодавця до PPK (wpłata PPK pracodawcy)"
+
+
+msgid "Łączny koszt pracodawcy"
+msgstr "Загальна вартість роботодавця (łączny koszt pracodawcy)"
+
+
+msgid "Zatwierdzony raport twórczy"
+msgstr "Затверджений звіт про творчу роботу (zatwierdzony raport twórczy)"
+
+
+msgid "Wymaga raportu twórczego"
+msgstr "Потрібен звіт про творчу роботу (wymaga raportu twórczego)"
+
+
+msgid "Brakuje raportu twórczego"
+msgstr "Бракує звіту про творчу роботу (brakuje raportu twórczego)"
+
+
+msgid "Wymiar etatu"
+msgstr "Частка ставки (wymiar etatu)"
+
+
+msgid "Poniżej minimalnego wynagrodzenia"
+msgstr "Нижче мінімальної зарплати (poniżej minimalnego wynagrodzenia)"
+
+
+msgid "Dni choroby od początku roku"
+msgstr "Дні хвороби з початку року (dni choroby od początku roku)"
+
+
+msgid "Uwagi do listy płac"
+msgstr "Примітки до розрахункової відомості (uwagi do listy płac)"
+
+
+msgid "PIT-11"
+msgstr "PIT-11"
+
+
+msgid "ZUS DRA"
+msgstr "ZUS DRA"
+
+
+msgid "Generowanie PIT-11"
+msgstr "Створення PIT-11 (generowanie PIT-11)"
+
+
+msgid "Generowanie deklaracji ZUS DRA"
+msgstr "Створення декларації ZUS DRA (generowanie deklaracji ZUS DRA)"
+
+
+msgid "Deklaracja ZUS DRA"
+msgstr "Декларація ZUS DRA (deklaracja ZUS DRA)"
+
+
+msgid "Deklaracje ZUS DRA"
+msgstr "Декларації ZUS DRA (deklaracje ZUS DRA)"
+
+
+msgid "Informacja PIT-11"
+msgstr "Інформація PIT-11 (informacja PIT-11)"
+
+
+msgid "Informacje PIT-11"
+msgstr "Записи PIT-11 (informacje PIT-11)"
+
+
+msgid "Parametr płacowy"
+msgstr "Параметр зарплати (parametr płacowy)"
+
+
+msgid "Raport pracy twórczej"
+msgstr "Звіт про творчу роботу (raport pracy twórczej)"
+
+
+msgid "Pozycja listy płac"
+msgstr "Рядок розрахункової відомості (pozycja listy płac)"
+
+
+msgid "Pozycja deklaracji ZUS DRA"
+msgstr "Рядок декларації ZUS DRA (pozycja deklaracji ZUS DRA)"
+
+
+msgid "Informacja roczna PIT-11"
+msgstr "Річна інформація PIT-11 (informacja roczna PIT-11)"
+
+
+msgid "Szkic"
+msgstr "Чернетка (szkic)"
+
+
+msgid "Obliczona"
+msgstr "Обчислена (obliczona)"
+
+
+msgid "Zatwierdzona"
+msgstr "Підтверджена (zatwierdzona)"
+
+
+msgid "Anulowana"
+msgstr "Скасована (anulowana)"
+
+
+msgid "Zatwierdzony"
+msgstr "Підтверджений (zatwierdzony)"
+
+
+msgid "Przekazany"
+msgstr "Переданий (przekazany)"
+
+
+msgid "Odrzucony"
+msgstr "Відхилений (odrzucony)"
+
+
+msgid "Akceptacja"
+msgstr "Погодження (akceptacja)"
+
+
+msgid "Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To ustawienie wpływa na podstawę opodatkowania PIT."
+msgstr "Вибери спосіб розрахунку витрат на отримання доходу (koszty uzyskania przychodu) для цього договору. Це налаштування впливає на базу PIT."
+
+
+msgid "Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy twórczej."
+msgstr "Відсоток зарплати, віднесений до творчої роботи (praca twórcza). Для цієї частини застосовується 50% авторських KUP. Це не ставка KUP, а частка творчої роботи."
+
+
+msgid "Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować miesięczną kwotę zmniejszającą podatek."
+msgstr "Якщо працівник подав PIT-2, під час розрахунку авансу PIT можна застосувати щомісячну суму, що зменшує податок (kwota zmniejszająca podatek)."
+
+
+msgid "Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki status może zwalniać z naliczania składek ZUS i zdrowotnej."
+msgstr "Познач для особи, яка навчається і не досягла 26 років. Для договору доручення (umowa zlecenia) такий статус може звільняти від нарахування внесків ZUS і медичного внеску."
+
+
+msgid "Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
+msgstr "Загальна сума брутто (wynagrodzenie brutto) після додавання доплат брутто і віднімання утримань брутто."
+
+
+msgid "Składka emerytalna potrącana z wynagrodzenia pracownika."
+msgstr "Пенсійний внесок (składka emerytalna), утриманий із зарплати працівника."
+
+
+msgid "Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT."
+msgstr "Витрати на отримання доходу (koszty uzyskania przychodu), враховані під час розрахунку авансу PIT."
+
+
+msgid "Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2."
+msgstr "Щомісячна сума, що зменшує аванс PIT після подання PIT-2."
+
+
+msgid "Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT."
+msgstr "Внесок PPK, профінансований роботодавцем (wpłata PPK pracodawcy). Для працівника це оподатковуваний дохід для PIT."
+
+
+msgid "Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale nie ma jeszcze podpiętego zatwierdzonego raportu."
+msgstr "Поле-попередження. Показує, що розрахункова відомість використовує творчу роботу (praca twórcza), але затверджений звіт ще не прикріплено."
+
+
+msgid "Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."
+msgstr "Поле-попередження. Показує, що брутто в цій розрахунковій відомості нижче мінімальної зарплати, розрахованої для цього розміру ставки."

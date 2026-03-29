@@ -6,6 +6,7 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
             <xpath expr="//group[@name='identification_group']" position="inside">
+                <separator string="Rozliczenie PL"/>
                 <field name="is_student"/>
             </xpath>
         </field>
