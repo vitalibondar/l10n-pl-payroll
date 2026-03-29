@@ -150,15 +150,26 @@ class PlPayrollPayslip(models.Model):
         current_year = fields.Date.to_date(self.date_from).year
         ytd = self._get_ytd_totals(self.employee_id.id, current_year, self.date_from)
         zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], gross)
+        student_zlecenie_exempt = self._is_student_zlecenie_exempt()
 
-        zus_emerytalne_ee = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_EE")
-        zus_rentowe_ee = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_EE")
-        zus_chorobowe_ee = self._percent_of_gross(gross, "ZUS_CHOR_EE")
-        zus_total_ee = self._round_amount(zus_emerytalne_ee + zus_rentowe_ee + zus_chorobowe_ee)
+        if student_zlecenie_exempt:
+            zus_emerytalne_ee = Decimal("0.00")
+            zus_rentowe_ee = Decimal("0.00")
+            zus_chorobowe_ee = Decimal("0.00")
+            zus_total_ee = Decimal("0.00")
+        else:
+            zus_emerytalne_ee = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_EE")
+            zus_rentowe_ee = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_EE")
+            zus_chorobowe_ee = self._percent_of_gross(gross, "ZUS_CHOR_EE")
+            zus_total_ee = self._round_amount(zus_emerytalne_ee + zus_rentowe_ee + zus_chorobowe_ee)
 
         health_basis = self._round_amount(gross - zus_total_ee)
-        health = self._round_amount(health_basis * self._get_parameter("HEALTH") / Decimal("100"))
-        ppk_er = self._compute_ppk_employer(gross)
+        if student_zlecenie_exempt:
+            health = Decimal("0.00")
+            ppk_er = Decimal("0.00")
+        else:
+            health = self._round_amount(health_basis * self._get_parameter("HEALTH") / Decimal("100"))
+            ppk_er = self._compute_ppk_employer(gross)
         kup_amount = self._compute_kup_amount(health_basis)
         taxable_income = self._floor_amount(health_basis - kup_amount + ppk_er)
         pit_advance, pit_reducing, pit_due = self._compute_pit_amounts(
@@ -167,15 +178,25 @@ class PlPayrollPayslip(models.Model):
             ytd,
         )
 
-        ppk_ee = self._compute_ppk_employee(gross)
+        if student_zlecenie_exempt:
+            ppk_ee = Decimal("0.00")
+        else:
+            ppk_ee = self._compute_ppk_employee(gross)
         net_before_deductions = self._round_amount(gross - zus_total_ee - health - pit_due - ppk_ee)
         net = self._round_amount(net_before_deductions - deduction_net_total)
 
-        zus_emerytalne_er = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_ER")
-        zus_rentowe_er = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_ER")
-        zus_wypadkowe_er = self._percent_of_gross(gross, "ZUS_WYPAD_ER", company_specific=True)
-        zus_fp = self._percent_of_gross(gross, "ZUS_FP")
-        zus_fgsp = self._percent_of_gross(gross, "ZUS_FGSP")
+        if student_zlecenie_exempt:
+            zus_emerytalne_er = Decimal("0.00")
+            zus_rentowe_er = Decimal("0.00")
+            zus_wypadkowe_er = Decimal("0.00")
+            zus_fp = Decimal("0.00")
+            zus_fgsp = Decimal("0.00")
+        else:
+            zus_emerytalne_er = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_ER")
+            zus_rentowe_er = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_ER")
+            zus_wypadkowe_er = self._percent_of_gross(gross, "ZUS_WYPAD_ER", company_specific=True)
+            zus_fp = self._percent_of_gross(gross, "ZUS_FP")
+            zus_fgsp = self._percent_of_gross(gross, "ZUS_FGSP")
         total_employer_cost = self._round_amount(
             gross
             + zus_emerytalne_er
@@ -358,6 +379,24 @@ class PlPayrollPayslip(models.Model):
         self.ensure_one()
         contract_type_name = (self.contract_id.contract_type_id.name or "").strip().lower()
         return contract_type_name == "umowa zlecenie"
+
+    def _is_student_zlecenie_exempt(self):
+        self.ensure_one()
+        if not self._is_mandate_contract():
+            return False
+        if not self.employee_id.is_student:
+            return False
+
+        birthday = self.employee_id.birthday
+        if not birthday:
+            return False
+
+        payslip_date = fields.Date.to_date(self.date_from)
+        birthday = fields.Date.to_date(birthday)
+        age = payslip_date.year - birthday.year
+        if (payslip_date.month, payslip_date.day) < (birthday.month, birthday.day):
+            age -= 1
+        return age < 26
 
     def _percent_of_gross(self, gross, code, company_specific=False):
         return self._percent_of_amount(gross, code, company_specific=company_specific)

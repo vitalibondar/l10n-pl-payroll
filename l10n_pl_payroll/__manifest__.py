@@ -21,6 +21,7 @@
         "report/pl_payroll_payslip_report.xml",
         "report/pl_payroll_payslip_template.xml",
         "views/pl_payroll_payslip_views.xml",
+        "views/pl_payroll_employee_views.xml",
         "views/pl_payroll_parameter_views.xml",
         "views/pl_payroll_compute_wizard_views.xml",
         "views/pl_payroll_creative_report_views.xml",

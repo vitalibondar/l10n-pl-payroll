@@ -23,26 +23,28 @@ DEPARTMENTS = [
 ]
 
 EMPLOYEES = [
-    {"index": 1, "name": "Tomasz Kowalski", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1989-01-17", "gender": "male", "wage": 4806.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 2, "name": "Anna Wiśniewska", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1992-03-05", "gender": "female", "wage": 4806.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 3, "name": "Piotr Mazur", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1987-07-22", "gender": "male", "wage": 4806.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 4, "name": "Katarzyna Nowak", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1991-11-09", "gender": "female", "wage": 4806.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 5, "name": "Wojciech Zieliński", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1985-05-14", "gender": "male", "wage": 4806.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 6, "name": "Ewa Krawczyk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1994-02-28", "gender": "female", "wage": 4806.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 7, "name": "Oleksandr Kovalenko", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1990-06-19", "gender": "male", "wage": 4806.0, "date_start": "2025-03-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 8, "name": "Nataliia Shevchenko", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1996-09-03", "gender": "female", "wage": 4806.0, "date_start": "2025-03-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 9, "name": "Dmytro Melnyk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1988-12-11", "gender": "male", "wage": 4806.0, "date_start": "2025-03-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 10, "name": "Yuliia Kravchuk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1993-04-24", "gender": "female", "wage": 4806.0, "date_start": "2025-03-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 11, "name": "Mikołaj Szymański", "job_title": "Kierownik zmiany", "department": "Produkcja", "nationality": "PL", "birthday": "1984-08-16", "gender": "male", "wage": 7500.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 12, "name": "Paulina Dąbrowska", "job_title": "Kierownik zmiany", "department": "Produkcja", "nationality": "PL", "birthday": "1989-10-07", "gender": "female", "wage": 6500.0, "date_start": "2025-06-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 13, "name": "Kacper Wójcik", "job_title": "Laborant", "department": "Laboratorium", "nationality": "PL", "birthday": "1995-01-12", "gender": "male", "wage": 6000.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 14, "name": "Michał Adamski", "job_title": "Inżynier procesu", "department": "Laboratorium", "nationality": "PL", "birthday": "1986-05-27", "gender": "male", "wage": 8000.0, "date_start": "2025-01-01", "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 15, "name": "Natalia Ivanchuk", "job_title": "Magazynierka", "department": "Magazyn", "nationality": "UA", "birthday": "1998-02-18", "gender": "female", "wage": 4806.0, "date_start": "2025-04-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 16, "name": "Monika Brzeska", "job_title": "Administrator materiałowy", "department": "Magazyn", "nationality": "PL", "birthday": "1990-07-30", "gender": "female", "wage": 5500.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "opt_out", "ppk_ee_rate": 0.0},
-    {"index": 17, "name": "Liudmyla Savchenko", "job_title": "Specjalistka ds. księgowości", "department": "Biuro", "nationality": "UA", "birthday": "1987-03-13", "gender": "female", "wage": 7000.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 18, "name": "Szymon Jankowski", "job_title": "Inżynier mechanik", "department": "Biuro", "nationality": "PL", "birthday": "1988-11-26", "gender": "male", "wage": 8500.0, "date_start": "2025-01-01", "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 19, "name": "Aleksander Volkov", "job_title": "Dyrektor ds. Operacji", "department": "Zarząd", "nationality": "UA", "birthday": "1983-09-04", "gender": "male", "wage": 15000.0, "date_start": "2025-01-01", "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
-    {"index": 20, "name": "Marta Lewandowska", "job_title": "CKO (Dyrektor ds. Wiedzy i IT)", "department": "Zarząd", "nationality": "PL", "birthday": "1986-12-02", "gender": "female", "wage": 12000.0, "date_start": "2025-01-01", "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 1, "name": "Tomasz Kowalski", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1989-01-17", "gender": "male", "wage": 4806.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 2, "name": "Anna Wiśniewska", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1992-03-05", "gender": "female", "wage": 4806.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 3, "name": "Piotr Mazur", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1987-07-22", "gender": "male", "wage": 4806.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 4, "name": "Katarzyna Nowak", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1991-11-09", "gender": "female", "wage": 4806.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 5, "name": "Wojciech Zieliński", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1985-05-14", "gender": "male", "wage": 4806.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 6, "name": "Ewa Krawczyk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "PL", "birthday": "1994-02-28", "gender": "female", "wage": 4806.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 7, "name": "Oleksandr Kovalenko", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1990-06-19", "gender": "male", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 8, "name": "Nataliia Shevchenko", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1996-09-03", "gender": "female", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 9, "name": "Dmytro Melnyk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1988-12-11", "gender": "male", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 10, "name": "Yuliia Kravchuk", "job_title": "Pracownik produkcji", "department": "Produkcja", "nationality": "UA", "birthday": "1993-04-24", "gender": "female", "wage": 4806.0, "date_start": "2025-03-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 11, "name": "Mikołaj Szymański", "job_title": "Kierownik zmiany", "department": "Produkcja", "nationality": "PL", "birthday": "1984-08-16", "gender": "male", "wage": 7500.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 12, "name": "Paulina Dąbrowska", "job_title": "Kierownik zmiany", "department": "Produkcja", "nationality": "PL", "birthday": "1989-10-07", "gender": "female", "wage": 6500.0, "date_start": "2025-06-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 13, "name": "Kacper Wójcik", "job_title": "Laborant", "department": "Laboratorium", "nationality": "PL", "birthday": "1995-01-12", "gender": "male", "wage": 6000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 14, "name": "Michał Adamski", "job_title": "Inżynier procesu", "department": "Laboratorium", "nationality": "PL", "birthday": "1986-05-27", "gender": "male", "wage": 8000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 15, "name": "Natalia Ivanchuk", "job_title": "Magazynierka", "department": "Magazyn", "nationality": "UA", "birthday": "1998-02-18", "gender": "female", "wage": 4806.0, "date_start": "2025-04-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 16, "name": "Monika Brzeska", "job_title": "Administrator materiałowy", "department": "Magazyn", "nationality": "PL", "birthday": "1990-07-30", "gender": "female", "wage": 5500.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "opt_out", "ppk_ee_rate": 0.0},
+    {"index": 17, "name": "Liudmyla Savchenko", "job_title": "Specjalistka ds. księgowości", "department": "Biuro", "nationality": "UA", "birthday": "1987-03-13", "gender": "female", "wage": 7000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 18, "name": "Szymon Jankowski", "job_title": "Inżynier mechanik", "department": "Biuro", "nationality": "PL", "birthday": "1988-11-26", "gender": "male", "wage": 8500.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 19, "name": "Aleksander Volkov", "job_title": "Dyrektor ds. Operacji", "department": "Zarząd", "nationality": "UA", "birthday": "1983-09-04", "gender": "male", "wage": 15000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "standard", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 20, "name": "Marta Lewandowska", "job_title": "CKO (Dyrektor ds. Wiedzy i IT)", "department": "Zarząd", "nationality": "PL", "birthday": "1986-12-02", "gender": "female", "wage": 12000.0, "date_start": "2025-01-01", "contract_type": "o_prace", "is_student": False, "kup_type": "autorskie", "kup_autorskie_pct": 50.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 21, "name": "Jakub Wiśniewski", "job_title": "Student magazynu", "department": "Magazyn", "nationality": "PL", "birthday": "2003-05-11", "gender": "male", "wage": 4200.0, "date_start": "2025-07-01", "contract_type": "zlecenie", "is_student": True, "kup_type": "standard_20", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
+    {"index": 22, "name": "Oliwia Kowalska", "job_title": "Studentka biura", "department": "Biuro", "nationality": "PL", "birthday": "2001-09-18", "gender": "female", "wage": 4300.0, "date_start": "2025-09-01", "contract_type": "zlecenie", "is_student": True, "kup_type": "standard_20", "kup_autorskie_pct": 0.0, "ppk_participation": "default", "ppk_ee_rate": 2.0},
 ]
 
 PAYSLIP_ADJUSTMENTS = [
@@ -159,7 +161,10 @@ def ensure_reference_data(models, uid):
     calendar_ids = execute(models, uid, "resource.calendar", "search", [[]], {"limit": 1, "order": "id asc"})
     if not calendar_ids:
         raise RuntimeError("No resource calendar found.")
-    contract_type_id = ensure_named_record(models, uid, "hr.contract.type", "Umowa o pracę")
+    contract_type_ids = {
+        "o_prace": ensure_named_record(models, uid, "hr.contract.type", "Umowa o pracę"),
+        "zlecenie": ensure_named_record(models, uid, "hr.contract.type", "Umowa zlecenie"),
+    }
 
     country_rows = execute(
         models,
@@ -181,7 +186,7 @@ def ensure_reference_data(models, uid):
     return {
         "company_id": company_id,
         "calendar_id": calendar_ids[0],
-        "contract_type_id": contract_type_id,
+        "contract_type_ids": contract_type_ids,
         "country_ids": country_ids,
         "department_ids": department_ids,
     }
@@ -216,6 +221,7 @@ def create_employees(models, uid, refs):
                 "gender": employee["gender"],
                 "ssnid": fake_pesel(employee["birthday"], employee["index"]),
                 "company_id": refs["company_id"],
+                "is_student": employee["is_student"],
             }],
         )
         employee_ids[employee["name"]] = record_id
@@ -236,7 +242,7 @@ def create_contracts(models, uid, refs, employee_ids):
                 "employee_id": employee_ids[employee["name"]],
                 "company_id": refs["company_id"],
                 "resource_calendar_id": refs["calendar_id"],
-                "contract_type_id": refs["contract_type_id"],
+                "contract_type_id": refs["contract_type_ids"][employee["contract_type"]],
                 "wage": employee["wage"],
                 "date_start": employee["date_start"],
                 "state": "open",
@@ -437,6 +443,20 @@ def verification_snapshot(models, uid):
     )
     if employee_16:
         checks.append(f"Monika Brzeska 2025-01: ppk_ee={employee_16[0]['ppk_ee']:.2f}, net={employee_16[0]['net']:.2f}")
+
+    for student_name in ("Jakub Wiśniewski", "Oliwia Kowalska"):
+        student_row = execute(
+            models,
+            uid,
+            "pl.payroll.payslip",
+            "search_read",
+            [[("employee_id.name", "=", student_name)]],
+            {"fields": ["date_from", "zus_total_ee", "health", "net"], "order": "date_from asc", "limit": 1},
+        )
+        if student_row:
+            checks.append(
+                f"{student_name} {student_row[0]['date_from']}: zus_total_ee={student_row[0]['zus_total_ee']:.2f}, health={student_row[0]['health']:.2f}, net={student_row[0]['net']:.2f}"
+            )
 
     count = execute(models, uid, "pl.payroll.payslip", "search_count", [[]])
     checks.append(f"Total payslips in DB: {count}")
