@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function model="pl.payroll.translation.loader" name="apply_en_us_translations"/>
+</odoo>

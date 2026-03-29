@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <form string="Generowanie PIT-11">
                 <group>
-                    <field name="year"/>
+                    <field name="year" options="{'enable_formatting': false, 'type': 'number'}"/>
                 </group>
                 <footer>
                     <button name="action_generate" string="Generuj PIT-11" type="object" class="btn-primary"/>

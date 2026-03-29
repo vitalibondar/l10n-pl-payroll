@@ -7,3 +7,4 @@ from . import pl_payroll_creative_report
 from . import pl_payroll_pit11
 from . import pl_payroll_zus_dra
 from . import pl_payroll_zus_dra_line
+from . import pl_payroll_translation_loader
