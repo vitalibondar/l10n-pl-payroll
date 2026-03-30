@@ -6,8 +6,8 @@
         <field name="arch" type="xml">
             <form string="Generowanie ZUS DRA">
                 <group>
-                    <field name="year"/>
-                    <field name="month"/>
+                    <field name="year" options="{'enable_formatting': false, 'type': 'number'}"/>
+                    <field name="month" options="{'enable_formatting': false, 'type': 'number'}"/>
                 </group>
                 <footer>
                     <button name="action_generate" string="Generuj DRA" type="object" class="btn-primary"/>

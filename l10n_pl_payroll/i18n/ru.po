@@ -1,545 +1,2432 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_pl_payroll
+# 	* l10n_pl_payroll
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-29 00:00+0000\n"
+"POT-Creation-Date: 2026-03-29 19:39+0000\n"
 "PO-Revision-Date: 2026-03-29 00:00+0000\n"
 "Last-Translator: Codex\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #. module: l10n_pl_payroll
-msgid "Płace PL"
-msgstr "Польская зарплата (Płace PL)"
+#: model:ir.actions.report,print_report_name:l10n_pl_payroll.action_report_pl_payroll_pit11
+msgid ""
+"'Informacja PIT-11 - %s - %s' % ((object.employee_id.name or 'pracownik'), "
+"object.year)"
+msgstr ""
 
-
-#. module: l10n_pl_payroll
-msgid "Listy płac"
-msgstr "Расчетные ведомости (listy płac)"
-
-
-#. module: l10n_pl_payroll
-msgid "Lista płac"
-msgstr "Расчетная ведомость (lista płac)"
-
-
-#. module: l10n_pl_payroll
-msgid "Generowanie list płac"
-msgstr "Создание расчетных ведомостей (generowanie list płac)"
-
-
-#. module: l10n_pl_payroll
-msgid "Raporty twórcze"
-msgstr "Отчеты о творческой работе (raporty twórcze)"
-
-
-#. module: l10n_pl_payroll
-msgid "Deklaracje i raporty"
-msgstr "Декларации и отчеты (deklaracje i raporty)"
-
-
-#. module: l10n_pl_payroll
-msgid "Konfiguracja"
-msgstr "Настройки (konfiguracja)"
-
-
-#. module: l10n_pl_payroll
-msgid "Parametry płacowe"
-msgstr "Параметры зарплаты (parametry płacowe)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dane podstawowe"
-msgstr "Основные данные (dane podstawowe)"
-
-
-#. module: l10n_pl_payroll
-msgid "Rozliczenie pracownika"
-msgstr "Расчет работника (rozliczenie pracownika)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wynagrodzenie brutto"
-msgstr "Зарплата брутто (wynagrodzenie brutto)"
-
-
-#. module: l10n_pl_payroll
-msgid "Chorobowe i nieobecności"
-msgstr "Больничные и отсутствия (chorobowe i nieobecności)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składki ZUS pracownika"
-msgstr "Взносы ZUS работника (składki ZUS pracownika)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka zdrowotna"
-msgstr "Взнос на медицинское страхование (składka zdrowotna)"
-
-
-#. module: l10n_pl_payroll
-msgid "Koszty uzyskania przychodu"
-msgstr "Расходы на получение дохода (koszty uzyskania przychodu)"
-
-
-#. module: l10n_pl_payroll
-msgid "Zaliczka na podatek dochodowy"
-msgstr "Аванс подоходного налога (zaliczka na podatek dochodowy)"
-
-
-#. module: l10n_pl_payroll
-msgid "PPK"
-msgstr "PPK"
-
-
-#. module: l10n_pl_payroll
-msgid "Wynagrodzenie netto"
-msgstr "Зарплата нетто (wynagrodzenie netto)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składki pracodawcy"
-msgstr "Расходы работодателя (składki pracodawcy)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składki ZUS pracodawcy"
-msgstr "Взносы ZUS работодателя (składki ZUS pracodawcy)"
-
-
-#. module: l10n_pl_payroll
-msgid "PPK i koszt zatrudnienia"
-msgstr "PPK и стоимость трудоустройства (PPK i koszt zatrudnienia)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składniki dodatkowe"
-msgstr "Дополнительные элементы зарплаты (składniki dodatkowe)"
-
-
-#. module: l10n_pl_payroll
-msgid "Raport twórczy"
-msgstr "Отчет о творческой работе (raport twórczy)"
-
-
-#. module: l10n_pl_payroll
-msgid "Uwagi"
-msgstr "Примечания (uwagi)"
-
-
-#. module: l10n_pl_payroll
-msgid "Oblicz"
-msgstr "Рассчитать (oblicz)"
-
-
-#. module: l10n_pl_payroll
-msgid "Zatwierdź"
-msgstr "Подтвердить (zatwierdź)"
-
-
-#. module: l10n_pl_payroll
-msgid "Anuluj"
-msgstr "Отменить (anuluj)"
-
-
-#. module: l10n_pl_payroll
-msgid "Generuj"
-msgstr "Сформировать (generuj)"
-
-
-#. module: l10n_pl_payroll
-msgid "Generuj PIT-11"
-msgstr "Сформировать PIT-11"
-
-
-#. module: l10n_pl_payroll
-msgid "Generuj DRA"
-msgstr "Сформировать DRA"
-
-
-#. module: l10n_pl_payroll
-msgid "Przelicz"
-msgstr "Пересчитать (przelicz)"
-
-
-
-#. module: l10n_pl_payroll
-msgid "Udział pracy twórczej (%)"
-msgstr "Доля творческой работы (%) (udział pracy twórczej)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wariant PPK"
-msgstr "Вариант PPK (wariant PPK)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wpłata pracownika do PPK (%)"
-msgstr "Взнос работника в PPK (%) (wpłata pracownika do PPK)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wpłata dodatkowa pracownika do PPK (%)"
-msgstr "Дополнительный взнос работника в PPK (%) (wpłata dodatkowa pracownika do PPK)"
-
-
-#. module: l10n_pl_payroll
-msgid "Złożono PIT-2"
-msgstr "Подан PIT-2 (złożono PIT-2)"
-
-
-#. module: l10n_pl_payroll
-msgid "Ulga podatkowa"
-msgstr "Налоговая льгота (ulga podatkowa)"
-
-
-#. module: l10n_pl_payroll
-msgid "Kod tytułu ubezpieczenia ZUS"
-msgstr "Код основания страхования ZUS (kod tytułu ubezpieczenia ZUS)"
-
-
-#. module: l10n_pl_payroll
-msgid "Status ucznia / studenta"
-msgstr "Статус ученика / студента (status ucznia / studenta)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wariant KUP"
-msgstr "Вариант KUP (wariant KUP)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dni choroby 80%"
-msgstr "Дни болезни 80% (dni choroby 80%)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dni choroby 100%"
-msgstr "Дни болезни 100% (dni choroby 100%)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dni urlopu"
-msgstr "Дни отпуска (dni urlopu)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wynagrodzenie urlopowe"
-msgstr "Оплата отпуска (wynagrodzenie urlopowe)"
-
-
 #. module: l10n_pl_payroll
-msgid "Wynagrodzenie chorobowe"
-msgstr "Оплата больничного (wynagrodzenie chorobowe)"
+#: model:ir.actions.report,print_report_name:l10n_pl_payroll.action_report_pl_payroll_payslip
+msgid ""
+"'Pasek wynagrodzeń - %s - %s' % ((object.employee_id.name or 'pracownik'), "
+"str(object.date_from or '')[:7])"
+msgstr ""
 
-
-#. module: l10n_pl_payroll
-msgid "Podstawa wynagrodzenia chorobowego"
-msgstr "База для оплаты больничного (podstawa wynagrodzenia chorobowego)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dni robocze w miesiącu"
-msgstr "Рабочие дни в месяце (dni robocze w miesiącu)"
-
-
-#. module: l10n_pl_payroll
-msgid "Nadgodziny 150% (godz.)"
-msgstr "Сверхурочные 150% (ч.) (nadgodziny 150%)"
-
-
-#. module: l10n_pl_payroll
-msgid "Nadgodziny 200% (godz.)"
-msgstr "Сверхурочные 200% (ч.) (nadgodziny 200%)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dodatek za nadgodziny"
-msgstr "Доплата за сверхурочные (dodatek za nadgodziny)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka emerytalna (pracownik)"
-msgstr "Пенсионный взнос, работник (składka emerytalna)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka rentowa (pracownik)"
-msgstr "Взнос по страхованию нетрудоспособности, работник (składka rentowa)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka chorobowa (pracownik)"
-msgstr "Взнос по больничному страхованию, работник (składka chorobowa)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składki ZUS pracownika razem"
-msgstr "Итого взносы ZUS работника (składki ZUS pracownika razem)"
-
-
-#. module: l10n_pl_payroll
-msgid "Podstawa składki zdrowotnej"
-msgstr "База медицинского взноса (podstawa składki zdrowotnej)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dochód do opodatkowania"
-msgstr "Налогооблагаемый доход (dochód do opodatkowania)"
-
-
-#. module: l10n_pl_payroll
-msgid "Naliczona zaliczka PIT"
-msgstr "Рассчитанный аванс PIT (naliczona zaliczka PIT)"
-
-
-#. module: l10n_pl_payroll
-msgid "Kwota zmniejszająca podatek"
-msgstr "Сумма, уменьшающая налог (kwota zmniejszająca podatek)"
-
-
-#. module: l10n_pl_payroll
-msgid "Zaliczka PIT do urzędu"
-msgstr "Аванс PIT к уплате в налоговый орган (zaliczka PIT do urzędu)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wpłata PPK pracownika"
-msgstr "Взнос работника в PPK (wpłata PPK pracownika)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka emerytalna (pracodawca)"
-msgstr "Пенсионный взнос, работодатель (składka emerytalna)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka rentowa (pracodawca)"
-msgstr "Взнос по страхованию нетрудоспособности, работодатель (składka rentowa)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka wypadkowa"
-msgstr "Взнос от несчастных случаев (składka wypadkowa)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka na Fundusz Pracy"
-msgstr "Взнос в Фонд труда (składka na Fundusz Pracy)"
-
-
-#. module: l10n_pl_payroll
-msgid "Składka na FGŚP"
-msgstr "Взнос в FGŚP (składka na FGŚP)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wpłata PPK pracodawcy"
-msgstr "Взнос работодателя в PPK (wpłata PPK pracodawcy)"
-
-
-#. module: l10n_pl_payroll
-msgid "Łączny koszt pracodawcy"
-msgstr "Совокупная стоимость работодателя (łączny koszt pracodawcy)"
-
-
-#. module: l10n_pl_payroll
-msgid "Zatwierdzony raport twórczy"
-msgstr "Утвержденный отчет о творческой работе (zatwierdzony raport twórczy)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wymaga raportu twórczego"
-msgstr "Требуется отчет о творческой работе (wymaga raportu twórczego)"
-
-
-#. module: l10n_pl_payroll
-msgid "Brakuje raportu twórczego"
-msgstr "Отчет о творческой работе отсутствует (brakuje raportu twórczego)"
-
-
-#. module: l10n_pl_payroll
-msgid "Wymiar etatu"
-msgstr "Доля ставки (wymiar etatu)"
-
-
-#. module: l10n_pl_payroll
-msgid "Poniżej minimalnego wynagrodzenia"
-msgstr "Ниже минимальной зарплаты (poniżej minimalnego wynagrodzenia)"
-
-
-#. module: l10n_pl_payroll
-msgid "Dni choroby od początku roku"
-msgstr "Дни болезни с начала года (dni choroby od początku roku)"
-
-
-#. module: l10n_pl_payroll
-msgid "Uwagi do listy płac"
-msgstr "Примечания к расчетной ведомости (uwagi do listy płac)"
-
-
-#. module: l10n_pl_payroll
-msgid "PIT-11"
-msgstr "PIT-11"
-
-
-#. module: l10n_pl_payroll
-msgid "ZUS DRA"
-msgstr "ZUS DRA"
-
-
-#. module: l10n_pl_payroll
-msgid "Generowanie PIT-11"
-msgstr "Формирование PIT-11 (generowanie PIT-11)"
-
-
-#. module: l10n_pl_payroll
-msgid "Generowanie deklaracji ZUS DRA"
-msgstr "Формирование декларации ZUS DRA (generowanie deklaracji ZUS DRA)"
-
-
-#. module: l10n_pl_payroll
-msgid "Deklaracja ZUS DRA"
-msgstr "Декларация ZUS DRA (deklaracja ZUS DRA)"
-
-
-#. module: l10n_pl_payroll
-msgid "Deklaracje ZUS DRA"
-msgstr "Декларации ZUS DRA (deklaracje ZUS DRA)"
-
-
-#. module: l10n_pl_payroll
-msgid "Informacja PIT-11"
-msgstr "Информация PIT-11 (informacja PIT-11)"
-
-
-#. module: l10n_pl_payroll
-msgid "Informacje PIT-11"
-msgstr "Записи PIT-11 (informacje PIT-11)"
-
-
-#. module: l10n_pl_payroll
-msgid "Parametr płacowy"
-msgstr "Параметр зарплаты (parametr płacowy)"
-
-
 #. module: l10n_pl_payroll
-msgid "Raport pracy twórczej"
-msgstr "Отчет о творческой работе (raport pracy twórczej)"
+#: model:ir.actions.report,print_report_name:l10n_pl_payroll.action_report_pl_payroll_zus_dra
+msgid ""
+"'ZUS DRA - %s-%02d - %s' % (object.year, object.month, "
+"object.company_id.name or 'firma')"
+msgstr ""
 
-
-#. module: l10n_pl_payroll
-msgid "Pozycja listy płac"
-msgstr "Строка расчетной ведомости (pozycja listy płac)"
-
-
-#. module: l10n_pl_payroll
-msgid "Pozycja deklaracji ZUS DRA"
-msgstr "Строка декларации ZUS DRA (pozycja deklaracji ZUS DRA)"
-
-
-#. module: l10n_pl_payroll
-msgid "Informacja roczna PIT-11"
-msgstr "Годовая информация PIT-11 (informacja roczna PIT-11)"
-
-
 #. module: l10n_pl_payroll
-msgid "Szkic"
-msgstr "Черновик (szkic)"
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "<span class=\"pl-payslip-badge\">Przelew bankowy</span>"
+msgstr ""
 
-
 #. module: l10n_pl_payroll
-msgid "Obliczona"
-msgstr "Рассчитана (obliczona)"
-
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "<span class=\"pl-payslip-strong\">Data wygenerowania:</span>"
+msgstr ""
 
 #. module: l10n_pl_payroll
-msgid "Zatwierdzona"
-msgstr "Подтверждена (zatwierdzona)"
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "<span class=\"pl-payslip-strong\">Symbol dokumentu:</span>"
+msgstr ""
 
-
 #. module: l10n_pl_payroll
-msgid "Anulowana"
-msgstr "Отменена (anulowana)"
-
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "<span>, </span>"
+msgstr ""
 
 #. module: l10n_pl_payroll
-msgid "Zatwierdzony"
-msgstr "Подтвержден (zatwierdzony)"
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid ""
+"<strong>Uwaga:</strong> Brakuje zatwierdzonego raportu twórczego dla tej "
+"listy płac.\n"
+"                        Bez niego nie należy rozliczać 50% kosztów "
+"autorskich."
+msgstr ""
 
-
 #. module: l10n_pl_payroll
-msgid "Przekazany"
-msgstr "Передан (przekazany)"
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid ""
+"<strong>Uwaga:</strong> Wynagrodzenie brutto jest niższe od proporcjonalnego "
+"minimalnego wynagrodzenia\n"
+"                        dla tego wymiaru etatu."
+msgstr ""
 
-
 #. module: l10n_pl_payroll
-msgid "Odrzucony"
-msgstr "Отклонен (odrzucony)"
-
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Adres: Brak danych"
+msgstr ""
 
 #. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
 msgid "Akceptacja"
 msgstr "Согласование (akceptacja)"
 
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__contract_id
+msgid "Aktywna umowa, z której pobierane są stawka, KUP, PPK i kod ZUS."
+msgstr ""
 
 #. module: l10n_pl_payroll
-msgid "Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To ustawienie wpływa na podstawę opodatkowania PIT."
-msgstr "Выбери способ расчета расходов на получение дохода (koszty uzyskania przychodu) для этого договора. Эта настройка влияет на базу PIT."
-
-
-#. module: l10n_pl_payroll
-msgid "Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy twórczej."
-msgstr "Процент зарплаты, отнесенный к творческой работе (praca twórcza). Для этой части применяется 50% авторских KUP. Это не ставка KUP, а доля творческой работы."
-
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_payslip__state__cancelled
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+msgid "Anulowana"
+msgstr "Отменена (anulowana)"
 
 #. module: l10n_pl_payroll
-msgid "Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować miesięczną kwotę zmniejszającą podatek."
-msgstr "Если работник подал PIT-2, при расчете аванса PIT можно применить ежемесячную сумму, уменьшающую налог (kwota zmniejszająca podatek)."
-
-
-#. module: l10n_pl_payroll
-msgid "Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki status może zwalniać z naliczania składek ZUS i zdrowotnej."
-msgstr "Отметь для человека, который учится и не достиг 26 лет. Для договора поручения (umowa zlecenia) такой статус может освобождать от начисления взносов ZUS и медицинского взноса."
-
-
-#. module: l10n_pl_payroll
-msgid "Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
-msgstr "Общая сумма брутто (wynagrodzenie brutto) после добавления доплат брутто и вычета удержаний брутто."
-
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_batch_compute_form
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_batch_wizard_form
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
+msgid "Anuluj"
+msgstr "Отменить (anuluj)"
 
 #. module: l10n_pl_payroll
-msgid "Składka emerytalna potrącana z wynagrodzenia pracownika."
-msgstr "Пенсионный взнос (składka emerytalna), удержанный из зарплаты работника."
-
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+msgid "Bieżący miesiąc"
+msgstr ""
 
 #. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+msgid "Bieżący rok"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__bonus_gross_total
+msgid "Bonus Gross Total"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ulga_type__none
+msgid "Brak"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_payslip.py:0
+msgid "Brakuje parametru płacowego: %s"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__creative_report_missing
+msgid "Brakuje raportu twórczego"
+msgstr "Отчет о творческой работе отсутствует (brakuje raportu twórczego)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Brutto plus składki i wpłaty finansowane przez firmę"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Brutto pomniejszone o Twoje składki społeczne"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Chorobowe"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Chorobowe i nieobecności"
+msgstr "Больничные и отсутствия (chorobowe i nieobecności)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Co obniża wypłatę i dlaczego"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_hr_contract
+msgid "Contract"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__create_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__create_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__name
+msgid "Czytelna nazwa parametru widoczna dla księgowej."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Dane podstawowe"
+msgstr "Основные данные (dane podstawowe)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+msgid "Dane raportu"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__date_to
+msgid "Data do"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_parameter.py:0
+msgid "Data do nie może być wcześniejsza niż data od."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__date_from
+msgid "Data od"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Data wygenerowania:"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__accepted_date
+msgid "Data zatwierdzenia"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__accepted_date
+msgid "Data zatwierdzenia raportu przez dział płac albo kadr."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/wizard/pl_payroll_batch_compute.py:0
+#: code:addons/l10n_pl_payroll/wizard/pl_payroll_batch_wizard.py:0
+msgid "Data „Okres od” nie może być późniejsza niż „Okres do”."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__deduction_gross_total
+msgid "Deduction Gross Total"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__deduction_net_total
+msgid "Deduction Net Total"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.report,name:l10n_pl_payroll.action_report_pl_payroll_zus_dra
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__dra_id
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_form
+msgid "Deklaracja ZUS DRA"
+msgstr "Декларация ZUS DRA (deklaracja ZUS DRA)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.constraint,message:l10n_pl_payroll.constraint_pl_payroll_zus_dra_pl_payroll_zus_dra_company_year_month_unique
+msgid "Deklaracja ZUS DRA już istnieje dla tej firmy i okresu."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_zus_dra
+msgid "Deklaracja miesięczna ZUS DRA"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_zus_dra
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_tree
+msgid "Deklaracje ZUS DRA"
+msgstr "Декларации ZUS DRA (deklaracje ZUS DRA)"
+
+#. module: l10n_pl_payroll
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_reports
+msgid "Deklaracje i raporty"
+msgstr "Декларации и отчеты (deklaracje i raporty)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__display_name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__sick_days_100
+msgid "Dni choroby 100%"
+msgstr "Дни болезни 100% (dni choroby 100%)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__sick_days
+msgid "Dni choroby 80%"
+msgstr "Дни болезни 80% (dni choroby 80%)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__ytd_sick_days
+msgid "Dni choroby od początku roku"
+msgstr "Дни болезни с начала года (dni choroby od początku roku)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__working_days_in_month
+msgid "Dni robocze w miesiącu"
+msgstr "Рабочие дни в месяце (dni robocze w miesiącu)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__vacation_days
+msgid "Dni urlopu"
+msgstr "Дни отпуска (dni urlopu)"
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_creative_report.py:0
+msgid "Do szkicu można cofnąć tylko raport poza statusem „Szkic”."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Do wypłaty"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__ppk_additional
+msgid "Dobrowolna dodatkowa wpłata pracownika do PPK ponad wpłatę podstawową."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Dobrowolny benefit finansowany ponad Twoje wynagrodzenie netto"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__taxable_income
+msgid "Dochód do opodatkowania"
+msgstr "Налогооблагаемый доход (dochód do opodatkowania)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__total_income
+msgid "Dochód do opodatkowania po kosztach uzyskania przychodu."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid ""
+"Dochód po odjęciu kosztów uzyskania przychodu i doliczeniu PPK pracodawcy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__taxable_income
+msgid "Dochód po składkach i kosztach uzyskania przychodu, który podlega PIT."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__total_income
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Dochód łącznie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_payslip_line__category__bonus_gross
+msgid "Dodatek / premia brutto"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__overtime_amount
+msgid "Dodatek za nadgodziny"
+msgstr "Доплата за сверхурочные (dodatek za nadgodziny)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Dodatek za nadgodziny zwiększa brutto przed naliczeniem ZUS, PIT i PPK."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__payslip_line_ids
+msgid "Dodatki, premie i potrącenia uwzględnione na liście płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__notes
+msgid "Dodatkowe notatki księgowe albo kadrowe do tej listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Dodatkowe uwagi księgowe..."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Dokument elektroniczny, podpis nie jest wymagany."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Dopłata pracodawcy do PPK"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__note
+msgid "Dowolne objaśnienia, źródło stawki albo notatka o zmianie przepisów."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Dział"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "EE+ER"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Emerytalne"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Emerytalne pracodawcy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_hr_employee
+msgid "Employee"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "FGŚP"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__company_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__company_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__company_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__company_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__company_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__company_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+msgid "Firma"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__company_id
+msgid "Firma występująca jako płatnik na informacji PIT-11."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_wizard__company_id
+msgid "Firma, dla której mają zostać wygenerowane listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__company_id
+msgid "Firma, dla której przygotowano deklarację rozliczeniową ZUS DRA."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__company_id
+msgid "Firma, w której rozliczana jest lista płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__company_id
+msgid "Firma, w której rozliczany jest raport pracy twórczej."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Fundusz Pracy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_pit11_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
+msgid "Generowanie PIT-11"
+msgstr "Формирование PIT-11 (generowanie PIT-11)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
+msgid "Generowanie ZUS DRA"
+msgstr "Формирование ZUS DRA"
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_zus_dra_wizard
+msgid "Generowanie deklaracji ZUS DRA"
+msgstr "Формирование декларации ZUS DRA (generowanie deklaracji ZUS DRA)"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_batch_wizard
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_batch_wizard
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_batch_compute
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_batch_wizard_form
+msgid "Generowanie list płac"
+msgstr "Создание расчетных ведомостей (generowanie list płac)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_batch_wizard_form
+msgid "Generuj"
+msgstr "Сформировать (generuj)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
+msgid "Generuj DRA"
+msgstr "Сформировать DRA"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_pit11_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
+msgid "Generuj PIT-11"
+msgstr "Сформировать PIT-11"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_zus_dra_wizard
+msgid "Generuj ZUS DRA"
+msgstr "Сформировать ZUS DRA"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+msgid "Grupuj wg"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11_wizard__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_form
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_form
+msgid "Identyfikacja"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Ile kosztuje Twoje zatrudnienie dla pracodawcy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__payslip_count
+msgid "Ile list płac weszło do rozliczenia PIT-11."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_form
+msgid "Informacja PIT-11"
+msgstr "Информация PIT-11 (informacja PIT-11)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Informacja roczna"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_pit11
+msgid "Informacja roczna PIT-11"
+msgstr "Годовая информация PIT-11 (informacja roczna PIT-11)"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_pit11
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_tree
+msgid "Informacje PIT-11"
+msgstr "Записи PIT-11 (informacje PIT-11)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__company_id
+msgid ""
+"Jeżeli pole jest puste, parametr obowiązuje globalnie dla wszystkich firm."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__pit2_filed
+msgid ""
+"Jeżeli pracownik złożył PIT-2, przy obliczaniu zaliczki PIT można zastosować "
+"miesięczną kwotę zmniejszającą podatek."
+msgstr ""
+"Если работник подал PIT-2, при расчете аванса PIT можно применить "
+"ежемесячную сумму, уменьшающую налог (kwota zmniejszająca podatek)."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_wizard__auto_compute
+msgid "Jeżeli zaznaczone, system od razu przeliczy nowo utworzone listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__kup_type__standard_20
+msgid "KUP 20% dla umów cywilnoprawnych"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__kup_type__autorskie
+msgid "KUP autorskie 50%"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__total_kup
+msgid "KUP łącznie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:res.groups,name:l10n_pl_payroll.group_payroll_manager
+msgid "Kierownik płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__code
+msgid "Kod parametru"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__zus_code
+msgid "Kod tytułu ubezpieczenia ZUS"
+msgstr "Код основания страхования ZUS (kod tytułu ubezpieczenia ZUS)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__zus_code
+msgid ""
+"Kod używany w dokumentach ZUS do identyfikacji rodzaju ubezpieczenia i "
+"statusu pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_configuration
+msgid "Konfiguracja"
+msgstr "Настройки (konfiguracja)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__kup_type
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__kup_amount
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Koszty uzyskania przychodu"
+msgstr "Расходы на получение дохода (koszty uzyskania przychodu)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__kup_amount
 msgid "Koszty uzyskania przychodu uwzględnione przy obliczeniu zaliczki PIT."
-msgstr "Расходы на получение дохода (koszty uzyskania przychodu), учтенные при расчете аванса PIT."
-
+msgstr ""
+"Расходы на получение дохода (koszty uzyskania przychodu), учтенные при "
+"расчете аванса PIT."
 
 #. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__pit_due
+msgid ""
+"Końcowa zaliczka PIT do odprowadzenia za ten miesiąc po zastosowaniu ulg i "
+"zaokrągleń."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip_line__note
+msgid "Krótka adnotacja wyjaśniająca, skąd pochodzi ta pozycja."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__amount
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_parameter__value_type__amount
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Kwota"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__net
+msgid "Kwota do wypłaty pracownikowi po wszystkich potrąceniach."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip_line__amount
+msgid "Kwota dodatku albo potrącenia w złotych."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__pit_advance
+msgid ""
+"Kwota podatku wyliczona według skali przed końcowym rozliczeniem zaliczki za "
+"miesiąc."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_payslip_line.py:0
+msgid "Kwota pozycji listy płac musi być większa od zera."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Kwota wyliczona przed zastosowaniem PIT-2"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__sick_leave_amount
+msgid "Kwota wynagrodzenia chorobowego naliczona za dni choroby w tym okresie."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__vacation_pay
+msgid "Kwota wynagrodzenia za urlop obliczona z podstawy urlopowej."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__pit_reducing
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Kwota zmniejszająca podatek"
+msgstr "Сумма, уменьшающая налог (kwota zmniejszająca podatek)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Kwota, którą pracodawca odprowadzi do urzędu skarbowego"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__write_uid
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__write_date
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__sick_days_100
+msgid ""
+"Liczba dni choroby płatnych 100% podstawy, np. w ciąży albo po wypadku przy "
+"pracy."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__working_days_in_month
+msgid ""
+"Liczba dni roboczych w miesiącu używana do proporcji. Jeżeli pole zostanie "
+"puste, system traktuje miesiąc jak pełny."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__vacation_days
+msgid "Liczba dni urlopu wypoczynkowego rozliczana na tej liście płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__sick_days
+msgid "Liczba dni wynagrodzenia chorobowego płatnego w wysokości 80% podstawy."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Liczba godzin"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__overtime_hours_200
+msgid "Liczba godzin nadliczbowych rozliczanych z dodatkiem 100%."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__overtime_hours_150
+msgid "Liczba godzin nadliczbowych rozliczanych z dodatkiem 50%."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__payslip_count
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__payslip_count
+msgid "Liczba list płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Liczba list płac ujętych w zestawieniu:"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__payslip_count
+msgid "Liczba potwierdzonych list płac wykorzystanych do deklaracji."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__employee_count
+msgid "Liczba pracowników"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__employee_count
+msgid "Liczba pracowników ujętych w deklaracji za dany okres."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Liczba pracowników:"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__payslip_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__payslip_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__payslip_id
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Lista płac"
+msgstr "Расчетная ведомость (lista płac)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_payslip
+msgid "Lista płac PL"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__payslip_id
+msgid "Lista płac, do której przypięto zatwierdzony raport twórczy."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/wizard/pl_payroll_batch_compute.py:0
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_payslip
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_payslips
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_tree
+msgid "Listy płac"
+msgstr "Расчетные ведомости (listy płac)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Logo firmy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+msgid "Miesiąc"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__month
+msgid "Miesiąc deklaracji ZUS DRA."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__date
+msgid "Miesiąc raportu"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__month
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__month
+msgid "Miesiąc rozliczenia"
+msgstr "Месяц расчёта (miesiąc rozliczenia)"
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/wizard/pl_payroll_zus_dra_wizard.py:0
+msgid "Miesiąc rozliczenia musi mieścić się w zakresie od 1 do 12."
+msgstr "Месяц расчёта (miesiąc rozliczenia) должен быть в диапазоне от 1 до 12."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__month
+msgid "Miesiąc, za który ma zostać przygotowana deklaracja ZUS DRA."
+msgstr "Месяц, за который нужно подготовить декларацию ZUS DRA."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__pit_reducing
 msgid "Miesięczna kwota obniżająca zaliczkę PIT po złożeniu PIT-2."
 msgstr "Ежемесячная сумма, уменьшающая аванс PIT после подачи PIT-2."
 
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Miesięczny dokument płacowy"
+msgstr ""
 
 #. module: l10n_pl_payroll
-msgid "Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do PIT."
-msgstr "Взнос PPK, финансируемый работодателем (wpłata PPK pracodawcy). Для работника это налогооблагаемый доход для PIT."
-
-
-#. module: l10n_pl_payroll
-msgid "Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale nie ma jeszcze podpiętego zatwierdzonego raportu."
-msgstr "Поле-предупреждение. Показывает, что расчетная ведомость использует творческую работу (praca twórcza), но утвержденный отчет еще не прикреплен."
-
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "NIP:"
+msgstr ""
 
 #. module: l10n_pl_payroll
-msgid "Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."
-msgstr "Поле-предупреждение. Показывает, что брутто в этой расчетной ведомости ниже минимальной зарплаты, рассчитанной для данной доли ставки."
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Nadgodziny"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Nadgodziny 150%"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__overtime_hours_150
+msgid "Nadgodziny 150% (godz.)"
+msgstr "Сверхурочные 150% (ч.) (nadgodziny 150%)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Nadgodziny 200%"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__overtime_hours_200
+msgid "Nadgodziny 200% (godz.)"
+msgstr "Сверхурочные 200% (ч.) (nadgodziny 200%)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Najważniejsza kwota"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__pit_advance
+msgid "Naliczona zaliczka PIT"
+msgstr "Рассчитанный аванс PIT (naliczona zaliczka PIT)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Narastająco w roku"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__name
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__name
+msgid "Nazwa"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip_line__name
+msgid "Nazwa dodatku, premii albo potrącenia widoczna na liście płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__name
+msgid "Nazwa parametru"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__name
+msgid "Nazwa składnika"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/wizard/pl_payroll_zus_dra_wizard.py:0
+msgid "Nie znaleziono zatwierdzonych list płac za okres %02d/%s."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/wizard/pl_payroll_pit11_wizard.py:0
+msgid "Nie znaleziono zatwierdzonych list płac za rok %s."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/wizard/pl_payroll_batch_wizard.py:0
+msgid "Nowo utworzone listy płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Oblicz"
+msgstr "Рассчитать (oblicz)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__auto_compute
+msgid "Oblicz po utworzeniu"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_payslip__state__computed
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+msgid "Obliczona"
+msgstr "Рассчитана (obliczona)"
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_creative_report.py:0
+msgid "Odrzucić można tylko raport przekazany do akceptacji."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_creative_report__state__rejected
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+msgid "Odrzucony"
+msgstr "Отклонен (odrzucony)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+msgid "Odrzuć"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Okres"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__date_to
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__date_to
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__date_to
+msgid "Okres do"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_compute__date_from
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__date_from
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__date_from
+msgid "Okres od"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_parameter.py:0
+msgid "Okresy parametrów nie mogą się nakładać dla tego samego kodu i firmy."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__value_type
+msgid "Określa, czy parametr przechowuje procent czy kwotę."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__ppk_participation
+msgid ""
+"Określa, czy pracownik uczestniczy w PPK i według jakiego wariantu naliczać "
+"wpłaty po stronie pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__description
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+msgid "Opis pracy twórczej"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+msgid "Opisz pracę twórczą wykonaną w tym miesiącu..."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__description
+msgid ""
+"Opisz utwory, projekty albo inne rezultaty pracy twórczej wykonane w danym "
+"miesiącu. Ten opis stanowi dowód dla zastosowania kosztów autorskich."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__date_to
+msgid ""
+"Ostatni dzień obowiązywania parametru. Puste pole oznacza brak końca okresu."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_wizard__date_to
+msgid "Ostatni dzień okresu list płac, który ma zostać wygenerowany."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__date_to
+msgid "Ostatni dzień okresu rozliczeniowego listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_compute__date_to
+msgid "Ostatni dzień okresu, dla którego mają zostać przeliczone listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "PASEK WYNAGRODZEŃ"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "PESEL"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "PESEL:"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "PIT do pobrania w tym miesiącu"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "PIT pobrany od początku roku"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.report,name:l10n_pl_payroll.action_report_pl_payroll_pit11
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_pit11
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "PIT-11"
+msgstr "PIT-11"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.constraint,message:l10n_pl_payroll.constraint_pl_payroll_pit11_pl_payroll_pit11_employee_company_year_unique
+msgid "PIT-11 już istnieje dla tego pracownika, firmy i roku."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "PIT-11 za"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "PIT-2 pomniejsza miesięczną zaliczkę"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "PPK"
+msgstr "PPK"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_hr_contract_form_inherit_pl_payroll
+msgid "PPK i ZUS"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "PPK i koszt zatrudnienia"
+msgstr "PPK и стоимость трудоустройства (PPK i koszt zatrudnienia)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ppk_participation__reduced
+msgid "PPK obniżone"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "PPK pracodawcy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "PPK pracodawcy jako przychód"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ppk_participation__default
+msgid "PPK standard"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ppk_participation__additional
+msgid "PPK z wpłatą dodatkową"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_payslip.py:0
+msgid "Parametr STANDARD_MONTHLY_HOURS musi mieć wartość większą od zera."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_parameter_form
+msgid "Parametr płacowy"
+msgstr "Параметр зарплаты (parametr płacowy)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_parameter
+msgid "Parametr płacowy PL"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_parameter
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_parameters
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_parameter_tree
+msgid "Parametry płacowe"
+msgstr "Параметры зарплаты (parametry płacowe)"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.report,name:l10n_pl_payroll.action_report_pl_payroll_payslip
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Pasek wynagrodzeń"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__total_employer_cost
+msgid ""
+"Pełny koszt zatrudnienia: brutto plus składki i wpłaty finansowane przez "
+"pracodawcę."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__date_from
+msgid "Pierwszy dzień obowiązywania parametru."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_wizard__date_from
+msgid "Pierwszy dzień okresu list płac, który ma zostać wygenerowany."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__date_from
+msgid "Pierwszy dzień okresu rozliczeniowego listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_compute__date_from
+msgid "Pierwszy dzień okresu, dla którego mają zostać przeliczone listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__total_pit_paid
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Pobrane zaliczki PIT"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_hr_contract_form_inherit_pl_payroll
+msgid "Podatek i KUP"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Podatek przed ulgami"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Podstawa PIT od początku roku"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Podstawa opodatkowania"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Podstawa składek ZUS od początku roku"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__health_basis
+msgid "Podstawa składki zdrowotnej"
+msgstr "База медицинского взноса (podstawa składki zdrowotnej)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__sick_leave_basis
+msgid "Podstawa służąca do obliczenia wynagrodzenia chorobowego."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__sick_leave_basis
+msgid "Podstawa wynagrodzenia chorobowego"
+msgstr "База для оплаты больничного (podstawa wynagrodzenia chorobowego)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Podstawa zdrowotna"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__health_basis
+msgid "Podstawa, od której nalicza się składkę zdrowotną."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__ppk_ee_rate
+msgid ""
+"Podstawowa albo obniżona wpłata finansowana przez pracownika. Typowo 2,00% "
+"albo 0,50% podstawy PPK."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Podsumowanie deklaracji"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_form
+msgid "Podsumowanie składek"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Pole"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__creative_report_required
+msgid ""
+"Pole informacyjne. Pokazuje, że dla tej listy płac trzeba dołączyć "
+"zatwierdzony raport pracy twórczej, aby rozliczyć 50% KUP autorskie."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__creative_report_missing
+msgid ""
+"Pole ostrzegawcze. Informuje, że lista płac korzysta z pracy twórczej, ale "
+"nie ma jeszcze podpiętego zatwierdzonego raportu."
+msgstr ""
+"Поле-предупреждение. Показывает, что расчетная ведомость использует "
+"творческую работу (praca twórcza), но утвержденный отчет еще не прикреплен."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__below_minimum_wage
+msgid ""
+"Pole ostrzegawcze. Pokazuje, że brutto na tej liście płac jest niższe od "
+"minimalnego wynagrodzenia wyliczonego dla danego wymiaru etatu."
+msgstr ""
+"Поле-предупреждение. Показывает, что брутто в этой расчетной ведомости ниже "
+"минимальной зарплаты, рассчитанной для данной доли ставки."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__below_minimum_wage
+msgid "Poniżej minimalnego wynagrodzenia"
+msgstr "Ниже минимальной зарплаты (poniżej minimalnego wynagrodzenia)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+msgid "Poprzedni miesiąc"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_payslip_line__category__deduction_gross
+msgid "Potrącenie brutto"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_payslip_line__category__deduction_net
+msgid "Potrącenie netto"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_wizard__department_ids
+msgid ""
+"Pozostaw puste, aby wygenerować listy płac dla wszystkich wydziałów w "
+"wybranej firmie."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Pozycja"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_zus_dra_line
+msgid "Pozycja deklaracji ZUS DRA"
+msgstr "Строка декларации ZUS DRA (pozycja deklaracji ZUS DRA)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_payslip_line
+msgid "Pozycja listy płac"
+msgstr "Строка расчетной ведомости (pozycja listy płac)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_form
+msgid "Pozycje pracowników"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Pracodawca"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__kup_type__standard
+msgid "Pracownicze KUP 250,00 zł"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid ""
+"Pracownicze Plany Kapitałowe to dodatkowe oszczędności emerytalne "
+"finansowane wspólnie przez Ciebie i pracodawcę."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__employee_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__employee_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__employee_id
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__employee_id
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+msgid "Pracownik"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:res.groups,name:l10n_pl_payroll.group_payroll_employee
+msgid "Pracownik płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__employee_id
+msgid "Pracownik, dla którego naliczasz listę płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__employee_id
+msgid "Pracownik, dla którego przygotowano informację PIT-11."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__employee_id
+msgid "Pracownik, którego dotyczy miesięczny raport pracy twórczej."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_parameter__value_type__percent
+msgid "Procent"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__kup_autorskie_pct
+msgid ""
+"Procent wynagrodzenia przypisany do pracy twórczej. Dla tej części stosuje "
+"się 50% kosztów autorskich. To nie jest stawka KUP, tylko udział pracy "
+"twórczej."
+msgstr ""
+"Процент зарплаты, отнесенный к творческой работе (praca twórcza). Для этой "
+"части применяется 50% авторских KUP. Это не ставка KUP, а доля творческой "
+"работы."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_creative_report__state__submitted
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+msgid "Przekazany"
+msgstr "Передан (przekazany)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+msgid "Przekaż"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_batch_compute_form
+msgid "Przelicz"
+msgstr "Пересчитать (przelicz)"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_batch_compute
+msgid "Przelicz listy płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Przychód brutto od początku roku"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__total_gross
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Przychód łącznie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+msgid "Przywróć szkic"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.module.category,name:l10n_pl_payroll.module_category_pl_payroll
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_root
+msgid "Płace PL"
+msgstr "Польская зарплата (Płace PL)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Płatnik"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_creative_report.py:0
+msgid "Raport można przekazać tylko ze statusu „Szkic”."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_creative_report
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+msgid "Raport pracy twórczej"
+msgstr "Отчет о творческой работе (raport pracy twórczej)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__creative_report_id
+msgid "Raport pracy twórczej przypięty do tej listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Raport twórczy"
+msgstr "Отчет о творческой работе (raport twórczy)"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_creative_report
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_creative_reports
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_tree
+msgid "Raporty twórcze"
+msgstr "Отчеты о творческой работе (raporty twórcze)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Razem składki społeczne"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Rentowe"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Rentowe pracodawcy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ppk_participation__opt_out
+msgid "Rezygnacja z PPK"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__category
+msgid "Rodzaj składnika"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Rodzaj umowy"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+msgid "Rok"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__year
+msgid "Rok deklaracji ZUS DRA."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__year
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11_wizard__year
+msgid "Rok podatkowy"
+msgstr "Налоговый год"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__year
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__year
+msgid "Rok rozliczenia"
+msgstr "Год расчёта (rok rozliczenia)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra_wizard__year
+msgid "Rok, za który ma zostać przygotowana deklaracja ZUS DRA."
+msgstr "Год, за который нужно подготовить декларацию ZUS DRA."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11_wizard__year
+msgid "Rok, za który system ma przygotować informacje PIT-11 dla pracowników."
+msgstr "Год, за который система должна подготовить сведения PIT-11 по сотрудникам."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__year
+msgid "Rok, za który zsumowano przychody, składki i zaliczki PIT."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_employee_form_inherit_pl_payroll
+msgid "Rozliczenie PL"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_hr_contract_form_inherit_pl_payroll
+msgid "Rozliczenie podatkowo-składkowe PL"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Rozliczenie pracownika"
+msgstr "Расчет работника (rozliczenie pracownika)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_form
+msgid "Sekcja D. Przychód i koszty"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_form
+msgid "Sekcja E. Składki społeczne"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_form
+msgid "Sekcja F. Składka zdrowotna"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_form
+msgid "Sekcja G. Zaliczka PIT"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Sekcje E-G. Składki i zaliczki"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Skąd bierze się Twoje wynagrodzenie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_chorobowe
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__chorobowe
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka chorobowa"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_chorobowe_ee
+msgid "Składka chorobowa (pracownik)"
+msgstr "Взнос по больничному страхованию, работник (składka chorobowa)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_chorobowe_ee
+msgid "Składka chorobowa finansowana przez pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_emerytalne_er
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_emerytalne_er
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__emerytalne_er
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka emerytalna (pracodawca)"
+msgstr "Пенсионный взнос, работодатель (składka emerytalna)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_emerytalne_ee
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_emerytalne_ee
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__emerytalne_ee
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka emerytalna (pracownik)"
+msgstr "Пенсионный взнос, работник (składka emerytalna)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_emerytalne_er
+msgid "Składka emerytalna finansowana przez pracodawcę."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_emerytalne_ee
+msgid "Składka emerytalna potrącana z wynagrodzenia pracownika."
+msgstr ""
+"Пенсионный взнос (składka emerytalna), удержанный из зарплаты работника."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_fgsp
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_fgsp
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__fgsp
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka na FGŚP"
+msgstr "Взнос в FGŚP (składka na FGŚP)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_fgsp
+msgid ""
+"Składka na Fundusz Gwarantowanych Świadczeń Pracowniczych finansowana przez "
+"pracodawcę."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_fp
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_fp
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__fp
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka na Fundusz Pracy"
+msgstr "Взнос в Фонд труда (składka na Fundusz Pracy)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_fp
+msgid "Składka na Fundusz Pracy finansowana przez pracodawcę."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Składka na NFZ daje Ci dostęp do publicznej opieki zdrowotnej."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_rentowe_er
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_rentowe_er
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__rentowe_er
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka rentowa (pracodawca)"
+msgstr ""
+"Взнос по страхованию нетрудоспособности, работодатель (składka rentowa)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_rentowe_ee
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_rentowe_ee
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__rentowe_ee
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka rentowa (pracownik)"
+msgstr "Взнос по страхованию нетрудоспособности, работник (składka rentowa)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_rentowe_er
+msgid "Składka rentowa finansowana przez pracodawcę."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_rentowe_ee
+msgid "Składka rentowa potrącana z wynagrodzenia pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_wypadkowe_er
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_wypadkowe
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__wypadkowe
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Składka wypadkowa"
+msgstr "Взнос от несчастных случаев (składka wypadkowa)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_wypadkowe_er
+msgid "Składka wypadkowa finansowana przez pracodawcę według stopy firmy."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__health
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_health
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__health
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Składka zdrowotna"
+msgstr "Взнос на медицинское страхование (składka zdrowotna)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__health_deductible
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Składka zdrowotna odliczana (7,75%)"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__health
+msgid "Składka zdrowotna pobierana z wynagrodzenia pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__total_health
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Składka zdrowotna łącznie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Składki ZUS pracodawcy"
+msgstr "Взносы ZUS работодателя (składki ZUS pracodawcy)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Składki ZUS pracownika"
+msgstr "Взносы ZUS работника (składki ZUS pracownika)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__zus_total_ee
+msgid "Składki ZUS pracownika razem"
+msgstr "Итого взносы ZUS работника (składki ZUS pracownika razem)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__total_zus_ee
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
+msgid "Składki ZUS pracownika łącznie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Składki pracodawcy"
+msgstr "Расходы работодателя (składki pracodawcy)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_zus_employer
+msgid "Składki pracodawcy razem"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_zus_employee
+msgid "Składki pracownika razem"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Składnik"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__payslip_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Składniki dodatkowe"
+msgstr "Дополнительные элементы зарплаты (składniki dodatkowe)"
+
+#. module: l10n_pl_payroll
+#: model:res.groups,name:l10n_pl_payroll.group_payroll_officer
+msgid "Specjalista ds. płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Stanowisko"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__state
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__state
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__state
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__state
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+msgid "Status"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__state
+msgid "Status dokumentu PIT-11 w module payroll."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__state
+msgid "Status dokumentu ZUS DRA w module payroll."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__state
+msgid ""
+"Status listy płac. Po zatwierdzeniu dane wchodzą do rozliczeń PIT i ZUS."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__state
+msgid ""
+"Status obiegu raportu. Tylko raport zatwierdzony może zostać podpięty do "
+"listy płac z kosztami autorskimi."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_employee__is_student
+msgid "Status ucznia / studenta"
+msgstr "Статус ученика / студента (status ucznia / studenta)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Stawka obowiązująca dla tego miesiąca"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Stawka podatku"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__code
+msgid "Stały kod techniczny używany w obliczeniach payroll."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_form
+msgid "Suma"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__total_kup
+msgid ""
+"Suma kosztów uzyskania przychodu uwzględnionych przy rozliczeniu rocznym."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__total_health
+msgid "Suma pobranych składek zdrowotnych za wskazany rok."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__total_zus_employer
+msgid "Suma składek finansowanych przez pracodawcę za dany miesiąc."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__total_zus_employee
+msgid "Suma składek finansowanych przez pracownika wraz ze składką zdrowotną."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__zus_total_ee
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__total_zus_ee
+msgid "Suma składek społecznych finansowanych przez pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_creative_report__state__draft
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_payslip__state__draft
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_pit11__state__draft
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_zus_dra__state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+msgid "Szkic"
+msgstr "Черновик (szkic)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Ta kwota obniża bieżącą wypłatę i trafia na Twoje konto PPK"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Ta kwota obniża podstawę opodatkowania"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Te kwoty pracodawca płaci dodatkowo ponad Twoje wynagrodzenie brutto."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Te składki budują Twój kapitał emerytalny i ubezpieczenie społeczne."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid ""
+"To kwota, która trafi na konto po odjęciu składek, podatku i Twoich wpłat do "
+"PPK."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Twoja wpłata do PPK"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__value_type
+msgid "Typ wartości"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Ubezpieczenie zdrowotne"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__etat_fraction
+msgid "Udział etatu obliczony na podstawie kalendarza czasu pracy."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__kup_autorskie_pct
+msgid "Udział pracy twórczej (%)"
+msgstr "Доля творческой работы (%) (udział pracy twórczej)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ulga_type__mlodzi
+msgid "Ulga dla młodych"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ulga_type__rodzina_4_plus
+msgid "Ulga dla rodzin 4+"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ulga_type__senior
+msgid "Ulga dla seniorów"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ulga_type__na_powrot
+msgid "Ulga na powrót"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__ulga_type
+msgid "Ulga podatkowa"
+msgstr "Налоговая льгота (ulga podatkowa)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__contract_id
+msgid "Umowa"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:hr.contract.type,name:l10n_pl_payroll.contract_type_umowa_o_dzielo
+msgid "Umowa o dzieło"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:hr.contract.type,name:l10n_pl_payroll.contract_type_umowa_o_prace
+msgid "Umowa o pracę"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:hr.contract.type,name:l10n_pl_payroll.contract_type_umowa_zlecenie
+msgid "Umowa zlecenie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__note
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__note
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_parameter_form
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Uwagi"
+msgstr "Примечания (uwagi)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__notes
+msgid "Uwagi do listy płac"
+msgstr "Примечания к расчетной ведомости (uwagi do listy płac)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_parameter_form
+msgid "Uwagi opcjonalne..."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__accepted_by
+msgid "Użytkownik, który zatwierdził raport twórczy."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__kup_type
+msgid "Wariant KUP"
+msgstr "Вариант KUP (wariant KUP)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__ppk_participation
+msgid "Wariant PPK"
+msgstr "Вариант PPK (wariant PPK)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__kup_type
+msgid "Wariant kosztów uzyskania przychodu pobrany z umowy pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__value
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Wartość"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__health_deductible
+msgid ""
+"Wartość historycznej części zdrowotnej prezentowana informacyjnie na "
+"formularzu PIT-11."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__value
+msgid "Wartość liczbowa parametru obowiązująca w danym okresie."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__ppk_er
+msgid ""
+"Wpłata PPK finansowana przez pracodawcę. Dla pracownika stanowi przychód do "
+"PIT."
+msgstr ""
+"Взнос PPK, финансируемый работодателем (wpłata PPK pracodawcy). Для "
+"работника это налогооблагаемый доход для PIT."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__ppk_er
+msgid "Wpłata PPK pracodawcy"
+msgstr "Взнос работодателя в PPK (wpłata PPK pracodawcy)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__total_ppk_er
+msgid "Wpłata PPK pracodawcy jako przychód"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__ppk_ee
+msgid "Wpłata PPK pracownika"
+msgstr "Взнос работника в PPK (wpłata PPK pracownika)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__ppk_additional
+msgid "Wpłata dodatkowa pracownika do PPK (%)"
+msgstr ""
+"Дополнительный взнос работника в PPK (%) (wpłata dodatkowa pracownika do PPK)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__total_ppk_er
+msgid ""
+"Wpłata finansowana przez pracodawcę, która zwiększa przychód pracownika do "
+"PIT."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__ppk_ee
+msgid "Wpłata finansowana przez pracownika w ramach PPK."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__ppk_ee_rate
+msgid "Wpłata pracownika do PPK (%)"
+msgstr "Взнос работника в PPK (%) (wpłata pracownika do PPK)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__date
+msgid ""
+"Wskaż miesiąc, za który pracownik rozlicza pracę twórczą objętą 50% KUP."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__ulga_type
+msgid ""
+"Wskaż ulgę podatkową, która wyłącza przychód z opodatkowania PIT do "
+"ustawowego limitu rocznego."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_contract__kup_type
+msgid ""
+"Wybierz sposób naliczania kosztów uzyskania przychodu dla tej umowy. To "
+"ustawienie wpływa na podstawę opodatkowania PIT."
+msgstr ""
+"Выбери способ расчета расходов на получение дохода (koszty uzyskania "
+"przychodu) для этого договора. Эта настройка влияет на базу PIT."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip_line__category
+msgid ""
+"Wybierz, czy pozycja zwiększa brutto, zmniejsza brutto czy obniża już "
+"wyliczone netto."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__department_id
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+msgid "Wydział"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__department_id
+msgid "Wydział pracownika pobrany z kartoteki pracownika."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__department_ids
+msgid "Wydziały"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Wygenerowano automatycznie w systemie Odoo."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Wyjaśnienie"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__creative_report_required
+msgid "Wymaga raportu twórczego"
+msgstr "Требуется отчет о творческой работе (wymaga raportu twórczego)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__etat_fraction
+msgid "Wymiar etatu"
+msgstr "Доля ставки (wymiar etatu)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__gross
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra_line__gross
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Wynagrodzenie brutto"
+msgstr "Зарплата брутто (wynagrodzenie brutto)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__sick_leave_amount
+msgid "Wynagrodzenie chorobowe"
+msgstr "Оплата больничного (wynagrodzenie chorobowe)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__net
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Wynagrodzenie netto"
+msgstr "Зарплата нетто (wynagrodzenie netto)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__vacation_pay
+msgid "Wynagrodzenie urlopowe"
+msgstr "Оплата отпуска (wynagrodzenie urlopowe)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Wynagrodzenie zasadnicze"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Wypadkowe"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.ui.menu,name:l10n_pl_payroll.menu_pl_payroll_zus_dra
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "ZUS DRA"
+msgstr "ZUS DRA"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "ZUS DRA za"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__pit_due
+msgid "Zaliczka PIT do urzędu"
+msgstr "Аванс PIT к уплате в налоговый орган (zaliczka PIT do urzędu)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Zaliczka na PIT jest wpłatą na poczet Twojego rozliczenia rocznego."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Zaliczka na podatek dochodowy"
+msgstr "Аванс подоходного налога (zaliczka na podatek dochodowy)"
+
+#. module: l10n_pl_payroll
+#. odoo-python
+#: code:addons/l10n_pl_payroll/models/pl_payroll_creative_report.py:0
+msgid "Zatwierdzić można tylko raport przekazany do akceptacji."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__accepted_by
+msgid "Zatwierdził"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_payslip__state__confirmed
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_zus_dra__state__confirmed
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
+msgid "Zatwierdzona"
+msgstr "Подтверждена (zatwierdzona)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_creative_report__state__accepted
+#: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__pl_payroll_pit11__state__confirmed
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
+msgid "Zatwierdzony"
+msgstr "Подтвержден (zatwierdzony)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__creative_report_id
+msgid "Zatwierdzony raport twórczy"
+msgstr "Утвержденный отчет о творческой работе (zatwierdzony raport twórczy)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_creative_report_form
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Zatwierdź"
+msgstr "Подтвердить (zatwierdź)"
+
+#. module: l10n_pl_payroll
+#: model:ir.actions.server,name:l10n_pl_payroll.action_server_pl_payroll_batch_confirm
+msgid "Zatwierdź listy płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_hr_employee__is_student
+msgid ""
+"Zaznacz dla osoby uczącej się do 26. roku życia. Przy umowie zlecenia taki "
+"status może zwalniać z naliczania składek ZUS i zdrowotnej."
+msgstr ""
+"Отметь для человека, который учится и не достиг 26 лет. Для договора "
+"поручения (umowa zlecenia) такой статус может освобождать от начисления "
+"взносов ZUS и медицинского взноса."
+
+#. module: l10n_pl_payroll
+#: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_batch_compute
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_batch_compute_form
+msgid "Zbiorcze przeliczanie list płac"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_contract__pit2_filed
+msgid "Złożono PIT-2"
+msgstr "Подан PIT-2 (złożono PIT-2)"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "| Liczba list płac:"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Łączna kwota Twoich składek ZUS"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__overtime_amount
+msgid "Łączna kwota dodatków za nadgodziny naliczona na tej liście płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__total_pit_paid
+msgid "Łączna kwota zaliczek PIT pobranych i odprowadzonych w danym roku."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__total_all
+msgid "Łączna kwota zobowiązania wobec ZUS za dany okres."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__ytd_sick_days
+msgid ""
+"Łączna liczba dni choroby wykorzystanych od początku roku do tej listy płac."
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__gross
+msgid ""
+"Łączne brutto po doliczeniu dodatków brutto i pomniejszeniu potrąceń brutto."
+msgstr ""
+"Общая сумма брутто (wynagrodzenie brutto) после добавления доплат брутто и "
+"вычета удержаний брутто."
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_all
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
+msgid "Łącznie do zapłaty"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Łączny dodatek za nadgodziny"
+msgstr ""
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__total_employer_cost
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+msgid "Łączny koszt pracodawcy"
+msgstr "Совокупная стоимость работодателя (łączny koszt pracodawcy)"
+
+#. module: l10n_pl_payroll
+#: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__total_gross
+msgid ""
+"Łączny przychód wykazany na PIT-11, razem z opodatkowaną wpłatą PPK "
+"pracodawcy."
+msgstr ""
