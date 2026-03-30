@@ -39,17 +39,17 @@
                         </group>
                         <group string="Reguły PIT">
                             <field name="pit_taxable" widget="boolean_toggle"/>
-                            <field name="pit_exempt_article" attrs="{'invisible': [('pit_taxable', '=', True)]}"/>
+                            <field name="pit_exempt_article" invisible="pit_taxable == True"/>
                         </group>
                         <group string="Reguły ZUS">
                             <field name="zus_included" widget="boolean_toggle"/>
                             <field name="zus_exempt_limit"/>
-                            <field name="zus_exempt_article" attrs="{'invisible': [('zus_included', '=', True)]}"/>
+                            <field name="zus_exempt_article" invisible="zus_included == True"/>
                         </group>
                         <group string="Domyślne wartości">
                             <field name="default_amount"/>
                             <field name="requires_documentation" widget="boolean_toggle"/>
-                            <field name="documentation_hint" attrs="{'invisible': [('requires_documentation', '=', False)]}"/>
+                            <field name="documentation_hint" invisible="requires_documentation == False"/>
                         </group>
                     </group>
                     <group string="Opis i uwagi">
