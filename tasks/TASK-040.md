@@ -1,6 +1,6 @@
 # TASK-040: Update salary engine for PIT/ZUS exemptions
 
-**Status:** ready
+**Status:** done
 **Phase:** 6 — Component Constructor
 **Depends on:** TASK-039
 **Architecture:** ARCHITECTURE-PHASE6.md § 3

@@ -204,6 +204,11 @@ class PlPayrollPayslip(models.Model):
         help="Suma świadczeń rzeczowych podlegających ZUS (z uwzględnieniem limitu zwolnienia).",
     )
 
+    zus_basis = fields.Float(
+        string="Podstawa wymiaru składek ZUS",
+        help="Podstawa wymiaru składek ZUS — może różnić się od brutto, gdy niektóre składniki są zwolnione z ZUS.",
+    )
+
     zus_emerytalne_ee = fields.Float(
         string="Składka emerytalna (pracownik)",
         help="Składka emerytalna potrącana z wynagrodzenia pracownika.",
@@ -565,6 +570,7 @@ class PlPayrollPayslip(models.Model):
                     "sick_leave_basis": 0.0,
                     "vacation_pay": 0.0,
                     "overtime_amount": float(overtime_amount),
+                    "zus_basis": 0.0,
                     "zus_emerytalne_ee": 0.0,
                     "zus_rentowe_ee": 0.0,
                     "zus_chorobowe_ee": 0.0,
@@ -590,11 +596,21 @@ class PlPayrollPayslip(models.Model):
             )
             return
 
+        zus_included_bonus = self._to_decimal(self.zus_included_bonus_total)
+        benefit_in_kind_zus = self._to_decimal(self.benefit_in_kind_zus)
+        benefit_in_kind_pit_amount = self._to_decimal(self.benefit_in_kind_pit)
+        zus_basis_raw = self._round_amount(
+            base_gross + overtime_amount + vacation_supplement
+            + zus_included_bonus - deduction_gross_total
+            + benefit_in_kind_zus
+        )
+
         sick_amount, sick_basis, adjusted_gross = self._compute_sick_leave(gross)
+        adjusted_zus_basis = self._get_adjusted_gross_for_sick(zus_basis_raw)
         effective_gross = self._round_amount(adjusted_gross + sick_amount)
         current_year = fields.Date.to_date(self.date_from).year
         ytd = self._get_ytd_totals(self.employee_id.id, current_year, self.date_from)
-        zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], adjusted_gross)
+        zus_cap_basis = self._get_zus_cap_basis(ytd["zus_basis"], adjusted_zus_basis)
         student_zlecenie_exempt = self._is_student_zlecenie_exempt()
 
         if student_zlecenie_exempt:
@@ -605,10 +621,10 @@ class PlPayrollPayslip(models.Model):
         else:
             zus_emerytalne_ee = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_EE")
             zus_rentowe_ee = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_EE")
-            zus_chorobowe_ee = self._percent_of_gross(adjusted_gross, "ZUS_CHOR_EE")
+            zus_chorobowe_ee = self._percent_of_gross(adjusted_zus_basis, "ZUS_CHOR_EE")
             zus_total_ee = self._round_amount(zus_emerytalne_ee + zus_rentowe_ee + zus_chorobowe_ee)
 
-        health_basis_raw = self._round_amount(adjusted_gross - zus_total_ee + sick_amount)
+        health_basis_raw = self._round_amount(adjusted_zus_basis - zus_total_ee + sick_amount)
         health_basis = health_basis_raw
         if student_zlecenie_exempt:
             health = Decimal("0.00")
@@ -618,9 +634,11 @@ class PlPayrollPayslip(models.Model):
             if health_basis < minimum_health_basis:
                 health_basis = minimum_health_basis
             health = self._round_amount(health_basis * self._get_parameter("HEALTH") / Decimal("100"))
-            ppk_er = self._compute_ppk_employer(adjusted_gross)
+            ppk_er = self._compute_ppk_employer(adjusted_zus_basis)
         kup_amount = self._compute_kup_amount(health_basis_raw)
-        taxable_income = self._floor_amount(health_basis_raw - kup_amount + ppk_er)
+        taxable_income = self._floor_amount(
+            health_basis_raw - kup_amount + ppk_er + benefit_in_kind_pit_amount
+        )
         pit_advance, pit_reducing, pit_due = self._compute_pit_amounts(
             effective_gross,
             taxable_income,
@@ -630,7 +648,7 @@ class PlPayrollPayslip(models.Model):
         if student_zlecenie_exempt:
             ppk_ee = Decimal("0.00")
         else:
-            ppk_ee = self._compute_ppk_employee(adjusted_gross)
+            ppk_ee = self._compute_ppk_employee(adjusted_zus_basis)
         net_before_deductions = self._round_amount(effective_gross - zus_total_ee - health - pit_due - ppk_ee)
         net = self._round_amount(net_before_deductions - deduction_net_total)
 
@@ -643,9 +661,9 @@ class PlPayrollPayslip(models.Model):
         else:
             zus_emerytalne_er = self._percent_of_amount(zus_cap_basis, "ZUS_EMERY_ER")
             zus_rentowe_er = self._percent_of_amount(zus_cap_basis, "ZUS_RENT_ER")
-            zus_wypadkowe_er = self._percent_of_gross(adjusted_gross, "ZUS_WYPAD_ER", company_specific=True)
-            zus_fp = self._percent_of_gross(adjusted_gross, "ZUS_FP")
-            zus_fgsp = self._percent_of_gross(adjusted_gross, "ZUS_FGSP")
+            zus_wypadkowe_er = self._percent_of_gross(adjusted_zus_basis, "ZUS_WYPAD_ER", company_specific=True)
+            zus_fp = self._percent_of_gross(adjusted_zus_basis, "ZUS_FP")
+            zus_fgsp = self._percent_of_gross(adjusted_zus_basis, "ZUS_FGSP")
         total_employer_cost = self._round_amount(
             effective_gross
             + zus_emerytalne_er
@@ -663,6 +681,7 @@ class PlPayrollPayslip(models.Model):
                 "sick_leave_basis": float(sick_basis),
                 "vacation_pay": float(vacation_supplement),
                 "overtime_amount": float(overtime_amount),
+                "zus_basis": float(adjusted_zus_basis),
                 "zus_emerytalne_ee": float(zus_emerytalne_ee),
                 "zus_rentowe_ee": float(zus_rentowe_ee),
                 "zus_chorobowe_ee": float(zus_chorobowe_ee),
@@ -827,7 +846,11 @@ class PlPayrollPayslip(models.Model):
         return {
             "gross": sum((payslip._get_effective_gross_amount() for payslip in payslips), Decimal("0.00")),
             "zus_basis": sum(
-                (payslip._get_adjusted_gross_for_sick(payslip.gross) for payslip in payslips),
+                (
+                    self._to_decimal(payslip.zus_basis) if payslip.zus_basis
+                    else payslip._get_adjusted_gross_for_sick(payslip.gross)
+                    for payslip in payslips
+                ),
                 Decimal("0.00"),
             ),
             "taxable_income": sum(
