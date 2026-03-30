@@ -72,6 +72,39 @@
 
 ---
 
+### DEC-009: Component Constructor — user-definable types, not hardcoded templates
+**Date:** 2026-03-30
+**Context:** Ася попросила додаткові складники зарплати (екв. за прання, їжа, надгодини). Віталік наполіг: «не хардкодь шаблони, зроби конструктор — ми робимо продукт».
+**Choice:** Model `pl.payroll.component.type` — users create component types through the UI with PIT/ZUS rules. Module ships with 7 pre-seeded types as examples, but any company can define their own.
+**Why:** Product-grade module must handle any Polish employer's needs, not just Om Energy's. Hardcoded templates would require code changes for every new benefit type. Constructor = zero-code configuration.
+**Scope:**
+- 4 categories: bonus_gross, deduction_gross, benefit_in_kind, deduction_net
+- PIT taxable flag + legal article reference
+- ZUS included flag + monthly exempt limit + legal article reference
+- Default amount, documentation requirement hint
+- Per-company isolation
+
+---
+
+### DEC-010: Three editing modes for payslip components
+**Date:** 2026-03-30
+**Context:** Ася (бухгалтер) хоче бачити всіх працівників в одній табличці і редагувати навпроти кожного. Віталік: «треба й так як зараз, і так як ти пропонуєш, і так як хоче Ася».
+**Choice:** Three editing modes:
+- Mode A: Individual (current form, per payslip)
+- Mode B: Batch wizard (select component type + amount → apply to many employees)
+- Mode C: Grid view (spreadsheet-like list with `multi_edit="1"`, one row per employee per month)
+**Why:** Different personas need different workflows. Accountant reviewing one employee = Mode A. Adding pranie to everyone = Mode B. Monthly payroll review = Mode C. All three are complementary.
+
+---
+
+### DEC-011: hr_attendance as soft dependency
+**Date:** 2026-03-30
+**Context:** Om Energy has hr_attendance installed. Need overtime sync. But module must work without it (other customers may not have it).
+**Choice:** Soft import — check at runtime if hr.attendance model exists. Button appears only when module is installed.
+**Why:** Hard dependency on hr_attendance broke Odoo.sh rebuild (lesson from 2026-03-29 crash). Module must install and work without it.
+
+---
+
 ### DEC-006: Multi-agent development workflow
 **Date:** 2026-03-28
 **Context:** Віталік is not a programmer. Team = Claude Cowork (orchestrator) + ChatGPT Codex (coder/thinker) + Claude Code CLI (integration).
