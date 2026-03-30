@@ -134,6 +134,11 @@ msgid "Brakuje raportu twórczego"
 msgstr "Отчет о творческой работе отсутствует"
 
 #. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Brutto"
+msgstr "Брутто"
+
+#. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
 msgid "Brutto plus składki i wpłaty finansowane przez firmę"
 msgstr "Брутто плюс взносы и платежи, которые финансирует компания"
@@ -1008,6 +1013,11 @@ msgstr "Название параметра"
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__name
 msgid "Nazwa składnika"
 msgstr "Название компонента"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Netto"
+msgstr "Нетто"
 
 #. module: l10n_pl_payroll
 #. odoo-python
