@@ -11,7 +11,7 @@
     "author": "Om Energy Solutions",
     "website": "https://omenergysolutions.pl",
     "license": "LGPL-3",
-    "depends": ["hr_contract", "hr_attendance"],
+    "depends": ["hr_contract"],
     "data": [
         "security/pl_payroll_security.xml",
         "security/pl_payroll_payslip_line_security.xml",
@@ -35,7 +35,7 @@
         "views/pl_payroll_zus_dra_views.xml",
         "wizard/pl_payroll_zus_dra_wizard_views.xml",
         "views/pl_payroll_menus.xml",
-        "data/pl_payroll_en_us_translation_loader.xml",
+        # "data/pl_payroll_en_us_translation_loader.xml",  # disabled: auto-load via standard i18n/
     ],
     "demo": [
         "data/demo/pl_payroll_demo.xml",
