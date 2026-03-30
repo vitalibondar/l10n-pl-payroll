@@ -35,7 +35,7 @@
         "views/pl_payroll_zus_dra_views.xml",
         "wizard/pl_payroll_zus_dra_wizard_views.xml",
         "views/pl_payroll_menus.xml",
-        # "data/pl_payroll_en_us_translation_loader.xml",  # disabled: auto-load via standard i18n/
+        "data/pl_payroll_en_us_translation_loader.xml",
     ],
     "demo": [
         "data/demo/pl_payroll_demo.xml",

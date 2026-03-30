@@ -62,6 +62,11 @@ class PlPayrollTranslationLoader(models.AbstractModel):
 
     @api.model
     def apply_all_translations(self):
+        active_langs = set(
+            self.env["res.lang"].search([("active", "=", True)]).mapped("code")
+        )
         for lang_code, po_filename in self._TRANSLATION_FILES.items():
+            if lang_code not in active_langs:
+                continue
             self._apply_po_translations(lang_code, po_filename)
         return True
