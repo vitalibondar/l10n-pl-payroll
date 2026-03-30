@@ -63,6 +63,10 @@ msgid ""
 "                        Bez niego nie należy rozliczać 50% kosztów "
 "autorskich."
 msgstr ""
+"<strong>Warning:</strong> There is no approved creative work report linked "
+"to this payroll run.\n"
+"                        Without it, 50% creative tax-deductible costs "
+"should not be settled."
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
@@ -71,6 +75,8 @@ msgid ""
 "minimalnego wynagrodzenia\n"
 "                        dla tego wymiaru etatu."
 msgstr ""
+"<strong>Warning:</strong> Gross pay is below the proportional minimum wage\n"
+"                        for this FTE fraction."
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
@@ -100,7 +106,7 @@ msgstr "Cancelled (anulowana)"
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
 msgid "Anuluj"
-msgstr "Cancel (anuluj)"
+msgstr "Cancel"
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
@@ -130,8 +136,9 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__creative_report_missing
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
 msgid "Brakuje raportu twórczego"
-msgstr "Creative report missing (brakuje raportu twórczego)"
+msgstr "Creative report missing"
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
@@ -145,8 +152,14 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
 msgid "Chorobowe"
-msgstr ""
+msgstr "Sick pay"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Czas pracy i absencje"
+msgstr "Working time and absences"
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
@@ -460,32 +473,32 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_search
 msgid "Firma"
-msgstr ""
+msgstr "Company"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__company_id
 msgid "Firma występująca jako płatnik na informacji PIT-11."
-msgstr ""
+msgstr "Company shown as the remitting entity on the PIT-11 information."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_batch_wizard__company_id
 msgid "Firma, dla której mają zostać wygenerowane listy płac."
-msgstr ""
+msgstr "Company for which payroll runs should be generated."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__company_id
 msgid "Firma, dla której przygotowano deklarację rozliczeniową ZUS DRA."
-msgstr ""
+msgstr "Company for which the ZUS DRA declaration was prepared."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__company_id
 msgid "Firma, w której rozliczana jest lista płac."
-msgstr ""
+msgstr "Company in which this payroll run is settled."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__company_id
 msgid "Firma, w której rozliczany jest raport pracy twórczej."
-msgstr ""
+msgstr "Company in which this creative work report is settled."
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
@@ -496,17 +509,17 @@ msgstr ""
 #: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_pit11_wizard
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
 msgid "Generowanie PIT-11"
-msgstr "PIT-11 generation (generowanie PIT-11)"
+msgstr "PIT-11 generation"
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
 msgid "Generowanie ZUS DRA"
-msgstr "ZUS DRA generation (generowanie ZUS DRA)"
+msgstr "ZUS DRA generation"
 
 #. module: l10n_pl_payroll
 #: model:ir.model,name:l10n_pl_payroll.model_pl_payroll_zus_dra_wizard
 msgid "Generowanie deklaracji ZUS DRA"
-msgstr "ZUS DRA declaration generation (generowanie deklaracji ZUS DRA)"
+msgstr "ZUS DRA declaration generation"
 
 #. module: l10n_pl_payroll
 #: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_batch_wizard
@@ -524,13 +537,18 @@ msgstr "Generate (generuj)"
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
 msgid "Generuj DRA"
-msgstr "Generate DRA"
+msgstr "Generate and open DRA"
 
 #. module: l10n_pl_payroll
 #: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_pit11_wizard
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
 msgid "Generuj PIT-11"
 msgstr "Generate PIT-11"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
+msgid "Generuj i otwórz PIT-11"
+msgstr "Generate and open PIT-11"
 
 #. module: l10n_pl_payroll
 #: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_zus_dra_wizard
@@ -834,12 +852,12 @@ msgstr ""
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__employee_count
 msgid "Liczba pracowników"
-msgstr ""
+msgstr "Employee count"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__employee_count
 msgid "Liczba pracowników ujętych w deklaracji za dany okres."
-msgstr ""
+msgstr "Number of employees included in the declaration for the selected period."
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
@@ -975,22 +993,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_pit11__name
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__name
 msgid "Nazwa"
-msgstr ""
+msgstr "Name"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip_line__name
 msgid "Nazwa dodatku, premii albo potrącenia widoczna na liście płac."
-msgstr ""
+msgstr "Name of the allowance, bonus, or deduction shown on the payroll run."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__name
 msgid "Nazwa parametru"
-msgstr ""
+msgstr "Parameter name"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip_line__name
 msgid "Nazwa składnika"
-msgstr ""
+msgstr "Item name"
 
 #. module: l10n_pl_payroll
 #. odoo-python
@@ -1368,8 +1386,14 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__below_minimum_wage
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
 msgid "Poniżej minimalnego wynagrodzenia"
-msgstr "Below minimum wage (poniżej minimalnego wynagrodzenia)"
+msgstr "Below minimum wage"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Podsumowanie wypłaty"
+msgstr "Payment summary"
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
@@ -1643,7 +1667,27 @@ msgstr ""
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
 msgid "Rozliczenie pracownika"
-msgstr "Employee settlement (rozliczenie pracownika)"
+msgstr "Employee settlement"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_wizard_form
+msgid "System uwzględni tylko zatwierdzone listy płac z wybranego roku i po wygenerowaniu otworzy gotowe informacje PIT-11."
+msgstr "The system will use only confirmed payroll runs from the selected year and then open the generated PIT-11 records."
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
+msgid "System uwzględni tylko zatwierdzone listy płac z wybranego miesiąca i po wygenerowaniu otworzy gotowe deklaracje ZUS DRA."
+msgstr "The system will use only confirmed payroll runs from the selected month and then open the generated ZUS DRA declarations."
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_zus_dra_wizard_form
+msgid "Generuj i otwórz DRA"
+msgstr "Generate and open DRA"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Składka zdrowotna i PIT"
+msgstr "Health contribution and PIT"
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_pit11_document
@@ -1844,7 +1888,7 @@ msgstr ""
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
 msgid "Składki pracodawcy"
-msgstr "Employer charges (składki pracodawcy)"
+msgstr "Employer contributions"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_zus_employer
@@ -2056,22 +2100,22 @@ msgstr "Tax relief (ulga podatkowa)"
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__contract_id
 msgid "Umowa"
-msgstr ""
+msgstr "Contract"
 
 #. module: l10n_pl_payroll
 #: model:hr.contract.type,name:l10n_pl_payroll.contract_type_umowa_o_dzielo
 msgid "Umowa o dzieło"
-msgstr ""
+msgstr "Contract for specific work"
 
 #. module: l10n_pl_payroll
 #: model:hr.contract.type,name:l10n_pl_payroll.contract_type_umowa_o_prace
 msgid "Umowa o pracę"
-msgstr ""
+msgstr "Employment contract"
 
 #. module: l10n_pl_payroll
 #: model:hr.contract.type,name:l10n_pl_payroll.contract_type_umowa_zlecenie
 msgid "Umowa zlecenie"
-msgstr ""
+msgstr "Contract of mandate"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_parameter__note
@@ -2209,12 +2253,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__department_id
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_search
 msgid "Wydział"
-msgstr ""
+msgstr "Department"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__department_id
 msgid "Wydział pracownika pobrany z kartoteki pracownika."
-msgstr ""
+msgstr "Employee department taken from the employee record."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_batch_wizard__department_ids
@@ -2409,7 +2453,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_zus_dra__total_all
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_zus_dra_document
 msgid "Łącznie do zapłaty"
-msgstr ""
+msgstr "Total payable"
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document

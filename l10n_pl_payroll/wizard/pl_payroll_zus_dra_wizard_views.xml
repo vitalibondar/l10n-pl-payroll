@@ -6,11 +6,14 @@
         <field name="arch" type="xml">
             <form string="Generowanie ZUS DRA">
                 <group>
+                    <div class="alert alert-info" role="status" colspan="2">
+                        System uwzględni tylko zatwierdzone listy płac z wybranego miesiąca i po wygenerowaniu otworzy gotowe deklaracje ZUS DRA.
+                    </div>
                     <field name="year" options="{'enable_formatting': false, 'type': 'number'}"/>
                     <field name="month" options="{'enable_formatting': false, 'type': 'number'}"/>
                 </group>
                 <footer>
-                    <button name="action_generate" string="Generuj DRA" type="object" class="btn-primary"/>
+                    <button name="action_generate" string="Generuj i otwórz DRA" type="object" class="btn-primary"/>
                     <button string="Anuluj" special="cancel"/>
                 </footer>
             </form>
