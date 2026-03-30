@@ -216,6 +216,7 @@
         <field name="name">Listy płac</field>
         <field name="res_model">pl.payroll.payslip</field>
         <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_pl_payroll_payslip_tree"/>
         <field name="search_view_id" ref="view_pl_payroll_payslip_search"/>
     </record>
 
@@ -232,6 +233,7 @@
     <record id="view_pl_payroll_payslip_grid" model="ir.ui.view">
         <field name="name">pl.payroll.payslip.grid</field>
         <field name="model">pl.payroll.payslip</field>
+        <field name="priority" eval="99"/>
         <field name="arch" type="xml">
             <list editable="bottom" multi_edit="1" default_order="employee_id">
                 <field name="employee_id" readonly="1"/>
