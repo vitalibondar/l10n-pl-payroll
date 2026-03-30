@@ -369,6 +369,8 @@ msgstr "Taxable income after tax deductible costs."
 msgid ""
 "Dochód po odjęciu kosztów uzyskania przychodu i doliczeniu PPK pracodawcy"
 msgstr ""
+"Income after tax-deductible costs (koszty uzyskania przychodu) and employer "
+"PPK (Employee Capital Plan) contribution"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__taxable_income
@@ -1441,6 +1443,8 @@ msgid ""
 "Pracownicze Plany Kapitałowe to dodatkowe oszczędności emerytalne "
 "finansowane wspólnie przez Ciebie i pracodawcę."
 msgstr ""
+"Employee Capital Plans (Pracownicze Plany Kapitałowe - PPK) are additional "
+"retirement savings co-funded by you and your employer."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_creative_report__employee_id
@@ -2024,6 +2028,8 @@ msgid ""
 "To kwota, która trafi na konto po odjęciu składek, podatku i Twoich wpłat do "
 "PPK."
 msgstr ""
+"This is the amount that will be deposited to your account after deducting "
+"contributions, tax, and your PPK (Employee Capital Plan) contributions."
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
