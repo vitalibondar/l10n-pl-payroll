@@ -77,19 +77,6 @@
                     <field name="creative_report_required" invisible="1"/>
                     <field name="creative_report_missing" invisible="1"/>
                     <field name="below_minimum_wage" invisible="1"/>
-                    <div class="oe_title oe_right mb-3">
-                        <label for="net"/>
-                        <h1>
-                            <field name="net" readonly="1" nolabel="1" class="oe_inline"/>
-                            <span class="text-muted oe_inline">PLN</span>
-                        </h1>
-                        <div class="text-warning fw-semibold" invisible="not creative_report_missing">
-                            Brakuje raportu twórczego
-                        </div>
-                        <div class="text-warning fw-semibold" invisible="not below_minimum_wage">
-                            Poniżej minimalnego wynagrodzenia
-                        </div>
-                    </div>
                     <div class="alert alert-warning" role="alert" invisible="not creative_report_missing">
                         <strong>Uwaga:</strong> Brakuje zatwierdzonego raportu twórczego dla tej listy płac.
                         Bez niego nie należy rozliczać 50% kosztów autorskich.
@@ -106,6 +93,18 @@
                             <field name="date_to" readonly="state != 'draft'"/>
                         </group>
                         <group string="Informacje">
+                            <div colspan="2" class="mb-2">
+                                <span class="fs-1 fw-bold text-primary">
+                                    <field name="net" readonly="1" nolabel="1" class="oe_inline"/>
+                                    <span class="fs-4 text-muted"> PLN</span>
+                                </span>
+                                <div class="text-warning fw-semibold small" invisible="not creative_report_missing">
+                                    Brakuje raportu twórczego
+                                </div>
+                                <div class="text-warning fw-semibold small" invisible="not below_minimum_wage">
+                                    Poniżej minimalnego wynagrodzenia
+                                </div>
+                            </div>
                             <field name="state" readonly="1"/>
                             <field name="name" readonly="1"/>
                             <field name="department_id" readonly="1"/>
