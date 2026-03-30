@@ -9,9 +9,16 @@ class PlPayrollTranslationLoader(models.AbstractModel):
     _name = "pl.payroll.translation.loader"
     _description = "PL Payroll translation loader"
 
+    _SOURCE_LANG = "pl_PL"
+    _TRANSLATION_FILES = {
+        "en_US": "en_US.po",
+        "uk_UA": "uk.po",
+        "ru_RU": "ru.po",
+    }
+
     @api.model
-    def apply_en_us_translations(self):
-        po_path = Path(__file__).resolve().parents[1] / "i18n" / "en_US.po"
+    def _apply_po_translations(self, lang_code, po_filename):
+        po_path = Path(__file__).resolve().parents[1] / "i18n" / po_filename
         if not po_path.exists():
             return True
 
@@ -36,11 +43,25 @@ class PlPayrollTranslationLoader(models.AbstractModel):
                     direct_updates.append((record, field_name, entry["value"]))
 
         for record, field_name, value in direct_updates:
-            record.update_field_translations(field_name, {"en_US": value})
+            record.update_field_translations(field_name, {lang_code: value})
 
         for model_name, record_id, field_name in term_updates:
             record = self.env[model_name].browse(record_id)
             if record.exists():
-                record.update_field_translations(field_name, {"en_US": term_updates[(model_name, record_id, field_name)]})
+                record.update_field_translations(
+                    field_name,
+                    {lang_code: term_updates[(model_name, record_id, field_name)]},
+                    source_lang=self._SOURCE_LANG,
+                )
 
+        return True
+
+    @api.model
+    def apply_en_us_translations(self):
+        return self._apply_po_translations("en_US", "en_US.po")
+
+    @api.model
+    def apply_all_translations(self):
+        for lang_code, po_filename in self._TRANSLATION_FILES.items():
+            self._apply_po_translations(lang_code, po_filename)
         return True

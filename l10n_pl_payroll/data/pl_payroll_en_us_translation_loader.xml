@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <function model="pl.payroll.translation.loader" name="apply_en_us_translations"/>
+    <function model="pl.payroll.translation.loader" name="apply_all_translations"/>
 </odoo>
