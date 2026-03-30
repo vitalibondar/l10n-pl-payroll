@@ -608,6 +608,11 @@ msgid "Informacja roczna PIT-11"
 msgstr "Годовая информация PIT-11 (informacja roczna PIT-11)"
 
 #. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Informacje"
+msgstr "Информация"
+
+#. module: l10n_pl_payroll
 #: model:ir.actions.act_window,name:l10n_pl_payroll.action_pl_payroll_pit11
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_search
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_pit11_tree
@@ -1464,6 +1469,11 @@ msgstr "Сотрудник"
 #: model:res.groups,name:l10n_pl_payroll.group_payroll_employee
 msgid "Pracownik płac"
 msgstr "Сотрудник по расчету зарплаты"
+
+#. module: l10n_pl_payroll
+#: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.view_pl_payroll_payslip_form
+msgid "Pracownik i umowa"
+msgstr "Сотрудник и договор"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__employee_id

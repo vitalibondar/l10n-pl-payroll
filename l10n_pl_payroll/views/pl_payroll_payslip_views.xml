@@ -74,14 +74,6 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,computed,confirmed,cancelled"/>
                 </header>
                 <sheet>
-                    <div class="alert alert-warning" role="alert" invisible="not creative_report_missing">
-                        <strong>Uwaga:</strong> Brakuje zatwierdzonego raportu twórczego dla tej listy płac.
-                        Bez niego nie należy rozliczać 50% kosztów autorskich.
-                    </div>
-                    <div class="alert alert-warning" role="alert" invisible="not below_minimum_wage">
-                        <strong>Uwaga:</strong> Wynagrodzenie brutto jest niższe od proporcjonalnego minimalnego wynagrodzenia
-                        dla tego wymiaru etatu.
-                    </div>
                     <field name="creative_report_required" invisible="1"/>
                     <field name="creative_report_missing" invisible="1"/>
                     <field name="below_minimum_wage" invisible="1"/>
@@ -97,6 +89,14 @@
                         <div class="text-warning fw-semibold" invisible="not below_minimum_wage">
                             Poniżej minimalnego wynagrodzenia
                         </div>
+                    </div>
+                    <div class="alert alert-warning" role="alert" invisible="not creative_report_missing">
+                        <strong>Uwaga:</strong> Brakuje zatwierdzonego raportu twórczego dla tej listy płac.
+                        Bez niego nie należy rozliczać 50% kosztów autorskich.
+                    </div>
+                    <div class="alert alert-warning" role="alert" invisible="not below_minimum_wage">
+                        <strong>Uwaga:</strong> Wynagrodzenie brutto jest niższe od proporcjonalnego minimalnego wynagrodzenia
+                        dla tego wymiaru etatu.
                     </div>
                     <group col="2">
                         <group string="Pracownik i umowa">
