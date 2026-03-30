@@ -68,6 +68,9 @@
                     <button name="action_compute" string="Oblicz" type="object" class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_confirm" string="Zatwierdź" type="object" class="btn-primary" invisible="state not in ['draft', 'computed']"/>
                     <button name="action_cancel" string="Anuluj" type="object" invisible="state == 'cancelled'"/>
+                    <button name="action_sync_attendance" string="Synchronizuj nadgodziny" type="object"
+                        class="btn-secondary" invisible="state != 'draft'"
+                        title="Pobierz nadgodziny z ewidencji czasu pracy"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,computed,confirmed,cancelled"/>
                 </header>
                 <sheet>
@@ -82,7 +85,7 @@
                     <field name="creative_report_required" invisible="1"/>
                     <field name="creative_report_missing" invisible="1"/>
                     <field name="below_minimum_wage" invisible="1"/>
-                    <div class="oe_title mb-3">
+                    <div class="oe_title oe_right mb-3">
                         <label for="net"/>
                         <h1>
                             <field name="net" readonly="1" nolabel="1" class="oe_inline"/>
@@ -95,20 +98,18 @@
                             Poniżej minimalnego wynagrodzenia
                         </div>
                     </div>
-                    <group col="3">
-                        <group>
+                    <group col="2">
+                        <group string="Pracownik i umowa">
                             <field name="employee_id" readonly="state != 'draft'"/>
                             <field name="contract_id" readonly="state != 'draft'"/>
                             <field name="date_from" readonly="state != 'draft'"/>
                             <field name="date_to" readonly="state != 'draft'"/>
                         </group>
-                        <group>
+                        <group string="Informacje">
                             <field name="state" readonly="1"/>
                             <field name="name" readonly="1"/>
                             <field name="department_id" readonly="1"/>
                             <field name="company_id" readonly="1"/>
-                        </group>
-                        <group>
                             <field name="gross" readonly="1"/>
                             <field name="total_employer_cost" readonly="1"/>
                         </group>
@@ -129,6 +130,11 @@
                                     <field name="overtime_hours_150" readonly="state != 'draft'"/>
                                     <field name="overtime_hours_200" readonly="state != 'draft'"/>
                                     <field name="overtime_amount" readonly="1"/>
+                                    <field name="attendance_synced" invisible="1"/>
+                                    <field name="overtime_manual_override" invisible="1"/>
+                                    <field name="attendance_worked_hours" readonly="1" invisible="not attendance_synced"/>
+                                    <field name="attendance_scheduled_hours" readonly="1" invisible="not attendance_synced"/>
+                                    <field name="attendance_sync_date" readonly="1" invisible="not attendance_synced"/>
                                     <field name="vacation_days" readonly="state != 'draft'"/>
                                     <field name="vacation_pay" readonly="1"/>
                                 </group>
@@ -218,5 +224,62 @@
         <field name="state">code</field>
         <field name="code">if records:
     records.action_confirm()</field>
+    </record>
+
+    <record id="view_pl_payroll_payslip_grid" model="ir.ui.view">
+        <field name="name">pl.payroll.payslip.grid</field>
+        <field name="model">pl.payroll.payslip</field>
+        <field name="arch" type="xml">
+            <list editable="inline" multi_edit="1" default_order="employee_id">
+                <field name="employee_id" readonly="1"/>
+                <field name="department_id" readonly="1" optional="show"/>
+                <field name="contract_id" readonly="1" optional="hide"/>
+                <field name="date_from" readonly="1" column_invisible="1"/>
+                <field name="working_days_in_month"/>
+                <field name="overtime_hours_150"/>
+                <field name="overtime_hours_200"/>
+                <field name="overtime_amount" readonly="1" optional="hide"/>
+                <field name="sick_days"/>
+                <field name="sick_days_100"/>
+                <field name="vacation_days"/>
+                <field name="gross" readonly="1"/>
+                <field name="zus_total_ee" readonly="1" optional="hide"/>
+                <field name="pit_due" readonly="1" optional="hide"/>
+                <field name="bonus_gross_total" readonly="1" optional="show"/>
+                <field name="deduction_net_total" readonly="1" optional="show"/>
+                <field name="net" readonly="1"/>
+                <field name="state" widget="badge" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_pl_payroll_payslip_grid" model="ir.actions.act_window">
+        <field name="name">Edycja zbiorcza list płac</field>
+        <field name="res_model">pl.payroll.payslip</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_pl_payroll_payslip_grid"/>
+        <field name="search_view_id" ref="view_pl_payroll_payslip_search"/>
+        <field name="domain">[('state', '=', 'draft')]</field>
+        <field name="context">{'search_default_filter_this_month': 1}</field>
+    </record>
+
+    <record id="action_server_pl_payroll_batch_compute" model="ir.actions.server">
+        <field name="name">Oblicz zaznaczone listy płac</field>
+        <field name="model_id" ref="model_pl_payroll_payslip"/>
+        <field name="binding_model_id" ref="model_pl_payroll_payslip"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">if records:
+    records.action_compute()</field>
+    </record>
+
+    <record id="action_server_pl_payroll_batch_sync_attendance" model="ir.actions.server">
+        <field name="name">Synchronizuj nadgodziny z ewidencją</field>
+        <field name="model_id" ref="model_pl_payroll_payslip"/>
+        <field name="binding_model_id" ref="model_pl_payroll_payslip"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">if records:
+    records.action_batch_sync_attendance()</field>
     </record>
 </odoo>
