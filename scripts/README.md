@@ -12,7 +12,7 @@ bash scripts/upgrade_module.sh
 
 ## `seed_and_verify.sh`
 
-Runs the module upgrade, waits 5 seconds, then runs `scripts/seed_realistic_data.py`.
+Runs the module upgrade, waits until Odoo XML-RPC is actually ready, then runs `scripts/seed_realistic_data.py`.
 
 Run from the repo root:
 

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 import calendar
+import http.client
+import socket
 import sys
+import time
 import unicodedata
 import xmlrpc.client
 from datetime import date
@@ -11,6 +14,8 @@ URL = "http://localhost:8069"
 DB = "omdev"
 USER = "admin@omenergysolutions.pl"
 PASSWORD = "omdev2026"
+CONNECT_TIMEOUT = 120
+CONNECT_RETRY_INTERVAL = 2.0
 
 ADMIN_EMPLOYEE_ID = 1
 END_MONTH = date(2026, 2, 1)
@@ -74,13 +79,47 @@ VACATION_ENTRIES = [
 ]
 
 
-def connect():
-    common = xmlrpc.client.ServerProxy(f"{URL}/xmlrpc/2/common", allow_none=True)
-    uid = common.authenticate(DB, USER, PASSWORD, {})
-    if not uid:
-        raise RuntimeError("Authentication failed.")
-    models = xmlrpc.client.ServerProxy(f"{URL}/xmlrpc/2/object", allow_none=True)
-    return uid, models
+def build_common_proxy():
+    return xmlrpc.client.ServerProxy(f"{URL}/xmlrpc/2/common", allow_none=True)
+
+
+def build_object_proxy():
+    return xmlrpc.client.ServerProxy(f"{URL}/xmlrpc/2/object", allow_none=True)
+
+
+def connect(timeout=CONNECT_TIMEOUT, retry_interval=CONNECT_RETRY_INTERVAL, verbose=True):
+    deadline = time.monotonic() + timeout
+    last_error = None
+    attempt = 1
+
+    while time.monotonic() < deadline:
+        try:
+            common = build_common_proxy()
+            common.version()
+            uid = common.authenticate(DB, USER, PASSWORD, {})
+            if uid:
+                return uid, build_object_proxy()
+            last_error = RuntimeError("Authentication failed.")
+        except (
+            OSError,
+            socket.timeout,
+            http.client.RemoteDisconnected,
+            xmlrpc.client.ProtocolError,
+            xmlrpc.client.Fault,
+        ) as exc:
+            last_error = exc
+
+        if verbose:
+            print(
+                f"Waiting for Odoo XML-RPC ({attempt})... {last_error}",
+                flush=True,
+            )
+        attempt += 1
+        time.sleep(retry_interval)
+
+    raise RuntimeError(
+        f"Odoo at {URL} did not become ready within {timeout} seconds. Last error: {last_error}"
+    )
 
 
 def execute(models, uid, model, method, args=None, kwargs=None):

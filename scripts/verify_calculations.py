@@ -20,12 +20,7 @@ BATCH_MONTH = date(2026, 2, 1)
 
 
 def connect():
-    common = xmlrpc.client.ServerProxy(f"{seed.URL}/xmlrpc/2/common", allow_none=True)
-    uid = common.authenticate(seed.DB, seed.USER, seed.PASSWORD, {})
-    if not uid:
-        raise RuntimeError("Authentication failed.")
-    models = xmlrpc.client.ServerProxy(f"{seed.URL}/xmlrpc/2/object", allow_none=True)
-    return uid, models
+    return seed.connect(verbose=False)
 
 
 def execute(models, uid, model, method, args=None, kwargs=None):
