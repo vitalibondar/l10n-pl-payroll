@@ -173,6 +173,36 @@ class PlPayrollPayslip(models.Model):
         string="Suma potrąceń netto",
         help="Łączna kwota potrąceń odejmowanych już po wyliczeniu wynagrodzenia netto.",
     )
+    pit_taxable_bonus_total = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Dodatki brutto podlegające PIT",
+        help="Suma dodatków brutto, które wchodzą do podstawy opodatkowania PIT.",
+    )
+    zus_included_bonus_total = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Dodatki brutto podlegające ZUS",
+        help="Suma dodatków brutto, które wchodzą do podstawy wymiaru składek ZUS.",
+    )
+    benefit_in_kind_total = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Świadczenia rzeczowe razem",
+        help="Łączna kwota świadczeń rzeczowych (nie wpływają na wypłatę gotówkową).",
+    )
+    benefit_in_kind_pit = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Świadczenia rzeczowe — PIT",
+        help="Suma świadczeń rzeczowych podlegających PIT.",
+    )
+    benefit_in_kind_zus = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Świadczenia rzeczowe — ZUS",
+        help="Suma świadczeń rzeczowych podlegających ZUS (z uwzględnieniem limitu zwolnienia).",
+    )
 
     zus_emerytalne_ee = fields.Float(
         string="Składka emerytalna (pracownik)",
@@ -353,23 +383,54 @@ class PlPayrollPayslip(models.Model):
                     below_minimum_wage = payslip._to_decimal(payslip.gross) < threshold
             payslip.below_minimum_wage = below_minimum_wage
 
-    @api.depends("payslip_line_ids.category", "payslip_line_ids.amount")
+    @api.depends(
+        "payslip_line_ids.category",
+        "payslip_line_ids.amount",
+        "payslip_line_ids.pit_taxable",
+        "payslip_line_ids.zus_included",
+        "payslip_line_ids.component_type_id",
+    )
     def _compute_payslip_line_totals(self):
         for payslip in self:
             bonus_gross_total = Decimal("0.00")
             deduction_gross_total = Decimal("0.00")
             deduction_net_total = Decimal("0.00")
+            pit_taxable_bonus_total = Decimal("0.00")
+            zus_included_bonus_total = Decimal("0.00")
+            benefit_in_kind_total = Decimal("0.00")
+            benefit_in_kind_pit = Decimal("0.00")
+            benefit_in_kind_zus = Decimal("0.00")
             for line in payslip.payslip_line_ids:
                 amount = payslip._to_decimal(line.amount)
                 if line.category == "bonus_gross":
                     bonus_gross_total += amount
+                    if line.pit_taxable:
+                        pit_taxable_bonus_total += amount
+                    if line.zus_included:
+                        zus_included_bonus_total += amount
                 elif line.category == "deduction_gross":
                     deduction_gross_total += amount
+                elif line.category == "benefit_in_kind":
+                    benefit_in_kind_total += amount
+                    if line.pit_taxable:
+                        benefit_in_kind_pit += amount
+                    if line.zus_included:
+                        zus_amount = amount
+                        ct = line.component_type_id
+                        if ct and ct.zus_exempt_limit > 0:
+                            limit = payslip._to_decimal(ct.zus_exempt_limit)
+                            zus_amount = max(amount - limit, Decimal("0.00"))
+                        benefit_in_kind_zus += zus_amount
                 elif line.category == "deduction_net":
                     deduction_net_total += amount
             payslip.bonus_gross_total = float(payslip._round_amount(bonus_gross_total))
             payslip.deduction_gross_total = float(payslip._round_amount(deduction_gross_total))
             payslip.deduction_net_total = float(payslip._round_amount(deduction_net_total))
+            payslip.pit_taxable_bonus_total = float(payslip._round_amount(pit_taxable_bonus_total))
+            payslip.zus_included_bonus_total = float(payslip._round_amount(zus_included_bonus_total))
+            payslip.benefit_in_kind_total = float(payslip._round_amount(benefit_in_kind_total))
+            payslip.benefit_in_kind_pit = float(payslip._round_amount(benefit_in_kind_pit))
+            payslip.benefit_in_kind_zus = float(payslip._round_amount(benefit_in_kind_zus))
 
     @api.depends("employee_id", "date_from", "sick_days", "sick_days_100")
     def _compute_ytd_sick_days(self):

@@ -183,9 +183,12 @@
                         <page string="Składniki dodatkowe">
                             <field name="payslip_line_ids" readonly="state != 'draft'">
                                 <list editable="bottom">
+                                    <field name="component_type_id"/>
                                     <field name="name"/>
                                     <field name="category"/>
                                     <field name="amount"/>
+                                    <field name="pit_taxable" widget="boolean_toggle"/>
+                                    <field name="zus_included" widget="boolean_toggle"/>
                                     <field name="note"/>
                                 </list>
                             </field>

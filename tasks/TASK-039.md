@@ -1,6 +1,6 @@
 # TASK-039: Extend pl.payroll.payslip.line with component type + PIT/ZUS flags
 
-**Status:** ready
+**Status:** done
 **Phase:** 6 — Component Constructor
 **Depends on:** TASK-038
 **Architecture:** ARCHITECTURE-PHASE6.md § 2
