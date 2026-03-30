@@ -77,7 +77,7 @@ class PlPayrollCreativeReport(models.Model):
     def action_submit(self):
         for report in self:
             if report.state != "draft":
-                raise UserError(_("Raport można przekazać tylko ze statusu „Szkic”."))
+                raise UserError(_("Raport można przekazać tylko ze statusu 'Szkic'."))
             report.write({"state": "submitted"})
         return True
 
@@ -106,7 +106,7 @@ class PlPayrollCreativeReport(models.Model):
     def action_reset(self):
         for report in self:
             if report.state not in ("submitted", "accepted", "rejected"):
-                raise UserError(_("Do szkicu można cofnąć tylko raport poza statusem „Szkic”."))
+                raise UserError(_("Do szkicu można cofnąć tylko raport poza statusem 'Szkic'."))
             report.write({
                 "state": "draft",
                 "accepted_by": False,

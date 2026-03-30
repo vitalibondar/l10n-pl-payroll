@@ -32,7 +32,7 @@ class PlPayrollComponentBatchWizard(models.TransientModel):
     employee_ids = fields.Many2many(
         "hr.employee",
         string="Pracownicy",
-        help="Wybierz pracowników. Pozostaw puste i zaznacz „Wszyscy aktywni", aby dodać do wszystkich.",
+        help="Wybierz pracowników. Pozostaw puste i zaznacz 'Wszyscy aktywni', aby dodać do wszystkich.",
     )
     all_active_employees = fields.Boolean(
         string="Wszyscy aktywni pracownicy",
@@ -41,7 +41,7 @@ class PlPayrollComponentBatchWizard(models.TransientModel):
     department_id = fields.Many2one(
         "hr.department",
         string="Wydział",
-        help="Filtruj pracowników według wydziału. Działa razem z „Wszyscy aktywni".",
+        help="Filtruj pracowników według wydziału. Działa razem z 'Wszyscy aktywni'.",
     )
     note = fields.Text(
         string="Uwagi",
@@ -66,7 +66,7 @@ class PlPayrollComponentBatchWizard(models.TransientModel):
         if self.amount <= 0:
             raise ValidationError(_("Kwota musi być większa od zera."))
         if self.date_from > self.date_to:
-            raise ValidationError(_("Data „Okres od" nie może być późniejsza niż „Okres do"."))
+            raise ValidationError(_("Data 'Okres od' nie może być późniejsza niż 'Okres do'."))
 
         employees = self._get_employees()
         if not employees:

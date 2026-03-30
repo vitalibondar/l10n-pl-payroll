@@ -20,7 +20,7 @@ class PlPayrollBatchCompute(models.TransientModel):
     def action_compute(self):
         self.ensure_one()
         if self.date_from > self.date_to:
-            raise ValidationError(_("Data „Okres od” nie może być późniejsza niż „Okres do”."))
+            raise ValidationError(_("Data 'Okres od' nie może być późniejsza niż 'Okres do'."))
 
         contracts = self.env["hr.contract"].search(
             [

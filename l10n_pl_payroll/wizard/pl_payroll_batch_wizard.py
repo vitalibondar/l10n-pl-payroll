@@ -47,7 +47,7 @@ class PlPayrollBatchWizard(models.TransientModel):
     def action_generate(self):
         self.ensure_one()
         if self.date_from > self.date_to:
-            raise ValidationError(_("Data „Okres od” nie może być późniejsza niż „Okres do”."))
+            raise ValidationError(_("Data 'Okres od' nie może być późniejsza niż 'Okres do'."))
 
         contract_domain = [
             ("state", "=", "open"),
