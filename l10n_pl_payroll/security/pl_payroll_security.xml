@@ -22,6 +22,13 @@
             <field name="implied_ids" eval="[(4, ref('group_payroll_officer'))]"/>
         </record>
 
+        <record id="rule_pl_payroll_component_type_company" model="ir.rule">
+            <field name="name">Typy składników według firmy</field>
+            <field name="model_id" ref="model_pl_payroll_component_type"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('group_payroll_officer')), (4, ref('group_payroll_manager'))]"/>
+        </record>
+
         <record id="rule_pl_payroll_parameter_company" model="ir.rule">
             <field name="name">Parametry płacowe według firmy</field>
             <field name="model_id" ref="model_pl_payroll_parameter"/>

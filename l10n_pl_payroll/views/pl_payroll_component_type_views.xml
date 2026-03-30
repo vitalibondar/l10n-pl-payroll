@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pl_payroll_component_type_list" model="ir.ui.view">
+        <field name="name">Typy składników - Lista</field>
+        <field name="model">pl.payroll.component.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="pit_taxable" widget="boolean" optional="hide"/>
+                <field name="zus_included" widget="boolean" optional="hide"/>
+                <field name="active" widget="boolean"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="pl_payroll_component_type_form" model="ir.ui.view">
+        <field name="name">Typy składników - Formularz</field>
+        <field name="model">pl.payroll.component.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="active" widget="boolean_toggle"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nazwa składnika"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Informacje podstawowe">
+                            <field name="code" placeholder="np. PREMIA"/>
+                            <field name="sequence"/>
+                            <field name="category" required="1"/>
+                            <field name="company_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Reguły PIT">
+                            <field name="pit_taxable" widget="boolean_toggle"/>
+                            <field name="pit_exempt_article" attrs="{'invisible': [('pit_taxable', '=', True)]}"/>
+                        </group>
+                        <group string="Reguły ZUS">
+                            <field name="zus_included" widget="boolean_toggle"/>
+                            <field name="zus_exempt_limit"/>
+                            <field name="zus_exempt_article" attrs="{'invisible': [('zus_included', '=', True)]}"/>
+                        </group>
+                        <group string="Domyślne wartości">
+                            <field name="default_amount"/>
+                            <field name="requires_documentation" widget="boolean_toggle"/>
+                            <field name="documentation_hint" attrs="{'invisible': [('requires_documentation', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group string="Opis i uwagi">
+                        <field name="note" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pl_payroll_component_type_search" model="ir.ui.view">
+        <field name="name">Typy składników - Wyszukiwanie</field>
+        <field name="model">pl.payroll.component.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code" string="Kod"/>
+                <field name="name" string="Nazwa"/>
+                <field name="category" string="Kategoria"/>
+                <separator/>
+                <filter name="filter_active" string="Aktywne" domain="[('active', '=', True)]"/>
+                <filter name="filter_inactive" string="Nieaktywne" domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter name="filter_pit_taxable" string="Podlegające PIT" domain="[('pit_taxable', '=', True)]"/>
+                <filter name="filter_pit_exempt" string="Zwolnione z PIT" domain="[('pit_taxable', '=', False)]"/>
+                <separator/>
+                <filter name="filter_zus_included" string="Podlegające ZUS" domain="[('zus_included', '=', True)]"/>
+                <filter name="filter_zus_exempt" string="Zwolnione z ZUS" domain="[('zus_included', '=', False)]"/>
+                <separator/>
+                <group expand="0" string="Grupuj po">
+                    <filter name="group_by_category" string="Kategoria" context="{'group_by': 'category'}"/>
+                    <filter name="group_by_pit" string="Status PIT" context="{'group_by': 'pit_taxable'}"/>
+                    <filter name="group_by_zus" string="Status ZUS" context="{'group_by': 'zus_included'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_pl_payroll_component_type" model="ir.actions.act_window">
+        <field name="name">Typy składników</field>
+        <field name="res_model">pl.payroll.component.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="pl_payroll_component_type_list"/>
+        <field name="search_view_id" ref="pl_payroll_component_type_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Utwórz nowy typ składnika wynagrodzenia
+            </p>
+            <p>
+                Typy składników definiują kategorie wynagrodzeń (bonusy, potrącenia, świadczenia rzeczowe),
+                reguły opodatkowania PIT i ZUS, oraz domyślne wartości.
+            </p>
+        </field>
+    </record>
+</odoo>

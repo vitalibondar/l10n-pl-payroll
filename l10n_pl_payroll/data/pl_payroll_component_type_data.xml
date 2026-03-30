@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="pl_component_type_premia" model="pl.payroll.component.type">
+            <field name="code">PREMIA</field>
+            <field name="name">Premia</field>
+            <field name="category">bonus_gross</field>
+            <field name="pit_taxable">True</field>
+            <field name="zus_included">True</field>
+            <field name="zus_exempt_limit">0.0</field>
+            <field name="sequence">10</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="pl_component_type_pranie" model="pl.payroll.component.type">
+            <field name="code">PRANIE</field>
+            <field name="name">Ekwiwalent za pranie</field>
+            <field name="category">bonus_gross</field>
+            <field name="pit_taxable">False</field>
+            <field name="pit_exempt_article">art. 21 ust. 1 pkt 11 ustawy o PIT</field>
+            <field name="zus_included">False</field>
+            <field name="zus_exempt_limit">0.0</field>
+            <field name="zus_exempt_article">§ 2 ust. 1 pkt 6 rozp. składkowego</field>
+            <field name="sequence">20</field>
+            <field name="active">True</field>
+            <field name="requires_documentation">True</field>
+            <field name="documentation_hint">Wymaga dokumentacji kosztów prania mundurów</field>
+        </record>
+
+        <record id="pl_component_type_posilki_fin" model="pl.payroll.component.type">
+            <field name="code">POSILKI_FIN</field>
+            <field name="name">Finansowanie posiłków</field>
+            <field name="category">benefit_in_kind</field>
+            <field name="pit_taxable">True</field>
+            <field name="zus_included">False</field>
+            <field name="zus_exempt_limit">450.0</field>
+            <field name="zus_exempt_article">§ 2 ust. 1 pkt 11 rozp. składkowego</field>
+            <field name="sequence">30</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="pl_component_type_posilki_prof" model="pl.payroll.component.type">
+            <field name="code">POSILKI_PROF</field>
+            <field name="name">Posiłki profilaktyczne</field>
+            <field name="category">benefit_in_kind</field>
+            <field name="pit_taxable">False</field>
+            <field name="pit_exempt_article">art. 21 ust. 1 pkt 11b ustawy o PIT</field>
+            <field name="zus_included">False</field>
+            <field name="zus_exempt_limit">0.0</field>
+            <field name="zus_exempt_article">§ 2 ust. 1 pkt 6 rozp. składkowego</field>
+            <field name="sequence">40</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="pl_component_type_karta_sport" model="pl.payroll.component.type">
+            <field name="code">KARTA_SPORT</field>
+            <field name="name">Karta sportowa</field>
+            <field name="category">benefit_in_kind</field>
+            <field name="pit_taxable">True</field>
+            <field name="zus_included">True</field>
+            <field name="zus_exempt_limit">0.0</field>
+            <field name="sequence">50</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="pl_component_type_potracenie_komornicze" model="pl.payroll.component.type">
+            <field name="code">POTRACENIE_KOMORNICZE</field>
+            <field name="name">Potrącenie komornicze</field>
+            <field name="category">deduction_net</field>
+            <field name="pit_taxable">False</field>
+            <field name="zus_included">False</field>
+            <field name="zus_exempt_limit">0.0</field>
+            <field name="sequence">60</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="pl_component_type_nadgodziny_att" model="pl.payroll.component.type">
+            <field name="code">NADGODZINY_ATT</field>
+            <field name="name">Nadgodziny z ewidencji</field>
+            <field name="category">bonus_gross</field>
+            <field name="pit_taxable">True</field>
+            <field name="zus_included">True</field>
+            <field name="zus_exempt_limit">0.0</field>
+            <field name="sequence">70</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

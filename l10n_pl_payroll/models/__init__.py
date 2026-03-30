@@ -1,5 +1,6 @@
 from . import hr_employee
 from . import pl_payroll_parameter
+from . import pl_payroll_component_type
 from . import hr_contract
 from . import pl_payroll_payslip
 from . import pl_payroll_payslip_line

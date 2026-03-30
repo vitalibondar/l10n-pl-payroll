@@ -17,6 +17,15 @@
     />
 
     <menuitem
+        id="menu_pl_payroll_payslip_grid"
+        name="Edycja zbiorcza"
+        parent="menu_pl_payroll_root"
+        action="action_pl_payroll_payslip_grid"
+        sequence="15"
+        groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
+    />
+
+    <menuitem
         id="menu_pl_payroll_batch_compute"
         name="Generowanie list płac"
         parent="menu_pl_payroll_root"
@@ -74,6 +83,15 @@
         parent="menu_pl_payroll_configuration"
         action="action_pl_payroll_parameter"
         sequence="10"
+        groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
+    />
+
+    <menuitem
+        id="menu_pl_payroll_component_types"
+        name="Typy składników"
+        parent="menu_pl_payroll_configuration"
+        action="action_pl_payroll_component_type"
+        sequence="20"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />
 

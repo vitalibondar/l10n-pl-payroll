@@ -1,4 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pl_payroll_component_type_officer,pl.payroll.component.type officer,model_pl_payroll_component_type,l10n_pl_payroll.group_payroll_officer,1,0,0,0
+access_pl_payroll_component_type_manager,pl.payroll.component.type manager,model_pl_payroll_component_type,l10n_pl_payroll.group_payroll_manager,1,1,1,1
 access_pl_payroll_parameter_officer,pl.payroll.parameter officer,model_pl_payroll_parameter,l10n_pl_payroll.group_payroll_officer,1,0,0,0
 access_pl_payroll_parameter_manager,pl.payroll.parameter manager,model_pl_payroll_parameter,l10n_pl_payroll.group_payroll_manager,1,1,1,1
 access_pl_payroll_payslip_employee,pl.payroll.payslip employee,model_pl_payroll_payslip,l10n_pl_payroll.group_payroll_employee,1,0,0,0
