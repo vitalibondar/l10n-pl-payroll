@@ -1,6 +1,6 @@
 # TASK-041: Batch wizard for adding components to multiple payslips
 
-**Status:** ready
+**Status:** done
 **Phase:** 6 — Component Constructor
 **Depends on:** TASK-039
 **Architecture:** ARCHITECTURE-PHASE6.md § 4, Mode B

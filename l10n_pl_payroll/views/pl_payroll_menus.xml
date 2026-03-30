@@ -70,6 +70,23 @@
     />
 
     <menuitem
+        id="menu_pl_payroll_tools"
+        name="Narzędzia"
+        parent="menu_pl_payroll_root"
+        sequence="25"
+        groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
+    />
+
+    <menuitem
+        id="menu_pl_payroll_component_batch"
+        name="Dodaj składnik zbiorczy"
+        parent="menu_pl_payroll_tools"
+        action="action_pl_payroll_component_batch_wizard"
+        sequence="10"
+        groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
+    />
+
+    <menuitem
         id="menu_pl_payroll_configuration"
         name="Konfiguracja"
         parent="menu_pl_payroll_root"

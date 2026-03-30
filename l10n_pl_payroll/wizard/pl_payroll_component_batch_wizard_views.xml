@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pl_payroll_component_batch_wizard_form" model="ir.ui.view">
+        <field name="name">pl.payroll.component.batch.wizard.form</field>
+        <field name="model">pl.payroll.component.batch.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Dodaj składnik zbiorczy">
+                <group>
+                    <group string="Składnik">
+                        <field name="component_type_id"/>
+                        <field name="amount"/>
+                    </group>
+                    <group string="Okres">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Pracownicy">
+                        <field name="all_active_employees"/>
+                        <field name="department_id" invisible="not all_active_employees"/>
+                        <field name="employee_ids" widget="many2many_tags" invisible="all_active_employees"/>
+                    </group>
+                    <group string="Uwagi">
+                        <field name="note"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_apply" type="object" string="Dodaj składnik" class="btn-primary"/>
+                    <button string="Anuluj" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pl_payroll_component_batch_wizard" model="ir.actions.act_window">
+        <field name="name">Dodaj składnik zbiorczy</field>
+        <field name="res_model">pl.payroll.component.batch.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
