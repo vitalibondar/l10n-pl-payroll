@@ -44,7 +44,7 @@ class PlPayrollPit11(models.Model):
         string="Status",
         default="draft",
         required=True,
-        help="Status dokumentu PIT-11 w module payroll.",
+        help="Etap przygotowania informacji PIT-11. Pozwala odróżnić szkic od dokumentu gotowego do wydruku lub eksportu.",
     )
 
     total_gross = fields.Float(
@@ -65,7 +65,7 @@ class PlPayrollPit11(models.Model):
     health_deductible = fields.Float(
         readonly=True,
         string="Składka zdrowotna odliczana (7,75%)",
-        help="Wartość historycznej części zdrowotnej prezentowana informacyjnie na formularzu PIT-11.",
+        help="Historyczna część składki zdrowotnej wykazywana informacyjnie na formularzu PIT-11 według dawnej stawki 7,75%.",
     )
     total_kup = fields.Float(
         readonly=True,

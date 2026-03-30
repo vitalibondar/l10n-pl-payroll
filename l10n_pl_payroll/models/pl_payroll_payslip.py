@@ -130,9 +130,24 @@ class PlPayrollPayslip(models.Model):
         string="Składniki dodatkowe",
         help="Dodatki, premie i potrącenia uwzględnione na liście płac.",
     )
-    bonus_gross_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
-    deduction_gross_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
-    deduction_net_total = fields.Float(compute="_compute_payslip_line_totals", store=True)
+    bonus_gross_total = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Suma dodatków brutto",
+        help="Łączna kwota dodatków i premii, które zwiększają wynagrodzenie brutto.",
+    )
+    deduction_gross_total = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Suma potrąceń brutto",
+        help="Łączna kwota potrąceń pomniejszających wynagrodzenie brutto przed podatkiem i składkami.",
+    )
+    deduction_net_total = fields.Float(
+        compute="_compute_payslip_line_totals",
+        store=True,
+        string="Suma potrąceń netto",
+        help="Łączna kwota potrąceń odejmowanych już po wyliczeniu wynagrodzenia netto.",
+    )
 
     zus_emerytalne_ee = fields.Float(
         string="Składka emerytalna (pracownik)",

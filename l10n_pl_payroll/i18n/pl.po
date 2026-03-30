@@ -115,8 +115,8 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__bonus_gross_total
-msgid "Bonus Gross Total"
-msgstr ""
+msgid "Suma dodatków brutto"
+msgstr "Suma dodatków brutto"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields.selection,name:l10n_pl_payroll.selection__hr_contract__ulga_type__none
@@ -250,13 +250,13 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__deduction_gross_total
-msgid "Deduction Gross Total"
-msgstr ""
+msgid "Suma potrąceń brutto"
+msgstr "Suma potrąceń brutto"
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_pl_payroll_payslip__deduction_net_total
-msgid "Deduction Net Total"
-msgstr ""
+msgid "Suma potrąceń netto"
+msgstr "Suma potrąceń netto"
 
 #. module: l10n_pl_payroll
 #: model:ir.actions.report,name:l10n_pl_payroll.action_report_pl_payroll_zus_dra
@@ -485,8 +485,8 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__company_id
-msgid "Firma, w której rozliczany jest raport pracy twórczej."
-msgstr ""
+msgid "Firma, w której rozlicza się ten raport pracy twórczej."
+msgstr "Firma, w której rozlicza się ten raport pracy twórczej."
 
 #. module: l10n_pl_payroll
 #: model_terms:ir.ui.view,arch_db:l10n_pl_payroll.report_pl_payroll_payslip_document
@@ -1889,13 +1889,13 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__state
-msgid "Status dokumentu PIT-11 w module payroll."
-msgstr ""
+msgid "Etap przygotowania informacji PIT-11. Pozwala odróżnić szkic od dokumentu gotowego do wydruku lub eksportu."
+msgstr "Etap przygotowania informacji PIT-11. Pozwala odróżnić szkic od dokumentu gotowego do wydruku lub eksportu."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_zus_dra__state
-msgid "Status dokumentu ZUS DRA w module payroll."
-msgstr ""
+msgid "Etap przygotowania deklaracji ZUS DRA. Ułatwia odróżnienie wersji roboczej od dokumentu gotowego do rozliczenia."
+msgstr "Etap przygotowania deklaracji ZUS DRA. Ułatwia odróżnienie wersji roboczej od dokumentu gotowego do rozliczenia."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_payslip__state
@@ -1905,10 +1905,8 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_creative_report__state
-msgid ""
-"Status obiegu raportu. Tylko raport zatwierdzony może zostać podpięty do "
-"listy płac z kosztami autorskimi."
-msgstr ""
+msgid "Etap obiegu raportu pracy twórczej. Tylko raport zatwierdzony można podpiąć do listy płac rozliczanej z 50% kosztami autorskimi."
+msgstr "Etap obiegu raportu pracy twórczej. Tylko raport zatwierdzony można podpiąć do listy płac rozliczanej z 50% kosztami autorskimi."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,field_description:l10n_pl_payroll.field_hr_employee__is_student
@@ -2117,10 +2115,8 @@ msgstr ""
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_pit11__health_deductible
-msgid ""
-"Wartość historycznej części zdrowotnej prezentowana informacyjnie na "
-"formularzu PIT-11."
-msgstr ""
+msgid "Historyczna część składki zdrowotnej wykazywana informacyjnie na formularzu PIT-11 według dawnej stawki 7,75%."
+msgstr "Historyczna część składki zdrowotnej wykazywana informacyjnie na formularzu PIT-11 według dawnej stawki 7,75%."
 
 #. module: l10n_pl_payroll
 #: model:ir.model.fields,help:l10n_pl_payroll.field_pl_payroll_parameter__value
@@ -2423,3 +2419,4 @@ msgid ""
 "Łączny przychód wykazany na PIT-11, razem z opodatkowaną wpłatą PPK "
 "pracodawcy."
 msgstr ""
+

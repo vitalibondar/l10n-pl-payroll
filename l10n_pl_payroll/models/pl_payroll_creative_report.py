@@ -35,8 +35,8 @@ class PlPayrollCreativeReport(models.Model):
         string="Status",
         default="draft",
         required=True,
-        help="Status obiegu raportu. Tylko raport zatwierdzony może zostać podpięty "
-             "do listy płac z kosztami autorskimi.",
+        help="Etap obiegu raportu pracy twórczej. Tylko raport zatwierdzony można podpiąć "
+             "do listy płac rozliczanej z 50% kosztami autorskimi.",
     )
     accepted_by = fields.Many2one(
         "res.users",
@@ -60,7 +60,7 @@ class PlPayrollCreativeReport(models.Model):
         string="Firma",
         default=lambda self: self.env.company,
         required=True,
-        help="Firma, w której rozliczany jest raport pracy twórczej.",
+        help="Firma, w której rozlicza się ten raport pracy twórczej.",
     )
 
     @api.depends("employee_id.name", "date")

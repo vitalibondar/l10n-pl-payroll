@@ -43,7 +43,7 @@ class PlPayrollZusDra(models.Model):
         string="Status",
         default="draft",
         required=True,
-        help="Status dokumentu ZUS DRA w module payroll.",
+        help="Etap przygotowania deklaracji ZUS DRA. Ułatwia odróżnienie wersji roboczej od dokumentu gotowego do rozliczenia.",
     )
 
     employee_count = fields.Integer(
