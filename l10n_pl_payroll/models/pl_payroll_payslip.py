@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal, ROUND_DOWN, ROUND_HALF_UP
 
 from odoo import _, api, fields, models
@@ -123,6 +123,31 @@ class PlPayrollPayslip(models.Model):
         string="Dodatek za nadgodziny",
         readonly=True,
         help="Łączna kwota dodatków za nadgodziny naliczona na tej liście płac.",
+    )
+    attendance_synced = fields.Boolean(
+        string="Zsynchronizowano z ewidencją",
+        default=False,
+        help="Informuje, że nadgodziny zostały pobrane z modułu ewidencji czasu pracy.",
+    )
+    attendance_sync_date = fields.Datetime(
+        string="Data ostatniej synchronizacji",
+        readonly=True,
+        help="Data i godzina ostatniego pobrania nadgodzin z ewidencji.",
+    )
+    overtime_manual_override = fields.Boolean(
+        string="Ręczna korekta nadgodzin",
+        default=False,
+        help="Informuje, że nadgodziny zostały zmienione ręcznie po synchronizacji z ewidencją.",
+    )
+    attendance_worked_hours = fields.Float(
+        string="Godziny przepracowane wg ewidencji",
+        readonly=True,
+        help="Łączna liczba godzin przepracowanych w okresie listy płac wg ewidencji.",
+    )
+    attendance_scheduled_hours = fields.Float(
+        string="Godziny planowane",
+        readonly=True,
+        help="Łączna liczba godzin wynikających z harmonogramu pracy w okresie listy płac.",
     )
     payslip_line_ids = fields.One2many(
         "pl.payroll.payslip.line",
@@ -377,6 +402,65 @@ class PlPayrollPayslip(models.Model):
     def action_cancel(self):
         self.filtered(lambda payslip: payslip.state != "cancelled").write({"state": "cancelled"})
         return True
+
+    def action_sync_attendance(self):
+        for payslip in self:
+            if payslip.state != 'draft':
+                raise UserError(_("Synchronizacja nadgodzin możliwa tylko dla list płac w stanie Szkic."))
+
+            if 'hr.attendance' not in self.env:
+                raise UserError(_(
+                    "Moduł ewidencji czasu pracy (hr_attendance) nie jest zainstalowany."
+                ))
+
+            dt_from = fields.Datetime.to_datetime(payslip.date_from)
+            dt_to = fields.Datetime.to_datetime(payslip.date_to) + timedelta(days=1)
+
+            attendances = self.env['hr.attendance'].search([
+                ('employee_id', '=', payslip.employee_id.id),
+                ('check_in', '>=', dt_from),
+                ('check_in', '<', dt_to),
+            ])
+
+            worked_hours = sum(att.worked_hours for att in attendances if att.worked_hours)
+
+            calendar = (
+                payslip.contract_id.resource_calendar_id
+                or payslip.company_id.resource_calendar_id
+            )
+            scheduled_hours = 0.0
+            if calendar:
+                dt_end = dt_to - timedelta(seconds=1)
+                scheduled_hours = calendar.get_work_hours_count(
+                    dt_from, dt_end,
+                    compute_leaves=True,
+                    resource=payslip.employee_id.resource_id,
+                )
+
+            overtime_total = max(worked_hours - scheduled_hours, 0.0)
+
+            payslip.write({
+                'overtime_hours_150': round(overtime_total, 2),
+                'overtime_hours_200': 0.0,
+                'attendance_synced': True,
+                'attendance_sync_date': fields.Datetime.now(),
+                'overtime_manual_override': False,
+                'attendance_worked_hours': round(worked_hours, 2),
+                'attendance_scheduled_hours': round(scheduled_hours, 2),
+            })
+        return True
+
+    def action_batch_sync_attendance(self):
+        draft_payslips = self.filtered(lambda p: p.state == 'draft')
+        if not draft_payslips:
+            raise UserError(_("Brak list płac w stanie Szkic do synchronizacji."))
+        draft_payslips.action_sync_attendance()
+        return True
+
+    @api.onchange('overtime_hours_150', 'overtime_hours_200')
+    def _onchange_overtime_manual(self):
+        if self.attendance_synced:
+            self.overtime_manual_override = True
 
     def _compute_single_payslip(self):
         self.ensure_one()
