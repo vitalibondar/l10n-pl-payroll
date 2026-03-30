@@ -397,14 +397,18 @@ class PlPayrollPayslip(models.Model):
             if gross <= Decimal("200.00"):
                 kup_amount = Decimal("0.00")
                 taxable_income = gross
-                pit_advance = self._round_amount(gross * Decimal("0.12"))
+                pit_rate = self._get_parameter("DZIELO_PIT_RATE")
+                pit_advance = self._round_amount(taxable_income * pit_rate / Decimal("100"))
             else:
                 if self.contract_id.kup_type == "autorskie":
-                    kup_amount = self._round_amount(gross * Decimal("0.50"))
+                    kup_rate = self._get_parameter("KUP_AUTORSKIE_50_RATE")
+                    kup_amount = self._round_amount(gross * kup_rate / Decimal("100"))
                 else:
-                    kup_amount = self._round_amount(gross * Decimal("0.20"))
+                    kup_rate = self._get_parameter("KUP_STANDARD_20_RATE")
+                    kup_amount = self._round_amount(gross * kup_rate / Decimal("100"))
                 taxable_income = self._floor_amount(gross - kup_amount)
-                pit_advance = self._round_amount(taxable_income * Decimal("0.12"))
+                pit_rate = self._get_parameter("DZIELO_PIT_RATE")
+                pit_advance = self._round_amount(taxable_income * pit_rate / Decimal("100"))
 
             pit_due = self._floor_amount(pit_advance)
             net_before_deductions = self._round_amount(gross - pit_due)
@@ -808,9 +812,11 @@ class PlPayrollPayslip(models.Model):
         self.ensure_one()
         if self.contract_id.kup_type == "autorskie":
             creative_share = self._to_decimal(self.contract_id.kup_autorskie_pct) / Decimal("100")
-            return self._round_amount(health_basis * creative_share * Decimal("0.5"))
+            kup_rate = self._get_parameter("KUP_AUTORSKIE_50_RATE")
+            return self._round_amount(health_basis * creative_share * kup_rate / Decimal("100"))
         if self.contract_id.kup_type == "standard_20":
-            return self._round_amount(health_basis * Decimal("0.20"))
+            kup_rate = self._get_parameter("KUP_STANDARD_20_RATE")
+            return self._round_amount(health_basis * kup_rate / Decimal("100"))
         kup_full = self._get_parameter("KUP_STANDARD")
         return self._round_amount(kup_full * self._get_etat_fraction())
 

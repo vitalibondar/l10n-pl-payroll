@@ -185,5 +185,29 @@
             <field name="value_type">amount</field>
             <field name="note">Minimalna stawka godzinowa brutto.</field>
         </record>
+        <record id="pl_payroll_parameter_2026_dzielo_pit_rate" model="pl.payroll.parameter">
+            <field name="name">Stawka PIT dla umowy o dzieło</field>
+            <field name="code">DZIELO_PIT_RATE</field>
+            <field name="value">12.0</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="value_type">percent</field>
+            <field name="note">Stawka podatku dochodowego dla umowy o dzieło.</field>
+        </record>
+        <record id="pl_payroll_parameter_2026_kup_standard_20_rate" model="pl.payroll.parameter">
+            <field name="name">Procent KUP standard_20</field>
+            <field name="code">KUP_STANDARD_20_RATE</field>
+            <field name="value">20.0</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="value_type">percent</field>
+            <field name="note">Procent kosztów uzyskania przychodu dla wariantu standard_20.</field>
+        </record>
+        <record id="pl_payroll_parameter_2026_kup_autorskie_50_rate" model="pl.payroll.parameter">
+            <field name="name">Procent KUP autorskie 50%</field>
+            <field name="code">KUP_AUTORSKIE_50_RATE</field>
+            <field name="value">50.0</field>
+            <field name="date_from">2026-01-01</field>
+            <field name="value_type">percent</field>
+            <field name="note">Procent kosztów uzyskania przychodu dla pracy autorskiej (50%).</field>
+        </record>
     </data>
 </odoo>
