@@ -82,39 +82,55 @@
                     <field name="creative_report_required" invisible="1"/>
                     <field name="creative_report_missing" invisible="1"/>
                     <field name="below_minimum_wage" invisible="1"/>
-                    <group string="Dane podstawowe">
+                    <div class="oe_title mb-3">
+                        <label for="net"/>
+                        <h1>
+                            <field name="net" readonly="1" nolabel="1" class="oe_inline"/>
+                            <span class="text-muted oe_inline">PLN</span>
+                        </h1>
+                        <div class="text-warning fw-semibold" invisible="not creative_report_missing">
+                            Brakuje raportu twórczego
+                        </div>
+                        <div class="text-warning fw-semibold" invisible="not below_minimum_wage">
+                            Poniżej minimalnego wynagrodzenia
+                        </div>
+                    </div>
+                    <group col="3">
                         <group>
                             <field name="employee_id" readonly="state != 'draft'"/>
                             <field name="contract_id" readonly="state != 'draft'"/>
                             <field name="date_from" readonly="state != 'draft'"/>
                             <field name="date_to" readonly="state != 'draft'"/>
-                            <field name="state" readonly="1"/>
                         </group>
                         <group>
+                            <field name="state" readonly="1"/>
                             <field name="name" readonly="1"/>
                             <field name="department_id" readonly="1"/>
                             <field name="company_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="gross" readonly="1"/>
+                            <field name="total_employer_cost" readonly="1"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Rozliczenie pracownika">
                             <group>
-                                <group string="Wynagrodzenie brutto">
+                                <group string="Podsumowanie wypłaty">
                                     <field name="gross" readonly="1"/>
+                                    <field name="net" readonly="1"/>
+                                    <field name="kup_type" readonly="1"/>
+                                    <field name="kup_amount" readonly="1"/>
+                                    <field name="ppk_ee" readonly="1"/>
+                                </group>
+                                <group string="Czas pracy i absencje">
                                     <field name="etat_fraction" readonly="1"/>
+                                    <field name="working_days_in_month" readonly="state != 'draft'"/>
                                     <field name="overtime_hours_150" readonly="state != 'draft'"/>
                                     <field name="overtime_hours_200" readonly="state != 'draft'"/>
                                     <field name="overtime_amount" readonly="1"/>
                                     <field name="vacation_days" readonly="state != 'draft'"/>
                                     <field name="vacation_pay" readonly="1"/>
-                                </group>
-                                <group string="Chorobowe i nieobecności">
-                                    <field name="sick_days" readonly="state != 'draft'"/>
-                                    <field name="sick_days_100" readonly="state != 'draft'"/>
-                                    <field name="working_days_in_month" readonly="state != 'draft'"/>
-                                    <field name="ytd_sick_days" readonly="1"/>
-                                    <field name="sick_leave_basis" readonly="1"/>
-                                    <field name="sick_leave_amount" readonly="1"/>
                                 </group>
                             </group>
                             <group>
@@ -124,17 +140,9 @@
                                     <field name="zus_chorobowe_ee" readonly="1"/>
                                     <field name="zus_total_ee" readonly="1"/>
                                 </group>
-                                <group string="Składka zdrowotna">
+                                <group string="Składka zdrowotna i PIT">
                                     <field name="health_basis" readonly="1"/>
                                     <field name="health" readonly="1"/>
-                                </group>
-                            </group>
-                            <group>
-                                <group string="Koszty uzyskania przychodu">
-                                    <field name="kup_type" readonly="1"/>
-                                    <field name="kup_amount" readonly="1"/>
-                                </group>
-                                <group string="Zaliczka na podatek dochodowy">
                                     <field name="taxable_income" readonly="1"/>
                                     <field name="pit_advance" readonly="1"/>
                                     <field name="pit_reducing" readonly="1"/>
@@ -142,11 +150,12 @@
                                 </group>
                             </group>
                             <group>
-                                <group string="PPK">
-                                    <field name="ppk_ee" readonly="1"/>
-                                </group>
-                                <group string="Wynagrodzenie netto">
-                                    <field name="net" readonly="1"/>
+                                <group string="Chorobowe">
+                                    <field name="sick_days" readonly="state != 'draft'"/>
+                                    <field name="sick_days_100" readonly="state != 'draft'"/>
+                                    <field name="ytd_sick_days" readonly="1"/>
+                                    <field name="sick_leave_basis" readonly="1"/>
+                                    <field name="sick_leave_amount" readonly="1"/>
                                 </group>
                             </group>
                         </page>

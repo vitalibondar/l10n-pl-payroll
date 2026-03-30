@@ -45,18 +45,18 @@
     <menuitem
         id="menu_pl_payroll_pit11"
         name="PIT-11"
-        parent="menu_pl_payroll_reports"
+        parent="menu_pl_payroll_root"
         action="action_pl_payroll_pit11_wizard"
-        sequence="10"
+        sequence="35"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />
 
     <menuitem
         id="menu_pl_payroll_zus_dra"
         name="ZUS DRA"
-        parent="menu_pl_payroll_reports"
+        parent="menu_pl_payroll_root"
         action="action_pl_payroll_zus_dra_wizard"
-        sequence="20"
+        sequence="36"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />
 
@@ -76,4 +76,8 @@
         sequence="10"
         groups="l10n_pl_payroll.group_payroll_officer,l10n_pl_payroll.group_payroll_manager"
     />
+
+    <record id="menu_pl_payroll_reports" model="ir.ui.menu">
+        <field name="active" eval="False"/>
+    </record>
 </odoo>
